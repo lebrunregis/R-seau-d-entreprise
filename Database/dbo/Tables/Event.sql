@@ -8,7 +8,7 @@
   [StartDate] datetime2(7) NOT NULL,
   [EndDate] datetime2(7),
   [CreationDate] datetime2(7) NOT NULL,
-  [fullday] bit NOT NULL,
+  [FullDay] bit NOT NULL,
   PRIMARY KEY ([Event_id])
 
 )

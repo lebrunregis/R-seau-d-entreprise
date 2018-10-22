@@ -41,11 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Data\Event.cs" />
+    <Compile Include="Data\Message.cs" />
+    <Compile Include="Data\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Mapper\" />
     <Folder Include="Service\" />
   </ItemGroup>
