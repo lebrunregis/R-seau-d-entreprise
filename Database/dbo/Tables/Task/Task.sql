@@ -5,7 +5,7 @@
   [StartDate] date,
   [EndDate] date,
   [Deadline] date,
-  [SubtaskOf] int,
+  [SubtaskOf] int FOREIGN KEY REFERENCES [Task](Task_Id),
   PRIMARY KEY ([Task_Id])
 );
 GO

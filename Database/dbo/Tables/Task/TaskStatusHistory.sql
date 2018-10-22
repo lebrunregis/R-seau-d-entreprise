@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [TaskStatusHistory] (
-  [Task_Id] int,
-  [TaskStatus_Id] int,
+  [Task_Id] int FOREIGN KEY REFERENCES [Task](Task_Id),
+  [TaskStatus_Id] int FOREIGN KEY REFERENCES [TaskStatus](TaskStatus_Id),
   [date] datetime2(0),
   PRIMARY KEY ([Task_Id],[date])
 );
