@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [Admin] (
-  [Employee_Id] int,
-  [Actif] bit
+  [Employee_Id] int NOT NULL FOREIGN KEY REFERENCES Employee(Employee_Id),
+  [Actif] bit NOT NULL,
+  PRIMARY KEY (Employee_Id)
 );
 GO
 CREATE INDEX [P FK] ON  [Admin] ([Employee_Id]);
