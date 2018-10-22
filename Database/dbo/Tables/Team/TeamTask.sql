@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[TeamTask]
+(
+	[Id] INT NOT NULL PRIMARY KEY
+)

@@ -63,5 +63,32 @@
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\User" />
     <Folder Include="Scripts" />
+    <Folder Include="dbo\Tables\Message" />
+    <Folder Include="dbo\Tables\Document" />
+    <Folder Include="dbo\Tables\Project" />
+    <Folder Include="dbo\Tables\Employee" />
+    <Folder Include="dbo\Tables\Team" />
+    <Folder Include="dbo\Tables\Task" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Team.sql" />
+    <Build Include="dbo\Tables\Message\Message.sql" />
+    <Build Include="dbo\Tables\Message\MessageEmployee.sql" />
+    <Build Include="dbo\Tables\Message\MessageProject.sql" />
+    <Build Include="dbo\Tables\Message\MessageTask.sql" />
+    <Build Include="dbo\Tables\Message\MessageTeam.sql" />
+    <Build Include="dbo\Tables\Project\Project.sql" />
+    <Build Include="dbo\Tables\Project\ProjectTask.sql" />
+    <Build Include="dbo\Tables\Team\Team.sql" />
+    <Build Include="dbo\Tables\Team\TeamTask.sql" />
+    <Build Include="dbo\Tables\Team\TeamProject.sql" />
+    <Build Include="dbo\Tables\Task\Task.sql" />
+    <Build Include="dbo\Tables\Task\TaskStatusHistory.sql" />
+    <Build Include="dbo\Tables\Task\TaskStatus.sql" />
+    <Build Include="dbo\Tables\Employee\Employee.sql" />
+    <Build Include="dbo\Tables\Employee\EmployeeTask.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Database.refactorlog" />
   </ItemGroup>
 </Project>
