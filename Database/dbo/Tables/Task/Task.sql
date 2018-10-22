@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [Task] (
-  [Task_Id] int,
+  [Task_Id] int identity(1,1),
   [Name] nvarchar(50) NOT NULL,
   [Description] nvarchar(max) NOT NULL,
   [StartDate] date NOT NULL,
