@@ -109,8 +109,4 @@
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Database.publish.xml" />
-    <None Include="Database_1.publish.xml" />
-  </ItemGroup>
 </Project>
