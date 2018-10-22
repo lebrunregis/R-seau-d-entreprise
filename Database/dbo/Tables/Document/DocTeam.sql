@@ -1,4 +1,9 @@
-﻿CREATE TABLE [dbo].[DocTeam]
-(
-	[Id] INT NOT NULL PRIMARY KEY
-)
+﻿CREATE TABLE [DocTeam] (
+  [Document_id] int,
+  [Team_id] int
+  PRIMARY KEY ([Document_id], [Team_id])
+);
+GO
+CREATE INDEX [PFK] ON  [DocTeam] ([Document_id]);
+GO
+CREATE INDEX [FK] ON  [DocTeam] ([Team_id]);
