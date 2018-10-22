@@ -1,8 +1,8 @@
-﻿CREATE TABLE [dbo].[Project]
-(
-	[Project_Id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Project_Name] NVARCHAR(50) NOT NULL, 
-    [Project_Description] NVARCHAR(MAX) NOT NULL, 
-    [Project_StartDate] DATE NOT NULL, 
-    [Project_EndDate] DATE NULL
-)
+﻿CREATE TABLE [Project] (
+  [Project_Id] int,
+  [Project_Name] nvarchar(50),
+  [Project_Description] nvarchar(max),
+  [StartDate] datetime2,
+  [EndDate] datetime2,
+  PRIMARY KEY ([Project_Id])
+);

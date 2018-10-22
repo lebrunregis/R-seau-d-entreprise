@@ -1,5 +1,5 @@
-﻿CREATE TABLE [dbo].[ProjectTask]
-(
-	[Project_Id] INT NOT NULL PRIMARY KEY ,
-	[Task_Id] INT NOT NULL PRIMARY KEY
-)
+﻿CREATE TABLE [ProjectTask] (
+  [Project_Id] int,
+  [Task_Id] int,
+  PRIMARY KEY ([Project_Id], [Task_Id])
+);

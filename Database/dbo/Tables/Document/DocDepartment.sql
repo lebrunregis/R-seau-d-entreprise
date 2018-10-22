@@ -4,6 +4,6 @@
   PRIMARY KEY ([Document_id], [Departement_id])
 );
 GO
-CREATE INDEX [PFK] ON  [DocDepartement] ([Document_id]);
+CREATE INDEX [FK_Doc] ON  [DocDepartement] ([Document_id]);
 GO
-CREATE INDEX [FK] ON  [DocDepartement] ([Departement_id]);
+CREATE INDEX [FK_Dep] ON  [DocDepartement] ([Departement_id]);

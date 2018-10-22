@@ -1,16 +1,7 @@
-﻿CREATE FUNCTION [dbo].[TaskStatus]
-(
-	@param1 int,
-	@param2 char(5)
-)
-RETURNS @returntable TABLE
-(
-	c1 int,
-	c2 char(5)
-)
-AS
-BEGIN
-	INSERT @returntable
-	SELECT @param1, @param2
-	RETURN
-END
+﻿CREATE TABLE [TaskStatus] (
+  [TakStatus_Id] int,
+  [Status_Name] varchar(50),
+  PRIMARY KEY ([TakStatus_Id])
+);
+GO
+CREATE INDEX [FK] ON  [TaskStatus] ([Status_Name]);
