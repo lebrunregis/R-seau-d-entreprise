@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Model.Global.Data
 {
-    class Message
+    class Department
     {
         public int Id { get; set; }
         public String Title { get; set; }
         public DateTime Created { get; set; }
-        public String Body { get; set; }
-        public int Author { get; set; }
-        public int Parent { get; set; }
+        public String Description { get; set; }
+        public int Admin_Id { get; set; }
     }
 }

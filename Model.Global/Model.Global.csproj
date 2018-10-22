@@ -41,10 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Department.cs" />
     <Compile Include="Data\Employee.cs" />
-	 <Compile Include="Data\Event.cs" />
+    <Compile Include="Data\EmployeeStatus.cs" />
+    <Compile Include="Data\EmployeeStatusHistory.cs" />
+    <Compile Include="Data\Event.cs" />
     <Compile Include="Data\Message.cs" />
     <Compile Include="Data\Project.cs" />
+    <Compile Include="Data\Task.cs" />
+    <Compile Include="Data\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

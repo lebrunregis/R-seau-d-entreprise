@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToolBox
+namespace Model.Global.Data
 {
-    public class Class1
+    class EmployeeStatus
     {
+        public int Id { get; set; }
+        public String Name { get; set; }
     }
 }
