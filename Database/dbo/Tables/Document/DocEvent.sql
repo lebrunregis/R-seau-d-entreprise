@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[DocEvent]
+(
+	[Id] INT NOT NULL PRIMARY KEY
+)
