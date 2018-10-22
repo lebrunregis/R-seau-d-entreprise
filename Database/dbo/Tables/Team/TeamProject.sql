@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [TeamProject] (
   [Team_Id] int FOREIGN KEY REFERENCES [Team](Team_Id),
   [Project_Id] int FOREIGN KEY REFERENCES [Project](Project_Id),
-  [StartDate] datetime2(0),
+  [StartDate] datetime2(0) NOT NULL,
   [EndDate] datetime2(0),
   PRIMARY KEY ([Team_Id],[Project_Id])
 );

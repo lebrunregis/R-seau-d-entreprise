@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [TaskStatus] (
-  [TakStatus_Id] int,
-  [Status_Name] varchar(50),
-  PRIMARY KEY ([TakStatus_Id])
+  [TaskStatus_Id] int NOT NULL,
+  [Status_Name] varchar(50) NOT NULL,
+  PRIMARY KEY ([TaskStatus_Id])
 );
 GO
 CREATE INDEX [FK] ON  [TaskStatus] ([Status_Name]);

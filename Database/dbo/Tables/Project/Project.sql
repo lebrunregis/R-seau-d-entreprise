@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [Project] (
   [Project_Id] int,
-  [Project_Name] nvarchar(50),
-  [Project_Description] nvarchar(max),
-  [StartDate] datetime2,
-  [EndDate] datetime2,
+  [Project_Name] nvarchar(50) NOT NULL,
+  [Project_Description] nvarchar(max) NOT NULL,
+  [StartDate] datetime2 NOT NULL,
+  [EndDate] datetime2 NOT NULL,
   PRIMARY KEY ([Project_Id])
 );
