@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [Project] (
-  [Project_Id] int,
+  [Project_Id] int identity,
   [Project_Name] nvarchar(50) NOT NULL,
   [Project_Description] nvarchar(max) NOT NULL,
   [StartDate] datetime2 NOT NULL,
