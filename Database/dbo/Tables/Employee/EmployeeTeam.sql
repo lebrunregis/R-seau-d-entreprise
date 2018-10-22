@@ -1,4 +1,9 @@
 ﻿CREATE TABLE [dbo].[EmployeeTeam]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[Team_Id] int NOT NULL FOREIGN KEY REFERENCES Team(Team_id),
+  [Employee_Id] int NOT NULL FOREIGN KEY REFERENCES Employee(Employee_id),
+  [StartDate] datetime2(7),
+  [EndDate] datetime2(7),
+  PRIMARY KEY ([StartDate], [Team_Id], [Employee_Id])
+
 )

@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[MessageTeam]
 (
-	[Id_Message] INT NOT NULL PRIMARY KEY, 
-    [Id_Team] INT NOT NULL PRIMARY KEY
+	[Message_Id] INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES [Message](Message_Id), 
+    [Team_Id] INT NOT NULL FOREIGN KEY REFERENCES Team(Team_Id)
 )
