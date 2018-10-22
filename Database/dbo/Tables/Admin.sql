@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [Admin] (
-  [Employee_Id] int NOT NULL FOREIGN KEY REFERENCES Employee(Employee_Id),
+  [Employee_Id] int NOT NULL FOREIGN KEY REFERENCES Employee(Employee_id),
   [Actif] bit NOT NULL,
   PRIMARY KEY (Employee_Id)
 );

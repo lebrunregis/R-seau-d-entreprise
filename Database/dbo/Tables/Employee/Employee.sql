@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Employee]
 (
-	[Employee_id] int identity,
+	[Employee_Id] int identity,
   [LastName] nvarchar(50) NOT NULL,
   [FirstName] nvarchar(50) NOT NULL,
   [email] varchar(360) NOT NULL unique,
@@ -11,7 +11,7 @@
   [CoordGPS] varchar(50) NULL,
   [address] nvarchar(MAX) NOT NULL,
   [phone] varchar(50) NULL,
-  PRIMARY KEY ([Employee_id])
+  PRIMARY KEY ([Employee_Id])
 
 );
 GO;

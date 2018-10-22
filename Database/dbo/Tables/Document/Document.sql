@@ -9,7 +9,3 @@
   [Employee_Id] int NOT NULL,
   [NextVersion] int,
 );
-GO
-CREATE INDEX [SK] ON  [Document] ([Link]);
-GO
-CREATE INDEX [FK] ON  [Document] ([Employee_Id], [NextVersion]);

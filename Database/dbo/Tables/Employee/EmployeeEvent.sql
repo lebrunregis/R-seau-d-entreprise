@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[EmployeeEvent]
 (
-	[Employee_id] int NOT NULL FOREIGN KEY REFERENCES Employee(Employee_id),
-  [Event_id] int NOT NULL FOREIGN KEY REFERENCES Event(Event_id),
+	[Employee_Id] int NOT NULL FOREIGN KEY REFERENCES Employee(Employee_Id),
+  [Event_Id] int NOT NULL FOREIGN KEY REFERENCES Event(Event_Id),
   [present] bit NOT NULL
-  PRIMARY KEY ([Employee_id], [Event_id])
+  PRIMARY KEY ([Employee_Id], [Event_Id])
 )

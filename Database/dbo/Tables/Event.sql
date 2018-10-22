@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Event]
 (
 	[Event_id] int identity,
-  [Employee_id] int NOT NULL FOREIGN KEY REFERENCES Employee(Employee_Id),
+  [Employee_id] int NOT NULL FOREIGN KEY REFERENCES Employee(Employee_id),
   [Name] nvarchar(50) NOT NULL,
   [Description] nvarchar(MAX) NOT NULL,
   [address] nvarchar(MAX),
