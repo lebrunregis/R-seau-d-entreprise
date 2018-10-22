@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Department.cs" />
+    <Compile Include="Data\Document.cs" />
     <Compile Include="Data\Employee.cs" />
     <Compile Include="Data\EmployeeStatus.cs" />
     <Compile Include="Data\EmployeeStatusHistory.cs" />
