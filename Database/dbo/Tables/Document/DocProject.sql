@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [DocProject] (
-  [Document_id] int PRIMARY KEY IDENTITY,
-  [Project_id] int
+  [Document_id] int FOREIGN KEY REFERENCES [Document](Document_id),
+  [Project_id] int  FOREIGN KEY REFERENCES [Project](Project_id)
   PRIMARY KEY ([Document_id], [Project_id])
 );
 GO

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [DocEvent] (
-  [Document_id] int PRIMARY KEY IDENTITY,
-  [Event_id] int
+  [Document_id] int  FOREIGN KEY REFERENCES [Document](Document_id),
+  [Event_id] int  FOREIGN KEY REFERENCES [Event](Event_id)
   PRIMARY KEY ([Document_id], [Event_id])
 );
 GO

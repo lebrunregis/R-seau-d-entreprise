@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [DocTask] (
-  [Document_id] int PRIMARY KEY IDENTITY,
-  [Task_id] int
+  [Document_id] int FOREIGN KEY REFERENCES [Document](Document_id),
+  [Task_id] int  FOREIGN KEY REFERENCES [Task](Task_id)
   PRIMARY KEY ([Document_id], [Task_id])
 );
 GO

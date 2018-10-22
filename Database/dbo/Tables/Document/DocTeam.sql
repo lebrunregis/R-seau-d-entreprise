@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [DocTeam] (
-  [Document_id] int,
-  [Team_id] int
+  [Document_id] int  FOREIGN KEY REFERENCES [Document](Document_id),
+  [Team_id] int  FOREIGN KEY REFERENCES [Team](Team_id)
   PRIMARY KEY ([Document_id], [Team_id])
 );
 GO
