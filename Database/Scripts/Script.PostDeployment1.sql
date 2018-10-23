@@ -10,12 +10,12 @@ Modèle de script de post-déploiement
 --------------------------------------------------------------------------------------
 */
 DECLARE @AdminId INT;
-exec SP_Register @LastName = 'Régis',@FirstName ='Lebrun',@Email ='mon.email1@fa.com',@Password  = 'admin',@RegNat  ='',@Address ='',@Phone = '';
-exec SP_Register @LastName = 'Samuel',@FirstName ='Legrain',@Email ='mon.email2@fa.com',@Password  = 'admin',@RegNat  ='',@Address ='',@Phone = '';
-exec SP_Register @LastName = 'Admin',@FirstName ='Admin',@Email ='mon.email3@fa.com',@Password  = 'admin',@RegNat  ='',@Address ='',@Phone = '';
+exec [dbo].SP_Register @LastName = 'Régis',@FirstName ='Lebrun',@Email ='mon.email1@fa.com',@Password  = 'admin',@RegNat  ='',@Address ='',@Phone = '';
+exec [dbo].SP_Register @LastName = 'Samuel',@FirstName ='Legrain',@Email ='mon.email2@fa.com',@Password  = 'admin',@RegNat  ='',@Address ='',@Phone = '';
+exec [dbo].SP_Register @LastName = 'Admin',@FirstName ='Admin',@Email ='mon.email3@fa.com',@Password  = 'admin',@RegNat  ='',@Address ='',@Phone = '';
 SET @AdminId = SCOPE_IDENTITY() 
-exec SP_Register @LastName = 'Patrick',@FirstName ='Bruel',@Email ='mon.email4@fa.com',@Password  = 'admin',@RegNat  ='',@Address ='',@Phone = '';
-exec SP_Register @LastName = 'Johnny',@FirstName ='Depp',@Email ='mon.email5@fa.com',@Password  = 'admin',@RegNat  ='',@Address ='',@Phone = '';
-exec SP_Register @LastName = 'Johnny',@FirstName ='Bravo',@Email ='mon.email6@fa.com',@Password  = 'admin',@RegNat  ='',@Address ='',@Phone = '';
+exec [dbo].SP_Register @LastName = 'Patrick',@FirstName ='Bruel',@Email ='mon.email4@fa.com',@Password  = 'admin',@RegNat  ='',@Address ='',@Phone = '';
+exec [dbo].SP_Register @LastName = 'Johnny',@FirstName ='Depp',@Email ='mon.email5@fa.com',@Password  = 'admin',@RegNat  ='',@Address ='',@Phone = '';
+exec [dbo].SP_Register @LastName = 'Johnny',@FirstName ='Bravo',@Email ='mon.email6@fa.com',@Password  = 'admin',@RegNat  ='',@Address ='',@Phone = '';
 GO
 INSERT INTO Admin (Employee_Id) VALUES ( @AdminId )
