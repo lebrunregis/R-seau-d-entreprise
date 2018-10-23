@@ -52,7 +52,7 @@
     <Compile Include="Data\Project.cs" />
     <Compile Include="Data\Task.cs" />
     <Compile Include="Data\Team.cs" />
-    <Compile Include="Mapper\Mapper.cs" />
+    <Compile Include="Mapper\Mappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Auth.cs" />
   </ItemGroup>
