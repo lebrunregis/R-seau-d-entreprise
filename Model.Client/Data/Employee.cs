@@ -15,7 +15,6 @@ namespace Model.Client.Data
         private string _Passwd;
         private Boolean _Actif;
         private string _RegNat;
-        private string _CoordGPS;
         private string _Address;
         private string _Phone;
 
@@ -138,18 +137,17 @@ namespace Model.Client.Data
             get { return $"{LastName} {FirstName}"; }
         }
 
-        public Employee(string lastName, string firstName, string email, string passwd, string regNat, string address, string phone)
+        public Employee(string lastName, string firstName, string email, string regNat, string address, string phone)
         {
             LastName = lastName;
             FirstName = firstName;
             Email = email;
-            Passwd = passwd;
             RegNat = regNat;
             Address = address;
             Phone = phone;
         }
 
-        internal Employee(int id, string lastName, string firstName, string email, string passwd, string regNat, string address, string phone) : this(lastName, firstName, email, passwd, regNat, address, phone)
+        internal Employee(int id, string lastName, string firstName, string email, string regNat, string address, string phone) : this(lastName, firstName, email, regNat, address, phone)
         {
             Employee_Id = id;
         }
