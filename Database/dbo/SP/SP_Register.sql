@@ -1,10 +1,16 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Register]
-	@login varchar(50),
-	@email varchar(50),
-	@pwd varchar(50)
+	@LastName varchar(50),
+	@FirstName varchar(50),
+	@Email varchar(360),
+	@Password varchar(50),
+	@RegNat varchar(50),
+	@Address varchar(MAX),
+	@Phone varchar(50)
 AS
 BEGIN
 	DECLARE @hash varbinary(32)
-	SET @hash =  [dbo].FN_Hash( @pwd) 
-	INSERT INTO Login (Login,Email,Hash) OUTPUT Inserted.ID VALUES ( @login ,@email,@hash )
+	SET @Hash =  [dbo].FN_Hash( @Password) 
+	INSERT INTO Employee(LastName,FirstName,Email,Passwd,Active,RegNat,Avatar,CoordGPS,Address,Phone) 
+	OUTPUT Inserted.ID 
+	VALUES ( @LastName , @FirstName,@Email,@Hash,@RegNat,@Address,@Phone)
 END

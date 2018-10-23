@@ -1,8 +1,8 @@
 ﻿CREATE procedure [dbo].[SP_ConfirmLogin] 
-    @login varchar(50),
+    @Email varchar(360),
 	@pwd varchar(50)
 AS
 BEGIN
-	select count(*) from [Login] where [Login].Login = @login and [Login].Hash = dbo.FN_Hash(@pwd); 
+	select count(*) from [Employee] where [Employee].Email = @login and [Employee].Passwd = dbo.FN_Hash(@pwd); 
 END
 

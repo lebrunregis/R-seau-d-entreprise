@@ -1,16 +1,16 @@
 ﻿CREATE TABLE [dbo].[Employee]
 (
-	[Employee_Id] int identity,
+  [Employee_Id] int IDENTITY,
   [LastName] nvarchar(50) NOT NULL,
   [FirstName] nvarchar(50) NOT NULL,
-  [email] varchar(360) NOT NULL unique,
-  [passwd] varbinary NOT NULL,
-  [actif] bit NOT NULL,
-  [RegNat] varchar(50) NOT NULL unique,
-  [avatar] varbinary(MAX) NULL,
+  [Email] varchar(360) NOT NULL UNIQUE,
+  [Passwd] varbinary NOT NULL,
+  [Active] bit NOT NULL,
+  [RegNat] varchar(50) NOT NULL UNIQUE,
+  [Avatar] varbinary(MAX) NULL,
   [CoordGPS] varchar(50) NULL,
-  [address] nvarchar(MAX) NOT NULL,
-  [phone] varchar(50) NULL,
+  [Address] nvarchar(MAX) NOT NULL,
+  [Phone] varchar(50) NULL,
   PRIMARY KEY ([Employee_Id])
 
 );
