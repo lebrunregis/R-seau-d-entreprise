@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
+using ToolBox.DBTools;
 
-namespace Réseau_d_entreprise.DAL
+namespace Model.Global.Service
 {
     public static class Auth
     {
-        static readonly Connection Connection = new Connection("System.Data.SqlClient", "Server='FORMAVDI1601\\TFTIC';Database=Database;User Id= 'Auth';Password = '340$Uuxwp7Mcxo7Khy'; ");
+        static readonly Connection Connection = new Connection("System.Data.SqlClient", ConfigurationManager.ConnectionStrings["connString"].ConnectionString);
 
         public static int Confirm(String login, string pwd)
         {

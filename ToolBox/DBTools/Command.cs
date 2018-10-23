@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Réseau_d_entreprise.DAL
+namespace ToolBox.DBTools
 {
     public class Command
     {

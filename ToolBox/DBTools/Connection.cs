@@ -5,9 +5,8 @@ using System.Data.Common;
 using System.Linq;
 using System.Web;
 
-namespace Réseau_d_entreprise.DAL
+namespace ToolBox.DBTools
 {
-
     public class Connection
     {
         public string InvariantName { get; set; }
