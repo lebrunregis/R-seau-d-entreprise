@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.Global.Data
 {
-    class Document
+    public class Document
     {
         public int Id { get; set; }
         public String Name { get; set; }

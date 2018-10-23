@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.Global.Data
 {
-    class EmployeeStatusHistory
+    public class EmployeeStatusHistory
     {
         public int Id { get; set; }
         public int Emplloyee { get; set; }

@@ -42,11 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Employee.cs" />
+    <Compile Include="Mapper\Mappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mapper\" />
     <Folder Include="Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model.Global\Model.Global.csproj">
+      <Project>{dce3299d-11c9-49f3-9358-f03dac52fa61}</Project>
+      <Name>Model.Global</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
