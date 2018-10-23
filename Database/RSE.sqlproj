@@ -112,5 +112,6 @@
     <None Include="dbo\FN\FN_Hash.sql" />
     <None Include="dbo\SP\SP_ConfirmLogin.sql" />
     <None Include="dbo\SP\SP_Register.sql" />
+    <None Include="RSE.publish.xml" />
   </ItemGroup>
 </Project>

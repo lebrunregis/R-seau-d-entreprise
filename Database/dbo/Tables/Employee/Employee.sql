@@ -15,7 +15,7 @@
 
 );
 GO;
-CREATE INDEX [email_i] ON  [Employee] ([email]);
+CREATE INDEX [email_i] ON  [Employee] ([Email]);
 GO;
 CREATE INDEX [RegNat_i] ON  [Employee] ([RegNat]);
 

@@ -9,8 +9,8 @@
 AS
 BEGIN
 	DECLARE @hash varbinary(32)
-	SET @Hash =  [dbo].FN_Hash( @Password) 
-	INSERT INTO Employee(LastName,FirstName,Email,Passwd,RegNat,Address,Phone) 
+	SET @Hash =  FN_Hash( @Password) 
+	INSERT INTO [dbo].Employee(LastName,FirstName,Email,Passwd,RegNat,Address,Phone) 
 	OUTPUT Inserted.ID 
 	VALUES ( @LastName , @FirstName,@Email,@Hash,@RegNat,@Address,@Phone)
 END
