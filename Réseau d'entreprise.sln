@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Réseau d'entreprise", "Ré
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Réseau d'entreprise.Tests", "Réseau d'entreprise.Tests\Réseau d'entreprise.Tests.csproj", "{54AE2312-665D-4A0F-A2C7-96FC21BAF376}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{63A93CA2-026C-4E5B-99D6-7598E49F7FB1}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RSE", "Database\RSE.sqlproj", "{63A93CA2-026C-4E5B-99D6-7598E49F7FB1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model.Client", "Model.Client\Model.Client.csproj", "{4EFC5198-5ACC-4331-B72B-38424DD2414C}"
 EndProject

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [Admin] (
   [Employee_Id] int NOT NULL FOREIGN KEY REFERENCES Employee(Employee_id),
-  [Actif] bit NOT NULL,
+  [Actif] bit NOT NULL DEFAULT 1,
   PRIMARY KEY (Employee_Id)
 );
 GO
