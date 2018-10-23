@@ -12,7 +12,7 @@ namespace Model.Global.Data
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
+        public string Passwd { get; set; }
         public Boolean Actif { get; set; }
         public string RegNat { get; set; }
         public string CoordGps { get; set; }
