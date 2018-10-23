@@ -18,11 +18,6 @@ namespace Réseau_d_entreprise.Controllers
             return View();
         }
 
-        private ActionResult View()
-        {
-            throw new NotImplementedException();
-        }
-
         [AnonymousRequired]
         public ActionResult Login()
         {
@@ -33,7 +28,7 @@ namespace Réseau_d_entreprise.Controllers
         [HttpPost]
         public ActionResult Login(LoginForm form)
         {
-            int count = Auth.Confirm(form.Login, form.Passwd);
+            int count = Employee.Confirm(form.Login, form.Passwd);
 
             if (count == 1)
             {

@@ -1,1 +1,10 @@
-﻿
+﻿CREATE LOGIN [Admin]
+    WITH PASSWORD = '340$Uuxwp7Mcxo7Khy';  
+GO  
+
+  CREATE USER [Admin] FOR LOGIN [Admin];  
+GO  
+
+GRANT CONNECT TO [Admin];
+GO
+GRANT DELETE, INSERT, SELECT, UPDATE ON ALL TO [Project];
