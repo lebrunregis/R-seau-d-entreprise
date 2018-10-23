@@ -109,4 +109,11 @@
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="dbo\User\U_Admin.sql" />
+    <None Include="dbo\User\U_Employee.sql" />
+    <None Include="dbo\FN\FN_Hash.sql" />
+    <None Include="dbo\SP\SP_ConfirmLogin.sql" />
+    <None Include="dbo\SP\SP_Register.sql" />
+  </ItemGroup>
 </Project>
