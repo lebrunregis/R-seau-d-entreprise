@@ -11,6 +11,7 @@ namespace Réseau_d_entreprise.Models.ViewModels
         [Required]
         [MinLength(5)]
         [MaxLength(360)]
+        [DataType(DataType.EmailAddress)]
         public String Email { get; set; }
         [DataType(DataType.Password)]
         [Required]
