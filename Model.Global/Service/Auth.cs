@@ -15,7 +15,7 @@ namespace Model.Global.Service
         public static int Confirm(String email, string pwd)
         {
             Command cmd = new Command("SP_ConfirmLogin", true);
-            cmd.AddParameter("Email", email);
+            cmd.AddParameter("email", email);
             cmd.AddParameter("pwd", pwd);
             return (int)Connection.ExecuteScalar(cmd);
         }

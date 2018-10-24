@@ -11,7 +11,7 @@ namespace Réseau_d_entreprise.Models.ViewModels
         [Required]
         [MinLength(5)]
         [MaxLength(360)]
-        public String Login { get; set; }
+        public String Email { get; set; }
         [DataType(DataType.Password)]
         [Required]
         [MaxLength(50)]

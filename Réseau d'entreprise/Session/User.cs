@@ -7,7 +7,6 @@ namespace Réseau_d_entreprise.Session
 {
     public class User
     {
-        public string Login { get; set; }
-
+        public int User_Id { get; set; }
     }
 }

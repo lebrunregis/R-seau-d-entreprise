@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Réseau_d_entreprise.Controllers
 {
-    public class EmployeeController : Controller
+    public class RegistrationController : Controller
     {
         // GET: Auth
         [AnonymousRequired]
