@@ -9,7 +9,8 @@ Modèle de script de post-déploiement
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-DELETE FROM Employee
+DELETE FROM [Admin];
+DELETE FROM Employee;
 
 EXEC [dbo].SP_Register_Demo @LastName = 'Aliyah',@FirstName ='Ellis';
 EXEC [dbo].SP_Register_Demo @LastName = 'Izabelle',@FirstName ='Hanna';
@@ -21,3 +22,7 @@ EXEC [dbo].SP_Register_Demo @LastName = 'Kayley',@FirstName ='Humphries';
 EXEC [dbo].SP_Register_Demo @LastName = 'Katrina',@FirstName ='Boyer';
 EXEC [dbo].SP_Register_Demo @LastName = 'Holly',@FirstName ='Tanner';
 EXEC [dbo].SP_Register_Demo @LastName = 'Kelly',@FirstName ='England';
+
+DECLARE @last_id int = ident_current('[dbo].Employee');
+UPDATE [dbo].Employee SET Email='admin@test.be' where Employee_Id = @last_id;
+INSERT INTO [dbo].[Admin] (Employee_Id) VALUES (@last_id);
