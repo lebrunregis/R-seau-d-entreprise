@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Global.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,9 +16,9 @@ namespace Réseau_d_entreprise.Session.Attributes
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            var accessAllowed = false;
+            bool accessAllowed = false;
 
-            if (SessionUser.GetSessionUser() != null)
+            if (Auth.IsAdmin(SessionUser.GetSessionUser().Id))
             {
                 accessAllowed = true;
             }

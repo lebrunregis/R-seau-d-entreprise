@@ -27,5 +27,18 @@ namespace Model.Global.Service
             cmd.AddParameter("pwd", pwd);
             return (int)Connection.ExecuteScalar(cmd);
         }
+        public static bool IsAdmin(int Employee_Id)
+        {
+            Command cmd = new Command("SP_ConfirmAdmin", true);
+            cmd.AddParameter("Employee_Id", Employee_Id);
+            if (Connection.ExecuteScalar(cmd) is null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
