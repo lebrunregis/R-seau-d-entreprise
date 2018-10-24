@@ -1,4 +1,6 @@
-﻿using Réseau_d_entreprise.Session.Attributes;
+﻿using Model.Global.Service;
+using Réseau_d_entreprise.Session;
+using Réseau_d_entreprise.Session.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,19 @@ namespace ReseauEntreprise.Controllers
 {
     public class HomeController : Controller
     {
-        [EmployeeRequired]
         public ActionResult Index()
         {
+            if (SessionUser.GetUser() != null && Auth.IsAdmin(SessionUser.GetUser().Id))
+            {
+                RedirectToAction("Index", "Home", new { area = "Admin" });
+            }
+            else if (SessionUser.GetUser()!= null)
+            {
+                RedirectToAction("Index", "Home", new { area = "Employee" });
+            } else
+            {
+                RedirectToAction("Index", "Home", new { area = "Default" });
+            }
             return View();
         }
 

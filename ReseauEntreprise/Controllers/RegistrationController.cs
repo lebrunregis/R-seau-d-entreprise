@@ -36,7 +36,7 @@ namespace Réseau_d_entreprise.Controllers
                 SessionUser.SetUser(new User { Id = (int)id });
                 if (Auth.IsAdmin((int)id))
                 {
-                    RedirectToAction("Index", "Home", new { area = "Admin" });
+                    RedirectToAction("Index", "Home", new { area = "ReseauEntreprise.Admin.Controllers" });
                 }
                 else
                 {
