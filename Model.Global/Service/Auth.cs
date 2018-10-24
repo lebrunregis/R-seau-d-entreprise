@@ -15,8 +15,8 @@ namespace Model.Global.Service
         public static int? Confirm(String email, string pwd)
         {
             Command cmd = new Command("SP_ConfirmLogin", true);
-            cmd.AddParameter("email", email);
-            cmd.AddParameter("pwd", pwd);
+            cmd.AddParameter("Email", email);
+            cmd.AddParameter("Password", pwd);
             return (int?)Connection.ExecuteScalar(cmd);
         }
         public static int Register(String login, String email, string pwd)
