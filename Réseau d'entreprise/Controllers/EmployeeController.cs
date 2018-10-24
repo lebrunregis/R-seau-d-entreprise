@@ -28,13 +28,13 @@ namespace Réseau_d_entreprise.Controllers
         [HttpPost]
         public ActionResult Login(LoginForm form)
         {
-            int count = Employee.Confirm(form.Login, form.Passwd);
+   /*         int count = Employee.Confirm(form.Login, form.Passwd);
 
             if (count == 1)
             {
                 SessionUser.SetSessionUser(new User { Login = form.Login });
                 return RedirectToAction("index", "Home");
-            }
+            }*/
             return View();
         }
 
@@ -48,11 +48,11 @@ namespace Réseau_d_entreprise.Controllers
         [HttpPost]
         public ActionResult Register(RegistrationForm form)
         {
-            int count = Auth.Register(form.Login, form.Email, form.Passwd);
+  /*          int count = Auth.Register(form.Login, form.Email, form.Passwd);
             if (count == 1)
             {
                 return RedirectToAction("index", "Auth");
-            }
+            }*/
             return View();
         }
     }

@@ -1,9 +1,9 @@
 ﻿CREATE TABLE [DocTeam] (
-  [Document_id] int  FOREIGN KEY REFERENCES [Document](Document_id),
-  [Team_id] int  FOREIGN KEY REFERENCES [Team](Team_id)
-  PRIMARY KEY ([Document_id], [Team_id])
+  [Document_Id] int  FOREIGN KEY REFERENCES [Document](Document_Id),
+  [Team_Id] int  FOREIGN KEY REFERENCES [Team](Team_Id)
+  PRIMARY KEY ([Document_Id], [Team_Id])
 );
 GO
-CREATE INDEX [PFK] ON  [DocTeam] ([Document_id]);
+CREATE INDEX [PFK] ON  [DocTeam] ([Document_Id]);
 GO
-CREATE INDEX [FK] ON  [DocTeam] ([Team_id]);
+CREATE INDEX [FK] ON  [DocTeam] ([Team_Id]);

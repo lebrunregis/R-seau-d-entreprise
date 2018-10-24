@@ -1,6 +1,4 @@
-﻿DROP PROCEDURE [dbo].[SP_Register]
-GO
-CREATE PROCEDURE [dbo].[SP_Register]
+﻿CREATE PROCEDURE [dbo].[SP_Register]
 	@LastName varchar(50),
 	@FirstName varchar(50),
 	@Email varchar(360),
@@ -13,6 +11,6 @@ BEGIN
 	DECLARE @hash varbinary(32)
 	SET @Hash =  [dbo].FN_Hash( @Password) 
 	INSERT INTO [dbo].Employee(LastName,FirstName,Email,Passwd,RegNat,Address,Phone) 
-	OUTPUT Inserted.ID 
+	OUTPUT Inserted.Employee_Id 
 	VALUES ( @LastName , @FirstName,@Email,@Hash,@RegNat,@Address,@Phone)
 END

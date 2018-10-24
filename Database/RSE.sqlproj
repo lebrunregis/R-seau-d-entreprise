@@ -102,16 +102,14 @@
     <Build Include="dbo\Tables\Department.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeStatus.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeStatusHistory.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
     <None Include="dbo\User\U_Employee.sql" />
-    <None Include="dbo\FN\FN_Hash.sql" />
-    <None Include="dbo\SP\SP_ConfirmLogin.sql" />
-    <None Include="dbo\SP\SP_Register.sql" />
+    <Build Include="dbo\FN\FN_Hash.sql" />
+    <Build Include="dbo\SP\SP_ConfirmLogin.sql" />
+    <Build Include="dbo\SP\SP_Register.sql" />
     <None Include="RSE.publish.xml" />
   </ItemGroup>
 </Project>

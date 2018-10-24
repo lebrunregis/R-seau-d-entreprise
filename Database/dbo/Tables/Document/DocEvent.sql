@@ -1,9 +1,9 @@
 ﻿CREATE TABLE [DocEvent] (
-  [Document_id] int  FOREIGN KEY REFERENCES [Document](Document_id),
-  [Event_id] int  FOREIGN KEY REFERENCES [Event](Event_id)
-  PRIMARY KEY ([Document_id], [Event_id])
+  [Document_Id] int  FOREIGN KEY REFERENCES [Document](Document_Id),
+  [Event_Id] int  FOREIGN KEY REFERENCES [Event](Event_Id)
+  PRIMARY KEY ([Document_Id], [Event_Id])
 );
 GO
-CREATE INDEX [PFK] ON  [DocEvent] ([Document_id]);
+CREATE INDEX [PFK] ON  [DocEvent] ([Document_Id]);
 GO
-CREATE INDEX [FK] ON  [DocEvent] ([Event_id]);
+CREATE INDEX [FK] ON  [DocEvent] ([Event_Id]);
