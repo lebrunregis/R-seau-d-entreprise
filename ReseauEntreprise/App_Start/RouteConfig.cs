@@ -17,7 +17,7 @@ namespace ReseauEntreprise
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                constraints: new string[] { "ReseauEntreprise.Controllers" }
+                namespaces: new string[] { "ReseauEntreprise.Controllers" }
             );
             routes.MapRoute(
                 "Admin", // Route name
