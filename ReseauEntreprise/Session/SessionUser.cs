@@ -7,13 +7,17 @@ namespace Réseau_d_entreprise.Session
 {
     public static class SessionUser
     {
-        public static User GetSessionUser()
+        public static User GetUser()
         {
             return (User)HttpContext.Current.Session["User"];
         }
-        public static void SetSessionUser(User user)
+        public static void SetUser(User user)
         {
             HttpContext.Current.Session["User"] = user;
+        }
+        public static void Reset()
+        {
+            HttpContext.Current.Session.RemoveAll();
         }
     }
 }

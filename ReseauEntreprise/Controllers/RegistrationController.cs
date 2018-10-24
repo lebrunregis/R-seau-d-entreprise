@@ -33,10 +33,17 @@ namespace Réseau_d_entreprise.Controllers
 
             if (id != null)
             {
-                SessionUser.SetSessionUser(new User { Id = (int)id });
+                SessionUser.SetUser(new User { Id = (int)id });
                 return RedirectToAction("Index", "Home");
             }
             return View();
+        }
+
+        [EmployeeRequired]
+        public ActionResult Logout()
+        {
+            SessionUser.Reset();
+            return RedirectToAction("Index", "Home");
         }
 
         [AdminRequired]

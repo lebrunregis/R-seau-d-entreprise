@@ -8,6 +8,5 @@ namespace Réseau_d_entreprise.Session
     public class User
     {
         public int Id { get; set; }
-
     }
 }

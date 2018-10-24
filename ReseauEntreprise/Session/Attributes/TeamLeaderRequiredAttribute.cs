@@ -17,7 +17,7 @@ namespace Réseau_d_entreprise.Session.Attributes
         {
             var accessAllowed = false;
 
-            if (SessionUser.GetSessionUser() != null)
+            if (SessionUser.GetUser() != null)
             {
                 accessAllowed = true;
             }
