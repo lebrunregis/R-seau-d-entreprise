@@ -39,13 +39,13 @@ namespace Réseau_d_entreprise.Controllers
             return View();
         }
 
-        [AnonymousRequired]
+        [AdminRequired]
         public ActionResult Register()
         {
             return View();
         }
 
-        [AnonymousRequired]
+        [AdminRequired]
         [HttpPost]
         public ActionResult Register(RegistrationForm form)
         {
