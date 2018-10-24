@@ -1,4 +1,5 @@
-﻿using Réseau_d_entreprise.Models.ViewModels;
+﻿using Model.Global.Service;
+using Réseau_d_entreprise.Models.ViewModels;
 using Réseau_d_entreprise.Session;
 using Réseau_d_entreprise.Session.Attributes;
 using System;
@@ -28,13 +29,13 @@ namespace Réseau_d_entreprise.Controllers
         [HttpPost]
         public ActionResult Login(LoginForm form)
         {
-   /*         int count = Employee.Confirm(form.Login, form.Passwd);
+            int? id = Auth.Confirm(form.Login, form.Passwd);
 
-            if (count == 1)
+            if (id != null)
             {
-                SessionUser.SetSessionUser(new User { Login = form.Login });
+                SessionUser.SetSessionUser(new User { Id = (int)id });
                 return RedirectToAction("index", "Home");
-            }*/
+            }
             return View();
         }
 

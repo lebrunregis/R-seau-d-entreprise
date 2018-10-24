@@ -64,7 +64,8 @@ namespace ToolBox.DBTools
                 conn.Open();
                 using (DbCommand cmd = this.CreateCommand(conn, command))
                 {
-                    return cmd.ExecuteScalar();
+                    var result = cmd.ExecuteScalar();
+                    return (result == DBNull.Value)? null : result;
                 }
             }
         }

@@ -12,12 +12,12 @@ namespace Model.Global.Service
     {
         static readonly Connection Connection = new Connection("System.Data.SqlClient", ConfigurationManager.ConnectionStrings["connString"].ConnectionString);
 
-        public static int Confirm(String email, string pwd)
+        public static int? Confirm(String email, string pwd)
         {
             Command cmd = new Command("SP_ConfirmLogin", true);
             cmd.AddParameter("Email", email);
             cmd.AddParameter("pwd", pwd);
-            return (int)Connection.ExecuteScalar(cmd);
+            return (int?)Connection.ExecuteScalar(cmd);
         }
         public static int Register(String login, String email, string pwd)
         {
