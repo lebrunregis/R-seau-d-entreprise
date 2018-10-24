@@ -34,7 +34,7 @@ namespace Réseau_d_entreprise.Controllers
             if (id != null)
             {
                 SessionUser.SetSessionUser(new User { Id = (int)id });
-                return RedirectToAction("index", "Home");
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
