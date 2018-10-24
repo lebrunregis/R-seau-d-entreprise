@@ -37,4 +37,3 @@ namespace Réseau_d_entreprise.Session.Attributes
         }
     }
 }
-}
