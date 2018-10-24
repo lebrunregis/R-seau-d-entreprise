@@ -3,9 +3,12 @@
 	@FirstName varchar(50)
 AS
 BEGIN
-	DECLARE @hash varbinary(32)
-	SET @Hash =  [dbo].FN_Hash( 'admin') 
-	INSERT INTO [dbo].Employee(LastName,FirstName,Email,Passwd,RegNat,Address,Phone) 
+  BEGIN TRANSACTION
+	DECLARE @hash varbinary(32);
+	SET @Hash =  [dbo].FN_Hash( 'admin') ;
+	INSERT INTO [dbo].Employee(LastName,FirstName,Email,RegNat,Passwd,Address,Phone) 
 	OUTPUT Inserted.Employee_Id 
-	VALUES ( @LastName , @FirstName,CONCAT(@LastName,@FirstName,'@test.com'),@Hash,CONCAT(@LastName,'-',@FirstName),'','')
+	VALUES ( @LastName , @FirstName,'','', @Hash,'','');
+	UPDATE [dbo].Employee SET Email=CONCAT(convert(varchar(10),@@IDENTITY), '@test.be'), RegNat = convert(varchar(10),@@IDENTITY) WHERE Employee_Id = convert(int,@@IDENTITY);
+  COMMIT TRANSACTION
 END

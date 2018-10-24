@@ -3,6 +3,6 @@
 	@Password varchar(50)
 AS
 BEGIN
-	select count(*) from [dbo].[Employee] where [dbo].[Employee].Email = @Email and [dbo].[Employee].Passwd = [dbo].FN_Hash(@Password); 
+	select Employee_Id from [dbo].[Employee] where [dbo].[Employee].Email = @Email and [dbo].[Employee].Passwd = [dbo].FN_Hash(@Password) and [dbo].[Employee].Active = 1; 
 END
 
