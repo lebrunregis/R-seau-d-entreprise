@@ -29,7 +29,7 @@ namespace Réseau_d_entreprise.Controllers
         [HttpPost]
         public ActionResult Login(LoginForm form)
         {
-            int? id = Auth.Confirm(form.Login, form.Passwd);
+            int? id = Auth.Confirm(form.Email, form.Passwd);
 
             if (id != null)
             {
