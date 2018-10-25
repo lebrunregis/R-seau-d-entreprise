@@ -3,6 +3,7 @@ using Model.Global.Service;
 using Réseau_d_entreprise.Models.ViewModels;
 using Réseau_d_entreprise.Session;
 using Réseau_d_entreprise.Session.Attributes;
+using ReseauEntreprise.Models.ViewModels.Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,22 +31,27 @@ namespace Réseau_d_entreprise.Controllers
         [HttpPost]
         public ActionResult Login(LoginForm form)
         {
-            int? id = Auth.Confirm(form.Email, form.Passwd);
-
-            if (id != null)
+            if (ModelState.IsValid)
             {
-                SessionUser.SetUser(new User { Id = (int)id });
-                if (Auth.IsAdmin((int)id))
-                {
-                   return RedirectToAction("Index", "Home", new { area = "Admin" });
-                }
-                else
-                {
-                   return RedirectToAction("Index", "Home", new { area = "Employee" });
-                }
+                int? id = Auth.Confirm(form.Email, form.Passwd);
 
+                if (id != null)
+                {
+                    SessionUser.SetUser(new User { Id = (int)id });
+                    if (Auth.IsAdmin((int)id))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "Employee" });
+                    }
+
+                }
+                ModelState.AddModelError("Email", "Email pas enregistré ou mot de passe incorrect");
+                return View(form);
             }
-            return View();
+            return View(form);
         }
 
         [EmployeeRequired]
@@ -65,36 +71,57 @@ namespace Réseau_d_entreprise.Controllers
         [HttpPost]
         public ActionResult Register(RegistrationForm form)
         {
-            Employee e = new Employee
+            if (ModelState.IsValid)
             {
-                FirstName = form.FirstName,
-                LastName = form.LastName,
-                Email = form.Email,
-                Passwd = form.Password,
-                RegNat = form.RegNat,
-                Address = form.Address,
-                Phone = form.Phone
-            };
-            try
-            {
-                Auth.Register(e);
-                return RedirectToAction("Index", "Home");
-            }
-            catch (System.Data.SqlClient.SqlException exeption)
-            {
-                if (exeption.Number == 2627)
+                Employee e = new Employee
                 {
-                    if (exeption.Message.Contains("UC_Email"))
-                    {
-                        ModelState.AddModelError("Email", "Cet email est déjà utilisé");
-                    }
-                    if (exeption.Message.Contains("UC_RegNat"))
-                    {
-                        ModelState.AddModelError("RegNat", "Ce numero de régistre national est déjà utilisé. Probablement, cet employé existe déjà dans la base de données.");
-                    }
+                    FirstName = form.FirstName,
+                    LastName = form.LastName,
+                    Email = form.Email,
+                    Passwd = form.Password,
+                    RegNat = form.RegNat,
+                    Address = form.Address,
+                    Phone = form.Phone
+                };
+                try
+                {
+                    Auth.Register(e);
+                    return RedirectToAction("Index", "Home");
                 }
-                return View();
+                catch (System.Data.SqlClient.SqlException exeption)
+                {
+                    if (exeption.Number == 2627)
+                    {
+                        if (exeption.Message.Contains("UC_Email"))
+                        {
+                            ModelState.AddModelError("Email", "Cet email est déjà utilisé");
+                        }
+                        if (exeption.Message.Contains("UC_RegNat"))
+                        {
+                            ModelState.AddModelError("RegNat", "Ce numero de régistre national est déjà utilisé. Probablement, cet employé existe déjà dans la base de données.");
+                        }
+                    }
+                    return View(form);
+                }
             }
+            return View(form);
+        }
+
+        [AdminRequired]
+        public ActionResult CreateProject()
+        {
+            return View();
+        }
+
+        [AdminRequired]
+        [HttpPost]
+        public ActionResult CreateProject(CreateProjectForm form)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            return View(form);
         }
     }
 }
