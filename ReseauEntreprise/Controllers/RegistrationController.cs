@@ -130,7 +130,6 @@ namespace Réseau_d_entreprise.Controllers
                     Creator = SessionUser.GetUser().Id
                 };
                 int ProjectManagerId = form.ProjectManager;
-                //int ProjectManagerId = int.Parse(form.ProjectManager.FirstOrDefault().Value);
                 try
                 {
                     if (ProjectService.Create(p, ProjectManagerId) != null)
@@ -143,7 +142,11 @@ namespace Réseau_d_entreprise.Controllers
                     throw (exception);
                 }
             }
-            return View(form); //???
+            IEnumerable<Employee> AllEmployees = EmployeeService.GetAllActive();
+            ViewData["AllEmployees"] = new SelectList(AllEmployees
+                .Select(e => new { value = e.Employee_Id.ToString(), text = $"{e.FirstName} {e.LastName}" }),
+                "value", "text");
+            return View(form);
         }
     }
 }
