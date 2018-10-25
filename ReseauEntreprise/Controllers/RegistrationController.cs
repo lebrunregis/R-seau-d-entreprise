@@ -73,7 +73,7 @@ namespace Réseau_d_entreprise.Controllers
         {
             if (ModelState.IsValid)
             {
-                Employee e = new Employee
+                Model.Global.Data.Employee e = new Model.Global.Data.Employee
                 {
                     FirstName = form.FirstName,
                     LastName = form.LastName,
@@ -110,6 +110,10 @@ namespace Réseau_d_entreprise.Controllers
         [AdminRequired]
         public ActionResult CreateProject()
         {
+            IEnumerable<Employee> AllEmployees = EmployeeService.GetAllActive();
+            ViewData["AllEmployees"] = new SelectList(AllEmployees
+                .Select(e => new { value = e.Employee_Id.ToString(), text = $"{e.FirstName} {e.LastName}" }),
+                "value", "text");
             return View();
         }
 

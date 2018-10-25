@@ -20,7 +20,7 @@ namespace Model.Global.Service
             cmd.AddParameter("Password", pwd);
             return (int?)Connection.ExecuteScalar(cmd);
         }
-        public static int Register(Employee e)
+        public static int Register(Data.Employee e)
         {
             Command cmd = new Command("SP_Register", true);
             cmd.AddParameter("LastName", e.LastName);

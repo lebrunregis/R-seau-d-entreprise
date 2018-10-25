@@ -105,6 +105,7 @@
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
     <Build Include="dbo\SP\SP_Register_Demo.sql" />
     <Build Include="dbo\SP\SP_ConfirmAdmin.sql" />
+    <Build Include="dbo\SP\SP_GetAllActiveEmployees.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

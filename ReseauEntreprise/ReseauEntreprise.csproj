@@ -214,6 +214,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Registration\Login.cshtml" />
     <Content Include="Views\Registration\Register.cshtml" />
+    <Content Include="Views\Registration\CreateProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

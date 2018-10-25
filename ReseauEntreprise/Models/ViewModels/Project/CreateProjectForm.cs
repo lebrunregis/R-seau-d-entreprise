@@ -12,6 +12,7 @@ namespace ReseauEntreprise.Models.ViewModels.Project
         [MaxLength(50)]
         public String Name { get; set; }
         [Required]
+        [DataType(DataType.MultilineText)]
         public String Description { get; set; }
         [Required]
         public int ProjectManager { get; set; }
