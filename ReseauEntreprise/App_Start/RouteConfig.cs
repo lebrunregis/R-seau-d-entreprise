@@ -19,18 +19,6 @@ namespace ReseauEntreprise
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "ReseauEntreprise.Controllers" }
             );
-            routes.MapRoute(
-                name: "Admin", // Route name
-                url: "Admin/{controller}/{action}/{id}", // URL with parameters
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
-                namespaces: new string[] { "ReseauEntreprise.Admin.Controllers" }
-                );
-            routes.MapRoute(
-                name: "Employee", // Route name
-                url: "Employee/{controller}/{action}/{id}", // URL with parameters
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
-                namespaces: new string[] { "ReseauEntreprise.Employee.Controllers" }
-            );
         }
     }
 }

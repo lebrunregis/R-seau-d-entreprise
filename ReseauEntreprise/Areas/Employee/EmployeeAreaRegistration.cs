@@ -17,7 +17,8 @@ namespace ReseauEntreprise.Areas.Employee
             context.MapRoute(
                 "Employee_default",
                 "Employee/{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new string[] { "ReseauEntreprise.Employee.Controllers" }
             );
         }
     }
