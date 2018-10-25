@@ -11,7 +11,10 @@ Modèle de script de post-déploiement
 */
 DELETE FROM [Admin];
 DELETE FROM Employee;
-
+DBCC CHECKIDENT ('[Admin]', RESEED, 0);
+GO
+DBCC CHECKIDENT ('[Employee]', RESEED, 0);
+GO
 EXEC [dbo].SP_Register_Demo @LastName = 'Aliyah',@FirstName ='Ellis';
 EXEC [dbo].SP_Register_Demo @LastName = 'Izabelle',@FirstName ='Hanna';
 EXEC [dbo].SP_Register_Demo @LastName = 'Tanisha',@FirstName ='Salas';

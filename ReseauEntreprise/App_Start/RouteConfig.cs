@@ -17,20 +17,20 @@ namespace ReseauEntreprise
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                constraints: new string[] { "ReseauEntreprise.Controllers" }
+                namespaces: new string[] { "ReseauEntreprise.Controllers" }
             );
             routes.MapRoute(
-                "Admin", // Route name
-                "Admin/{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
-                new string[] { "ReseauEntreprise.Admin.Controllers" }
+                name: "Admin", // Route name
+                url: "Admin/{controller}/{action}/{id}", // URL with parameters
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
+                namespaces: new string[] { "ReseauEntreprise.Admin.Controllers" }
                 );
             routes.MapRoute(
-    "Employee", // Route name
-    "Employee/{controller}/{action}/{id}", // URL with parameters
-    new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
-    new string[] { "ReseauEntreprise.Employee.Controllers" }
-    );
+                name: "Employee", // Route name
+                url: "Employee/{controller}/{action}/{id}", // URL with parameters
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
+                namespaces: new string[] { "ReseauEntreprise.Employee.Controllers" }
+            );
         }
     }
 }

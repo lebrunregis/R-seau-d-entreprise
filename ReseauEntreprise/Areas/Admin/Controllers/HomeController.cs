@@ -9,7 +9,7 @@ namespace ReseauEntreprise.Admin.Controllers
 {
     public class HomeController : Controller
     {
-        [EmployeeRequired]
+        [AdminRequired]
         public ActionResult Index()
         {
             return View();

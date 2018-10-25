@@ -36,11 +36,11 @@ namespace Réseau_d_entreprise.Controllers
                 SessionUser.SetUser(new User { Id = (int)id });
                 if (Auth.IsAdmin((int)id))
                 {
-                    RedirectToAction("Index", "Home", new { area = "ReseauEntreprise.Admin.Controllers" });
+                   return RedirectToAction("Index", "Home", new { area = "Admin" });
                 }
                 else
                 {
-                    RedirectToAction("Index", "Home", new { area = "Employee" });
+                   return RedirectToAction("Index", "Home", new { area = "Employee" });
                 }
 
             }
