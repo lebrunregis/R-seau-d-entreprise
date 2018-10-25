@@ -1,4 +1,5 @@
-﻿using Model.Global.Service;
+﻿using Model.Global.Data;
+using Model.Global.Service;
 using Réseau_d_entreprise.Models.ViewModels;
 using Réseau_d_entreprise.Session;
 using Réseau_d_entreprise.Session.Attributes;
@@ -64,12 +65,36 @@ namespace Réseau_d_entreprise.Controllers
         [HttpPost]
         public ActionResult Register(RegistrationForm form)
         {
-            /*          int count = Auth.Register(form.Login, form.Email, form.Passwd);
-                      if (count == 1)
-                      {
-                          return RedirectToAction("index", "Auth");
-                      }*/
-            return View();
+            Employee e = new Employee
+            {
+                FirstName = form.FirstName,
+                LastName = form.LastName,
+                Email = form.Email,
+                Passwd = form.Password,
+                RegNat = form.RegNat,
+                Address = form.Address,
+                Phone = form.Phone
+            };
+            try
+            {
+                Auth.Register(e);
+                return RedirectToAction("Index", "Home");
+            }
+            catch (System.Data.SqlClient.SqlException exeption)
+            {
+                if (exeption.Number == 2627)
+                {
+                    if (exeption.Message.Contains("UC_Email"))
+                    {
+                        ModelState.AddModelError("Email", "Cet email est déjà utilisé");
+                    }
+                    if (exeption.Message.Contains("UC_RegNat"))
+                    {
+                        ModelState.AddModelError("RegNat", "Ce numero de régistre national est déjà utilisé. Probablement, cet employé existe déjà dans la base de données.");
+                    }
+                }
+                return View();
+            }
         }
     }
 }

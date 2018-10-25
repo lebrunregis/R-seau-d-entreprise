@@ -1,11 +1,11 @@
 ﻿@model Réseau_d_entreprise.Models.ViewModels.RegistrationForm
 
 @{
-    ViewBag.Title = "Registration";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Register";
 }
 
-<h2>Registration</h2>
+<h2>Register</h2>
+
 
 @using (Html.BeginForm()) 
 {
@@ -90,3 +90,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

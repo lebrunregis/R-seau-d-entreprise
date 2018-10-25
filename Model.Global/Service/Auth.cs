@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Global.Data;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -19,12 +20,16 @@ namespace Model.Global.Service
             cmd.AddParameter("Password", pwd);
             return (int?)Connection.ExecuteScalar(cmd);
         }
-        public static int Register(String login, String email, string pwd)
+        public static int Register(Employee e)
         {
             Command cmd = new Command("SP_Register", true);
-            cmd.AddParameter("login", login);
-            cmd.AddParameter("email", email);
-            cmd.AddParameter("pwd", pwd);
+            cmd.AddParameter("LastName", e.LastName);
+            cmd.AddParameter("FirstName", e.FirstName);
+            cmd.AddParameter("Email", e.Email);
+            cmd.AddParameter("Password", e.Passwd);
+            cmd.AddParameter("RegNat", e.RegNat);
+            cmd.AddParameter("Address", e.Address);
+            cmd.AddParameter("Phone", e.Phone);
             return (int)Connection.ExecuteScalar(cmd);
         }
         public static bool IsAdmin(int Employee_Id)
