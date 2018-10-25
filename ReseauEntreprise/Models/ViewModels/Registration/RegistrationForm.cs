@@ -33,6 +33,7 @@ namespace Réseau_d_entreprise.Models.ViewModels
         [Required]
         public string Address { get; set; }
         [MaxLength(50)]
+        [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
     }
 }

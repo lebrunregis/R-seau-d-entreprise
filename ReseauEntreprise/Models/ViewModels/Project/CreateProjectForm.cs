@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ReseauEntreprise.Models.ViewModels.Project
 {
@@ -15,6 +16,7 @@ namespace ReseauEntreprise.Models.ViewModels.Project
         [DataType(DataType.MultilineText)]
         public String Description { get; set; }
         [Required]
+        //public IEnumerable<SelectListItem> ProjectManager { get; set; }
         public int ProjectManager { get; set; }
     }
 }

@@ -106,6 +106,8 @@
     <Build Include="dbo\SP\SP_Register_Demo.sql" />
     <Build Include="dbo\SP\SP_ConfirmAdmin.sql" />
     <Build Include="dbo\SP\SP_GetAllActiveEmployees.sql" />
+    <Build Include="dbo\SP\SP_CreateProject.sql" />
+    <Build Include="dbo\Tables\Employee\EmployeeProjectManager.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

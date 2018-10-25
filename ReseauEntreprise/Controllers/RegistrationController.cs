@@ -123,9 +123,27 @@ namespace Réseau_d_entreprise.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                Project p = new Project()
+                {
+                    Name = form.Name,
+                    Description = form.Description,
+                    Creator = SessionUser.GetUser().Id
+                };
+                int ProjectManagerId = form.ProjectManager;
+                //int ProjectManagerId = int.Parse(form.ProjectManager.FirstOrDefault().Value);
+                try
+                {
+                    if (ProjectService.Create(p, ProjectManagerId) != null)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                catch (System.Data.SqlClient.SqlException exception)
+                {
+                    throw (exception);
+                }
             }
-            return View(form);
+            return View(form); //???
         }
     }
 }

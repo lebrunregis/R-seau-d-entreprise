@@ -9,6 +9,12 @@ Modèle de script de post-déploiement
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+DELETE FROM EmployeeProjectManager;
+GO
+DELETE FROM Project;
+GO
+DBCC CHECKIDENT ('[Project]', RESEED, 0);
+GO
 DELETE FROM [Admin];
 GO
 DELETE FROM Employee;
