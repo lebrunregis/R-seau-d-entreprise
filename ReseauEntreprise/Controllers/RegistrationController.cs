@@ -18,7 +18,7 @@ namespace Réseau_d_entreprise.Controllers
         [AnonymousRequired]
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Login");
         }
 
         [AnonymousRequired]
@@ -59,50 +59,6 @@ namespace Réseau_d_entreprise.Controllers
         {
             SessionUser.Reset();
             return RedirectToAction("Index", "Home");
-        }
-
-        
-
-        [AdminRequired]
-        public ActionResult CreateProject()
-        {
-            IEnumerable<Employee> AllEmployees = EmployeeService.GetAllActive();
-            ViewData["AllEmployees"] = new SelectList(AllEmployees
-                .Select(e => new { value = e.Employee_Id.ToString(), text = $"{e.FirstName} {e.LastName}" }),
-                "value", "text");
-            return View();
-        }
-
-        [AdminRequired]
-        [HttpPost]
-        public ActionResult CreateProject(CreateProjectForm form)
-        {
-            if (ModelState.IsValid)
-            {
-                Project p = new Project()
-                {
-                    Name = form.Name,
-                    Description = form.Description,
-                    Creator = SessionUser.GetUser().Id
-                };
-                int ProjectManagerId = form.ProjectManager;
-                try
-                {
-                    if (ProjectService.Create(p, ProjectManagerId) != null)
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
-                catch (System.Data.SqlClient.SqlException exception)
-                {
-                    throw (exception);
-                }
-            }
-            IEnumerable<Employee> AllEmployees = EmployeeService.GetAllActive();
-            ViewData["AllEmployees"] = new SelectList(AllEmployees
-                .Select(e => new { value = e.Employee_Id.ToString(), text = $"{e.FirstName} {e.LastName}" }),
-                "value", "text");
-            return View(form);
         }
     }
 }
