@@ -187,8 +187,11 @@
     <Content Include="Areas\Employee\Views\web.config" />
     <Content Include="Areas\Employee\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Employee\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\About.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Contact.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -215,15 +218,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Registration\Login.cshtml" />
-    <Content Include="Views\Registration\Register.cshtml" />
-    <Content Include="Views\Registration\CreateProject.cshtml" />
+    <Content Include="Areas\Admin\Views\Members\Register.cshtml" />
+    <Content Include="Areas\Admin\Views\Project\CreateProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Styles\" />
-    <Folder Include="Areas\Admin\Views\Home\" />
-    <Folder Include="Areas\Admin\Views\Members\" />
-    <Folder Include="Areas\Admin\Views\Project\" />
     <Folder Include="Areas\Employee\Models\" />
     <Folder Include="Areas\Employee\Styles\" />
     <Folder Include="Areas\Employee\Views\Home\" />

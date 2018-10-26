@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace ReseauEntreprise.Admin.Controllers
 {
+    [RouteArea("Admin")]
     public class HomeController : Controller
     {
         [AdminRequired]
@@ -17,7 +18,7 @@ namespace ReseauEntreprise.Admin.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "This is the admin area.";
 
             return View();
         }
