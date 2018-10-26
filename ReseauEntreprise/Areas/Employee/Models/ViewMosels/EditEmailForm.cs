@@ -5,15 +5,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Réseau_d_entreprise.Models.ViewModels
+namespace ReseauEntreprise.Areas.Employee.Models
 {
-    public class LoginForm
+    public class EditEmailForm
     {
         [Required]
         [MinLength(5)]
         [MaxLength(360)]
         [DataType(DataType.EmailAddress)]
+        [DisplayName("Nouveau email")]
         public String Email { get; set; }
+
         [DataType(DataType.Password)]
         [Required]
         [MaxLength(50)]
