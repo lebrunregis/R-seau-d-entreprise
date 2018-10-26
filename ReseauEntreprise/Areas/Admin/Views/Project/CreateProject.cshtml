@@ -37,7 +37,7 @@
 			@Html.LabelFor(model => model.ProjectManager, htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
 				@Html.DropDownListFor(model => model.ProjectManager,
-				(SelectList)ViewData["AllEmployees"])
+				(SelectList)ViewData["AllEmployees"], "--Choisissez Project Manager--")
 				@Html.ValidationMessageFor(model => model.ProjectManager, "", new { @class = "text-danger" })
 
 			</div>
