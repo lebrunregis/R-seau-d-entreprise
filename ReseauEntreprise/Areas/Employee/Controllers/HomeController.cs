@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace ReseauEntreprise.Employee.Controllers
 {
+    [RouteArea("Employee")]
     public class HomeController : Controller
     {
         [EmployeeRequired]
