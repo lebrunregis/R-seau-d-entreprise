@@ -185,9 +185,9 @@
     </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Employee\Views\web.config" />
-    <Content Include="Areas\Employee\Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_EmployeeLayout.cshtml" />
     <Content Include="Areas\Employee\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\About.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Contact.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
