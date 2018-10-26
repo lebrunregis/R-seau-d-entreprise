@@ -149,6 +149,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MembersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProjectController.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Project\CreateProjectForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Registration\RegistrationForm.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -156,9 +160,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewModels\Project\CreateProjectForm.cs" />
     <Compile Include="Models\ViewModels\Registration\LoginForm.cs" />
-    <Compile Include="Models\ViewModels\Registration\RegistrationForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session\Attributes\AdminRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\AnonymousRequiredAttribute.cs" />
@@ -218,9 +220,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Styles\" />
     <Folder Include="Areas\Admin\Views\Home\" />
+    <Folder Include="Areas\Admin\Views\Members\" />
+    <Folder Include="Areas\Admin\Views\Project\" />
     <Folder Include="Areas\Employee\Models\" />
     <Folder Include="Areas\Employee\Styles\" />
     <Folder Include="Areas\Employee\Views\Home\" />
