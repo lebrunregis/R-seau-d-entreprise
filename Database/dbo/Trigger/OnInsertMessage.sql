@@ -1,0 +1,7 @@
+﻿CREATE TRIGGER [dbo].[OnInsertMessage]
+ON Message
+AFTER INSERT
+AS
+BEGIN
+	SET NOCOUNT ON
+END
