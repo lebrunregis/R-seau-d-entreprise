@@ -16,7 +16,6 @@ namespace ReseauEntreprise.Models.ViewModels.Project
         [DataType(DataType.MultilineText)]
         public String Description { get; set; }
         [Required]
-        //public IEnumerable<SelectListItem> ProjectManager { get; set; }
         public int ProjectManager { get; set; }
     }
 }
