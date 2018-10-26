@@ -8,9 +8,9 @@ using System.Web.Mvc;
 namespace ReseauEntreprise.Admin.Controllers
 {
     [RouteArea("Admin")]
+    [AdminRequired]
     public class HomeController : Controller
     {
-        [AdminRequired]
         public ActionResult Index()
         {
             return View();

@@ -8,9 +8,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ReseauEntreprise.Areas.Admin.Controllers
+namespace ReseauEntreprise.Admin.Controllers
 {
     [AdminRequired]
+    [RouteArea("Admin")]
     public class MembersController : Controller
     {
         public ActionResult Register()
