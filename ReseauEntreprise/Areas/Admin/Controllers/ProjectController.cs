@@ -9,8 +9,9 @@ using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 
-namespace ReseauEntreprise.Areas.Admin.Controllers
+namespace ReseauEntreprise.Admin.Controllers
 {
+    [RouteArea("Admin")]
     [AdminRequired]
     public class ProjectController : Controller
     {
