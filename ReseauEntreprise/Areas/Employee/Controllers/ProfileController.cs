@@ -1,89 +1,57 @@
-﻿using System;
+﻿using D = Model.Global.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Model.Global.Service;
+using Réseau_d_entreprise.Session;
+using Réseau_d_entreprise.Session.Attributes;
+using ReseauEntreprise.Areas.Employee.Models;
 
-namespace ReseauEntreprise.Areas.Employee.Controllers
+namespace ReseauEntreprise.Employee.Controllers
 {
+    [EmployeeRequired]
     public class ProfileController : Controller
     {
-        // GET: Employee/Profile
-        public ActionResult Index()
+        
+        // GET: Employee/Profile/Edit/
+        public ActionResult Edit()
         {
-            return View();
-        }
-
-        // GET: Employee/Profile/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Employee/Profile/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Employee/Profile/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            D.Employee e = EmployeeService.Get(SessionUser.GetUser().Id);
+            EditProfileForm form = new EditProfileForm()
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Employee/Profile/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
+                FirstName = e.FirstName,
+                LastName = e.LastName,
+                Address = e.Address,
+                Phone = e.Phone
+            };
+            return View(form);
         }
 
         // POST: Employee/Profile/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(EditProfileForm form)
         {
+            D.Employee e = new D.Employee()
+            {
+                FirstName = form.FirstName,
+                LastName = form.LastName,
+                Address = form.Address,
+                Phone = form.Phone
+            };
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (EmployeeService.Update(e))
+                {
+                    return RedirectToAction("Index");
+                }
             }
             catch
             {
-                return View();
+                
             }
-        }
-
-        // GET: Employee/Profile/Delete/5
-        public ActionResult Delete(int id)
-        {
             return View();
-        }
-
-        // POST: Employee/Profile/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Model.Global.Mapper;
+﻿using Model.Global.Data;
+using Model.Global.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,10 +14,32 @@ namespace Model.Global.Service
     {
         static readonly Connection Connection = new Connection("System.Data.SqlClient", ConfigurationManager.ConnectionStrings["connString"].ConnectionString);
 
-        public static IEnumerable<Data.Employee> GetAllActive()
+        public static IEnumerable<Employee> GetAllActive()
         {
             Command cmd = new Command("SP_GetAllActiveEmployees", true);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee());
+        }
+        public static Employee Get(int Id)
+        {
+            Command cmd = new Command("SP_GetEmployee", true);
+            cmd.AddParameter("Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee()).FirstOrDefault();
+        }
+        public static bool Update(Employee e)
+        {
+            Command cmd = new Command("SP_Update_Employee", true);
+            cmd.AddParameter("Employee_Id", e.Employee_Id);
+            cmd.AddParameter("LastName", e.LastName);
+            cmd.AddParameter("FirstName", e.FirstName);
+            cmd.AddParameter("Email", e.Email);
+            cmd.AddParameter("Passwd", e.Passwd);
+            cmd.AddParameter("Address", e.Address);
+            cmd.AddParameter("Phone", e.Phone);
+            if (Connection.ExecuteNonQuery(cmd) > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

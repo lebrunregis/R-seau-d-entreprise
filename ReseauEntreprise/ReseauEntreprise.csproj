@@ -154,9 +154,9 @@
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
     <Compile Include="Areas\Employee\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
-    <Compile Include="Areas\Employee\Models\ViewMosels\EditEmailForm.cs" />
-    <Compile Include="Areas\Employee\Models\ViewMosels\EditPassForm.cs" />
-    <Compile Include="Areas\Employee\Models\ViewMosels\EditProfileForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\EditEmailForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\EditPassForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\EditProfileForm.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -198,6 +198,7 @@
     <Content Include="Areas\Employee\Views\Home\About.cshtml" />
     <Content Include="Areas\Employee\Views\Home\Contact.cshtml" />
     <Content Include="Areas\Employee\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\Profile\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -230,7 +231,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Employee\Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
