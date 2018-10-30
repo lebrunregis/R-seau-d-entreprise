@@ -46,13 +46,26 @@ namespace ReseauEntreprise.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, EmployeeList HiddenForm)
         {
             try
             {
-                if (EmployeeService.Delete(id))
+                if (HiddenForm.Id == id)
                 {
-                    return RedirectToAction("Index");
+                    D.Employee e = new D.Employee()
+                    {
+                        Employee_Id = HiddenForm.Id,
+                        LastName = HiddenForm.LastName,
+                        FirstName = HiddenForm.FirstName,
+                        Email = HiddenForm.Email,
+                        Address = HiddenForm.Address,
+                        Phone = HiddenForm.Phone,
+                        RegNat = HiddenForm.RegNat
+                    };
+                    if (EmployeeService.Delete(e))
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
             }
             catch (Exception exception)

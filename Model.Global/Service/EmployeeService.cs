@@ -63,10 +63,15 @@ namespace Model.Global.Service
             }
             return false;
         }
-        public static bool Delete(int Employee_Id)
+        public static bool Delete(Employee e)
         {
             Command cmd = new Command("Delete_Employee", true);
-            cmd.AddParameter("Employee_Id", Employee_Id);
+            cmd.AddParameter("Employee_Id", e.Employee_Id);
+            cmd.AddParameter("LastName", e.LastName);
+            cmd.AddParameter("RegNat", e.RegNat);
+            cmd.AddParameter("FirstName", e.FirstName);
+            cmd.AddParameter("Address", e.Address);
+            cmd.AddParameter("Phone", e.Phone);
             if (Connection.ExecuteNonQuery(cmd) > 0)
             {
                 return true;
