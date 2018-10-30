@@ -84,8 +84,9 @@ namespace Réseau_d_entreprise.Controllers
                 };
                 try
                 {
-                    Auth.Register(e);
-                    return RedirectToAction("Index", "Home");
+                    int Employee_Id = Auth.Register(e);
+                    SessionUser.SetUser(new User { Id = Employee_Id });
+                    return RedirectToAction("Index", "Home", new { area = "Employee" });
                 }
                 catch (System.Data.SqlClient.SqlException exeption)
                 {

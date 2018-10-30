@@ -19,7 +19,7 @@ namespace Model.Global.Mapper
                 Email = (string)dr["Email"],
                 RegNat = (string)dr["RegNat"],
                 Address = (string)dr["Address"],
-                Phone = (string)dr["Phone"]
+                Phone = (dr["Phone"] == DBNull.Value)? null : (string)dr["Phone"]
             };
         }
     }

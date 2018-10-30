@@ -12,5 +12,5 @@ BEGIN
 	SET @Hash =  [dbo].FN_Hash( @Password) 
 	INSERT INTO [dbo].Employee(LastName,FirstName,Email,Passwd,RegNat,Address,Phone) 
 	VALUES ( @LastName , @FirstName,@Email,@Hash,@RegNat,@Address,@Phone)
-	RETURN Scope_Identity()
+	SELECT Scope_Identity()
 END

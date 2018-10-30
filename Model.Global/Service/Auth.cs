@@ -30,7 +30,7 @@ namespace Model.Global.Service
             cmd.AddParameter("RegNat", e.RegNat);
             cmd.AddParameter("Address", e.Address);
             cmd.AddParameter("Phone", e.Phone);
-            return (int)Connection.ExecuteScalar(cmd);
+            return (int)(decimal)Connection.ExecuteScalar(cmd);
         }
         public static bool IsAdmin(int Employee_Id)
         {
