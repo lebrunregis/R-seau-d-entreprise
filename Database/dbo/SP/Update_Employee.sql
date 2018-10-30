@@ -8,9 +8,8 @@ CREATE PROCEDURE [dbo].[Update_Employee]
     @LastName nvarchar(50),
     @FirstName nvarchar(50),
     @Email nvarchar(360),
-    @Passwd nvarchar(50),
-    @Address nvarchar(50),
+    @Address nvarchar(MAX),
     @Phone varchar(50)
 
 AS
-UPDATE Employee SET LastName=@LastName, FirstName=@FirstName, Email=@Email, Passwd=@Passwd, [Address]=@Address, Phone=@Phone WHERE Employee_Id=@Employee_Id
+UPDATE Employee SET LastName=@LastName, FirstName=@FirstName, Email=@Email, [Address]=@Address, Phone=@Phone WHERE Employee_Id=@Employee_Id

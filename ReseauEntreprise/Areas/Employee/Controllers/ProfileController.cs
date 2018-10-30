@@ -14,7 +14,7 @@ namespace ReseauEntreprise.Employee.Controllers
     [EmployeeRequired]
     public class ProfileController : Controller
     {
-        
+
         // GET: Employee/Profile/Edit/
         public ActionResult Edit()
         {
@@ -35,6 +35,7 @@ namespace ReseauEntreprise.Employee.Controllers
         {
             D.Employee e = new D.Employee()
             {
+                Employee_Id = SessionUser.GetUser().Id,
                 FirstName = form.FirstName,
                 LastName = form.LastName,
                 Address = form.Address,
@@ -47,9 +48,67 @@ namespace ReseauEntreprise.Employee.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch
+            catch (Exception exception)
             {
-                
+                throw (exception);
+            }
+            return View();
+        }
+
+        public ActionResult EditEmail()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult EditEmail(EditEmailForm form)
+        {
+            D.Employee e = new D.Employee()
+            {
+                Employee_Id = SessionUser.GetUser().Id,
+                Email = form.Email,
+                Passwd = form.Passwd
+            };
+            try
+            {
+                if (EmployeeService.UpdateEmail(e))
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception exception)
+            {
+                throw (exception);
+            }
+            return View(form);
+        }
+
+        public ActionResult EditPass()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult EditPass(EditPassForm form)
+        {
+            string OldPass = form.OldPass;
+            D.Employee e = new D.Employee()
+            {
+                Employee_Id = SessionUser.GetUser().Id,
+                Passwd = form.NewPass
+            };
+            try
+            {
+                if (EmployeeService.UpdatePassword(e, OldPass))
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception exception)
+            {
+                throw (exception);
             }
             return View();
         }

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[SP_CreateProject]
+﻿CREATE PROCEDURE [dbo].[CreateProject]
 	@name nvarchar(50),
 	@description nvarchar(max),
 	@creator int,

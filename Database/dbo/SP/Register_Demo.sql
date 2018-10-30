@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[SP_Register_Demo]
+﻿CREATE PROCEDURE [dbo].[Register_Demo]
 	@LastName varchar(50),
 	@FirstName varchar(50)
 AS

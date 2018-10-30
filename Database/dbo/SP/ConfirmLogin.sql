@@ -1,4 +1,4 @@
-﻿CREATE procedure [dbo].[SP_ConfirmLogin] 
+﻿CREATE procedure [dbo].[ConfirmLogin] 
     @Email varchar(360),
 	@Password varchar(50)
 AS

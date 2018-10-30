@@ -16,25 +16,48 @@ namespace Model.Global.Service
 
         public static IEnumerable<Employee> GetAllActive()
         {
-            Command cmd = new Command("SP_GetAllActiveEmployees", true);
+            Command cmd = new Command("GetAllActiveEmployees", true);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee());
         }
         public static Employee Get(int Id)
         {
-            Command cmd = new Command("SP_GetEmployee", true);
+            Command cmd = new Command("GetEmployee", true);
             cmd.AddParameter("Id", Id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee()).FirstOrDefault();
         }
         public static bool Update(Employee e)
         {
-            Command cmd = new Command("SP_Update_Employee", true);
+            Command cmd = new Command("Update_Employee", true);
             cmd.AddParameter("Employee_Id", e.Employee_Id);
             cmd.AddParameter("LastName", e.LastName);
             cmd.AddParameter("FirstName", e.FirstName);
             cmd.AddParameter("Email", e.Email);
-            cmd.AddParameter("Passwd", e.Passwd);
             cmd.AddParameter("Address", e.Address);
             cmd.AddParameter("Phone", e.Phone);
+            if (Connection.ExecuteNonQuery(cmd) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool UpdateEmail(Employee e)
+        {
+            Command cmd = new Command("Update_Email", true);
+            cmd.AddParameter("Employee_Id", e.Employee_Id);
+            cmd.AddParameter("Email", e.Email);
+            cmd.AddParameter("Password", e.Passwd);
+            if (Connection.ExecuteNonQuery(cmd) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool UpdatePassword(Employee e, string OldPass)
+        {
+            Command cmd = new Command("Update_Password", true);
+            cmd.AddParameter("Employee_Id", e.Employee_Id);
+            cmd.AddParameter("Old_Password", OldPass);
+            cmd.AddParameter("New_Password", e.Passwd);
             if (Connection.ExecuteNonQuery(cmd) > 0)
             {
                 return true;
