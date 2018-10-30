@@ -1,4 +1,5 @@
 ﻿using Model.Global.Data;
+using Model.Global.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,13 +26,14 @@ namespace Model.Global.Service
 
         public static IEnumerable<Data.Project> GetAllActive()
         {
-            List<Data.Project> projects = new List<Data.Project>();
-            return projects;
+            Command cmd = new Command("GetAllActiveProjects", true);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToProject());
         }
+
         public static IEnumerable<Data.Project> GetAll()
         {
-            List<Data.Project> projects = new List<Data.Project>();
-            return projects;
+            Command cmd = new Command("GetAllProjects", true);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToProject());
         }
     }
 }

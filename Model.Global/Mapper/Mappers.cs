@@ -18,8 +18,8 @@ namespace Model.Global.Mapper
                 FirstName = (string)dr["FirstName"],
                 Email = (string)dr["Email"],
                 RegNat = (string)dr["RegNat"],
-                Address = (string)dr["Address"],
-                Phone = (string)dr["Phone"]
+                Address = (string)dr["Address"] ,
+                Phone = (dr["Phone"] == DBNull.Value) ? "" : (string)dr["Phone"]
             };
         }
         internal static Project ToProject(this IDataRecord dr)
@@ -30,9 +30,9 @@ namespace Model.Global.Mapper
                 Name = (string)dr["Project_Name"],
                 Description = (string)dr["Project_Description"],
                 Start = (DateTime)dr["StartDate"],
-                End = (DateTime)dr["EndDate"],
+                End =(DateTime?)  ((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"]),
                 Creator = (int)dr["Creator"],
-                CreatorName = (String)dr["CreatorName"],
+                CreatorFirstName = (String)dr["CreatorFirstName"],
                 CreatorLastName = (String)dr["CreatorLastName"]
             };
         }

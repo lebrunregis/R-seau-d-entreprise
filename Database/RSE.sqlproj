@@ -120,6 +120,8 @@
     <Build Include="dbo\Trigger\OnInsertMessage.sql" />
     <Build Include="dbo\Trigger\OnDeleteEmployeeStatusHistory.sql" />
     <Build Include="dbo\SP\GetAllActiveProjects.sql" />
+    <Build Include="dbo\SP\GetAllAssociedProjects.sql" />
+    <Build Include="dbo\SP\GetAllProjects.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

@@ -1,13 +1,14 @@
 ﻿using D = Model.Global.Data;
 using Model.Global.Service;
 using Réseau_d_entreprise.Session.Attributes;
-using ReseauEntreprise.Models.ViewModels.Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
+using Model.Global.Data;
+using ReseauEntreprise.Admin.Models.ViewModels.Project;
 
 namespace ReseauEntreprise.Admin.Controllers
 {
@@ -18,15 +19,6 @@ namespace ReseauEntreprise.Admin.Controllers
         public ActionResult CreateProject()
         {
             IEnumerable<D.Employee> AllEmployees = EmployeeService.GetAllActive();
-            ViewData["AllEmployees"] = new SelectList(AllEmployees
-                .Select(e => new { value = e.Employee_Id.ToString(), text = $"{e.FirstName} {e.LastName}" }),
-                "value", "text");
-            return View();
-        }
-
-        public ActionResult ViewProjects()
-        {
-            IEnumerable<D.Employee> AllEmployees = ProjectService;
             ViewData["AllEmployees"] = new SelectList(AllEmployees
                 .Select(e => new { value = e.Employee_Id.ToString(), text = $"{e.FirstName} {e.LastName}" }),
                 "value", "text");
@@ -62,6 +54,21 @@ namespace ReseauEntreprise.Admin.Controllers
                 .Select(e => new { value = e.Employee_Id.ToString(), text = $"{e.FirstName} {e.LastName}" }),
                 "value", "text");
             return View(form);
+        }
+
+        public ActionResult Index()
+        {
+            List<ListProjectForm> list = new List<ListProjectForm>();
+            foreach (Project projet in ProjectService.GetAll())
+            {
+                ListProjectForm form = new ListProjectForm(projet);
+                list.Add(form);
+            }
+            return View(list);
+        }
+        public ActionResult History()
+        {
+            return View();
         }
     }
 }

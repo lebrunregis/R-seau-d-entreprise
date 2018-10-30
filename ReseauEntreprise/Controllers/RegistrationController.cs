@@ -3,7 +3,6 @@ using Model.Global.Service;
 using Réseau_d_entreprise.Models.ViewModels;
 using Réseau_d_entreprise.Session;
 using Réseau_d_entreprise.Session.Attributes;
-using ReseauEntreprise.Models.ViewModels.Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;

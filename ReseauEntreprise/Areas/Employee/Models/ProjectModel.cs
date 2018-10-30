@@ -21,8 +21,6 @@ namespace ReseauEntreprise.Areas.Employee.Models
         public DateTime Start { get; set; }
         [Editable(false)]
         public DateTime? End { get; set; }
-        [HiddenInput]
-        public int Creator { get; set; }
         [Editable(false)]
         public String CreatorName { get; set; }
         [Editable(false)]
