@@ -31,7 +31,6 @@ namespace Model.Global.Service
             cmd.AddParameter("Employee_Id", e.Employee_Id);
             cmd.AddParameter("LastName", e.LastName);
             cmd.AddParameter("FirstName", e.FirstName);
-            cmd.AddParameter("Email", e.Email);
             cmd.AddParameter("Address", e.Address);
             cmd.AddParameter("Phone", e.Phone);
             if (Connection.ExecuteNonQuery(cmd) > 0)

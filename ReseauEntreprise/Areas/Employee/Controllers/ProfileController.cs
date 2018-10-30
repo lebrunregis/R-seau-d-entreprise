@@ -14,6 +14,17 @@ namespace ReseauEntreprise.Employee.Controllers
     [EmployeeRequired]
     public class ProfileController : Controller
     {
+        public ActionResult Index()
+        {
+            if (SessionUser.GetUser() != null && Auth.IsAdmin(SessionUser.GetUser().Id))
+            {
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "Employee" });
+            }
+        }
 
         // GET: Employee/Profile/Edit/
         public ActionResult Edit()
@@ -33,53 +44,65 @@ namespace ReseauEntreprise.Employee.Controllers
         [HttpPost]
         public ActionResult Edit(EditProfileForm form)
         {
-            D.Employee e = new D.Employee()
+            if (ModelState.IsValid)
             {
-                Employee_Id = SessionUser.GetUser().Id,
-                FirstName = form.FirstName,
-                LastName = form.LastName,
-                Address = form.Address,
-                Phone = form.Phone
-            };
-            try
-            {
-                if (EmployeeService.Update(e))
+                D.Employee e = new D.Employee()
                 {
-                    return RedirectToAction("Index");
+                    Employee_Id = SessionUser.GetUser().Id,
+                    FirstName = form.FirstName,
+                    LastName = form.LastName,
+                    Address = form.Address,
+                    Phone = form.Phone
+                };
+                try
+                {
+                    if (EmployeeService.Update(e))
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception exception)
+                {
+                    throw (exception);
                 }
             }
-            catch (Exception exception)
-            {
-                throw (exception);
-            }
-            return View();
+            return View(form);
         }
 
         public ActionResult EditEmail()
         {
             return View();
         }
-
-
+        
         [HttpPost]
         public ActionResult EditEmail(EditEmailForm form)
         {
-            D.Employee e = new D.Employee()
+            if (ModelState.IsValid)
             {
-                Employee_Id = SessionUser.GetUser().Id,
-                Email = form.Email,
-                Passwd = form.Passwd
-            };
-            try
-            {
-                if (EmployeeService.UpdateEmail(e))
+                D.Employee e = new D.Employee()
                 {
-                    return RedirectToAction("Index");
+                    Employee_Id = SessionUser.GetUser().Id,
+                    Email = form.Email,
+                    Passwd = form.Passwd
+                };
+                try
+                {
+                    if (EmployeeService.UpdateEmail(e))
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    ModelState.AddModelError("Passwd", "Mot de passe incorrect");
                 }
-            }
-            catch (Exception exception)
-            {
-                throw (exception);
+                catch (System.Data.SqlClient.SqlException exeption)
+                {
+                    if (exeption.Number == 2627)
+                    {
+                        if (exeption.Message.Contains("UC_Email"))
+                        {
+                            ModelState.AddModelError("Email", "Cet email est déjà utilisé");
+                        }
+                    }
+                }
             }
             return View(form);
         }
@@ -88,27 +111,30 @@ namespace ReseauEntreprise.Employee.Controllers
         {
             return View();
         }
-
-
+        
         [HttpPost]
         public ActionResult EditPass(EditPassForm form)
         {
-            string OldPass = form.OldPass;
-            D.Employee e = new D.Employee()
+            if (ModelState.IsValid)
             {
-                Employee_Id = SessionUser.GetUser().Id,
-                Passwd = form.NewPass
-            };
-            try
-            {
-                if (EmployeeService.UpdatePassword(e, OldPass))
+                string OldPass = form.OldPass;
+                D.Employee e = new D.Employee()
                 {
-                    return RedirectToAction("Index");
+                    Employee_Id = SessionUser.GetUser().Id,
+                    Passwd = form.NewPass
+                };
+                try
+                {
+                    if (EmployeeService.UpdatePassword(e, OldPass))
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    ModelState.AddModelError("OldPass", "Mot de passe incorrect");
                 }
-            }
-            catch (Exception exception)
-            {
-                throw (exception);
+                catch (Exception exception)
+                {
+                    throw (exception);
+                }
             }
             return View();
         }

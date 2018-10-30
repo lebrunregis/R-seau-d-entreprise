@@ -4,4 +4,4 @@
     @Password nvarchar(50)
 
 AS
-UPDATE Employee SET Email=@Email WHERE Employee_Id=@Employee_Id AND Passwd=FN_HASH(@Password)
+UPDATE Employee SET Email=@Email WHERE Employee_Id=@Employee_Id AND Passwd=[dbo].FN_Hash(@Password) AND Active=1

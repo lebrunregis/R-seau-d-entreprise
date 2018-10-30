@@ -9,20 +9,20 @@ namespace ReseauEntreprise.Areas.Employee.Models
 {
     public class EditPassForm
     {
-        [DataType(DataType.Password)]
         [Required]
+        [DataType(DataType.Password)]
         [MaxLength(50)]
         [DisplayName("Ancien mot de passe")]
         public String OldPass { get; set; }
 
-        [DataType(DataType.Password)]
         [Required]
+        [DataType(DataType.Password)]
         [MaxLength(50)]
         [DisplayName("Nouveau mot de passe")]
         public String NewPass { get; set; }
 
-        [DataType(DataType.Password)]
         [Required]
+        [DataType(DataType.Password)]
         [Compare(nameof(NewPass))]
         [DisplayName("Retapez nouveau mot de passe")]
         public String Confirm { get; set; }

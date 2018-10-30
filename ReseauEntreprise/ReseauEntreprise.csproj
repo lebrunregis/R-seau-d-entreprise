@@ -199,6 +199,8 @@
     <Content Include="Areas\Employee\Views\Home\Contact.cshtml" />
     <Content Include="Areas\Employee\Views\Home\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Profile\Edit.cshtml" />
+    <Content Include="Areas\Employee\Views\Profile\EditEmail.cshtml" />
+    <Content Include="Areas\Employee\Views\Profile\EditPass.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
