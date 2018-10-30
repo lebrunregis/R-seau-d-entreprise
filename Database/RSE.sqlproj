@@ -70,7 +70,6 @@
     <Folder Include="dbo\Tables\Team" />
     <Folder Include="dbo\Tables\Task" />
     <Folder Include="dbo\Trigger" />
-    <Folder Include="dbo\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Message\Message.sql" />
