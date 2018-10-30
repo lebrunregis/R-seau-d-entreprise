@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[SP_Register_Demo]
+﻿CREATE PROCEDURE [dbo].[Register_Demo]
 	@LastName varchar(50),
 	@FirstName varchar(50)
 AS
@@ -7,8 +7,8 @@ BEGIN
 	DECLARE @hash varbinary(32);
 	SET @Hash =  [dbo].FN_Hash( 'admin') ;
 	INSERT INTO [dbo].Employee(LastName,FirstName,Email,RegNat,Passwd,Address,Phone) 
-	OUTPUT Inserted.Employee_Id 
 	VALUES ( @LastName , @FirstName,'','', @Hash,'','');
-	UPDATE [dbo].Employee SET Email=CONCAT(convert(varchar(10),@@IDENTITY), '@test.be'), RegNat = convert(varchar(10),@@IDENTITY) WHERE Employee_Id = convert(int,@@IDENTITY);
-  COMMIT TRANSACTION
+	UPDATE [dbo].Employee SET Email=CONCAT(convert(varchar(10),SCOPE_IDENTITY() ), '@test.be'), RegNat = convert(varchar(10),SCOPE_IDENTITY() ) WHERE Employee_Id = convert(int,SCOPE_IDENTITY() );
+  COMMIT TRANSACTION 
+  RETURN Scope_Identity()
 END

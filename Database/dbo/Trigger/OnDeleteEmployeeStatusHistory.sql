@@ -1,4 +1,4 @@
-﻿CREATE TRIGGER [OnDeleteEmployeeStatusHistory]
+﻿/*CREATE TRIGGER [OnDeleteEmployeeStatusHistory]
 ON EmployeeStatusHistory
 INSTEAD OF DELETE
 AS
@@ -7,3 +7,4 @@ BEGIN
 	UPDATE EmployeeStatusHistory
 	SET EndDate = GetDate()
 END
+*/

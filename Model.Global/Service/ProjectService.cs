@@ -15,7 +15,7 @@ namespace Model.Global.Service
 
         public static int? Create(Project p, int ProjectManager)
         {
-            Command cmd = new Command("SP_CreateProject", true);
+            Command cmd = new Command("CreateProject", true);
             cmd.AddParameter("Name", p.Name);
             cmd.AddParameter("Description", p.Description);
             cmd.AddParameter("Creator", p.Creator);

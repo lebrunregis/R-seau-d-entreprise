@@ -15,7 +15,7 @@ namespace Model.Global.Service
 
         public static IEnumerable<Data.Employee> GetAllActive()
         {
-            Command cmd = new Command("SP_GetAllActiveEmployees", true);
+            Command cmd = new Command("GetAllActiveEmployees", true);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee());
         }
     }
