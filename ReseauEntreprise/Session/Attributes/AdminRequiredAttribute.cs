@@ -18,7 +18,7 @@ namespace Réseau_d_entreprise.Session.Attributes
         {
             bool accessAllowed = false;
 
-            if (SessionUser.GetUser() != null && Auth.IsAdmin(SessionUser.GetUser().Id))
+            if (SessionUser.GetUser() != null && AuthService.IsAdmin(SessionUser.GetUser().Id))
             {
                 accessAllowed = true;
             }

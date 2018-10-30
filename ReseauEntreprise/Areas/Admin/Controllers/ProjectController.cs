@@ -24,6 +24,15 @@ namespace ReseauEntreprise.Admin.Controllers
             return View();
         }
 
+        public ActionResult ViewProjects()
+        {
+            IEnumerable<D.Employee> AllEmployees = ProjectService;
+            ViewData["AllEmployees"] = new SelectList(AllEmployees
+                .Select(e => new { value = e.Employee_Id.ToString(), text = $"{e.FirstName} {e.LastName}" }),
+                "value", "text");
+            return View();
+        }
+
         [HttpPost]
         public ActionResult CreateProject(CreateProjectForm form)
         {

@@ -13,7 +13,7 @@ namespace ReseauEntreprise.Controllers
     {
         public ActionResult Index()
         {
-            if (SessionUser.GetUser() != null && Auth.IsAdmin(SessionUser.GetUser().Id))
+            if (SessionUser.GetUser() != null && AuthService.IsAdmin(SessionUser.GetUser().Id))
             {
                 RedirectToAction("Index", "Home", new { area = "Admin" });
             }

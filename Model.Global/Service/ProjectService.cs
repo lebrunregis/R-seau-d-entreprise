@@ -22,5 +22,16 @@ namespace Model.Global.Service
             cmd.AddParameter("Project_Manager", ProjectManager);
             return (int?)Connection.ExecuteScalar(cmd);
         }
+
+        public static IEnumerable<Data.Project> GetAllActive()
+        {
+            List<Data.Project> projects = new List<Data.Project>();
+            return projects;
+        }
+        public static IEnumerable<Data.Project> GetAll()
+        {
+            List<Data.Project> projects = new List<Data.Project>();
+            return projects;
+        }
     }
 }

@@ -33,12 +33,12 @@ namespace Réseau_d_entreprise.Controllers
         {
             if (ModelState.IsValid)
             {
-                int? id = Auth.Confirm(form.Email, form.Passwd);
+                int? id = AuthService.Confirm(form.Email, form.Passwd);
 
                 if (id != null)
                 {
                     SessionUser.SetUser(new User { Id = (int)id });
-                    if (Auth.IsAdmin((int)id))
+                    if (AuthService.IsAdmin((int)id))
                     {
                         return RedirectToAction("Index", "Home", new { area = "Admin" });
                     }
@@ -84,7 +84,7 @@ namespace Réseau_d_entreprise.Controllers
                 };
                 try
                 {
-                    Auth.Register(e);
+                    AuthService.Register(e);
                     return RedirectToAction("Index", "Home");
                 }
                 catch (System.Data.SqlClient.SqlException exeption)
