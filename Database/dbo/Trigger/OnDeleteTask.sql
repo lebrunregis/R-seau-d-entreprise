@@ -1,4 +1,4 @@
-﻿/*CREATE TRIGGER [dbo].[OnDeleteTask]
+﻿CREATE TRIGGER [dbo].[OnDeleteTask]
 ON Task
 INSTEAD OF DELETE
 AS
@@ -6,4 +6,3 @@ BEGIN
 	SET NOCOUNT ON
 	UPDATE Task Set EndDate = GetDate();
 END
-*/

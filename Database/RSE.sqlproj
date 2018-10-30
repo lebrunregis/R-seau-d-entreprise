@@ -103,7 +103,7 @@
     <Build Include="dbo\Tables\Department.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeStatus.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeStatusHistory.sql" />
-    <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
     <Build Include="dbo\SP\Register_Demo.sql" />
     <Build Include="dbo\SP\ConfirmAdmin.sql" />
     <Build Include="dbo\SP\GetAllActiveEmployees.sql" />
@@ -132,6 +132,7 @@
     <Build Include="dbo\SP\ConfirmLogin.sql" />
     <Build Include="dbo\SP\Register.sql" />
     <None Include="RSE.publish.xml" />
+    <None Include="RSETEST.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Scripts\Script.PreDeployment1.sql" />

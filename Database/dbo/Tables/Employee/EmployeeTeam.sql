@@ -1,9 +1,10 @@
 ﻿CREATE TABLE [dbo].[EmployeeTeam]
 (
-	[Team_Id] int NOT NULL FOREIGN KEY REFERENCES Team(Team_Id),
-  [Employee_Id] int NOT NULL FOREIGN KEY REFERENCES Employee(Employee_Id),
+  [Team_Id] int NOT NULL ,
+  [Employee_Id] int NOT NULL ,
   [StartDate] datetime2(7),
   [EndDate] datetime2(7),
-  PRIMARY KEY ([StartDate], [Team_Id], [Employee_Id])
-
+  PRIMARY KEY ([StartDate], [Team_Id], [Employee_Id]),
+  CONSTRAINT FK_EmployeeTeamId FOREIGN KEY (Team_Id) REFERENCES Team(Team_Id),
+  CONSTRAINT FK_TeamEmployeeId FOREIGN KEY(Employee_Id) REFERENCES Employee(Employee_Id)
 )

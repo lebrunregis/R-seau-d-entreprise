@@ -1,4 +1,4 @@
-﻿/*CREATE TRIGGER [OnDeleteEmployee]
+﻿CREATE TRIGGER [OnDeleteEmployee]
 ON Employee
 INSTEAD OF DELETE
 AS
@@ -8,4 +8,3 @@ BEGIN
 	SELECT @EmpId = Employee_Id FROM deleted
 	INSERT INTO EmployeeStatusHistory(Employee_Id,EmployeeStatus_Id) VALUES (  @EmpId,2)
 END
-*/
