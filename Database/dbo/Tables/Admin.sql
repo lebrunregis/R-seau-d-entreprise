@@ -4,4 +4,4 @@
   PRIMARY KEY (Employee_Id)
 );
 GO
-CREATE INDEX [P FK] ON  [Admin] ([Employee_Id]);
+CREATE INDEX [I_Employee] ON  [Admin] ([Employee_Id]);

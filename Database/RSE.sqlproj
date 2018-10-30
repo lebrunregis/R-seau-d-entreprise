@@ -69,6 +69,8 @@
     <Folder Include="dbo\Tables\Employee" />
     <Folder Include="dbo\Tables\Team" />
     <Folder Include="dbo\Tables\Task" />
+    <Folder Include="dbo\Trigger" />
+    <Folder Include="dbo\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Message\Message.sql" />
@@ -108,10 +110,16 @@
     <Build Include="dbo\SP\GetAllActiveEmployees.sql" />
     <Build Include="dbo\SP\CreateProject.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeProjectManager.sql" />
-    <Build Include="dbo\SP\GetEmployee.sql" />
-    <Build Include="dbo\SP\Update_Employee.sql" />
-    <Build Include="dbo\SP\Update_Email.sql" />
-    <Build Include="dbo\SP\Update_Password.sql" />
+    <Build Include="dbo\SP\AddEmployeeHistory.sql" />
+    <Build Include="dbo\Trigger\OnDeleteEmployee.sql" />
+    <Build Include="dbo\Trigger\OnDeleteProject.sql" />
+    <Build Include="dbo\Trigger\OnDeleteTeam.sql" />
+    <Build Include="dbo\Trigger\OnDeleteDocument.sql" />
+    <Build Include="dbo\Trigger\OnDeleteEvent.sql" />
+    <Build Include="dbo\Trigger\OnDeleteTask.sql" />
+    <Build Include="dbo\Trigger\OnInsertEmployee.sql" />
+    <Build Include="dbo\Trigger\OnInsertMessage.sql" />
+    <Build Include="dbo\Trigger\OnDeleteEmployeeStatusHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
@@ -120,5 +128,8 @@
     <Build Include="dbo\SP\ConfirmLogin.sql" />
     <Build Include="dbo\SP\Register.sql" />
     <None Include="RSE.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Scripts\Script.PreDeployment1.sql" />
   </ItemGroup>
 </Project>
