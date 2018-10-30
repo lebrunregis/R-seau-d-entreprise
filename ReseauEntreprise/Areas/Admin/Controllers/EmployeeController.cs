@@ -19,6 +19,7 @@ namespace ReseauEntreprise.Admin.Controllers
             IEnumerable<EmployeeList> AllEmployees = EmployeeService.GetAllActive()
                 .Select(e => new EmployeeList()
                 {
+                    Id = e.Employee_Id,
                     LastName = e.LastName,
                     FirstName = e.FirstName,
                     Email = e.Email,
@@ -27,6 +28,38 @@ namespace ReseauEntreprise.Admin.Controllers
                     RegNat = e.RegNat
                 });
             return View(AllEmployees);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            D.Employee emp = EmployeeService.Get(id);
+            EmployeeList e = new EmployeeList()
+            {
+                LastName = emp.LastName,
+                FirstName = emp.FirstName,
+                Email = emp.Email,
+                Address = emp.Address,
+                Phone = emp.Phone,
+                RegNat = emp.RegNat
+            };
+            return View(e);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                if (EmployeeService.Delete(id))
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception exception)
+            {
+                throw (exception);
+            }
+            return View();
         }
     }
 }

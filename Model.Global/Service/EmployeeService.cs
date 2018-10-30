@@ -63,5 +63,15 @@ namespace Model.Global.Service
             }
             return false;
         }
+        public static bool Delete(int Employee_Id)
+        {
+            Command cmd = new Command("Delete_Employee", true);
+            cmd.AddParameter("Employee_Id", Employee_Id);
+            if (Connection.ExecuteNonQuery(cmd) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

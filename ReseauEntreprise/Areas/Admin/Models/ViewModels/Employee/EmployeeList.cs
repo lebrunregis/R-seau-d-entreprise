@@ -9,6 +9,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee
 {
     public class EmployeeList
     {
+        public int Id { get; set; }
         [DisplayName("Nom")]
         public string LastName { get; set; }
         [DisplayName("Prénom")]
