@@ -9,22 +9,41 @@ Modèle de script de post-déploiement
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
---DISABLE TRIGGER [OnDeleteEmployee] ON DATABASE;  
---GO  
+DISABLE TRIGGER [OnDeleteEmployee] ON Employee;  
+GO
+DISABLE TRIGGER [OnDeleteDocument] ON Document;
+GO
+DISABLE TRIGGER [OnDeleteEmployeeStatusHistory] ON EmployeeStatusHistory;  
+GO
+DISABLE TRIGGER [OnDeleteEvent] ON Event;  
+GO
+DISABLE TRIGGER [OnDeleteProject] ON Project;  
+GO
+DISABLE TRIGGER [OnDeleteTask] ON Task;  
+GO
+DISABLE TRIGGER [OnDeleteTeam] ON Team;  
+GO
+--DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
+--GO
 DELETE FROM [EmployeeProjectManager];
 GO
 DELETE FROM [Project];
 GO
 DELETE FROM [Admin];
 GO
+DELETE FROM [EmployeeStatusHistory];
+GO
 DELETE FROM [Employee];
 GO
+DELETE FROM [EmployeeStatus];
+GO
+
 DBCC CHECKIDENT ('[Employee]', RESEED, 0);
 GO
 DBCC CHECKIDENT ('[Project]', RESEED, 0);
 GO
 
-/*
+
 GO
 SET IDENTITY_INSERT [EmployeeStatus] ON 
 INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (1,'Joined');
@@ -32,7 +51,7 @@ INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (2,'Left');
 INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (3,'Sick');
 INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (4,'Dead');
 GO
-*/
+
 
 EXEC [dbo].Register_Demo @LastName = 'Aliyah',@FirstName ='Ellis';
 EXEC [dbo].Register_Demo @LastName = 'Izabelle',@FirstName ='Hanna';
@@ -50,4 +69,19 @@ DECLARE @last_id int = ident_current('[dbo].Employee');
 Update [dbo].Employee SET Email='admin@test.be' where Employee_Id = @last_id;
 INSERT INTO[dbo].Admin (Employee_Id) VALUES (@last_id);
 
-ENABLE TRIGGER ALL ON DATABASE;
+ENABLE TRIGGER [OnDeleteEmployee] ON Employee;  
+GO
+ENABLE TRIGGER [OnDeleteDocument] ON Document;
+GO
+ENABLE TRIGGER [OnDeleteEmployeeStatusHistory] ON EmployeeStatusHistory;  
+GO
+ENABLE TRIGGER [OnDeleteEvent] ON Event;  
+GO
+ENABLE TRIGGER [OnDeleteProject] ON Project;  
+GO
+ENABLE TRIGGER [OnDeleteTask] ON Task;  
+GO
+ENABLE TRIGGER [OnDeleteTeam] ON Team;  
+GO
+--DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
+--GO
