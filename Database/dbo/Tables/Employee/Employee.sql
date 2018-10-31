@@ -4,7 +4,7 @@
   [LastName] nvarchar(50) NOT NULL,
   [FirstName] nvarchar(50) NOT NULL,
   [Email] NVARCHAR(360) NOT NULL,
-  [Passwd] varbinary(32) NOT NULL,
+  [Passwd] varbinary(32) NULL,
   [Active] bit NOT NULL default 1,
   [RegNat] nvarchar(50) NOT NULL,
   [Avatar] varbinary(MAX) NULL,

@@ -36,5 +36,19 @@ namespace Model.Global.Mapper
                 CreatorLastName = (String)dr["CreatorLastName"]
             };
         }
+        internal static Project ToProject(this IDataRecord dr)
+        {
+            return new Project()
+            {
+                Id = (int)dr["Project_Id"],
+                Name = (string)dr["Project_Name"],
+                Description = (string)dr["Project_Description"],
+                Start = (DateTime)dr["StartDate"],
+                End =(DateTime?)  ((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"]),
+                Creator = (int)dr["Creator"],
+                CreatorFirstName = (String)dr["CreatorFirstName"],
+                CreatorLastName = (String)dr["CreatorLastName"]
+            };
+        }
     }
 }

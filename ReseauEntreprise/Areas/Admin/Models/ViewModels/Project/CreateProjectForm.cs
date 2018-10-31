@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ReseauEntreprise.Models.ViewModels.Project
+namespace ReseauEntreprise.Admin.Models.ViewModels.Project
 {
     public class CreateProjectForm
     {

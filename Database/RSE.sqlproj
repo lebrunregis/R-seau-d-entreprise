@@ -123,6 +123,9 @@
     <Build Include="dbo\Trigger\OnInsertEmployee.sql" />
     <Build Include="dbo\Trigger\OnInsertMessage.sql" />
     <Build Include="dbo\Trigger\OnDeleteEmployeeStatusHistory.sql" />
+    <Build Include="dbo\SP\GetAllActiveProjects.sql" />
+    <Build Include="dbo\SP\GetAllAssociedProjects.sql" />
+    <Build Include="dbo\SP\GetAllProjects.sql" />
     <Build Include="dbo\SP\Delete_Employee.sql" />
     <Build Include="dbo\FN\FN_StrClean.sql" />
   </ItemGroup>

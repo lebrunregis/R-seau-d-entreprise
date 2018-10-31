@@ -83,7 +83,7 @@ namespace Réseau_d_entreprise.Controllers
                 };
                 try
                 {
-                    int Employee_Id = Auth.Register(e);
+                    int Employee_Id = AuthService.Register(e);
                     SessionUser.SetUser(new User { Id = Employee_Id });
                     return RedirectToAction("Index", "Home", new { area = "Employee" });
                 }
