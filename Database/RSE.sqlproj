@@ -133,7 +133,7 @@
     <Build Include="dbo\SP\SetAdmin.sql" />
     <Build Include="dbo\Trigger\OnInsertUpdateAdmin.sql" />
     <Build Include="dbo\SP\SetNotAdmin.sql" />
-    <Build Include="dbo\Views\ProjectDetails.sql" />
+    <Build Include="dbo\Views\ProjectHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
