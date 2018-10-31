@@ -153,12 +153,18 @@
     <Compile Include="Areas\Admin\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeeList.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\CreateProjectForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Project\DeleteProjectForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Project\DetailsProjectForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Project\ListProjectForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Project\EditProjectForm.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
     <Compile Include="Areas\Employee\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Employee\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EditEmailForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EditPassForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EditProfileForm.cs" />
+    <Compile Include="Areas\Employee\Models\ProjectModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -205,6 +211,8 @@
     <Content Include="Areas\Employee\Views\Profile\EditPass.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Project\CreateProject.cshtml" />
+    <Content Include="Areas\Admin\Views\Project\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -233,7 +241,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Registration\Login.cshtml" />
     <Content Include="Views\Registration\Register.cshtml" />
-    <Content Include="Areas\Admin\Views\Project\CreateProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
