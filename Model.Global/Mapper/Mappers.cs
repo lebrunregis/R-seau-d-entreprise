@@ -18,8 +18,8 @@ namespace Model.Global.Mapper
                 FirstName = (string)dr["FirstName"],
                 Email = (string)dr["Email"],
                 RegNat = (string)dr["RegNat"],
-                Address = (string)dr["Address"] ,
-                Phone = (dr["Phone"] == DBNull.Value) ? "" : (string)dr["Phone"]
+                Address = (string)dr["Address"],
+                Phone = (dr["Phone"] == DBNull.Value)? null : (string)dr["Phone"]
             };
         }
         internal static Project ToProject(this IDataRecord dr)

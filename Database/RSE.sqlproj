@@ -109,6 +109,10 @@
     <Build Include="dbo\SP\GetAllActiveEmployees.sql" />
     <Build Include="dbo\SP\CreateProject.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeProjectManager.sql" />
+    <Build Include="dbo\SP\GetEmployee.sql" />
+    <Build Include="dbo\SP\Update_Employee.sql" />
+    <Build Include="dbo\SP\Update_Email.sql" />
+    <Build Include="dbo\SP\Update_Password.sql" />
     <Build Include="dbo\SP\AddEmployeeHistory.sql" />
     <Build Include="dbo\Trigger\OnDeleteEmployee.sql" />
     <Build Include="dbo\Trigger\OnDeleteProject.sql" />
@@ -122,6 +126,8 @@
     <Build Include="dbo\SP\GetAllActiveProjects.sql" />
     <Build Include="dbo\SP\GetAllAssociedProjects.sql" />
     <Build Include="dbo\SP\GetAllProjects.sql" />
+    <Build Include="dbo\SP\Delete_Employee.sql" />
+    <Build Include="dbo\FN\FN_StrClean.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

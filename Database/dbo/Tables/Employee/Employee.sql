@@ -13,8 +13,8 @@
   [Phone] VARCHAR(50) NULL,
   PRIMARY KEY ([Employee_Id]),
   CONSTRAINT UC_Email UNIQUE ([Email]),
-  CONSTRAINT UC_RegNat UNIQUE ([RegNat])
-
+  CONSTRAINT UC_RegNat UNIQUE ([RegNat]),
+  CONSTRAINT [CK_AddressMinLenght] CHECK ((len(ltrim(rtrim([Address])))>(7)))
 );
 GO;
 CREATE INDEX [email_i] ON  [Employee] ([Email]);
