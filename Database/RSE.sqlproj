@@ -124,6 +124,7 @@
     <Build Include="dbo\Trigger\OnInsertMessage.sql" />
     <Build Include="dbo\Trigger\OnDeleteEmployeeStatusHistory.sql" />
     <Build Include="dbo\SP\Delete_Employee.sql" />
+    <Build Include="dbo\FN\FN_StrClean.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
