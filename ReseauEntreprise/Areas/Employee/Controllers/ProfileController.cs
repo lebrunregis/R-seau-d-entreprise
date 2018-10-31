@@ -16,7 +16,7 @@ namespace ReseauEntreprise.Employee.Controllers
     {
         public ActionResult Index()
         {
-            if (SessionUser.GetUser() != null && Auth.IsAdmin(SessionUser.GetUser().Id))
+            if (SessionUser.GetUser() != null && AuthService.IsAdmin(SessionUser.GetUser().Id))
             {
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
             }

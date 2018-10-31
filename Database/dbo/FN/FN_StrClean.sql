@@ -1,5 +1,5 @@
 ﻿CREATE FUNCTION [dbo].[FN_StrClean](@str NVARCHAR(MAX))
-RETURNS varbinary(MAX) 
+RETURNS NVARCHAR(MAX) 
 AS
 BEGIN
 RETURN (rtrim(ltrim(@str)));
