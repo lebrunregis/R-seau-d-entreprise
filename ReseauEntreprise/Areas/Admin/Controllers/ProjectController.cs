@@ -66,10 +66,10 @@ namespace ReseauEntreprise.Admin.Controllers
 
         public ActionResult Index()
         {
-            List<ListProjectForm> list = new List<ListProjectForm>();
+            List<ListForm> list = new List<ListForm>();
             foreach (Project projet in ProjectService.GetAll())
             {
-                ListProjectForm form = new ListProjectForm(projet);
+                ListForm form = new ListForm(projet);
                 list.Add(form);
             }
             return View(list);

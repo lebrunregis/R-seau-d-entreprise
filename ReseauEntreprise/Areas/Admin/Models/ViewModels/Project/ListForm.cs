@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ReseauEntreprise.Admin.Models.ViewModels.Project
 {
-    public class ListProjectForm
+    public class ListForm
     {
         [Key]
         public int ProjectId { get; set; }
@@ -25,7 +25,7 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
         String ProjectManagerFullName { get; set; }
 
 
-        public ListProjectForm(D.Project Project)
+        public ListForm(D.Project Project)
         {
             ProjectId = Project.Id;
             Name = Project.Name;
