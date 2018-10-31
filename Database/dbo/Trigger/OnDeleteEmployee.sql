@@ -4,9 +4,10 @@ INSTEAD OF DELETE
 AS
 BEGIN
 	SET NOCOUNT ON
-		--DECLARE @EmpId int
-	--SELECT @EmpId = Employee_Id FROM deleted
-	--INSERT INTO EmployeeStatusHistory(Employee_Id,EmployeeStatus_Id) VALUES (  @EmpId,2)
-	INSERT INTO EmployeeStatusHistory(Employee_Id,EmployeeStatus_Id) SELECT Employee_Id, 2 FROM deleted;
-	UPDATE Employee SET Employee.Active = 0 WHERE Employee_Id IN (SELECT deleted.Employee_Id FROM deleted);
+	
+	DECLARE @EmpId Table(Id int);
+	INSERT INTO @EmpId(Id) (SELECT d.Employee_Id FROM deleted d INNER JOIN Employee e ON d.Employee_Id=e.Employee_Id WHERE e.Active=1);
+	INSERT INTO EmployeeStatusHistory(Employee_Id,EmployeeStatus_Id) SELECT Id, 2 FROM @EmpId;
+	UPDATE Employee SET Employee.Active = 0 WHERE Employee_Id IN (SELECT Id FROM @EmpId);
+	DELETE FROM EmployeeStatusHistory WHERE Employee_Id IN (SELECT Id FROM @EmpId) AND EmployeeStatus_Id=1 AND EndDate is NULL;
 END
