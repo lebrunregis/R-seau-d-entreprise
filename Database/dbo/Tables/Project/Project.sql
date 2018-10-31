@@ -4,6 +4,6 @@
   [Project_Description] nvarchar(max) NOT NULL,
   [StartDate] DATETIME NOT NULL DEFAULT GetDate(),
   [EndDate] DATETIME NULL,
-  [Creator] int FOREIGN KEY REFERENCES [Admin](Employee_Id) NOT NULL,
+  [CreatorId] int FOREIGN KEY REFERENCES [Admin](Employee_Id) NOT NULL,
   PRIMARY KEY ([Project_Id])
 );

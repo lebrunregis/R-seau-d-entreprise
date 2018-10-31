@@ -1,10 +1,10 @@
-﻿@model ReseauEntreprise.Admin.Models.ViewModels.Project.CreateProjectForm
+﻿@model ReseauEntreprise.Admin.Models.ViewModels.Project.CreateForm
 
 @{
-    ViewBag.Title = "CreateProject";
+    ViewBag.Title = "Create";
 }
 
-<h2>CreateProject</h2>
+<h2>Create</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>CreateProjectForm</h4>
+        <h4>CreateForm</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -32,10 +32,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProjectManager, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SelectedProjectManagerId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ProjectManager, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProjectManager, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.SelectedProjectManagerId, new SelectList(Model.ProjectManagerCandidateList, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Manager" })
+                @Html.ValidationMessageFor(model => model.SelectedProjectManagerId, "", new { @class = "text-danger" })
             </div>
         </div>
 

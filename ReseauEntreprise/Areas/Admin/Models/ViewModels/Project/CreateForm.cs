@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace ReseauEntreprise.Admin.Models.ViewModels.Project
 {
-    public class CreateProjectForm
+    public class CreateForm
     {
         [Required]
         [MaxLength(50)]
@@ -16,6 +16,8 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
         [DataType(DataType.MultilineText)]
         public String Description { get; set; }
         [Required]
-        public int ProjectManager { get; set; }
+        [Display(Name = "Project Manager")]
+        public int SelectedProjectManagerId { get; set; }
+        public IEnumerable<SelectListItem> ProjectManagerCandidateList { get; set; }
     }
 }

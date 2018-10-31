@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
 {
-    public class DeleteProjectForm
+    public class DetailsForm
     {
     }
 }
