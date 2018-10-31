@@ -9,7 +9,7 @@ using ToolBox.DBTools;
 
 namespace Model.Global.Service
 {
-    public static class Auth
+    public static class AuthService
     {
         static readonly Connection Connection = new Connection("System.Data.SqlClient", ConfigurationManager.ConnectionStrings["connString"].ConnectionString);
 

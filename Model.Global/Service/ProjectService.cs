@@ -1,4 +1,5 @@
 ﻿using Model.Global.Data;
+using Model.Global.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -21,6 +22,18 @@ namespace Model.Global.Service
             cmd.AddParameter("Creator", p.Creator);
             cmd.AddParameter("Project_Manager", ProjectManager);
             return (int?)Connection.ExecuteScalar(cmd);
+        }
+
+        public static IEnumerable<Data.Project> GetAllActive()
+        {
+            Command cmd = new Command("GetAllActiveProjects", true);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToProject());
+        }
+
+        public static IEnumerable<Data.Project> GetAll()
+        {
+            Command cmd = new Command("GetAllProjects", true);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToProject());
         }
     }
 }
