@@ -42,6 +42,8 @@ DBCC CHECKIDENT ('[Employee]', RESEED, 0);
 GO
 DBCC CHECKIDENT ('[Project]', RESEED, 0);
 GO
+DBCC CHECKIDENT ('[EmployeeStatusHistory]', RESEED, 0);
+GO
 
 
 GO
@@ -50,6 +52,7 @@ INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (1,'Joined');
 INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (2,'Left');
 INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (3,'Sick');
 INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (4,'Dead');
+INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (5,'Admin');
 GO
 
 

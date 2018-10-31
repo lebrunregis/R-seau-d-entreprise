@@ -129,6 +129,10 @@
     <Build Include="dbo\SP\GetAllProjects.sql" />
     <Build Include="dbo\SP\Delete_Employee.sql" />
     <Build Include="dbo\FN\FN_StrClean.sql" />
+    <Build Include="dbo\SP\GetAllEmployeesForAdmin.sql" />
+    <Build Include="dbo\SP\SetAdmin.sql" />
+    <Build Include="dbo\Trigger\OnInsertUpdateAdmin.sql" />
+    <Build Include="dbo\SP\SetNotAdmin.sql" />
     <Build Include="dbo\Views\ProjectDetails.sql" />
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,5 @@ AFTER INSERT
 AS
 BEGIN
 	SET NOCOUNT ON
-	DECLARE @EmpId int
-	SELECT @EmpId = Employee_Id FROM inserted
-	INSERT INTO EmployeeStatusHistory(Employee_Id,EmployeeStatus_Id) VALUES ( @EmpId,1)
+	INSERT INTO EmployeeStatusHistory(Employee_Id,EmployeeStatus_Id) SELECT Employee_Id, 1 FROM inserted
 END
