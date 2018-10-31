@@ -37,6 +37,7 @@ namespace Réseau_d_entreprise.Models.ViewModels
         [DisplayName("Numéro de registre national")]
         public string RegNat { get; set; }
         [Required]
+        [MinLength(7)]
         [DisplayName("Adresse")]
         public string Address { get; set; }
         [MaxLength(50)]

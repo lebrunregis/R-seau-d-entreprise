@@ -20,6 +20,7 @@ namespace ReseauEntreprise.Areas.Employee.Models
         public string FirstName { get; set; }
 
         [Required]
+        [MinLength(7)]
         [DisplayName("Adresse")]
         public string Address { get; set; }
 
