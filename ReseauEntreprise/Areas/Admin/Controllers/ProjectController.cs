@@ -24,7 +24,7 @@ namespace ReseauEntreprise.Admin.Controllers
             {
                 int? ManagerId = ProjectService.GetProjectManagerId(Project.Id);
                 D.Employee Manager = EmployeeService.Get((int) ManagerId);
-                D.Employee Creator = EmployeeService.Get(Project.Creator);
+                D.Employee Creator = EmployeeService.Get(Project.CreatorId);
                 ListForm form = new ListForm(Project, Manager,Creator);
                 list.Add(form);
             }
@@ -61,7 +61,7 @@ namespace ReseauEntreprise.Admin.Controllers
                 {
                     Name = form.Name,
                     Description = form.Description,
-                    Creator = SessionUser.GetUser().Id
+                    CreatorId = SessionUser.GetUser().Id
                 };
                 int ProjectManagerId = form.SelectedProjectManagerId;
                 try
@@ -146,7 +146,7 @@ namespace ReseauEntreprise.Admin.Controllers
             
             D.Project Project = ProjectService.GetProjectById(ProjectId);
             D.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(ProjectId));
-            D.Employee Creator = EmployeeService.Get(Project.Creator);
+            D.Employee Creator = EmployeeService.Get(Project.CreatorId);
             DeleteForm Form = new DeleteForm(Project,Manager,Creator);
             return View(Form);
         }
