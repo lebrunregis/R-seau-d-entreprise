@@ -6,4 +6,5 @@
     @Phone varchar(50),
 	@RegNat nvarchar(50)
 AS
-DELETE FROM Employee WHERE Employee_Id=@Employee_Id AND LastName=@LastName AND FirstName=@FirstName AND [Address]=@Address AND Phone=@Phone AND RegNat=@RegNat;
+DELETE FROM Employee WHERE Employee_Id=@Employee_Id AND LastName=@LastName AND FirstName=@FirstName AND [Address]=@Address AND RegNat=@RegNat AND
+    (Phone=@Phone OR (Phone IS NULL AND @Phone IS NULL));
