@@ -144,6 +144,9 @@
     <Build Include="dbo\Tables\Project\ProjectManager.sql" />
     <Build Include="dbo\SP\Project\GetProjectManagerId.sql" />
     <Build Include="dbo\Trigger\OnDeleteAdmin.sql" />
+    <Build Include="dbo\SP\Employee\EditEmployeeForAdmin.sql" />
+    <Build Include="dbo\SP\Employee\GetEmployeeForAdmin.sql" />
+    <Build Include="dbo\SP\Employee\UpdateEmployee.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
