@@ -11,6 +11,10 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
     public class EditForm
     {
         [Required]
+        [Editable(false)]
+        [HiddenInput]
+        public int Id { get; set; }
+        [Required]
         [MaxLength(50)]
         public String Name { get; set; }
         [Required]
@@ -20,5 +24,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
         [Display(Name = "Project Manager")]
         public int SelectedProjectManagerId { get; set; }
         public IEnumerable<SelectListItem> ProjectManagerCandidateList { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? Deadline;
     }
 }

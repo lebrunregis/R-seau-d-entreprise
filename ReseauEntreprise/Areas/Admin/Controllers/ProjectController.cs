@@ -20,9 +20,12 @@ namespace ReseauEntreprise.Admin.Controllers
         public ActionResult Index()
         {
             List<ListForm> list = new List<ListForm>();
-            foreach (Project projet in ProjectService.GetAll())
+            foreach (Project Project in ProjectService.GetAll())
             {
-                ListForm form = new ListForm(projet);
+                int? ManagerId = ProjectService.GetProjectManagerId(Project.Id);
+                D.Employee Manager = EmployeeService.Get((int) ManagerId);
+                D.Employee Creator = EmployeeService.Get(Project.Creator);
+                ListForm form = new ListForm(Project, Manager,Creator);
                 list.Add(form);
             }
             return View(list);
@@ -106,9 +109,10 @@ namespace ReseauEntreprise.Admin.Controllers
             {
                 D.Project p = new D.Project()
                 {
+                    Id = form.Id,
                     Name = form.Name,
                     Description = form.Description,
-                    Creator = SessionUser.GetUser().Id
+                    End = form.Deadline
                 };
                 int ProjectManagerId = form.SelectedProjectManagerId;
                 try
@@ -134,11 +138,9 @@ namespace ReseauEntreprise.Admin.Controllers
         {
             
             D.Project Project = ProjectService.GetProjectById(ProjectId);
-            D.Employee Manager = EmployeeService.Get(ProjectService.)
-            DeleteForm Form = new DeleteForm(Project,);
-            List<SelectListItem> ManagerCandidates = new List<SelectListItem>();
-
-
+            D.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(ProjectId));
+            D.Employee Creator = EmployeeService.Get(Project.Creator);
+            DeleteForm Form = new DeleteForm(Project,Manager,Creator);
             return View(Form);
         }
 

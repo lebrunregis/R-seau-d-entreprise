@@ -22,14 +22,20 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
         [HiddenInput]
         [Required]
         public D.Employee Manager { get; set; }
+        [HiddenInput]
+        [Required]
+        public D.Employee Creator { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? Deadline;
 
-
-        public ListForm(D.Project Project,D.Employee Manager)
+        public ListForm(D.Project Project,D.Employee Manager, D.Employee Creator)
         {
             ProjectId = Project.Id;
             Name = Project.Name;
             Description = Project.Description;
             this.Manager = Manager;
+            this.Creator = Creator;
+            this.Deadline = Project.End;
         }
     }
 }
