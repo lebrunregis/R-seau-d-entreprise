@@ -143,6 +143,7 @@
     <Build Include="dbo\SP\Project\DeleteProject.sql" />
     <Build Include="dbo\Tables\Project\ProjectManager.sql" />
     <Build Include="dbo\SP\Project\GetProjectManagerId.sql" />
+    <Build Include="dbo\Trigger\OnDeleteAdmin.sql" />
     <Build Include="dbo\SP\Employee\EditEmployeeForAdmin.sql" />
     <Build Include="dbo\SP\Employee\GetEmployeeForAdmin.sql" />
   </ItemGroup>
