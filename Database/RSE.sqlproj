@@ -129,7 +129,6 @@
     <Build Include="dbo\SP\Employee\Register.sql" />
     <Build Include="dbo\SP\Employee\Register_Demo.sql" />
     <Build Include="dbo\SP\Employee\SetAdmin.sql" />
-    <Build Include="dbo\SP\Employee\SetNotAdmin.sql" />
     <Build Include="dbo\SP\Employee\Update_Email.sql" />
     <Build Include="dbo\SP\Employee\Update_Employee.sql" />
     <Build Include="dbo\SP\Employee\Update_Password.sql" />
@@ -144,6 +143,7 @@
     <Build Include="dbo\SP\Project\DeleteProject.sql" />
     <Build Include="dbo\Tables\Project\ProjectManager.sql" />
     <Build Include="dbo\SP\Project\GetProjectManagerId.sql" />
+    <Build Include="dbo\Trigger\OnDeleteAdmin.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
