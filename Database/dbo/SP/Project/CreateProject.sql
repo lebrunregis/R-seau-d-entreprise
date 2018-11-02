@@ -17,5 +17,4 @@ IF EXISTS(SELECT * FROM [dbo].[Admin] WHERE Employee_Id = @creator AND Actif = 1
 	       INSERT INTO [dbo].EmployeeProjectManager(Project_Id, Employee_Id) VALUES (@project_id, @project_manager);
 	       SELECT @project_id
        END
-
 END

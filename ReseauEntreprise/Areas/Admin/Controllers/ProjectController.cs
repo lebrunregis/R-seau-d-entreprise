@@ -132,20 +132,14 @@ namespace ReseauEntreprise.Admin.Controllers
 
         public ActionResult Delete(int ProjectId)
         {
-            CreateForm form = new CreateForm();
-            IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
+            
+            D.Project Project = ProjectService.GetProjectById(ProjectId);
+            D.Employee Manager = EmployeeService.Get(ProjectService.)
+            DeleteForm Form = new DeleteForm(Project,);
             List<SelectListItem> ManagerCandidates = new List<SelectListItem>();
-            foreach (D.Employee emp in Employees)
-            {
-                ManagerCandidates.Add(new SelectListItem()
-                {
-                    Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
-                    Value = emp.Employee_Id.ToString()
-                });
-            }
-            form.ProjectManagerCandidateList = ManagerCandidates;
 
-            return View(form);
+
+            return View(Form);
         }
 
         [HttpPost]

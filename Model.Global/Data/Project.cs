@@ -14,7 +14,5 @@ namespace Model.Global.Data
         public DateTime Start { get; set; }
         public DateTime? End { get; set; }
         public int Creator { get; set; }
-        public String CreatorFirstName { get; set; }
-        public String CreatorLastName { get; set; }
     }
 }
