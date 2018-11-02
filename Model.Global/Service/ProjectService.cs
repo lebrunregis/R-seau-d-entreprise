@@ -19,7 +19,7 @@ namespace Model.Global.Service
             Command cmd = new Command("CreateProject", true);
             cmd.AddParameter("Name", p.Name);
             cmd.AddParameter("Description", p.Description);
-            cmd.AddParameter("Creator", p.Creator);
+            cmd.AddParameter("Creator", p.CreatorId);
             cmd.AddParameter("Project_Manager", ProjectManager);
             return (int?)Connection.ExecuteScalar(cmd);
         }
@@ -30,7 +30,7 @@ namespace Model.Global.Service
             cmd.AddParameter("Id", p.Id);
             cmd.AddParameter("Name", p.Name);
             cmd.AddParameter("Description", p.Description);
-            cmd.AddParameter("Creator", p.Creator);
+            cmd.AddParameter("Creator", p.CreatorId);
             cmd.AddParameter("Project_Manager", ProjectManager);
             return (int?)Connection.ExecuteScalar(cmd);
         }
@@ -41,7 +41,7 @@ namespace Model.Global.Service
             cmd.AddParameter("Id", p.Id);
             cmd.AddParameter("Name", p.Name);
             cmd.AddParameter("Description", p.Description);
-            cmd.AddParameter("Creator", p.Creator);
+            cmd.AddParameter("Creator", p.CreatorId);
             cmd.AddParameter("Project_Manager", ProjectManager);
             return (int?)Connection.ExecuteScalar(cmd);
         }
