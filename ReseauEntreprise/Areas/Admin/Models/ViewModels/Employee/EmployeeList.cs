@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee
 {
     public class EmployeeList
     {
+        [HiddenInput]
         public int Id { get; set; }
         [DisplayName("Nom")]
         public string LastName { get; set; }
