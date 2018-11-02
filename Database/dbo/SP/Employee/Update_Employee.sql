@@ -11,4 +11,5 @@ CREATE PROCEDURE [dbo].[Update_Employee]
     @Phone varchar(50)
 
 AS
-UPDATE Employee SET LastName=@LastName, FirstName=@FirstName, [Address]=@Address, Phone=@Phone WHERE Employee_Id=@Employee_Id AND Active=1
+UPDATE Employee SET LastName=[dbo].FN_StrClean(@LastName), FirstName=[dbo].FN_StrClean(@FirstName), [Address]=[dbo].FN_StrClean(@Address), Phone=NULLIF([dbo].FN_StrClean(@Phone),'')
+WHERE Employee_Id=@Employee_Id AND Active=1

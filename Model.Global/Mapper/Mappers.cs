@@ -12,7 +12,7 @@ namespace Model.Global.Mapper
     {
         internal static Employee ToEmployee(this IDataRecord dr)
         {
-            return new Employee() {
+            Employee e = new Employee() {
                 Employee_Id = (int)dr["Employee_Id"],
                 LastName = (string)dr["LastName"],
                 FirstName = (string)dr["FirstName"],
@@ -21,6 +21,11 @@ namespace Model.Global.Mapper
                 Address = (string)dr["Address"],
                 Phone = (dr["Phone"] == DBNull.Value) ? null : (string)dr["Phone"]
             };
+            if (Enumerable.Range(0, dr.FieldCount).Select(x => dr.GetName(x)).Contains("Actif"))
+            {
+                e.IsAdmin = (dr["Actif"] == DBNull.Value) ? false : (bool)dr["Actif"];
+            }
+            return e;
         }
         internal static Project ToProject(this IDataRecord dr)
         {
