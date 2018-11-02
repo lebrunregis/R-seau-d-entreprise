@@ -4,4 +4,4 @@
 	@Description nvarchar(max),
 	@Creator int
 AS
-	DELETE FROM Project WHERE Project_Id = @Id AND Project_Name=@name AND Project_Description=@description AND CreatorId=@creator;
+	DELETE FROM Project WHERE Project_Id = @Id AND Project_Name=@Name AND Project_Description=@Description AND CreatorId=@Creator;

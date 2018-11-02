@@ -151,7 +151,7 @@ namespace ReseauEntreprise.Admin.Controllers
             return View(Form);
         }
 
-        [HttpPost]
+      /*  [HttpPost]
         public ActionResult Delete(DeleteForm form)
         {
             if (ModelState.IsValid)
@@ -180,6 +180,6 @@ namespace ReseauEntreprise.Admin.Controllers
                 .Select(e => new { value = e.Employee_Id.ToString(), text = $"{e.FirstName} {e.LastName}" }),
                 "value", "text");
             return View(form);
-        }
+        }*/
     }
 }

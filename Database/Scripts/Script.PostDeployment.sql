@@ -27,7 +27,7 @@ DISABLE TRIGGER [OnDeleteAdmin] ON [Admin];
 GO
 --DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 --GO
-DELETE FROM [EmployeeProjectManager];
+DELETE FROM [ProjectManager];
 GO
 DELETE FROM [Project];
 GO

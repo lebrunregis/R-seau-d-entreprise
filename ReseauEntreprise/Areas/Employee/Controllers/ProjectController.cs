@@ -19,14 +19,14 @@ namespace ReseauEntreprise.Employee.Controllers
 
         public ActionResult Index()
         {
-            List<ListForm> list = new List<ListForm>();
+        /*    List<ListForm> list = new List<ListForm>();
             foreach (Project projet in ProjectService.GetAll())
             {
                 ListForm form = new ListForm(projet);
                 list.Add(form);
-            }
-            return View(list);
+            }*/
+            return View();
         }
-
+       
     }
 }
