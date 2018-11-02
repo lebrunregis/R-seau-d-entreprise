@@ -10,6 +10,7 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
 {
     public class ListForm
     {
+        [HiddenInput]
         [Key]
         public int ProjectId { get; set; }
         [Required]
@@ -20,18 +21,15 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
         public String Description { get; set; }
         [HiddenInput]
         [Required]
-        public int ProjectManager { get; set; }
-        [Required]
-        String ProjectManagerFullName { get; set; }
+        public D.Employee Manager { get; set; }
 
 
-        public ListForm(D.Project Project)
+        public ListForm(D.Project Project,D.Employee Manager)
         {
             ProjectId = Project.Id;
             Name = Project.Name;
             Description = Project.Description;
-            ProjectManager = Project.Creator;
-            ProjectManagerFullName = Project.CreatorFirstName + ' ' + Project.CreatorLastName;
+            this.Manager = Manager;
         }
     }
 }

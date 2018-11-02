@@ -71,6 +71,10 @@
     <Folder Include="dbo\Tables\Task" />
     <Folder Include="dbo\Trigger" />
     <Folder Include="dbo\Views" />
+    <Folder Include="dbo\SP\Project" />
+    <Folder Include="dbo\SP\Employee" />
+    <Folder Include="dbo\SP\Team" />
+    <Folder Include="dbo\SP\Department" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Message\Message.sql" />
@@ -105,16 +109,6 @@
     <Build Include="dbo\Tables\Employee\EmployeeStatus.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeStatusHistory.sql" />
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
-    <Build Include="dbo\SP\Register_Demo.sql" />
-    <Build Include="dbo\SP\ConfirmAdmin.sql" />
-    <Build Include="dbo\SP\GetAllActiveEmployees.sql" />
-    <Build Include="dbo\SP\CreateProject.sql" />
-    <Build Include="dbo\Tables\Employee\EmployeeProjectManager.sql" />
-    <Build Include="dbo\SP\GetEmployee.sql" />
-    <Build Include="dbo\SP\Update_Employee.sql" />
-    <Build Include="dbo\SP\Update_Email.sql" />
-    <Build Include="dbo\SP\Update_Password.sql" />
-    <Build Include="dbo\SP\AddEmployeeHistory.sql" />
     <Build Include="dbo\Trigger\OnDeleteEmployee.sql" />
     <Build Include="dbo\Trigger\OnDeleteProject.sql" />
     <Build Include="dbo\Trigger\OnDeleteTeam.sql" />
@@ -124,25 +118,37 @@
     <Build Include="dbo\Trigger\OnInsertEmployee.sql" />
     <Build Include="dbo\Trigger\OnInsertMessage.sql" />
     <Build Include="dbo\Trigger\OnDeleteEmployeeStatusHistory.sql" />
-    <Build Include="dbo\SP\GetAllActiveProjects.sql" />
-    <Build Include="dbo\SP\GetAllAssociedProjects.sql" />
-    <Build Include="dbo\SP\GetAllProjects.sql" />
-    <Build Include="dbo\SP\Delete_Employee.sql" />
     <Build Include="dbo\FN\FN_StrClean.sql" />
-    <Build Include="dbo\SP\GetAllEmployeesForAdmin.sql" />
-    <Build Include="dbo\SP\SetAdmin.sql" />
     <Build Include="dbo\Trigger\OnInsertUpdateAdmin.sql" />
-    <Build Include="dbo\Views\ProjectDetails.sql" />
-    <Build Include="dbo\SP\EditEmployeeForAdmin.sql" />
-    <Build Include="dbo\Trigger\OnDeleteAdmin.sql" />
-    <Build Include="dbo\SP\GetEmployeeForAdmin.sql" />
+    <Build Include="dbo\Views\ProjectHistory.sql" />
+    <Build Include="dbo\SP\Project\CreateProject.sql" />
+    <Build Include="dbo\SP\Employee\Delete_Employee.sql" />
+    <Build Include="dbo\SP\Project\GetAllActiveProjects.sql" />
+    <Build Include="dbo\SP\Project\GetAllProjects.sql" />
+    <Build Include="dbo\SP\Employee\GetEmployee.sql" />
+    <Build Include="dbo\SP\Employee\Register.sql" />
+    <Build Include="dbo\SP\Employee\Register_Demo.sql" />
+    <Build Include="dbo\SP\Employee\SetAdmin.sql" />
+    <Build Include="dbo\SP\Employee\SetNotAdmin.sql" />
+    <Build Include="dbo\SP\Employee\Update_Email.sql" />
+    <Build Include="dbo\SP\Employee\Update_Employee.sql" />
+    <Build Include="dbo\SP\Employee\Update_Password.sql" />
+    <Build Include="dbo\SP\Employee\GetAllAssociedProjects.sql" />
+    <Build Include="dbo\SP\Employee\GetAllActiveEmployees.sql" />
+    <Build Include="dbo\SP\Employee\GetAllEmployeesForAdmin.sql" />
+    <Build Include="dbo\SP\Employee\ConfirmAdmin.sql" />
+    <Build Include="dbo\SP\Employee\ConfirmLogin.sql" />
+    <Build Include="dbo\SP\Employee\AddEmployeeHistory.sql" />
+    <Build Include="dbo\SP\Project\EditProject.sql" />
+    <Build Include="dbo\SP\Project\GetProject.sql" />
+    <Build Include="dbo\SP\Project\DeleteProject.sql" />
+    <Build Include="dbo\Tables\Project\ProjectManager.sql" />
+    <Build Include="dbo\SP\Project\GetProjectManagerId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
     <None Include="dbo\User\U_Employee.sql" />
     <Build Include="dbo\FN\FN_Hash.sql" />
-    <Build Include="dbo\SP\ConfirmLogin.sql" />
-    <Build Include="dbo\SP\Register.sql" />
     <None Include="RSE.publish.xml" />
     <None Include="RSETEST.publish.xml" />
   </ItemGroup>

@@ -24,6 +24,34 @@ namespace Model.Global.Service
             return (int?)Connection.ExecuteScalar(cmd);
         }
 
+        public static int? Edit(Project p, int ProjectManager)
+        {
+            Command cmd = new Command("EditProject", true);
+            cmd.AddParameter("Id", p.Id);
+            cmd.AddParameter("Name", p.Name);
+            cmd.AddParameter("Description", p.Description);
+            cmd.AddParameter("Creator", p.Creator);
+            cmd.AddParameter("Project_Manager", ProjectManager);
+            return (int?)Connection.ExecuteScalar(cmd);
+        }
+
+        public static int? Delete(Project p, int ProjectManager)
+        {
+            Command cmd = new Command("DeleteProject", true);
+            cmd.AddParameter("Id", p.Id);
+            cmd.AddParameter("Name", p.Name);
+            cmd.AddParameter("Description", p.Description);
+            cmd.AddParameter("Creator", p.Creator);
+            cmd.AddParameter("Project_Manager", ProjectManager);
+            return (int?)Connection.ExecuteScalar(cmd);
+        }
+
+        public static Data.Project GetProjectById(int ProjectId)
+        {
+            Command cmd = new Command("GetProject", true);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToProject()).FirstOrDefault();
+        }
+
         public static IEnumerable<Data.Project> GetAllActive()
         {
             Command cmd = new Command("GetAllActiveProjects", true);
@@ -34,6 +62,12 @@ namespace Model.Global.Service
         {
             Command cmd = new Command("GetAllProjects", true);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToProject());
+        }
+        public static int? GetProjectManagerId(int ProjectId)
+        {
+            Command cmd = new Command("GetProjectManagerId", true);
+            cmd.AddParameter("ProjectId", ProjectId); 
+            return (int?) Connection.ExecuteScalar(cmd);
         }
     }
 }
