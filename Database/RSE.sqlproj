@@ -132,8 +132,10 @@
     <Build Include="dbo\SP\GetAllEmployeesForAdmin.sql" />
     <Build Include="dbo\SP\SetAdmin.sql" />
     <Build Include="dbo\Trigger\OnInsertUpdateAdmin.sql" />
-    <Build Include="dbo\SP\SetNotAdmin.sql" />
     <Build Include="dbo\Views\ProjectDetails.sql" />
+    <Build Include="dbo\SP\EditEmployeeForAdmin.sql" />
+    <Build Include="dbo\Trigger\OnDeleteAdmin.sql" />
+    <Build Include="dbo\SP\GetEmployeeForAdmin.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

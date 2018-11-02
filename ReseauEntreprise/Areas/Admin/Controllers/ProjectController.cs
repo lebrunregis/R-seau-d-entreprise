@@ -57,10 +57,17 @@ namespace ReseauEntreprise.Admin.Controllers
                     throw (exception);
                 }
             }
-            IEnumerable<D.Employee> AllEmployees = EmployeeService.GetAllActive();
-            ViewData["AllEmployees"] = new SelectList(AllEmployees
-                .Select(e => new { value = e.Employee_Id.ToString(), text = $"{e.FirstName} {e.LastName}" }),
-                "value", "text");
+            IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
+            List<SelectListItem> ManagerCandidates = new List<SelectListItem>();
+            foreach (D.Employee emp in Employees)
+            {
+                ManagerCandidates.Add(new SelectListItem()
+                {
+                    Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
+                    Value = emp.Employee_Id.ToString()
+                });
+            }
+            form.ProjectManagerCandidateList = ManagerCandidates;
             return View(form);
         }
 

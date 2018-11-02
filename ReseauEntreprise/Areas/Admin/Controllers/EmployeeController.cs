@@ -16,7 +16,7 @@ namespace ReseauEntreprise.Admin.Controllers
         // GET: Admin/Employee
         public ActionResult Index()
         {
-            IEnumerable<EmployeeList> AllEmployees = EmployeeService.GetAllActive()
+            IEnumerable<EmployeeList> AllEmployees = EmployeeService.GetAllActiveForAdmin()
                 .Select(e => new EmployeeList()
                 {
                     Id = e.Employee_Id,
@@ -25,7 +25,8 @@ namespace ReseauEntreprise.Admin.Controllers
                     Email = e.Email,
                     Address = e.Address,
                     Phone = e.Phone,
-                    RegNat = e.RegNat
+                    RegNat = e.RegNat,
+                    IsAdmin = e.IsAdmin
                 });
             return View(AllEmployees);
         }
@@ -73,6 +74,78 @@ namespace ReseauEntreprise.Admin.Controllers
                 throw (exception);
             }
             return View();
+        }
+
+        public ActionResult Edit(int id)
+        {
+            try
+            {
+                D.Employee e = EmployeeService.GetForAdmin(id);
+                if (!(e is null))
+                {
+                    EmployeeEditForm form = new EmployeeEditForm()
+                    {
+                        Id = id,
+                        LastName = e.LastName,
+                        FirstName = e.FirstName,
+                        Email = e.Email,
+                        Address = e.Address,
+                        Phone = e.Phone,
+                        RegNat = e.RegNat,
+                        IsAdmin = e.IsAdmin
+                    };
+                    return View(form);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw (exception);
+            }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult Edit(int id, EmployeeEditForm form)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == form.Id)
+                {
+                    D.Employee e = new D.Employee()
+                    {
+                        Employee_Id = id,
+                        LastName = form.LastName,
+                        FirstName = form.FirstName,
+                        Email = form.Email,
+                        Passwd = form.Password,
+                        Address = form.Address,
+                        Phone = form.Phone,
+                        RegNat = form.RegNat,
+                        IsAdmin = form.IsAdmin
+                    };
+                    try
+                    {
+                        if (EmployeeService.UpdateForAdmin(e))
+                        {
+                            return RedirectToAction("Index");
+                        }
+                    }
+                    catch (System.Data.SqlClient.SqlException exeption)
+                    {
+                        if (exeption.Number == 2627)
+                        {
+                            if (exeption.Message.Contains("UC_Email"))
+                            {
+                                ModelState.AddModelError("Email", "Cet email est déjà utilisé");
+                            }
+                            if (exeption.Message.Contains("UC_RegNat"))
+                            {
+                                ModelState.AddModelError("RegNat", "Ce numero de régistre national est déjà utilisé.");
+                            }
+                        }
+                    }
+                }
+            }
+            return View(form);
         }
     }
 }

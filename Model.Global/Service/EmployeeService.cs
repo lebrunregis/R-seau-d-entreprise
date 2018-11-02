@@ -33,11 +33,7 @@ namespace Model.Global.Service
             cmd.AddParameter("FirstName", e.FirstName);
             cmd.AddParameter("Address", e.Address);
             cmd.AddParameter("Phone", e.Phone);
-            if (Connection.ExecuteNonQuery(cmd) > 0)
-            {
-                return true;
-            }
-            return false;
+            return (Connection.ExecuteNonQuery(cmd) > 0);
         }
         public static bool UpdateEmail(Employee e)
         {
@@ -45,11 +41,7 @@ namespace Model.Global.Service
             cmd.AddParameter("Employee_Id", e.Employee_Id);
             cmd.AddParameter("Email", e.Email);
             cmd.AddParameter("Password", e.Passwd);
-            if (Connection.ExecuteNonQuery(cmd) > 0)
-            {
-                return true;
-            }
-            return false;
+            return (Connection.ExecuteNonQuery(cmd) > 0);
         }
         public static bool UpdatePassword(Employee e, string OldPass)
         {
@@ -57,11 +49,7 @@ namespace Model.Global.Service
             cmd.AddParameter("Employee_Id", e.Employee_Id);
             cmd.AddParameter("Old_Password", OldPass);
             cmd.AddParameter("New_Password", e.Passwd);
-            if (Connection.ExecuteNonQuery(cmd) > 0)
-            {
-                return true;
-            }
-            return false;
+            return (Connection.ExecuteNonQuery(cmd) > 0);
         }
         public static bool Delete(Employee e)
         {
@@ -72,11 +60,32 @@ namespace Model.Global.Service
             cmd.AddParameter("FirstName", e.FirstName);
             cmd.AddParameter("Address", e.Address);
             cmd.AddParameter("Phone", e.Phone);
-            if (Connection.ExecuteNonQuery(cmd) > 0)
-            {
-                return true;
-            }
-            return false;
+            return (Connection.ExecuteNonQuery(cmd) > 0);
+        }
+        public static Employee GetForAdmin(int Id)
+        {
+            Command cmd = new Command("GetEmployeeForAdmin", true);
+            cmd.AddParameter("Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee()).FirstOrDefault();
+        }
+        public static IEnumerable<Employee> GetAllActiveForAdmin()
+        {
+            Command cmd = new Command("GetAllEmployeesForAdmin", true);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee());
+        }
+        public static bool UpdateForAdmin (Employee e)
+        {
+            Command cmd = new Command("EditEmployeeForAdmin", true);
+            cmd.AddParameter("Employee_Id", e.Employee_Id);
+            cmd.AddParameter("LastName", e.LastName);
+            cmd.AddParameter("FirstName", e.FirstName);
+            cmd.AddParameter("Email", e.Email);
+            cmd.AddParameter("Password", e.Passwd);
+            cmd.AddParameter("RegNat", e.RegNat);
+            cmd.AddParameter("Address", e.Address);
+            cmd.AddParameter("Phone", e.Phone);
+            cmd.AddParameter("IsAdmin", e.IsAdmin);
+            return (Connection.ExecuteNonQuery(cmd) > 0);
         }
     }
 }

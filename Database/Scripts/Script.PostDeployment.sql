@@ -23,6 +23,8 @@ DISABLE TRIGGER [OnDeleteTask] ON Task;
 GO
 DISABLE TRIGGER [OnDeleteTeam] ON Team;  
 GO
+DISABLE TRIGGER [OnDeleteAdmin] ON [Admin];  
+GO
 --DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 --GO
 DELETE FROM [EmployeeProjectManager];
@@ -85,6 +87,8 @@ GO
 ENABLE TRIGGER [OnDeleteTask] ON Task;  
 GO
 ENABLE TRIGGER [OnDeleteTeam] ON Team;  
+GO
+ENABLE TRIGGER [OnDeleteAdmin] ON [Admin];  
 GO
 --DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 --GO
