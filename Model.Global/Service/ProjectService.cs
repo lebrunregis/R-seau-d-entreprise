@@ -24,31 +24,37 @@ namespace Model.Global.Service
             return (int?)Connection.ExecuteScalar(cmd);
         }
 
-        public static int? Edit(Project p, int ProjectManager)
+        public static int? Edit(int User,Project p)
         {
             Command cmd = new Command("EditProject", true);
-            cmd.AddParameter("Id", p.Id);
+            cmd.AddParameter("User", User);
+            cmd.AddParameter("Project", p.Id);
             cmd.AddParameter("Name", p.Name);
             cmd.AddParameter("Description", p.Description);
-            cmd.AddParameter("Creator", p.CreatorId);
-            cmd.AddParameter("Project_Manager", ProjectManager);
+            cmd.AddParameter("CreatorId", p.CreatorId);
+            cmd.AddParameter("Project_Manager", p.ProjectManagerId);
+            cmd.AddParameter("StartDate", p.Start);
+            cmd.AddParameter("EndDate", p.End);
             return (int?)Connection.ExecuteScalar(cmd);
         }
 
-        public static int? Delete(Project p, int ProjectManager)
+        public static int? Delete(Project p,int User)
         {
             Command cmd = new Command("DeleteProject", true);
-            cmd.AddParameter("Id", p.Id);
+            cmd.AddParameter("User", User);
+            cmd.AddParameter("Project", p.Id);
             cmd.AddParameter("Name", p.Name);
             cmd.AddParameter("Description", p.Description);
             cmd.AddParameter("Creator", p.CreatorId);
-            cmd.AddParameter("Project_Manager", ProjectManager);
+            cmd.AddParameter("StartDate", p.Start);
+            cmd.AddParameter("EndDate", p.End);
             return (int?)Connection.ExecuteScalar(cmd);
         }
 
         public static Data.Project GetProjectById(int ProjectId)
         {
             Command cmd = new Command("GetProject", true);
+            cmd.AddParameter("Id", ProjectId);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToProject()).FirstOrDefault();
         }
 

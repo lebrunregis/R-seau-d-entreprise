@@ -13,7 +13,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
         [Key]
         [HiddenInput]
         [Editable(false)]
-        private int ProjectId { get; set; }
+        public int ProjectId { get; set; }
         [Required]
         [MaxLength(50)]
         [Editable(false)]
@@ -32,11 +32,15 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
         [Required]
         [HiddenInput]
         [Editable(false)]
-        D.Employee ProjectManager { get; set; }
+        public D.Employee ProjectManager { get; set; }
         [Required]
         [HiddenInput]
         [Editable(false)]
-        D.Employee Creator { get; set; }
+        public D.Employee Creator { get; set; }
+
+        public DeleteForm()
+        {
+        }
 
         public DeleteForm(D.Project Project,D.Employee ProjectManager, D.Employee Creator)
         {

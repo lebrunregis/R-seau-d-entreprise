@@ -1,14 +1,18 @@
 ﻿CREATE PROCEDURE [dbo].[EditProject]
-	@Id int,
+	@User int,
+	@Project int,
 	@Name nvarchar(50),
 	@Description nvarchar(max),
 	@Project_manager int,
-	@CreatorId int
-
+	@CreatorId int,
+	@StartDate datetime2,
+	@EndDate datetime2
 AS
 BEGIN
-IF (EXISTS(SELECT * FROM [dbo].[Admin] WHERE Employee_Id = @CreatorId AND Actif = 1) AND
-   EXISTS(SELECT * FROM [dbo].[Employee] WHERE Employee_Id = @Project_manager AND Active = 1))
-           UPDATE Project SET Project_Name =  @Name, Project_Description = @Description WHERE Project_Id = @Id;
-	       UPDATE ProjectManager SET Project_Id = @Id, Employee_Id= @Project_manager;
+DECLARE @IsAdmin int;
+DECLARE @Manager int;
+EXEC @IsAdmin = dbo.ConfirmAdmin @User;
+EXEC @Manager = dbo.GetProjectManagerId @Project;
+IF ( @IsAdmin = 1 OR @Manager = @User)
+           UPDATE Project SET Project_Name =  @Name, Project_Description = @Description ,EndDate= @EndDate  WHERE Project_Id = @Project AND StartDate = @StartDate AND CreatorId = @CreatorId;
        END

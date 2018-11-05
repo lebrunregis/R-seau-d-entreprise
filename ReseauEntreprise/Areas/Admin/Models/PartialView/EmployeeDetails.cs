@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations ;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using MVC=System.Web.Mvc;
+using MVC = System.Web.Mvc;
 
-namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee
+namespace ReseauEntreprise.Areas.Admin.Models.PartialView
 {
-    public class EmployeeEditForm
+    public class EmployeeDetails
     {
         [MVC.HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
@@ -25,14 +25,6 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee
         [MaxLength(360)]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [DataType(DataType.Password)]
-        [MaxLength(50)]
-        [DisplayName("Mot de passe")]
-        public string Password { get; set; }
-        [DataType(DataType.Password)]
-        [Compare(nameof(Password))]
-        [DisplayName("Retapez le mot de passe")]
-        public String Confirm { get; set; }
         [Required]
         [MaxLength(50)]
         [DisplayName("Numéro de registre national")]

@@ -10,6 +10,7 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
 {
     public class ListForm
     {
+        [Required]
         [HiddenInput]
         [Key]
         public int ProjectId { get; set; }
@@ -27,6 +28,12 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
         public D.Employee Creator { get; set; }
         [DataType(DataType.Date)]
         public DateTime? Deadline;
+
+
+        public ListForm()
+        {
+
+        }
 
         public ListForm(D.Project Project,D.Employee Manager, D.Employee Creator)
         {

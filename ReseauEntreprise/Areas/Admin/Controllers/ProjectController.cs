@@ -23,9 +23,9 @@ namespace ReseauEntreprise.Admin.Controllers
             foreach (Project Project in ProjectService.GetAll())
             {
                 int? ManagerId = ProjectService.GetProjectManagerId(Project.Id);
-                D.Employee Manager = EmployeeService.Get((int) ManagerId);
+                D.Employee Manager = EmployeeService.Get((int)ManagerId);
                 D.Employee Creator = EmployeeService.Get(Project.CreatorId);
-                ListForm form = new ListForm(Project, Manager,Creator);
+                ListForm form = new ListForm(Project, Manager, Creator);
                 list.Add(form);
             }
             return View(list);
@@ -39,8 +39,9 @@ namespace ReseauEntreprise.Admin.Controllers
         {
             CreateForm form = new CreateForm();
             IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
-            List<SelectListItem> ManagerCandidates = new List<SelectListItem> ();
-            foreach (D.Employee emp in Employees){
+            List<SelectListItem> ManagerCandidates = new List<SelectListItem>();
+            foreach (D.Employee emp in Employees)
+            {
                 ManagerCandidates.Add(new SelectListItem()
                 {
                     Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
@@ -68,7 +69,7 @@ namespace ReseauEntreprise.Admin.Controllers
                 {
                     if (ProjectService.Create(p, ProjectManagerId) != null)
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index");
                     }
                 }
                 catch (System.Data.SqlClient.SqlException exception)
@@ -91,9 +92,20 @@ namespace ReseauEntreprise.Admin.Controllers
         }
 
 
-        public ActionResult Update(int ProjectId)
+        public ActionResult Edit(int id)
         {
-            CreateForm form = new CreateForm();
+            Project project = ProjectService.GetProjectById(id);
+            D.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
+            EditForm form = new EditForm()
+            {
+                Id = project.Id,
+                Name = project.Name,
+                Description = project.Description,
+                ProjectManagerId = Manager.Employee_Id,
+                StartDate = project.Start,
+                EndDate = project.End,
+                CreatorId = project.CreatorId
+            };
             IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
             List<SelectListItem> ManagerCandidates = new List<SelectListItem>();
             foreach (D.Employee emp in Employees)
@@ -110,76 +122,83 @@ namespace ReseauEntreprise.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(EditForm form)
+        public ActionResult Edit(EditForm form)
         {
             if (ModelState.IsValid)
             {
-                D.Project p = new D.Project()
+                D.Project Project = new D.Project()
                 {
                     Id = form.Id,
                     Name = form.Name,
                     Description = form.Description,
-                    End = form.Deadline
+                    Start = form.StartDate,
+                    End = form.EndDate,
+                    CreatorId = form.CreatorId,
+                    ProjectManagerId = form.ProjectManagerId
                 };
-                int ProjectManagerId = form.SelectedProjectManagerId;
                 try
                 {
-                    if (ProjectService.Create(p, ProjectManagerId) != null)
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    ProjectService.Edit(SessionUser.GetUser().Id, Project);
                 }
                 catch (System.Data.SqlClient.SqlException exception)
                 {
                     throw (exception);
                 }
             }
-            IEnumerable<D.Employee> AllEmployees = EmployeeService.GetAllActive();
-            ViewData["AllEmployees"] = new SelectList(AllEmployees
-                .Select(e => new { value = e.Employee_Id.ToString(), text = $"{e.FirstName} {e.LastName}" }),
-                "value", "text");
-            return View(form);
+            return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(int ProjectId)
+        public ActionResult Delete(int id)
         {
-            
-            D.Project Project = ProjectService.GetProjectById(ProjectId);
-            D.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(ProjectId));
+            D.Project Project = ProjectService.GetProjectById(id);
+            D.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
             D.Employee Creator = EmployeeService.Get(Project.CreatorId);
-            DeleteForm Form = new DeleteForm(Project,Manager,Creator);
+            DeleteForm Form = new DeleteForm(Project, Manager, Creator);
             return View(Form);
         }
 
-      /*  [HttpPost]
+        [HttpPost]
         public ActionResult Delete(DeleteForm form)
         {
             if (ModelState.IsValid)
             {
                 D.Project p = new D.Project()
                 {
+                    Id = form.ProjectId,
                     Name = form.Name,
                     Description = form.Description,
-                    Creator = SessionUser.GetUser().Id
+                    CreatorId = form.Creator.Employee_Id,
+                    Start = form.StartDate,
+                    End = form.EndDate 
                 };
-                int ProjectManagerId = form.;
                 try
                 {
-                    if (ProjectService.Create(p, ProjectManagerId) != null)
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    ProjectService.Delete(p, SessionUser.GetUser().Id);
                 }
-                catch (System.Data.SqlClient.SqlException exception)
+                catch (System.Data.SqlClient.SqlException Exception)
                 {
-                    throw (exception);
+                    throw Exception;
                 }
             }
-            IEnumerable<D.Employee> AllEmployees = EmployeeService.GetAllActive();
-            ViewData["AllEmployees"] = new SelectList(AllEmployees
-                .Select(e => new { value = e.Employee_Id.ToString(), text = $"{e.FirstName} {e.LastName}" }),
-                "value", "text");
-            return View(form);
-        }*/
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Details(int id)
+        {
+
+            D.Project Project = ProjectService.GetProjectById(id);
+            D.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
+            D.Employee Creator = EmployeeService.Get(Project.CreatorId);
+            DetailsForm Form = new DetailsForm
+            {
+                Id = Project.Id,
+                Name = Project.Name,
+                Description = Project.Description,
+                Manager = Manager,
+                StartDate = Project.Start,
+                EndDate = Project.End
+            };
+            return View(Form);
+        }
     }
 }
