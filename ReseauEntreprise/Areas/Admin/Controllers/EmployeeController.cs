@@ -73,6 +73,7 @@ namespace ReseauEntreprise.Admin.Controllers
             {
                 throw (exception);
             }
+            ViewBag.error = "Quelque chose ne va pas";
             return View();
         }
 
