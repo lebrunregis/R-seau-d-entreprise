@@ -87,5 +87,17 @@ namespace Model.Global.Service
             cmd.AddParameter("IsAdmin", e.IsAdmin);
             return (Connection.ExecuteNonQuery(cmd) > 0);
         }
+        public static IEnumerable<EmployeeStatusHistory> GetEmployeeStatusHistory(int Employee_Id)
+        {
+            Command cmd = new Command("GetEmployeeStatusHistory", true);
+            cmd.AddParameter("Employee_Id", Employee_Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployeeStatusHistory());
+        }
+        public static IEnumerable<EmployeeProjectManagerHistory> GetEmployeeProjectManagerHistory(int Employee_Id)
+        {
+            Command cmd = new Command("GetEmployeeProjectManagerHistory", true);
+            cmd.AddParameter("Employee_Id", Employee_Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployeeProjectManagerHistory());
+        }
     }
 }

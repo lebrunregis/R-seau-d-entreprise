@@ -31,6 +31,38 @@ namespace ReseauEntreprise.Admin.Controllers
             return View(AllEmployees);
         }
 
+        public ActionResult Details(int id)
+        {
+            D.Employee e = EmployeeService.GetForAdmin(id);
+            EmployeeDetails Details = new EmployeeDetails()
+            {
+                Id = e.Employee_Id,
+                LastName = e.LastName,
+                FirstName = e.FirstName,
+                Email = e.Email,
+                Address = e.Address,
+                Phone = e.Phone,
+                RegNat = e.RegNat,
+                IsAdmin = e.IsAdmin
+            };
+            Details.StatusHistory = EmployeeService.GetEmployeeStatusHistory(id)
+                .Select(s => new EmployeeStatus()
+                {
+                    StatusName = s.Name,
+                    StartDate = s.StartDate,
+                    EndDate = s.EndDate
+                });
+            Details.ProjectManagerHistory = EmployeeService.GetEmployeeProjectManagerHistory(id)
+                .Select(h => new ProjectManagerStatus()
+                {
+                    Project_Id = h.Project_Id,
+                    ProjectName = h.Project_Name,
+                    StartDate = h.StartDate,
+                    EndDate = h.EndDate
+                });
+            return View(Details);
+        }
+
         public ActionResult Delete(int id)
         {
             D.Employee emp = EmployeeService.Get(id);
