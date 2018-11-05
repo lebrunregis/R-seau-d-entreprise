@@ -14,5 +14,6 @@ namespace Model.Global.Data
         public DateTime Start { get; set; }
         public DateTime? End { get; set; }
         public int CreatorId { get; set; }
+        public int ProjectManagerId { get; set; }
     }
 }

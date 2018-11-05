@@ -151,6 +151,7 @@
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProjectController.cs" />
+    <Compile Include="Areas\Admin\Models\PartialView\EmployeeDetails.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeeEditForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeeList.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\CreateForm.cs" />
@@ -215,8 +216,9 @@
     <Content Include="Areas\Admin\Views\Project\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Project\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Project\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Project\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Project\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Project\Details.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -248,7 +250,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\PartialView\" />
     <Folder Include="Areas\Admin\Models\ViewModels\Team\" />
   </ItemGroup>
   <ItemGroup>

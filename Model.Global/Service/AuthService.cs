@@ -18,7 +18,7 @@ namespace Model.Global.Service
             Command cmd = new Command("ConfirmLogin", true);
             cmd.AddParameter("Email", email);
             cmd.AddParameter("Password", pwd);
-            return (int?)Connection.ExecuteScalar(cmd);
+            return (int?) Connection.ExecuteScalar(cmd);
         }
         public static int Register(Data.Employee e)
         {
@@ -36,7 +36,7 @@ namespace Model.Global.Service
         {
             Command cmd = new Command("ConfirmAdmin", true);
             cmd.AddParameter("Employee_Id", Employee_Id);
-            return !(Connection.ExecuteScalar(cmd) is null);
+            return ((int) Connection.ExecuteScalar(cmd) == 1);
         }
     }
 }
