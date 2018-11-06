@@ -27,7 +27,9 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
         [Required]
         public D.Employee Creator { get; set; }
         [DataType(DataType.Date)]
-        public DateTime? Deadline;
+        public DateTime StartDate;
+        [DataType(DataType.Date)]
+        public DateTime? EndDate;
 
 
         public ListForm()
@@ -42,7 +44,8 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
             Description = Project.Description;
             this.Manager = Manager;
             this.Creator = Creator;
-            this.Deadline = Project.End;
+            this.StartDate = Project.Start;
+            this.EndDate = Project.End;
         }
     }
 }

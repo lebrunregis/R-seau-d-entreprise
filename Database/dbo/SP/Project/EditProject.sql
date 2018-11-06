@@ -11,8 +11,8 @@ AS
 BEGIN
 DECLARE @IsAdmin int;
 DECLARE @Manager int;
-EXEC @IsAdmin = dbo.ConfirmAdmin @User;
-EXEC @Manager = dbo.GetProjectManagerId @Project;
+EXECUTE dbo.ConfirmAdmin @User, @IsAdmin output;
+EXECUTE dbo.GetProjectManagerId @Project , @Manager output;
 IF ( @IsAdmin = 1 OR @Manager = @User)
-           UPDATE Project SET Project_Name =  @Name, Project_Description = @Description ,EndDate= @EndDate  WHERE Project_Id = @Project AND StartDate = @StartDate AND CreatorId = @CreatorId;
+           UPDATE Project SET Project_Name =  @Name, Project_Description = @Description ,EndDate=CAST(@EndDate AS datetime2(0))   WHERE Project_Id = @Project AND CreatorId = @CreatorId;
        END

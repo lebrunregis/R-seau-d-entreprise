@@ -138,7 +138,7 @@ namespace ReseauEntreprise.Admin.Controllers
                 };
                 try
                 {
-                    ProjectService.Edit(SessionUser.GetUser().Id, Project);
+                  Console.Out.WriteLine(  ProjectService.Edit(SessionUser.GetUser().Id, Project).ToString());
                 }
                 catch (System.Data.SqlClient.SqlException exception)
                 {

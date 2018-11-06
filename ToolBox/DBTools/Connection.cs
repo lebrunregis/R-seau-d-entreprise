@@ -40,6 +40,23 @@ namespace ToolBox.DBTools
             {
                 DbParameter param = Factory.CreateParameter();
                 param.ParameterName = keyValue.Key;
+
+                param.Value = keyValue.Value;
+                switch (command.ParamDirections[keyValue.Key])
+                {
+                    case ParamDirection.Input:
+                        param.Direction = ParameterDirection.Input;
+                        break;
+                    case ParamDirection.InputOutput:
+                        param.Direction = ParameterDirection.InputOutput;
+                        break;
+                    case ParamDirection.Output:
+                        param.Direction = ParameterDirection.Output;
+                        break;
+                    case ParamDirection.Return:
+                        param.Direction = ParameterDirection.ReturnValue;
+                        break;
+                }
                 param.Value = (keyValue.Value is null) ? DBNull.Value : keyValue.Value;
                 cmd.Parameters.Add(param);
             }
@@ -65,7 +82,7 @@ namespace ToolBox.DBTools
                 using (DbCommand cmd = this.CreateCommand(conn, command))
                 {
                     var result = cmd.ExecuteScalar();
-                    return (result == DBNull.Value)? null : result;
+                    return (result == DBNull.Value) ? null : result;
                 }
             }
         }

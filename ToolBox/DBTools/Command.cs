@@ -9,11 +9,12 @@ namespace ToolBox.DBTools
     {
         public string Query { get; set; }
         public bool IsStoredProcedure { get; set; }
-        public Dictionary<string, Object> Parameters { get; set; }
+        public Dictionary<string, object> Parameters { get; set; }
+        public Dictionary<string, ParamDirection> ParamDirections { get; set; }
         public Command(string Command) : this(Command, false)
         {
         }
-        public Command(string command, Boolean isStoredProcedure)
+        public Command(string command, bool isStoredProcedure)
         {
             if (string.IsNullOrWhiteSpace(command))
             {
@@ -24,11 +25,18 @@ namespace ToolBox.DBTools
                 Query = command;
                 IsStoredProcedure = isStoredProcedure;
                 Parameters = new Dictionary<string, object>();
+                ParamDirections = new Dictionary<string, ParamDirection>();
             }
         }
         public void AddParameter(string arg, object val)
         {
-            Parameters.Add(arg, (val == null) ? DBNull.Value : val);
+            Parameters.Add(arg, val ?? DBNull.Value);
+            ParamDirections.Add(arg, ParamDirection.Input);
+        }
+        public void AddParameter(string arg, object val ,ParamDirection direction)
+        {
+            Parameters.Add(arg, val ?? DBNull.Value);
+            ParamDirections.Add(arg, direction);
         }
     }
 }
