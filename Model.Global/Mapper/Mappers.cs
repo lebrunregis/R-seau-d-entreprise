@@ -35,8 +35,27 @@ namespace Model.Global.Mapper
                 Name = (string)dr["Project_Name"],
                 Description = (string)dr["Project_Description"],
                 Start = (DateTime)dr["StartDate"],
-                End =(DateTime?)  ((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"]),
+                End = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"]),
                 CreatorId = (int)dr["CreatorId"]
+            };
+        }
+        internal static EmployeeStatusHistory ToEmployeeStatusHistory(this IDataRecord dr)
+        {
+            return new EmployeeStatusHistory()
+            {
+                Name = (string)dr["Name"],
+                StartDate = (DateTime)dr["StartDate"],
+                EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"])
+            };
+        }
+        internal static EmployeeProjectManagerHistory ToEmployeeProjectManagerHistory(this IDataRecord dr)
+        {
+            return new EmployeeProjectManagerHistory()
+            {
+                Project_Id = (int)dr["Project_Id"],
+                Project_Name = (string)dr["Name"],
+                StartDate = (DateTime)dr["StartDate"],
+                EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"])
             };
         }
     }

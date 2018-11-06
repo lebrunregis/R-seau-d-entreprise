@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model.Global.Data
 {
-    public class EmployeeStatusHistory
+    public class EmployeeProjectManagerHistory
     {
-        public int Id { get; set; }
-        public int Employee { get; set; }
-        public int Status { get; set; }
-        public string Name { get; set; }
+        public int Project_Id { get; set; }
+        public string Project_Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
     }
