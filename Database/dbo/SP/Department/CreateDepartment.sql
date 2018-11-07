@@ -3,5 +3,5 @@
 	@Description nvarchar (max),
 	@AdminId int
 AS
-	INSERT INTO Department(Title,Description,Admin_Id) VALUES (@Name,@Description,@AdminId)
+	INSERT INTO Department(Name,Description,Creator_Id) VALUES (@Name,@Description,@AdminId)
 SELECT Scope_Identity()

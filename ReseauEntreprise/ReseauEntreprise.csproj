@@ -148,10 +148,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Admin\Models\PartialView\EmployeeDetails.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Department\Form.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeeDetails.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeeEditForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeeList.cs" />
@@ -257,6 +259,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\ViewModels\Team\" />
+    <Folder Include="Areas\Admin\Views\Department\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Employee\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -13,5 +13,6 @@ namespace Model.Global.Data
         public DateTime Created { get; set; }
         public String Description { get; set; }
         public int Admin_Id { get; set; }
+        public bool Active { get; set; }
     }
 }

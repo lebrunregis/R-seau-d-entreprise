@@ -58,5 +58,17 @@ namespace Model.Global.Mapper
                 EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"])
             };
         }
+        internal static Department ToDepartment(this IDataRecord dr)
+        {
+            return new Department()
+            {
+                Id = (int)dr["Department_Id"],
+                Title = (string)dr["Title"],
+                Description = (string)dr["Description"],
+                Admin_Id = (int)dr["Admin_Id"],
+                Created = (DateTime)dr["Created"],
+                Active = (bool)dr["Active"]
+            };
+        }
     }
 }

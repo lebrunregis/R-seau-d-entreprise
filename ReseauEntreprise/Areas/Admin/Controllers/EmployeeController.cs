@@ -1,4 +1,4 @@
-﻿using D=Model.Global.Data;
+﻿using G=Model.Global.Data;
 using Model.Global.Service;
 using System;
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace ReseauEntreprise.Admin.Controllers
 
         public ActionResult Details(int id)
         {
-            D.Employee e = EmployeeService.GetForAdmin(id);
+            G.Employee e = EmployeeService.GetForAdmin(id);
             EmployeeDetails Details = new EmployeeDetails()
             {
                 Id = e.Employee_Id,
@@ -65,7 +65,7 @@ namespace ReseauEntreprise.Admin.Controllers
 
         public ActionResult Delete(int id)
         {
-            D.Employee emp = EmployeeService.Get(id);
+            G.Employee emp = EmployeeService.Get(id);
             EmployeeList e = new EmployeeList()
             {
                 LastName = emp.LastName,
@@ -85,7 +85,7 @@ namespace ReseauEntreprise.Admin.Controllers
             {
                 if (HiddenForm.Id == id)
                 {
-                    D.Employee e = new D.Employee()
+                    G.Employee e = new G.Employee()
                     {
                         Employee_Id = HiddenForm.Id,
                         LastName = HiddenForm.LastName,
@@ -113,7 +113,7 @@ namespace ReseauEntreprise.Admin.Controllers
         {
             try
             {
-                D.Employee e = EmployeeService.GetForAdmin(id);
+                G.Employee e = EmployeeService.GetForAdmin(id);
                 if (!(e is null))
                 {
                     EmployeeEditForm form = new EmployeeEditForm()
@@ -143,7 +143,7 @@ namespace ReseauEntreprise.Admin.Controllers
             {
                 if (id == form.Id)
                 {
-                    D.Employee e = new D.Employee()
+                    G.Employee e = new G.Employee()
                     {
                         Employee_Id = id,
                         LastName = form.LastName,
