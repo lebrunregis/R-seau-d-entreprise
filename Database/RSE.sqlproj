@@ -150,6 +150,13 @@
     <Build Include="dbo\SP\Employee\GetEmployeeProjectManagerHistory.sql" />
     <Build Include="dbo\SP\Employee\GetEmployeeStatusHistory.sql" />
     <Build Include="dbo\FN\FN_IsAdmin.sql" />
+    <Build Include="dbo\SP\Department\CreateDepartment.sql" />
+    <Build Include="dbo\SP\Department\EditDepartment.sql" />
+    <Build Include="dbo\SP\Department\ChangeHeadOfDepartment.sql" />
+    <Build Include="dbo\SP\Department\DeleteDepartment.sql" />
+    <Build Include="dbo\SP\Department\GetAllDepartments.sql" />
+    <Build Include="dbo\SP\Department\GetDepartmentById.sql" />
+    <Build Include="dbo\Trigger\OnDeleteDepartment.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
