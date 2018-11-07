@@ -9,10 +9,10 @@
 	@EndDate datetime2
 AS
 BEGIN
-DECLARE @IsAdmin int;
+DECLARE @IsAdmin bit;
 DECLARE @Manager int;
-EXECUTE dbo.ConfirmAdmin @User, @IsAdmin output;
-EXECUTE dbo.GetProjectManagerId @Project , @Manager output;
-IF ( @IsAdmin = 1 OR @Manager = @User)
+EXEC @IsAdmin = dbo.FN_IsAdmin @User;
+EXECUTE dbo.GetProjectManagerId @Project;
+IF ( @IsAdmin = 1  OR @Manager = @User)
            UPDATE Project SET Project_Name =  @Name, Project_Description = @Description ,EndDate=CAST(@EndDate AS datetime2(0))   WHERE Project_Id = @Project AND CreatorId = @CreatorId;
        END

@@ -36,13 +36,8 @@ namespace Model.Global.Service
         {
             Command cmd = new Command("ConfirmAdmin", true);
             cmd.AddParameter("Employee_Id", Employee_Id);
-            cmd.AddParameter("IsAdmin", ParamDirection.Output);
-            Connection.ExecuteScalar(cmd) ;
-
-            if (cmd.Parameters.TryGetValue("IsAdmin", out object IsAdmin )){
-                return (int)IsAdmin == 1;
-            } else return false;
-                
+            var tmp = Connection.ExecuteScalar(cmd);
+            return (bool)tmp ;                
         }
     }
 }

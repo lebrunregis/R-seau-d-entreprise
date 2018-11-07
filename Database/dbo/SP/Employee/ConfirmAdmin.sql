@@ -1,5 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[ConfirmAdmin]
-	@Employee_Id int,
-	@IsAdmin int OUTPUT
+	@Employee_Id int
 AS
-	SELECT @IsAdmin = COUNT (*) from [dbo].[Admin] WHERE Employee_Id = @Employee_Id and Actif = 1
+BEGIN
+DECLARE @IsAdmin bit
+	EXEC @IsAdmin =FN_IsAdmin @Employee_Id
+	SELECT @IsAdmin
+END

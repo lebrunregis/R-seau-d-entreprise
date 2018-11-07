@@ -149,6 +149,7 @@
     <Build Include="dbo\FN\FN_EndDateManager.sql" />
     <Build Include="dbo\SP\Employee\GetEmployeeProjectManagerHistory.sql" />
     <Build Include="dbo\SP\Employee\GetEmployeeStatusHistory.sql" />
+    <Build Include="dbo\FN\FN_IsAdmin.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
