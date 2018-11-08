@@ -8,7 +8,7 @@ using ReseauEntreprise.Areas.Admin.Models.ViewModels.Department;
 using G = Model.Global.Data;
 using Model.Global.Service;
 
-namespace ReseauEntreprise.Areas.Admin.Controllers
+namespace ReseauEntreprise.Admin.Controllers
 {
     [RouteArea("Admin")]
     [AdminRequired]
@@ -17,22 +17,39 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         // GET: Admin/Department
         public ActionResult Index()
         {
-        /*    List<Form> list = new List<Form>();
+            List<Form> list = new List<Form>();
             foreach (G.Department Department in DepartmentService.GetAll())
             {
-                int? ManagerId = ProjectService.GetProjectManagerId(Project.Id);
-                D.Employee Manager = EmployeeService.Get((int)ManagerId);
-                D.Employee Creator = EmployeeService.Get(Project.CreatorId);
-                ListForm form = new ListForm(Project, Manager, Creator);
+                Form form = new Form
+                {
+                    Id = Department.Id,
+                    Title = Department.Title,
+                    Created = Department.Created,
+                    Description = Department.Description,
+                    Admin_Id = Department.Admin_Id,
+                    Admin = null,
+                    Active = Department.Active,
+                };
                 list.Add(form);
-            }*/
-            return View();
+            }
+            return View(list);
         }
 
         // GET: Admin/Department/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            G.Department Department = DepartmentService.GetDepartmentById(id);
+            Form form = new Form
+            {
+                Id = Department.Id,
+                Title = Department.Title,
+                Created = Department.Created,
+                Description = Department.Description,
+                Admin_Id = Department.Admin_Id,
+                Admin = null,
+                Active = Department.Active,
+            };
+            return View(form);
         }
 
         // GET: Admin/Department/Create
@@ -60,7 +77,18 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         // GET: Admin/Department/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            G.Department Department = DepartmentService.GetDepartmentById(id);
+            Form form = new Form
+            {
+                Id = Department.Id,
+                Title = Department.Title,
+                Created = Department.Created,
+                Description = Department.Description,
+                Admin_Id = Department.Admin_Id,
+                Admin = null,
+                Active = Department.Active,
+            };
+            return View(form);
         }
 
         // POST: Admin/Department/Edit/5
@@ -82,7 +110,18 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         // GET: Admin/Department/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            G.Department Department = DepartmentService.GetDepartmentById(id);
+            Form form = new Form
+            {
+                Id = Department.Id,
+                Title = Department.Title,
+                Created = Department.Created,
+                Description = Department.Description,
+                Admin_Id = Department.Admin_Id,
+                Admin = null,
+                Active = Department.Active,
+            };
+            return View(form);
         }
 
         // POST: Admin/Department/Delete/5

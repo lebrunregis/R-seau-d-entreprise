@@ -75,6 +75,7 @@
     <Folder Include="dbo\SP\Employee" />
     <Folder Include="dbo\SP\Team" />
     <Folder Include="dbo\SP\Department" />
+    <Folder Include="dbo\Tables\Department" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Message\Message.sql" />
@@ -99,13 +100,11 @@
     <Build Include="dbo\Tables\Document\DocEvent.sql" />
     <Build Include="dbo\Tables\Document\DocTask.sql" />
     <Build Include="dbo\Tables\Document\DocMessage.sql" />
-    <Build Include="dbo\Tables\Admin.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeEvent.sql" />
     <Build Include="dbo\Tables\Event.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeTeam.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeTeamLeader.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeHeadOfDepartment.sql" />
-    <Build Include="dbo\Tables\Department.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeStatus.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeStatusHistory.sql" />
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
@@ -157,6 +156,9 @@
     <Build Include="dbo\SP\Department\GetAllDepartments.sql" />
     <Build Include="dbo\SP\Department\GetDepartmentById.sql" />
     <Build Include="dbo\Trigger\OnDeleteDepartment.sql" />
+    <Build Include="dbo\Tables\Department\Department.sql" />
+    <Build Include="dbo\Tables\Department\EmployeeDepartment.sql" />
+    <Build Include="dbo\Tables\Employee\Admin.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

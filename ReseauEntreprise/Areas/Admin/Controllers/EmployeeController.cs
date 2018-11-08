@@ -10,6 +10,7 @@ using Réseau_d_entreprise.Session.Attributes;
 
 namespace ReseauEntreprise.Admin.Controllers
 {
+    [RouteArea("Admin")]
     [AdminRequired]
     public class EmployeeController : Controller
     {
