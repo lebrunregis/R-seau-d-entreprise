@@ -4,4 +4,4 @@
 	@AdminId int
 AS
 	INSERT INTO Department(Name,Description,Creator_Id) VALUES (@Name,@Description,@AdminId)
-SELECT Scope_Identity()
+SELECT  convert(int,SCOPE_IDENTITY() );

@@ -63,9 +63,9 @@ namespace Model.Global.Mapper
             return new Department()
             {
                 Id = (int)dr["Department_Id"],
-                Title = (string)dr["Title"],
+                Title = (string)dr["Name"],
                 Description = (string)dr["Description"],
-                Admin_Id = (int)dr["Admin_Id"],
+                Admin_Id = (int)dr["Creator_Id"],
                 Created = (DateTime)dr["Created"],
                 Active = (bool)dr["Active"]
             };

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using ReseauEntreprise.Areas.Admin.Models.ViewModels.Department;
 using G = Model.Global.Data;
 using Model.Global.Service;
+using Réseau_d_entreprise.Session;
 
 namespace ReseauEntreprise.Admin.Controllers
 {
@@ -17,10 +18,10 @@ namespace ReseauEntreprise.Admin.Controllers
         // GET: Admin/Department
         public ActionResult Index()
         {
-            List<Form> list = new List<Form>();
+            List<ListForm> list = new List<ListForm>();
             foreach (G.Department Department in DepartmentService.GetAll())
             {
-                Form form = new Form
+                ListForm form = new ListForm
                 {
                     Id = Department.Id,
                     Title = Department.Title,
@@ -39,7 +40,7 @@ namespace ReseauEntreprise.Admin.Controllers
         public ActionResult Details(int id)
         {
             G.Department Department = DepartmentService.GetDepartmentById(id);
-            Form form = new Form
+            DetailsForm form = new DetailsForm
             {
                 Id = Department.Id,
                 Title = Department.Title,
@@ -60,25 +61,27 @@ namespace ReseauEntreprise.Admin.Controllers
 
         // POST: Admin/Department/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CreateForm form)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                G.Department Department = new G.Department
+                {
+                    Title = form.Title,
+                    Description = form.Description
+                };
 
-                return RedirectToAction("Index");
+                    DepartmentService.Create(Department, SessionUser.GetUser().Id);
+                    return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         // GET: Admin/Department/Edit/5
         public ActionResult Edit(int id)
         {
             G.Department Department = DepartmentService.GetDepartmentById(id);
-            Form form = new Form
+            EditForm form = new EditForm
             {
                 Id = Department.Id,
                 Title = Department.Title,
@@ -93,51 +96,64 @@ namespace ReseauEntreprise.Admin.Controllers
 
         // POST: Admin/Department/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, EditForm form)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                G.Department Department = new G.Department
+                {
+                    Id = form.Id,
+                    Title = form.Title,
+                    Description = form.Description,
+                    Active = form.Active
+                };
+                try
+                {
+                    DepartmentService.Edit(SessionUser.GetUser().Id, Department);
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return View();
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         // GET: Admin/Department/Delete/5
         public ActionResult Delete(int id)
         {
             G.Department Department = DepartmentService.GetDepartmentById(id);
-            Form form = new Form
+            DeleteForm form = new DeleteForm
             {
                 Id = Department.Id,
                 Title = Department.Title,
                 Created = Department.Created,
                 Description = Department.Description,
                 Admin_Id = Department.Admin_Id,
-                Admin = null,
-                Active = Department.Active,
+                Admin = null
             };
             return View(form);
         }
 
         // POST: Admin/Department/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(DeleteForm form)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add delete logic here
+                try
+                {
+                    // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return View();
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
     }
 }

@@ -82,29 +82,32 @@ namespace ReseauEntreprise.Admin.Controllers
         [HttpPost]
         public ActionResult Delete(int id, EmployeeList HiddenForm)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (HiddenForm.Id == id)
+                try
                 {
-                    G.Employee e = new G.Employee()
+                    if (HiddenForm.Id == id)
                     {
-                        Employee_Id = HiddenForm.Id,
-                        LastName = HiddenForm.LastName,
-                        FirstName = HiddenForm.FirstName,
-                        Email = HiddenForm.Email,
-                        Address = HiddenForm.Address,
-                        Phone = HiddenForm.Phone,
-                        RegNat = HiddenForm.RegNat
-                    };
-                    if (EmployeeService.Delete(e))
-                    {
-                        return RedirectToAction("Index");
+                        G.Employee e = new G.Employee()
+                        {
+                            Employee_Id = HiddenForm.Id,
+                            LastName = HiddenForm.LastName,
+                            FirstName = HiddenForm.FirstName,
+                            Email = HiddenForm.Email,
+                            Address = HiddenForm.Address,
+                            Phone = HiddenForm.Phone,
+                            RegNat = HiddenForm.RegNat
+                        };
+                        if (EmployeeService.Delete(e))
+                        {
+                            return RedirectToAction("Index");
+                        }
                     }
                 }
-            }
-            catch (Exception exception)
-            {
-                throw (exception);
+                catch (Exception exception)
+                {
+                    throw (exception);
+                }
             }
             ViewBag.error = "Quelque chose ne va pas";
             return View();

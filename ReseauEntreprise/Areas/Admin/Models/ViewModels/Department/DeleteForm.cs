@@ -8,7 +8,7 @@ using G = Model.Global.Data;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Department
 {
-    public class Form
+    public class DeleteForm
     {
         [HiddenInput]
         [Key]
@@ -27,7 +27,5 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Department
         public int Admin_Id { get; set; }
         [HiddenInput]
         public G.Employee Admin { get; set; }
-        [Required]
-        public bool Active { get; set; }
     }
 }

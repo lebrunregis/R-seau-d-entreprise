@@ -157,8 +157,8 @@
     <Build Include="dbo\SP\Department\GetDepartmentById.sql" />
     <Build Include="dbo\Trigger\OnDeleteDepartment.sql" />
     <Build Include="dbo\Tables\Department\Department.sql" />
-    <Build Include="dbo\Tables\Department\EmployeeDepartment.sql" />
     <Build Include="dbo\Tables\Employee\Admin.sql" />
+    <Build Include="dbo\Tables\Employee\EmployeeDepartment.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

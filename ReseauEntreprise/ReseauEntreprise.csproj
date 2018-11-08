@@ -153,7 +153,11 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Admin\Models\PartialView\EmployeeDetails.cs" />
-    <Compile Include="Areas\Admin\Models\ViewModels\Department\Form.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Department\CreateForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Department\DeleteForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Department\DetailsForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Department\EditForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Department\ListForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeeDetails.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeeEditForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeeList.cs" />

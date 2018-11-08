@@ -4,4 +4,3 @@
 	@Desc nvarchar(max)
 AS
 	UPDATE Department SET Name = @Name,Description = @Desc WHERE Department_Id = @DepId
-RETURN 0
