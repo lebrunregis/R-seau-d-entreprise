@@ -38,6 +38,7 @@ namespace ReseauEntreprise.Admin.Controllers
         public ActionResult Create()
         {
             CreateForm form = new CreateForm();
+            form.StartDate = DateTime.Today;
             IEnumerable<G.Employee> Employees = EmployeeService.GetAllActive();
             List<SelectListItem> ManagerCandidates = new List<SelectListItem>();
             foreach (G.Employee emp in Employees)
