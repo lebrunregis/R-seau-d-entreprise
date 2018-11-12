@@ -19,7 +19,10 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
         [Display(Name = "Project Manager")]
         public int SelectedProjectManagerId { get; set; }
         public IEnumerable<SelectListItem> ProjectManagerCandidateList { get; set; }
+        [Required]
         [DataType(DataType.Date)]
-        public int DeadLine;
+        public DateTime StartDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? EndDate { get; set; }
     }
 }
