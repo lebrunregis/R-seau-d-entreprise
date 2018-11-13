@@ -36,7 +36,7 @@ namespace Model.Global.Service
         {
             Command cmd = new Command("DeleteDepartment", true);
             cmd.AddParameter("DepartmentId", d.Title);
-            return (int?)Connection.ExecuteScalar(cmd);
+            return Connection.ExecuteNonQuery(cmd);
         }
 
         public static Department GetDepartmentById(int Id)
@@ -56,6 +56,35 @@ namespace Model.Global.Service
         {
             Command cmd = new Command("GetAllDepartments", true);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToDepartment());
+        }
+
+        public static IEnumerable<Department> GetEmployeeDepartments(int Employee_Id)
+        {
+            Command cmd = new Command("GetEmployeeDepartments", true);
+            cmd.AddParameter("EmployeeId", Employee_Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDepartment());
+        }
+
+        public static int AddEmployeeDepartment(int Employee_Id, int Department_Id)
+        {
+            Command cmd = new Command("AddEmployeeDepartment", true);
+            cmd.AddParameter("EmployeeId", Employee_Id);
+            cmd.AddParameter("DepartmentId", Department_Id);
+            return Connection.ExecuteNonQuery(cmd);
+        }
+
+        public static int RemoveEmployeeDepartment(int Employee_Id, int Department_Id)
+        {
+            Command cmd = new Command("GetEmployeeDepartment", true);
+            cmd.AddParameter("EmployeeId", Employee_Id);
+            cmd.AddParameter("DepartmentId", Department_Id);
+            return Connection.ExecuteNonQuery(cmd);
+        }
+        public static IEnumerable<EmployeeDepartmentHistory> GetEmployeeDepartmentHistory(int Employee_Id)
+        {
+            Command cmd = new Command("GetEmployeeDepartmentsHistory", true);
+            cmd.AddParameter("EmployeeId", Employee_Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployeeDepartment());
         }
     }
 }

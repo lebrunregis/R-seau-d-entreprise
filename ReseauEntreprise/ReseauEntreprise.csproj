@@ -158,6 +158,9 @@
     <Compile Include="Areas\Admin\Models\ViewModels\Department\DetailsForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Department\EditForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Department\ListForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\EmployeeDepartment\CreateForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\EmployeeDepartment\DeleteForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeeDepartment.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeeDetails.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeeEditForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeeList.cs" />
@@ -236,6 +239,8 @@
     <Content Include="Areas\Admin\Views\Department\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Department\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Department\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\EmployeeDepartments.cshtml" />
+    <Content Include="Areas\Admin\Views\EmployeeDepartments\Create.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

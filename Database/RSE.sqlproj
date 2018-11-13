@@ -159,6 +159,11 @@
     <Build Include="dbo\Tables\Department\Department.sql" />
     <Build Include="dbo\Tables\Employee\Admin.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeDepartment.sql" />
+    <Build Include="dbo\Trigger\OnDeleteEmployeeDepartment.sql" />
+    <Build Include="dbo\SP\Department\GetEmployeeDepartments.sql" />
+    <Build Include="dbo\SP\Department\AddEmployeeDepartment.sql" />
+    <Build Include="dbo\SP\Department\RemoveEmployeeDepartment.sql" />
+    <Build Include="dbo\SP\Department\GetEmployeeDepartmentsHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

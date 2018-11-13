@@ -53,7 +53,7 @@ namespace Model.Global.Mapper
             return new EmployeeProjectManagerHistory()
             {
                 Project_Id = (int)dr["Project_Id"],
-                Project_Name = (string)dr["Name"],
+                Project_Name = (string)dr["Project_Name"],
                 StartDate = (DateTime)dr["StartDate"],
                 EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"])
             };
@@ -68,6 +68,17 @@ namespace Model.Global.Mapper
                 Admin_Id = (int)dr["Creator_Id"],
                 Created = (DateTime)dr["Created"],
                 Active = (bool)dr["Active"]
+            };
+        }
+        internal static EmployeeDepartmentHistory ToEmployeeDepartment(this IDataRecord dr)
+        {
+            return new EmployeeDepartmentHistory()
+            {
+                Id = (int)dr["Id"],
+                DepId = (int)dr["Department_Id"],
+                Name = (string)dr["Name"],
+                StartDate = (DateTime)dr["StartDate"],
+                EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"])
             };
         }
     }

@@ -1,4 +1,4 @@
-﻿using G=Model.Global.Data;
+﻿using G = Model.Global.Data;
 using Model.Global.Service;
 using System;
 using System.Collections.Generic;
@@ -46,20 +46,29 @@ namespace ReseauEntreprise.Admin.Controllers
                 RegNat = e.RegNat,
                 IsAdmin = e.IsAdmin
             };
+            Details.EmployeeDepartmentHistory = DepartmentService.GetEmployeeDepartmentHistory(id).Select(tmp => new EmployeeDepartment()
+            {
+                Id = tmp.Id,
+                StartDate = tmp.StartDate,
+                EndDate = tmp.EndDate,
+                Name = tmp.Name,
+                EmpId = id,
+                DepId = tmp.DepId,
+            });
             Details.StatusHistory = EmployeeService.GetEmployeeStatusHistory(id)
-                .Select(s => new EmployeeStatus()
+                .Select(tmp => new EmployeeStatus()
                 {
-                    StatusName = s.Name,
-                    StartDate = s.StartDate,
-                    EndDate = s.EndDate
+                    StatusName = tmp.Name,
+                    StartDate = tmp.StartDate,
+                    EndDate = tmp.EndDate
                 });
             Details.ProjectManagerHistory = EmployeeService.GetEmployeeProjectManagerHistory(id)
-                .Select(h => new ProjectManagerStatus()
+                .Select(tmp => new ProjectManagerStatus()
                 {
-                    Project_Id = h.Project_Id,
-                    ProjectName = h.Project_Name,
-                    StartDate = h.StartDate,
-                    EndDate = h.EndDate
+                    Project_Id = tmp.Project_Id,
+                    ProjectName = tmp.Project_Name,
+                    StartDate = tmp.StartDate,
+                    EndDate = tmp.EndDate
                 });
             return View(Details);
         }
