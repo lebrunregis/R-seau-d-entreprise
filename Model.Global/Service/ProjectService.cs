@@ -40,7 +40,7 @@ namespace Model.Global.Service
             return (int?)Connection.ExecuteScalar(cmd);
         }
 
-        public static int? Delete(Project p,int User)
+        public static bool Delete(Project p,int User)
         {
             Command cmd = new Command("DeleteProject", true);
             cmd.AddParameter("User", User);
@@ -50,8 +50,7 @@ namespace Model.Global.Service
             cmd.AddParameter("Creator", p.CreatorId);
             cmd.AddParameter("StartDate", p.Start);
             cmd.AddParameter("EndDate", p.End);
-            object o = Connection.ExecuteScalar(cmd);
-            return (int?)o;
+            return (Connection.ExecuteNonQuery(cmd) > 0);
         }
 
         public static Data.Project GetProjectById(int ProjectId)

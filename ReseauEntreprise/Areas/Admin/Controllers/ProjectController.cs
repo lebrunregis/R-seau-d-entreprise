@@ -20,7 +20,7 @@ namespace ReseauEntreprise.Admin.Controllers
         public ActionResult Index()
         {
             List<ListForm> list = new List<ListForm>();
-            foreach (Project Project in ProjectService.GetAll())
+            foreach (Project Project in ProjectService.GetAllActive())
             {
                 int? ManagerId = ProjectService.GetProjectManagerId(Project.Id);
                 G.Employee Manager = EmployeeService.Get((int)ManagerId);
@@ -183,14 +183,6 @@ namespace ReseauEntreprise.Admin.Controllers
                 {
                     throw Exception;
                 }
-            }
-            else
-            {
-                var errors = ModelState.Select(x => x.Value.Errors)
-                           .Where(y => y.Count > 0)
-                           .ToList();
-                return RedirectToAction("Index");
-
             }
             return RedirectToAction("Index");
         }

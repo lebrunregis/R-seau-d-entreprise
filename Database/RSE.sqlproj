@@ -159,6 +159,7 @@
     <Build Include="dbo\Tables\Department\Department.sql" />
     <Build Include="dbo\Tables\Employee\Admin.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeDepartment.sql" />
+    <Build Include="dbo\FN\FN_GetProjectManagerId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

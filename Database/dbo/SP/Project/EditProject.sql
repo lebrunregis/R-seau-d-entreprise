@@ -12,7 +12,11 @@ BEGIN
 DECLARE @IsAdmin bit;
 DECLARE @Manager int;
 EXEC @IsAdmin = dbo.FN_IsAdmin @User;
-EXECUTE dbo.GetProjectManagerId @Project;
+EXEC @Manager = dbo.FN_GetProjectManagerId @Project;
 IF ( @IsAdmin = 1  OR @Manager = @User)
+       BEGIN
            UPDATE Project SET Project_Name =  @Name, Project_Description = @Description ,StartDate=CAST(@StartDate AS datetime2(0)),EndDate=CAST(@EndDate AS datetime2(0))   WHERE Project_Id = @Project AND CreatorId = @CreatorId;
-       END
+           IF (@Project_manager != @Manager)
+		       INSERT INTO ProjectManager(Employee_Id, Project_Id) VALUES (@Project_manager, @Project)
+	   END
+END
