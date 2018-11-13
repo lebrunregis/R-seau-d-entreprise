@@ -53,7 +53,7 @@ namespace Model.Global.Mapper
             return new EmployeeProjectManagerHistory()
             {
                 Project_Id = (int)dr["Project_Id"],
-                Project_Name = (string)dr["Name"],
+                Project_Name = (string)dr["Project_Name"],
                 StartDate = (DateTime)dr["StartDate"],
                 EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"])
             };

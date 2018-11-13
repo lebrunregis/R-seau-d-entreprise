@@ -42,13 +42,14 @@ namespace Model.Global.Service
         {
             Command cmd = new Command("DeleteProject", true);
             cmd.AddParameter("User", User);
-            cmd.AddParameter("Project", p.Id);
+            cmd.AddParameter("Id", p.Id);
             cmd.AddParameter("Name", p.Name);
             cmd.AddParameter("Description", p.Description);
             cmd.AddParameter("Creator", p.CreatorId);
             cmd.AddParameter("StartDate", p.Start);
             cmd.AddParameter("EndDate", p.End);
-            return (int?)Connection.ExecuteScalar(cmd);
+            object o = Connection.ExecuteScalar(cmd);
+            return (int?)o;
         }
 
         public static Data.Project GetProjectById(int ProjectId)

@@ -180,6 +180,14 @@ namespace ReseauEntreprise.Admin.Controllers
                     throw Exception;
                 }
             }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
+                return RedirectToAction("Index");
+
+            }
             return RedirectToAction("Index");
         }
 
