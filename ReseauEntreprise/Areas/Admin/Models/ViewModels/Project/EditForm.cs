@@ -22,12 +22,15 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
         [Required]
         [DataType(DataType.MultilineText)]
         public String Description { get; set; }
-        [Required]
-        [Display(Name = "Project Manager")]
-        public int ProjectManagerId { get; set; }
-        public IEnumerable<SelectListItem> ProjectManagerCandidateList { get; set; }
         [HiddenInput]
         [Required]
+        public int ProjectManagerId { get; set; }
+        [Required]
+        [Display(Name = "Project Manager")]
+        public int SelectedProjectManagerId { get; set; }
+        public IEnumerable<SelectListItem> ProjectManagerCandidateList { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }

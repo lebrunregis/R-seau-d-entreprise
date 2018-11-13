@@ -21,6 +21,8 @@ namespace Model.Global.Service
             cmd.AddParameter("Description", p.Description);
             cmd.AddParameter("Creator", p.CreatorId);
             cmd.AddParameter("Project_Manager", ProjectManager);
+            cmd.AddParameter("StartDate", p.Start);
+            cmd.AddParameter("EndDate", p.End);
             return (int?)Connection.ExecuteScalar(cmd);
         }
 
