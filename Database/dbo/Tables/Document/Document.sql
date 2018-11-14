@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [Document] (
-  [Document_Id] int PRIMARY KEY IDENTITY,
+  [Document_Id] int PRIMARY KEY IDENTITY(1,1),
   [Name] nvarchar(max) NOT NULL,
   [Created] DATETIME2(0) NOT NULL,
   [Link] nvarchar(max) NOT NULL,

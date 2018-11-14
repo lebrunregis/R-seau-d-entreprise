@@ -87,7 +87,6 @@
     <Build Include="dbo\Tables\Project\ProjectTask.sql" />
     <Build Include="dbo\Tables\Team\Team.sql" />
     <Build Include="dbo\Tables\Team\TeamTask.sql" />
-    <Build Include="dbo\Tables\Team\TeamProject.sql" />
     <Build Include="dbo\Tables\Task\Task.sql" />
     <Build Include="dbo\Tables\Task\TaskStatusHistory.sql" />
     <Build Include="dbo\Tables\Task\TaskStatus.sql" />
@@ -160,6 +159,19 @@
     <Build Include="dbo\Tables\Employee\Admin.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeDepartment.sql" />
     <Build Include="dbo\FN\FN_GetProjectManagerId.sql" />
+    <Build Include="dbo\SP\Team\CreateTeam.sql" />
+    <Build Include="dbo\SP\Team\DeleteTeam.sql" />
+    <Build Include="dbo\SP\Team\EditTeam.sql" />
+    <Build Include="dbo\SP\Team\GetAllActiveTeams.sql" />
+    <Build Include="dbo\SP\Team\GetAllTeams.sql" />
+    <Build Include="dbo\SP\Team\GetTeam.sql" />
+    <Build Include="dbo\SP\Team\GetTeamLeaderId.sql" />
+    <Build Include="dbo\FN\FN_IsProjectManager.sql" />
+    <Build Include="dbo\FN\FN_GetTeamLeaderId.sql" />
+    <Build Include="dbo\SP\Team\AddEmployeeToTeam.sql" />
+    <Build Include="dbo\Trigger\OnDeleteEmployeeTeam.sql" />
+    <Build Include="dbo\SP\Team\DeleteEmployeeFromTeam.sql" />
+    <Build Include="dbo\FN\FN_IsTeamLeader.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

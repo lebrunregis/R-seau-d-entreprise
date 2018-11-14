@@ -10,12 +10,11 @@
 	Manager.FirstName + ' ' + Manager.LastName + ' (' + Manager.Email + ')' AS TeamLeaderIdentifier,
 	EmployeeTeamLeader.date AS ManagerStartDate,
 	Team.Team_Name,
-	TeamProject.StartDate AS TeamStartDate,
-	TeamProject.EndDate AS TeamEndDate
+	Team.Team_Created AS TeamStartDate,
+	Team.Team_Disbanded AS TeamEndDate
 	FROM Project 
 	JOIN Employee AS Creator ON Project.CreatorId = Employee_Id 
 	JOIN EmployeeTeamLeader ON Project.Project_Id = EmployeeTeamLeader.Team_Id 
 	JOIN Employee AS Manager ON EmployeeTeamLeader.Employee_Id = Manager.Employee_Id
-	JOIN TeamProject ON TeamProject.Team_Id = Project.Project_Id
-	JOIN Team ON Team.Team_Id = TeamProject.Team_Id
+	JOIN Team ON Team.Project_Id = Project.Project_Id
 	
