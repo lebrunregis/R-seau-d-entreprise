@@ -166,12 +166,10 @@
     <Build Include="dbo\SP\Team\GetAllTeams.sql" />
     <Build Include="dbo\SP\Team\GetTeam.sql" />
     <Build Include="dbo\SP\Team\GetTeamLeaderId.sql" />
-    <Build Include="dbo\FN\FN_IsProjectManager.sql" />
     <Build Include="dbo\FN\FN_GetTeamLeaderId.sql" />
     <Build Include="dbo\SP\Team\AddEmployeeToTeam.sql" />
     <Build Include="dbo\Trigger\OnDeleteEmployeeTeam.sql" />
     <Build Include="dbo\SP\Team\DeleteEmployeeFromTeam.sql" />
-    <Build Include="dbo\FN\FN_IsTeamLeader.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

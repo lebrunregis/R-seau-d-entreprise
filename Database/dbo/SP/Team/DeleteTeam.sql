@@ -1,17 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteTeam]
     @User int,
-	@Id int,
-	@Name nvarchar(50),
-	@Creator int,
-	@StartDate datetime2,
-	@EndDate datetime2
+	@Team_Id int
 AS
+BEGIN
+    DECLARE @Project_Id int;
+    SELECT @Project_Id = Project_Id FROM Team WHERE Team_Id = @Team_Id;
 
-    DECLARE @IsAdmin bit;
-    DECLARE @Manager int;
-    EXEC @IsAdmin = dbo.FN_IsAdmin @User;
-    EXEC @Manager = dbo.FN_GetProjectManagerId @Id;
-    IF ( @IsAdmin = 1  OR @Manager = @User)
-	    DELETE FROM Project 
-	    WHERE Project_Id = @Id AND Project_Name=@Name AND
-	    CreatorId=@Creator  AND StartDate = CAST(@StartDate AS datetime2(0)) AND (EndDate = CAST(@EndDate AS datetime2(0))) OR (EndDate IS NULL AND @EndDate IS NULL);
+    IF (dbo.FN_IsAdmin(@User) = 1 OR dbo.FN_IsProjectManager(@User, @Project_Id) = 1)
+	    DELETE FROM Team 
+	    WHERE Team_Id = @Team_Id
+END
