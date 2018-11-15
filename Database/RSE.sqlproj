@@ -170,6 +170,7 @@
     <Build Include="dbo\SP\Team\AddEmployeeToTeam.sql" />
     <Build Include="dbo\Trigger\OnDeleteEmployeeTeam.sql" />
     <Build Include="dbo\SP\Team\DeleteEmployeeFromTeam.sql" />
+    <Build Include="dbo\FN\FN_EndDateTeamLeader.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

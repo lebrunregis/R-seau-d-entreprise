@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Réseau_d_entreprise.Session.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ReseauEntreprise.Areas.Admin.Controllers
+namespace ReseauEntreprise.Admin.Controllers
 {
+    [RouteArea("Admin")]
+    [AdminRequired]
     public class TeamController : Controller
     {
         // GET: Admin/Team

@@ -169,6 +169,11 @@
     <Compile Include="Areas\Admin\Models\ViewModels\Project\DetailsForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\ListForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\EditForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Team\CreateForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Team\DeleteForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Team\DetailsForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Team\EditForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Team\ListForm.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
     <Compile Include="Areas\Employee\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Employee\Controllers\ProjectController.cs" />
@@ -268,7 +273,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\ViewModels\Team\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Admin\Views\Team\" />
     <Folder Include="Areas\Employee\Views\Shared\" />

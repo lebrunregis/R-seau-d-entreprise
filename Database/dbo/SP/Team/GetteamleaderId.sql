@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[GetTeamLeaderId]
 	@Team_Id int
 AS
-	SELECT dbo.FN_GetTeamLeader(@Team_Id);
+	SELECT dbo.FN_GetTeamLeaderId(@Team_Id);
 
