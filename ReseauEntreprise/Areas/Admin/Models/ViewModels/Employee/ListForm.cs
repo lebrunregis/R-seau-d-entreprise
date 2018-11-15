@@ -4,12 +4,13 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee
 {
-    public class EmployeeDetails
+    public class ListForm
     {
-        [Key]
+        [HiddenInput]
         public int Id { get; set; }
         [DisplayName("Nom")]
         public string LastName { get; set; }
@@ -25,8 +26,5 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee
         [DisplayName("Numéro de téléphone")]
         public string Phone { get; set; }
         public bool IsAdmin { get; set; }
-        public IEnumerable<EmployeeStatus> StatusHistory { get; set; }
-        public IEnumerable<ProjectManagerStatus> ProjectManagerHistory { get; set; }
-        public IEnumerable<EmployeeDepartment> EmployeeDepartmentHistory { get; set; }
     }
 }

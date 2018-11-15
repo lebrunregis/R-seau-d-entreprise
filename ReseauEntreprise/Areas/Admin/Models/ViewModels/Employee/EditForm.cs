@@ -8,9 +8,10 @@ using MVC=System.Web.Mvc;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee
 {
-    public class EmployeeEditForm
+    public class EditForm
     {
-        [MVC.HiddenInput(DisplayValue = false)]
+        [MVC.HiddenInput]
+        [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]
