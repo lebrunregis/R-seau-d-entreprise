@@ -142,14 +142,17 @@ namespace ReseauEntreprise.Admin.Controllers
                 };
                 try
                 {
-                  ProjectService.Edit(SessionUser.GetUser().Id, Project);
+                   if (ProjectService.Edit(SessionUser.GetUser().Id, Project))
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
                 catch (System.Data.SqlClient.SqlException exception)
                 {
                     throw (exception);
                 }
             }
-            return RedirectToAction("Index");
+            return View(form);
         }
 
         public ActionResult Delete(int id)

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ReseauEntreprise.Admin.Models.ViewModels.Team
+namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Team
 {
     public class CreateForm
     {

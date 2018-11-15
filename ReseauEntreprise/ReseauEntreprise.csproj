@@ -242,6 +242,8 @@
     <Content Include="Areas\Admin\Views\Department\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Department\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Department\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\Create.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -274,7 +276,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\Admin\Views\Team\" />
     <Folder Include="Areas\Employee\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

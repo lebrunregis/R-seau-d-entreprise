@@ -1,9 +1,13 @@
-﻿using Réseau_d_entreprise.Session.Attributes;
+﻿using D = Model.Global.Data;
+using Model.Global.Service;
+using Réseau_d_entreprise.Session.Attributes;
+using ReseauEntreprise.Areas.Admin.Models.ViewModels.Team;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Réseau_d_entreprise.Session;
 
 namespace ReseauEntreprise.Admin.Controllers
 {
@@ -14,7 +18,17 @@ namespace ReseauEntreprise.Admin.Controllers
         // GET: Admin/Team
         public ActionResult Index()
         {
-            return View();
+            List<ListForm> list = new List<ListForm>();
+            foreach (D.Team Team in TeamService.GetAllActive())
+            {
+                int? TeamLeaderId = TeamService.GetTeamLeaderId(Team.Id);
+                D.Employee TeamLeader = EmployeeService.Get((int)TeamLeaderId);
+                D.Employee Creator = EmployeeService.Get(Team.Creator_Id);
+                D.Project Project = ProjectService.GetProjectById(Team.Project_Id);
+                ListForm form = new ListForm(Team, TeamLeader, Creator, Project);
+                list.Add(form);
+            }
+            return View(list);
         }
 
         // GET: Admin/Team/Details/5
@@ -26,29 +40,110 @@ namespace ReseauEntreprise.Admin.Controllers
         // GET: Admin/Team/Create
         public ActionResult Create()
         {
-            return View();
+            CreateForm form = new CreateForm();
+            IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
+            List<SelectListItem> TeamLeaderCandidates = new List<SelectListItem>();
+            foreach (D.Employee emp in Employees)
+            {
+                TeamLeaderCandidates.Add(new SelectListItem()
+                {
+                    Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
+                    Value = emp.Employee_Id.ToString()
+                });
+            }
+            form.TeamLeaderCandidateList = TeamLeaderCandidates;
+
+            IEnumerable<D.Project> Projects = ProjectService.GetAllActive();
+            List<SelectListItem> ProjectCandidates = new List<SelectListItem>();
+            foreach (D.Project p in Projects)
+            {
+                ProjectCandidates.Add(new SelectListItem()
+                {
+                    Text = p.Name,
+                    Value = p.Id.ToString()
+                });
+            }
+            form.ProjectCandidateList = ProjectCandidates;
+
+            return View(form);
         }
 
         // POST: Admin/Team/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CreateForm form)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                D.Team t = new D.Team()
+                {
+                    Name = form.Name,
+                    Creator_Id = SessionUser.GetUser().Id,
+                    Project_Id = form.SelectedProjectId
+                };
+                int TeamLeaderId = form.SelectedTeamLeaderId;
+                try
+                {
+                    if (TeamService.Create(t, TeamLeaderId) != null)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (System.Data.SqlClient.SqlException exception)
+                {
+                    throw (exception);
+                }
+            }
+            IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
+            List<SelectListItem> TeamLeaderCandidates = new List<SelectListItem>();
+            foreach (D.Employee emp in Employees)
+            {
+                TeamLeaderCandidates.Add(new SelectListItem()
+                {
+                    Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
+                    Value = emp.Employee_Id.ToString()
+                });
+            }
+            form.TeamLeaderCandidateList = TeamLeaderCandidates;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            IEnumerable<D.Project> Projects = ProjectService.GetAllActive();
+            List<SelectListItem> ProjectCandidates = new List<SelectListItem>();
+            foreach (D.Project p in Projects)
             {
-                return View();
+                ProjectCandidates.Add(new SelectListItem()
+                {
+                    Text = p.Name,
+                    Value = p.Id.ToString()
+                });
             }
+            form.ProjectCandidateList = ProjectCandidates;
+            return View(form);
         }
 
         // GET: Admin/Team/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            D.Team Team = TeamService.GetTeamById(id);
+            D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(id));
+            EditForm form = new EditForm()
+            {
+                Id = Team.Id,
+                Name = Team.Name,
+                SelectedTeamLeaderId = TeamLeader.Employee_Id,
+                CreatorId = Team.Creator_Id
+            };
+            IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
+            List<SelectListItem> TeamLeaderCandidates = new List<SelectListItem>();
+            foreach (D.Employee emp in Employees)
+            {
+                TeamLeaderCandidates.Add(new SelectListItem()
+                {
+                    Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
+                    Value = emp.Employee_Id.ToString()
+                });
+            }
+            form.TeamLeaderCandidateList = TeamLeaderCandidates;
+
+            return View(form);
         }
 
         // POST: Admin/Team/Edit/5

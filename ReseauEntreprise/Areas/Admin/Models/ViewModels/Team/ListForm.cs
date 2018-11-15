@@ -6,30 +6,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ReseauEntreprise.Admin.Models.ViewModels.Team
+namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Team
 {
     public class ListForm
     {
-        [Required]
-        [HiddenInput]
         [Key]
         public int TeamId { get; set; }
-        [Required]
-        [MaxLength(50)]
         public String Name { get; set; }
-        [HiddenInput]
-        [Required]
+        public DateTime CreationDate { get; set; }
         public D.Employee TeamLeader { get; set; }
-        [HiddenInput]
-        [Required]
         public D.Employee Creator { get; set; }
-        [HiddenInput]
-        [Required]
         public D.Project Project { get; set; }
-        [DataType(DataType.Date)]
-        public DateTime CreationDate;
-        [DataType(DataType.Date)]
-        public DateTime? EndDate;
+        public DateTime? EndDate { get; set; }
 
 
         public ListForm()
@@ -44,8 +32,8 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Team
             this.TeamLeader = TeamLeader;
             this.Creator = Creator;
             this.Project = Project;
-            this.CreationDate = Team.Created;
-            this.EndDate = Team.Disbanded;
+            CreationDate = Team.Created;
+            EndDate = Team.Disbanded;
         }
     }
 }
