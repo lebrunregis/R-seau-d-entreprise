@@ -178,7 +178,7 @@ namespace ReseauEntreprise.Admin.Controllers
                     Value = dep.Id.ToString()
                 });
             }
-            ED.CreateForm form = new ED.CreateForm
+            ED.AddEmployeeToDepartmentForm form = new ED.AddEmployeeToDepartmentForm
             {
                 SelectedEmployeeId = EmpId,
                 DepartmentList = DepartmentList
@@ -187,7 +187,7 @@ namespace ReseauEntreprise.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEmployeeToDepartment(ED.CreateForm form)
+        public ActionResult AddEmployeeToDepartment(ED.AddEmployeeToDepartmentForm form)
         {
             if (ModelState.IsValid)
             {
@@ -216,7 +216,7 @@ namespace ReseauEntreprise.Admin.Controllers
                     Value = dep.Id.ToString()
                 });
             }
-            ED.DeleteForm form = new ED.DeleteForm
+            ED.RemoveEmployeeFromDepartmentForm form = new ED.RemoveEmployeeFromDepartmentForm
             {
                 SelectedEmployeeId = EmpId,
                 DepartmentList = DepartmentList
@@ -226,7 +226,7 @@ namespace ReseauEntreprise.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult RemoveEmployeeFromDepartment(ED.DeleteForm form)
+        public ActionResult RemoveEmployeeFromDepartment(ED.RemoveEmployeeFromDepartmentForm form)
         {
             if (ModelState.IsValid)
             {

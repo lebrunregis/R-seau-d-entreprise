@@ -46,7 +46,7 @@ namespace ReseauEntreprise.Admin.Controllers
                 RegNat = e.RegNat,
                 IsAdmin = e.IsAdmin
             };
-            Details.EmployeeDepartmentHistory = DepartmentService.GetEmployeeDepartmentHistory(id).Select(tmp => new EmployeeDepartment()
+            Details.DepartmentHistory = DepartmentService.GetEmployeeDepartmentHistory(id).Select(tmp => new DepartmentForm()
             {
                 Id = tmp.Id,
                 StartDate = tmp.StartDate,
@@ -56,14 +56,14 @@ namespace ReseauEntreprise.Admin.Controllers
                 DepId = tmp.DepId,
             });
             Details.StatusHistory = EmployeeService.GetEmployeeStatusHistory(id)
-                .Select(tmp => new EmployeeStatus()
+                .Select(tmp => new StatusForm()
                 {
                     StatusName = tmp.Name,
                     StartDate = tmp.StartDate,
                     EndDate = tmp.EndDate
                 });
             Details.ProjectManagerHistory = EmployeeService.GetEmployeeProjectManagerHistory(id)
-                .Select(tmp => new ProjectManagerStatus()
+                .Select(tmp => new ProjectManagerStatusForm()
                 {
                     Project_Id = tmp.Project_Id,
                     ProjectName = tmp.Project_Name,

@@ -164,6 +164,7 @@
     <Build Include="dbo\SP\Department\AddEmployeeDepartment.sql" />
     <Build Include="dbo\SP\Department\RemoveEmployeeDepartment.sql" />
     <Build Include="dbo\SP\Department\GetEmployeeDepartmentsHistory.sql" />
+    <Build Include="dbo\SP\Department\GetAllActiveDepartments.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

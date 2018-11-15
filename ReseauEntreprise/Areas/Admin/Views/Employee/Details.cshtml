@@ -68,7 +68,7 @@
 
         @{ Html.RenderPartial("StatusHistory", Model.StatusHistory); }
         @{ Html.RenderPartial("ProjectManagerHistory", Model.ProjectManagerHistory); }
-        @{ Html.RenderPartial("EmployeeDepartments", Model.EmployeeDepartmentHistory); }
+        @{ Html.RenderPartial("DepartmentsHistory", Model.DepartmentHistory, new ViewDataDictionary { { "EmpId", Model.Id } }); }
     </dl>
 </div>
 <p>

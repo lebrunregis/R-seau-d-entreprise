@@ -15,6 +15,8 @@ DISABLE TRIGGER [OnDeleteDocument] ON Document;
 GO
 DISABLE TRIGGER [OnDeleteEmployeeStatusHistory] ON EmployeeStatusHistory;  
 GO
+DISABLE TRIGGER [OnDeleteDepartment] ON Department;  
+GO
 DISABLE TRIGGER [OnDeleteEvent] ON Event;  
 GO
 DISABLE TRIGGER [OnDeleteProject] ON Project;  
@@ -27,6 +29,8 @@ DISABLE TRIGGER [OnDeleteAdmin] ON [Admin];
 GO
 --DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 --GO
+DELETE FROM [Department]
+GO
 DELETE FROM [ProjectManager];
 GO
 DELETE FROM [Project];

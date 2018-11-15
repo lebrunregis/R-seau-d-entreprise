@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee
 {
-    public class EmployeeDepartment
+    public class DepartmentForm
     {
         [Key]
         public int Id { get; set; }

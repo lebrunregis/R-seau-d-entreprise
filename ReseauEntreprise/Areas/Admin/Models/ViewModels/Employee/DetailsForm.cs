@@ -25,8 +25,8 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee
         [DisplayName("Numéro de téléphone")]
         public string Phone { get; set; }
         public bool IsAdmin { get; set; }
-        public IEnumerable<EmployeeStatus> StatusHistory { get; set; }
-        public IEnumerable<ProjectManagerStatus> ProjectManagerHistory { get; set; }
-        public IEnumerable<EmployeeDepartment> EmployeeDepartmentHistory { get; set; }
+        public IEnumerable<StatusForm> StatusHistory { get; set; }
+        public IEnumerable<ProjectManagerStatusForm> ProjectManagerHistory { get; set; }
+        public IEnumerable<DepartmentForm> DepartmentHistory { get; set; }
     }
 }

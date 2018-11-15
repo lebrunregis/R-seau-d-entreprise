@@ -8,7 +8,7 @@ using MVC = System.Web.Mvc;
 
 namespace ReseauEntreprise.Areas.Admin.Models.PartialView
 {
-    public class EmployeeDetails
+    public class EmployeeDetailsForm
     {
         [MVC.HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
