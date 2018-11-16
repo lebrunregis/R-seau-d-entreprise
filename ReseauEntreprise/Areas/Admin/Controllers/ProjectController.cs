@@ -90,6 +90,7 @@ namespace ReseauEntreprise.Admin.Controllers
                     Value = emp.Employee_Id.ToString()
                 });
             }
+            
             form.ProjectManagerCandidateList = ManagerCandidates;
             return View(form);
         }
@@ -118,6 +119,14 @@ namespace ReseauEntreprise.Admin.Controllers
                 {
                     Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
                     Value = emp.Employee_Id.ToString()
+                });
+            }
+            if (!Employees.Any(emp => emp.Employee_Id == Manager.Employee_Id))
+            {
+                ManagerCandidates.Add(new SelectListItem()
+                {
+                    Text = "!!!VIRÉ!!! " + Manager.FirstName + " " + Manager.LastName + " (" + Manager.Email + ")",
+                    Value = Manager.Employee_Id.ToString()
                 });
             }
             form.ProjectManagerCandidateList = ManagerCandidates;
@@ -151,6 +160,7 @@ namespace ReseauEntreprise.Admin.Controllers
                 {
                     throw (exception);
                 }
+                return RedirectToAction("Edit");
             }
             return View(form);
         }

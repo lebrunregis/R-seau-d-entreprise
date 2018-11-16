@@ -244,6 +244,9 @@
     <Content Include="Areas\Admin\Views\Department\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Team\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Team\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Project\Edit11.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

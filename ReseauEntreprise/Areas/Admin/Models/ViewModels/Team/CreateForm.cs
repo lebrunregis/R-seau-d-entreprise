@@ -12,10 +12,10 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Team
         [Required]
         [MaxLength(50)]
         public String Name { get; set; }
-        [Required]
-        [Display(Name = "Team Leader")]
-        public int SelectedTeamLeaderId { get; set; }
+        //[Required]
+        //[Display(Name = "Team Leader")]
         public IEnumerable<SelectListItem> TeamLeaderCandidateList { get; set; }
+        public int SelectedTeamLeaderId { get; set; }
         [Required]
         [Display(Name = "Project")]
         public int SelectedProjectId { get; set; }

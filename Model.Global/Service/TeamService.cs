@@ -20,7 +20,7 @@ namespace Model.Global.Service
             cmd.AddParameter("name", t.Name);
             cmd.AddParameter("team_leader", TeamLeader);
             cmd.AddParameter("Creator_Id", t.Creator_Id);
-            cmd.AddParameter("Project_Id int", t.Project_Id);
+            cmd.AddParameter("Project_Id", t.Project_Id);
             return (int?)Connection.ExecuteScalar(cmd);
         }
 

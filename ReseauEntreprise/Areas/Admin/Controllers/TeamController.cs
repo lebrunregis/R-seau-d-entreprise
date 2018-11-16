@@ -141,6 +141,15 @@ namespace ReseauEntreprise.Admin.Controllers
                     Value = emp.Employee_Id.ToString()
                 });
             }
+            // si le TeamLeader actuel est desactivé
+            if (!Employees.Any(emp => emp.Employee_Id == TeamLeader.Employee_Id))
+            {
+                TeamLeaderCandidates.Add(new SelectListItem()
+                {
+                    Text = "!!!VIRÉ!!! " + TeamLeader.FirstName + " " + TeamLeader.LastName + " (" + TeamLeader.Email + ")",
+                    Value = TeamLeader.Employee_Id.ToString()
+                });
+            }
             form.TeamLeaderCandidateList = TeamLeaderCandidates;
 
             return View(form);
@@ -148,40 +157,74 @@ namespace ReseauEntreprise.Admin.Controllers
 
         // POST: Admin/Team/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, EditForm form)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                D.Team Team = new D.Team()
+                {
+                    Id = form.Id,
+                    Name = form.Name,
+                    Creator_Id = form.CreatorId
+                };
+                try
+                {
+                    if (TeamService.Edit(SessionUser.GetUser().Id, Team, form.SelectedTeamLeaderId))
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (System.Data.SqlClient.SqlException exception)
+                {
+                    throw (exception);
+                }
+                return RedirectToAction("Edit");
             }
-            catch
-            {
-                return View();
-            }
+            return View(form);
         }
 
         // GET: Admin/Team/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            D.Team Team = TeamService.GetTeamById(id);
+            DeleteForm form = new DeleteForm()
+            {
+                Team_Id = Team.Id,
+                Name = Team.Name,
+                Created = Team.Created,
+                Creator_Id = Team.Creator_Id,
+                Project_Id = Team.Project_Id
+            };
+            return View(form);
         }
 
         // POST: Admin/Team/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, DeleteForm form)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                D.Team Team = new D.Team()
+                {
+                    Id = form.Team_Id,
+                    Name = form.Name,
+                    Created = form.Created,
+                    Creator_Id = form.Creator_Id,
+                    Project_Id = form.Project_Id
+                };
+                try
+                {
+                    if (TeamService.Delete(Team, SessionUser.GetUser().Id))
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (System.Data.SqlClient.SqlException Exception)
+                {
+                    throw Exception;
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View(form);
         }
     }
 }
