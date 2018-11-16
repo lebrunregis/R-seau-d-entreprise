@@ -150,6 +150,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EventController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Admin\Models\PartialView\EmployeeDetailsForm.cs" />
@@ -166,6 +167,11 @@
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\ListForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\StatusForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\ProjectManagerStatusForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Event\CreateForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Event\DeleteForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Event\DetailsForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Event\EditForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Event\ListForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\CreateForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\DeleteForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\DetailsForm.cs" />

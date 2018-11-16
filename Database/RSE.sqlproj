@@ -76,6 +76,7 @@
     <Folder Include="dbo\SP\Team" />
     <Folder Include="dbo\SP\Department" />
     <Folder Include="dbo\Tables\Department" />
+    <Folder Include="dbo\SP\Event" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Message\Message.sql" />

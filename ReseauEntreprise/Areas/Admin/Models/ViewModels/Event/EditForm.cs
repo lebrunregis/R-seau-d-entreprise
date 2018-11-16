@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace Model.Global.Data
+namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
 {
-    public class Event
+    public class EditForm
     {
         public int Id { get; set; }
         public int CreatorId { get; set; }
