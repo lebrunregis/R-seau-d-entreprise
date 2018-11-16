@@ -196,7 +196,7 @@ namespace ReseauEntreprise.Admin.Controllers
             return RedirectToAction("Index","Employee");
         }
 
-        public ActionResult RemoveEmployeeFromDepartment(int idFinished)
+        public ActionResult RemoveEmployeeFromDepartment(int id)
         {
             List<SelectListItem> DepartmentList = new List<SelectListItem>();
             foreach (G.Department dep in DepartmentService.GetEmployeeDepartments(id))
