@@ -20,7 +20,7 @@ namespace ReseauEntreprise.Admin.Controllers
         public ActionResult Index()
         {
             List<ListForm> list = new List<ListForm>();
-            foreach (Project Project in ProjectService.GetAll())
+            foreach (Project Project in ProjectService.GetAllActive())
             {
                 int? ManagerId = ProjectService.GetProjectManagerId(Project.Id);
                 G.Employee Manager = EmployeeService.Get((int)ManagerId);

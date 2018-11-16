@@ -159,6 +159,7 @@
     <Build Include="dbo\Tables\Department\Department.sql" />
     <Build Include="dbo\Tables\Employee\Admin.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeDepartment.sql" />
+    <Build Include="dbo\FN\FN_GetProjectManagerId.sql" />
     <Build Include="dbo\Trigger\OnDeleteEmployeeDepartment.sql" />
     <Build Include="dbo\SP\Department\GetEmployeeDepartments.sql" />
     <Build Include="dbo\SP\Department\AddEmployeeDepartment.sql" />
