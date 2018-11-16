@@ -140,6 +140,7 @@ namespace ReseauEntreprise.Admin.Controllers
                         RegNat = e.RegNat,
                         IsAdmin = e.IsAdmin
                     };
+
                     return View(form);
                 }
             }
@@ -149,6 +150,7 @@ namespace ReseauEntreprise.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         public ActionResult Edit(int id, EditForm form)
         {

@@ -167,7 +167,7 @@ namespace ReseauEntreprise.Admin.Controllers
         }
 
 
-        public ActionResult AddEmployeeToDepartment(int EmpId)
+        public ActionResult AddEmployeeToDepartment(int id)
         {
             List<SelectListItem> DepartmentList = new List<SelectListItem>();
             foreach (G.Department dep in DepartmentService.GetAllActive())
@@ -180,7 +180,7 @@ namespace ReseauEntreprise.Admin.Controllers
             }
             ED.AddEmployeeToDepartmentForm form = new ED.AddEmployeeToDepartmentForm
             {
-                SelectedEmployeeId = EmpId,
+                SelectedEmployeeId = id,
                 DepartmentList = DepartmentList
             };
             return View(form);
@@ -193,13 +193,13 @@ namespace ReseauEntreprise.Admin.Controllers
             {
                     DepartmentService.AddEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId);   
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Employee");
         }
 
-        public ActionResult RemoveEmployeeFromDepartment(int EmpId)
+        public ActionResult RemoveEmployeeFromDepartment(int idFinished)
         {
             List<SelectListItem> DepartmentList = new List<SelectListItem>();
-            foreach (G.Department dep in DepartmentService.GetEmployeeDepartments(EmpId))
+            foreach (G.Department dep in DepartmentService.GetEmployeeDepartments(id))
             {
                 DepartmentList.Add(new SelectListItem
                 {
@@ -209,7 +209,7 @@ namespace ReseauEntreprise.Admin.Controllers
             }
             ED.RemoveEmployeeFromDepartmentForm form = new ED.RemoveEmployeeFromDepartmentForm
             {
-                SelectedEmployeeId = EmpId,
+                SelectedEmployeeId = id,
                 DepartmentList = DepartmentList
             };
 
@@ -223,7 +223,7 @@ namespace ReseauEntreprise.Admin.Controllers
             {
                     DepartmentService.RemoveEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId);       
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Employee");
         }
     }
 }

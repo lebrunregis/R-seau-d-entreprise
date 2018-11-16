@@ -240,7 +240,6 @@
     <Content Include="Areas\Admin\Views\Department\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Department\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\DepartmentsHistory.cshtml" />
-    <Content Include="Areas\Admin\Views\EmployeeDepartments\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Department\AddEmployeeToDepartment.cshtml" />
     <Content Include="Areas\Admin\Views\Department\RemoveEmployeeFromDepartment.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
