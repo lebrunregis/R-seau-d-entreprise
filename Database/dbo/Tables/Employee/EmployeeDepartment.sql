@@ -4,7 +4,7 @@
 	[Employee_Id] INT NOT NULL,
 	[Department_Id] INT NOT NULL,
 	[StartDate] DateTime2(0) NOT NULL DEFAULT GetDate(),
-	[EndDate] DATETIME2(0) NOT NULL DEFAULT NULL, 
+	[EndDate] DATETIME2(0) DEFAULT NULL, 
     
     PRIMARY KEY ([Employee_Id],[Department_Id]),
 	CONSTRAINT FK_EmployeeDepartment FOREIGN KEY (Employee_Id) REFERENCES Employee(Employee_Id),

@@ -75,7 +75,7 @@ namespace Model.Global.Service
 
         public static int RemoveEmployeeDepartment(int Employee_Id, int Department_Id)
         {
-            Command cmd = new Command("GetEmployeeDepartment", true);
+            Command cmd = new Command("RemoveEmployeeDepartment", true);
             cmd.AddParameter("EmployeeId", Employee_Id);
             cmd.AddParameter("DepartmentId", Department_Id);
             return Connection.ExecuteNonQuery(cmd);

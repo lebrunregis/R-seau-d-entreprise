@@ -191,18 +191,9 @@ namespace ReseauEntreprise.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    DepartmentService.AddEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId);
-
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
+                    DepartmentService.AddEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId);   
             }
-            return View();
+            return RedirectToAction("Index");
         }
 
         public ActionResult RemoveEmployeeFromDepartment(int EmpId)
@@ -230,18 +221,9 @@ namespace ReseauEntreprise.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    DepartmentService.RemoveEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId);
-
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
+                    DepartmentService.RemoveEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId);       
             }
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

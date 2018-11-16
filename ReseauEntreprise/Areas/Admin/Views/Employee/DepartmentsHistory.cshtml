@@ -1,17 +1,13 @@
 ﻿@model IEnumerable<ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee.DepartmentForm>
 
 @{
-    ViewBag.Title = "EmployeeDepartments";
+    ViewBag.Title = "Department History";
 }
+
+<h2>Department History</h2>
 
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.EmpId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DepId)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -26,27 +22,23 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmpId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-        </tr>
+    <tr>
+        @Html.HiddenFor(modelItem => item.EmpId)
+        @Html.HiddenFor(modelItem => item.DepId)
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+    </tr>
     }
-    <p>
-        @Html.ActionLink(linkText: "Add", actionName: "AddEmployeeToDepartment", controllerName:"Department", routeValues:new { @ViewBag.EmpId },htmlAttributes:null)
-        @Html.ActionLink("Remove", "RemoveEmployeeFromDepartment", "Department", new { @ViewBag.EmpId })
-    </p>
+        <p>
+            @Html.ActionLink(linkText: "Add", actionName: "AddEmployeeToDepartment", controllerName: "Department", routeValues: new { @ViewBag.EmpId }, htmlAttributes: null)
+            @Html.ActionLink(linkText: "Remove", actionName: "RemoveEmployeeFromDepartment", controllerName:"Department", routeValues:new { @ViewBag.EmpId },htmlAttributes:null)
+        </p>
 
 </table>
