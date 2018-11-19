@@ -3,7 +3,7 @@
 	[Id] INT NOT NULL UNIQUE IDENTITY , 
 	[Employee_Id] INT NOT NULL,
 	[Department_Id] INT NOT NULL,
-	[StartDate] DateTime2(0) NOT NULL DEFAULT GetDate(),
+	[StartDate] DateTime2(0) NOT NULL DEFAULT SYSDATETIME(),
 	[EndDate] DATETIME2(0) DEFAULT NULL, 
     
 	PRIMARY KEY (Id),

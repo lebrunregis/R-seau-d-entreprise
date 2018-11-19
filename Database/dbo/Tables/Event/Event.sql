@@ -1,12 +1,15 @@
 ﻿CREATE TABLE [dbo].[Event]
 (
 	[Event_Id] int identity,
-	[Creator_Id] int NOT NULL FOREIGN KEY REFERENCES Employee(Employee_Id),
+	[CreatorId] int NOT NULL FOREIGN KEY REFERENCES Employee(Employee_Id),
 	[Name] nvarchar(50) NOT NULL,
 	[Description] nvarchar(MAX) NOT NULL,
 	[Address] nvarchar(MAX),
 	[StartDate] datetime2(0) NOT NULL,
 	[EndDate] datetime2(0),
-	[CreationDate] datetime2(0) NOT NULL,
+	[CreationDate] datetime2(0) NOT NULL DEFAULT SYSDATETIME(),
+	[Open] bit NOT NULL DEFAULT 0,
+	[Cancelled] bit NOT NULL DEFAULT 0
 	PRIMARY KEY ([Event_Id])
+
 )

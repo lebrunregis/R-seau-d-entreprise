@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[EditProject]
+﻿CREATE PROCEDURE [dbo].[UpdateProject]
 	@User int,
 	@Project int,
 	@Name nvarchar(50),

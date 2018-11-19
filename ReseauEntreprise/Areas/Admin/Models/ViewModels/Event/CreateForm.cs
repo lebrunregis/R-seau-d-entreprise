@@ -12,6 +12,5 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         public String Address { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public DateTime CreationDate { get; set; }
     }
 }

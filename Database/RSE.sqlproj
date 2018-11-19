@@ -77,6 +77,7 @@
     <Folder Include="dbo\SP\Department" />
     <Folder Include="dbo\Tables\Department" />
     <Folder Include="dbo\SP\Event" />
+    <Folder Include="dbo\Tables\Event" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Message\Message.sql" />
@@ -93,7 +94,6 @@
     <Build Include="dbo\Tables\Task\TaskStatusHistory.sql" />
     <Build Include="dbo\Tables\Task\TaskStatus.sql" />
     <Build Include="dbo\Tables\Employee\Employee.sql" />
-    <Build Include="dbo\Tables\Employee\EmployeeTask.sql" />
     <Build Include="dbo\Tables\Document\Document.sql" />
     <Build Include="dbo\Tables\Document\DocProject.sql" />
     <Build Include="dbo\Tables\Document\DocTeam.sql" />
@@ -101,11 +101,6 @@
     <Build Include="dbo\Tables\Document\DocEvent.sql" />
     <Build Include="dbo\Tables\Document\DocTask.sql" />
     <Build Include="dbo\Tables\Document\DocMessage.sql" />
-    <Build Include="dbo\Tables\Employee\EmployeeEvent.sql" />
-    <Build Include="dbo\Tables\Event.sql" />
-    <Build Include="dbo\Tables\Employee\EmployeeTeam.sql" />
-    <Build Include="dbo\Tables\Employee\EmployeeTeamLeader.sql" />
-    <Build Include="dbo\Tables\Employee\EmployeeHeadOfDepartment.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeStatus.sql" />
     <Build Include="dbo\Tables\Employee\EmployeeStatusHistory.sql" />
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
@@ -132,13 +127,11 @@
     <Build Include="dbo\SP\Employee\Update_Email.sql" />
     <Build Include="dbo\SP\Employee\Update_Employee.sql" />
     <Build Include="dbo\SP\Employee\Update_Password.sql" />
-    <Build Include="dbo\SP\Employee\GetAllAssociedProjects.sql" />
     <Build Include="dbo\SP\Employee\GetAllActiveEmployees.sql" />
     <Build Include="dbo\SP\Employee\GetAllEmployeesForAdmin.sql" />
     <Build Include="dbo\SP\Employee\ConfirmAdmin.sql" />
     <Build Include="dbo\SP\Employee\ConfirmLogin.sql" />
     <Build Include="dbo\SP\Employee\AddEmployeeHistory.sql" />
-    <Build Include="dbo\SP\Project\EditProject.sql" />
     <Build Include="dbo\SP\Project\GetProject.sql" />
     <Build Include="dbo\SP\Project\DeleteProject.sql" />
     <Build Include="dbo\Tables\Project\ProjectManager.sql" />
@@ -159,7 +152,6 @@
     <Build Include="dbo\Trigger\OnDeleteDepartment.sql" />
     <Build Include="dbo\Tables\Department\Department.sql" />
     <Build Include="dbo\Tables\Employee\Admin.sql" />
-    <Build Include="dbo\Tables\Employee\EmployeeDepartment.sql" />
     <Build Include="dbo\FN\FN_GetProjectManagerId.sql" />
     <Build Include="dbo\Trigger\OnDeleteEmployeeDepartment.sql" />
     <Build Include="dbo\SP\Department\GetEmployeeDepartments.sql" />
@@ -167,6 +159,19 @@
     <Build Include="dbo\SP\Department\RemoveEmployeeDepartment.sql" />
     <Build Include="dbo\SP\Department\GetEmployeeDepartmentsHistory.sql" />
     <Build Include="dbo\SP\Department\GetAllActiveDepartments.sql" />
+    <Build Include="dbo\Tables\Event\Event.sql" />
+    <Build Include="dbo\Tables\Team\EmployeeTeam.sql" />
+    <Build Include="dbo\Tables\Event\EmployeeEvent.sql" />
+    <Build Include="dbo\Tables\Department\EmployeeHeadOfDepartment.sql" />
+    <Build Include="dbo\Tables\Department\EmployeeDepartment.sql" />
+    <Build Include="dbo\Tables\Task\EmployeeTask.sql" />
+    <Build Include="dbo\Tables\Team\EmployeeTeamLeader.sql" />
+    <Build Include="dbo\SP\Event\CreateEvent.sql" />
+    <Build Include="dbo\SP\Event\DeleteEvent.sql" />
+    <Build Include="dbo\SP\Event\UpdateEvent.sql" />
+    <Build Include="dbo\SP\Event\RegisterEmployeeToEvent.sql" />
+    <Build Include="dbo\SP\Project\GetAllAssociedProjects.sql" />
+    <Build Include="dbo\SP\Project\UpdateProject.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
