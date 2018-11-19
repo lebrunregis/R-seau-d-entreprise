@@ -212,6 +212,7 @@ namespace ReseauEntreprise.Admin.Controllers
                 Name = Project.Name,
                 Description = Project.Description,
                 Manager = Manager,
+                Creator = Creator,
                 StartDate = Project.Start,
                 EndDate = Project.End
             };

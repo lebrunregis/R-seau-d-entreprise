@@ -204,24 +204,27 @@ namespace ReseauEntreprise.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                D.Team Team = new D.Team()
+                if (id == form.Team_Id)
                 {
-                    Id = form.Team_Id,
-                    Name = form.Name,
-                    Created = form.Created,
-                    Creator_Id = form.Creator_Id,
-                    Project_Id = form.Project_Id
-                };
-                try
-                {
-                    if (TeamService.Delete(Team, SessionUser.GetUser().Id))
+                    D.Team Team = new D.Team()
                     {
-                        return RedirectToAction("Index");
+                        Id = form.Team_Id,
+                        Name = form.Name,
+                        Created = form.Created,
+                        Creator_Id = form.Creator_Id,
+                        Project_Id = form.Project_Id
+                    };
+                    try
+                    {
+                        if (TeamService.Delete(Team, SessionUser.GetUser().Id))
+                        {
+                            return RedirectToAction("Index");
+                        }
                     }
-                }
-                catch (System.Data.SqlClient.SqlException Exception)
-                {
-                    throw Exception;
+                    catch (System.Data.SqlClient.SqlException Exception)
+                    {
+                        throw Exception;
+                    }
                 }
             }
             return View(form);

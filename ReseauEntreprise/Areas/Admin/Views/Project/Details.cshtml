@@ -9,40 +9,55 @@
 <div>
     <h4>DetailsForm</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Description)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.StartDate)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.StartDate)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.EndDate)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.EndDate)
+		</dd>
 
-    </dl>
+		<dt>
+			@Html.DisplayNameFor(model => model.Creator)
+		</dt>
+
+		<dd>
+			@{ Html.RenderPartial("EmployeePartial", Model.Creator); }
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Manager)
+		</dt>
+
+		<dd>
+			@{ Html.RenderPartial("EmployeePartial", Model.Manager); }
+		</dd>
+	</dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

@@ -50,7 +50,7 @@ namespace Model.Global.Service
         public static Data.Team GetTeamById(int Team_Id)
         {
             Command cmd = new Command("GetTeam", true);
-            cmd.AddParameter("Team_Id", Team_Id);
+            cmd.AddParameter("Id", Team_Id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToTeam()).FirstOrDefault();
         }
 

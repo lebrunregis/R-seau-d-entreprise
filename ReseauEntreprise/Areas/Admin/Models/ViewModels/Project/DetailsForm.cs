@@ -23,6 +23,9 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
         [Required]
         [Display(Name = "Project Manager")]
         public G.Employee Manager { get; set; }
+        [Required]
+        [Display(Name = "Creator")]
+        public G.Employee Creator { get; set; }
         public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }
