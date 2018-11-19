@@ -71,5 +71,11 @@ namespace Model.Global.Service
             cmd.AddParameter("Team_Id", Team_Id);
             return (int?)Connection.ExecuteScalar(cmd);
         }
+        public static IEnumerable<Employee> GetAllEmployeesForTeam(int Team_Id)
+        {
+            Command cmd = new Command("GetAllEmployeesForTeam", true);
+            cmd.AddParameter("Id", Team_Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee());
+        }
     }
 }

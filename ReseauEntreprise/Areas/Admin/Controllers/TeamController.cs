@@ -31,12 +31,6 @@ namespace ReseauEntreprise.Admin.Controllers
             return View(list);
         }
 
-        // GET: Admin/Team/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Admin/Team/Create
         public ActionResult Create()
         {
@@ -228,6 +222,27 @@ namespace ReseauEntreprise.Admin.Controllers
                 }
             }
             return View(form);
+        }
+        public ActionResult Details(int id)
+        {
+
+            D.Team Team = TeamService.GetTeamById(id);
+            D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(id));
+            D.Employee Creator = EmployeeService.Get(Team.Creator_Id);
+            D.Project Project = ProjectService.GetProjectById(Team.Project_Id);
+            IEnumerable<D.Employee> Members = TeamService.GetAllEmployeesForTeam(id);
+            DetailsForm Form = new DetailsForm
+            {
+                Id = Team.Id,
+                Name = Team.Name,
+                TeamLeader = TeamLeader,
+                Creator = Creator,
+                Project = Project,
+                DateCreated = Team.Created,
+                EndDate = Team.Disbanded,
+                Members = Members
+            };
+            return View(Form);
         }
     }
 }

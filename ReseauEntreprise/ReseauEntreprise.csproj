@@ -248,6 +248,7 @@
     <Content Include="Areas\Admin\Views\Team\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Team\Delete.cshtml" />
     <Content Include="Views\Shared\EmployeePartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\Details.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -278,6 +279,9 @@
     <Content Include="Views\Registration\Register.cshtml" />
     <Content Include="Views\Shared\ProjectPartial.cshtml" />
     <Content Include="Views\Shared\TeamPartial.cshtml" />
+    <Content Include="Views\Shared\EmployeeListPartial.cshtml" />
+    <Content Include="Views\Shared\ProjectListPartial.cshtml" />
+    <Content Include="Views\Shared\TeamListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

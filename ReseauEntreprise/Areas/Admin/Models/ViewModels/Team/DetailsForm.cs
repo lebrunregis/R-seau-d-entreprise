@@ -25,8 +25,10 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Team
         public G.Employee Creator { get; set; }
         [Required]
         public G.Project Project { get; set; }
+        [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }
+        public IEnumerable<G.Employee> Members { get; set; }
     }
 }
