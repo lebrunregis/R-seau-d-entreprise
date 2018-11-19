@@ -9,11 +9,13 @@ Modèle de script de post-déploiement
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-DISABLE TRIGGER [OnDeleteEmployee] ON Employee;  
+/*DISABLE TRIGGER [OnDeleteEmployee] ON Employee;  
 GO
 DISABLE TRIGGER [OnDeleteDocument] ON Document;
 GO
 DISABLE TRIGGER [OnDeleteEmployeeStatusHistory] ON EmployeeStatusHistory;  
+GO
+DISABLE TRIGGER [OnDeleteDepartment] ON Department;  
 GO
 DISABLE TRIGGER [OnDeleteEvent] ON Event;  
 GO
@@ -29,6 +31,8 @@ DISABLE TRIGGER [OnDeleteEmployeeTeam] ON [EmployeeTeam];
 GO
 --DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 --GO
+DELETE FROM [Department]
+GO
 DELETE FROM [EmployeeTeamLeader];
 GO
 DELETE FROM [EmployeeTeam];
@@ -102,3 +106,4 @@ ENABLE TRIGGER [OnDeleteEmployeeTeam] ON [EmployeeTeam];
 GO
 --DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 --GO
+*/

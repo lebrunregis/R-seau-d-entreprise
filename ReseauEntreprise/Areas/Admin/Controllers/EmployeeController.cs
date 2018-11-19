@@ -1,4 +1,4 @@
-﻿using G=Model.Global.Data;
+﻿using G = Model.Global.Data;
 using Model.Global.Service;
 using System;
 using System.Collections.Generic;
@@ -17,8 +17,8 @@ namespace ReseauEntreprise.Admin.Controllers
         // GET: Admin/Employee
         public ActionResult Index()
         {
-            IEnumerable<EmployeeList> AllEmployees = EmployeeService.GetAllActiveForAdmin()
-                .Select(e => new EmployeeList()
+            IEnumerable<ListForm> AllEmployees = EmployeeService.GetAllActiveForAdmin()
+                .Select(e => new ListForm()
                 {
                     Id = e.Employee_Id,
                     LastName = e.LastName,
@@ -35,7 +35,7 @@ namespace ReseauEntreprise.Admin.Controllers
         public ActionResult Details(int id)
         {
             G.Employee e = EmployeeService.GetForAdmin(id);
-            EmployeeDetails Details = new EmployeeDetails()
+            DetailsForm Details = new DetailsForm()
             {
                 Id = e.Employee_Id,
                 LastName = e.LastName,
@@ -46,20 +46,29 @@ namespace ReseauEntreprise.Admin.Controllers
                 RegNat = e.RegNat,
                 IsAdmin = e.IsAdmin
             };
+            Details.DepartmentHistory = DepartmentService.GetEmployeeDepartmentHistory(id).Select(tmp => new DepartmentForm()
+            {
+                Id = tmp.Id,
+                StartDate = tmp.StartDate,
+                EndDate = tmp.EndDate,
+                Name = tmp.Name,
+                EmpId = id,
+                DepId = tmp.DepId,
+            });
             Details.StatusHistory = EmployeeService.GetEmployeeStatusHistory(id)
-                .Select(s => new EmployeeStatus()
+                .Select(tmp => new StatusForm()
                 {
-                    StatusName = s.Name,
-                    StartDate = s.StartDate,
-                    EndDate = s.EndDate
+                    StatusName = tmp.Name,
+                    StartDate = tmp.StartDate,
+                    EndDate = tmp.EndDate
                 });
             Details.ProjectManagerHistory = EmployeeService.GetEmployeeProjectManagerHistory(id)
-                .Select(h => new ProjectManagerStatus()
+                .Select(tmp => new ProjectManagerStatusForm()
                 {
-                    Project_Id = h.Project_Id,
-                    ProjectName = h.Project_Name,
-                    StartDate = h.StartDate,
-                    EndDate = h.EndDate
+                    Project_Id = tmp.Project_Id,
+                    ProjectName = tmp.Project_Name,
+                    StartDate = tmp.StartDate,
+                    EndDate = tmp.EndDate
                 });
             return View(Details);
         }
@@ -67,7 +76,7 @@ namespace ReseauEntreprise.Admin.Controllers
         public ActionResult Delete(int id)
         {
             G.Employee emp = EmployeeService.Get(id);
-            EmployeeList e = new EmployeeList()
+            ListForm e = new ListForm()
             {
                 LastName = emp.LastName,
                 FirstName = emp.FirstName,
@@ -80,7 +89,7 @@ namespace ReseauEntreprise.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int id, EmployeeList HiddenForm)
+        public ActionResult Delete(int id, ListForm HiddenForm)
         {
             if (ModelState.IsValid)
             {
@@ -120,7 +129,7 @@ namespace ReseauEntreprise.Admin.Controllers
                 G.Employee e = EmployeeService.GetForAdmin(id);
                 if (!(e is null))
                 {
-                    EmployeeEditForm form = new EmployeeEditForm()
+                    EditForm form = new EditForm()
                     {
                         Id = id,
                         LastName = e.LastName,
@@ -131,6 +140,7 @@ namespace ReseauEntreprise.Admin.Controllers
                         RegNat = e.RegNat,
                         IsAdmin = e.IsAdmin
                     };
+
                     return View(form);
                 }
             }
@@ -140,8 +150,9 @@ namespace ReseauEntreprise.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
         [HttpPost]
-        public ActionResult Edit(int id, EmployeeEditForm form)
+        public ActionResult Edit(int id, EditForm form)
         {
             if (ModelState.IsValid)
             {

@@ -70,6 +70,17 @@ namespace Model.Global.Mapper
                 Active = (bool)dr["Active"]
             };
         }
+        internal static EmployeeDepartmentHistory ToEmployeeDepartment(this IDataRecord dr)
+        {
+            return new EmployeeDepartmentHistory()
+            {
+                Id = (int)dr["Id"],
+                DepId = (int)dr["Department_Id"],
+                Name = (string)dr["Name"],
+                StartDate = (DateTime)dr["StartDate"],
+                EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"])
+            };
+        }
         internal static Team ToTeam(this IDataRecord dr)
         {
             return new Team()

@@ -1,4 +1,4 @@
-﻿@model ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee.EmployeeEditForm
+﻿@model ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee.EditForm
 
 @{
     ViewBag.Title = "Edit";
@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>EmployeeEditForm</h4>
         <hr />
@@ -97,6 +97,11 @@
         </div>
     </div>
 }
+
+<p>
+    @Html.ActionLink(linkText: "Add Department", actionName: "AddEmployeeToDepartment", controllerName: "Department", routeValues: new { id = Model.Id }, htmlAttributes: null)
+    @Html.ActionLink(linkText: "Remove Department", actionName: "RemoveEmployeeFromDepartment", controllerName: "Department", routeValues: new { id = Model.Id }, htmlAttributes: null)
+</p>
 
 <div>
     @Html.ActionLink("Back to List", "Index")

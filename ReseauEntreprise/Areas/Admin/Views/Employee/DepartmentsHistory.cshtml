@@ -1,15 +1,15 @@
-﻿@model IEnumerable<ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee.StatusForm>
+﻿@model IEnumerable<ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee.DepartmentForm>
 
 @{
-    ViewBag.Title = "StatusHistory";
+    ViewBag.Title = "Department History";
 }
 
-<h2>StatusHistory</h2>
+<h2>Department History</h2>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.StatusName)
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.StartDate)
@@ -20,10 +20,13 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
     <tr>
+        @Html.HiddenFor(modelItem => item.EmpId)
+        @Html.HiddenFor(modelItem => item.DepId)
         <td>
-            @Html.DisplayFor(modelItem => item.StatusName)
+            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartDate)
@@ -32,6 +35,6 @@
             @Html.DisplayFor(modelItem => item.EndDate)
         </td>
     </tr>
-}
+    }
 
 </table>

@@ -1,4 +1,4 @@
-﻿@model ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee.EmployeeDetails
+﻿@model ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee.DetailsForm
 
 @{
     ViewBag.Title = "Details";
@@ -9,67 +9,67 @@
 <div>
     <h4>EmployeeDetails</h4>
     <hr />
-	<dl class="dl-horizontal">
-		<dt>
-			@Html.DisplayNameFor(model => model.LastName)
-		</dt>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.LastName)
-		</dd>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.FirstName)
-		</dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.FirstName)
-		</dd>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Email)
-		</dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Email)
-		</dd>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.RegNat)
-		</dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegNat)
+        </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.RegNat)
-		</dd>
+        <dd>
+            @Html.DisplayFor(model => model.RegNat)
+        </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Address)
-		</dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Address)
-		</dd>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Phone)
-		</dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Phone)
-		</dd>
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.IsAdmin)
-		</dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAdmin)
+        </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.IsAdmin)
-		</dd>
+        <dd>
+            @Html.DisplayFor(model => model.IsAdmin)
+        </dd>
 
-		@{ Html.RenderPartial("StatusHistory", Model.StatusHistory); }
-		@{ Html.RenderPartial("ProjectManagerHistory", Model.ProjectManagerHistory); }
-
-	</dl>
+        @{ Html.RenderPartial("StatusHistory", Model.StatusHistory); }
+        @{ Html.RenderPartial("ProjectManagerHistory", Model.ProjectManagerHistory); }
+        @{ Html.RenderPartial("DepartmentsHistory", Model.DepartmentHistory, new ViewDataDictionary { { "EmpId", Model.Id } }); }
+    </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

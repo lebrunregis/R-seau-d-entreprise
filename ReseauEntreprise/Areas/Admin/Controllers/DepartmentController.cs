@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ReseauEntreprise.Areas.Admin.Models.ViewModels.Department;
+using ED = ReseauEntreprise.Areas.Admin.Models.ViewModels.EmployeeDepartment;
 using G = Model.Global.Data;
 using Model.Global.Service;
 using Réseau_d_entreprise.Session;
@@ -71,8 +72,8 @@ namespace ReseauEntreprise.Admin.Controllers
                     Description = form.Description
                 };
 
-                    DepartmentService.Create(Department, SessionUser.GetUser().Id);
-                    return RedirectToAction("Index");
+                DepartmentService.Create(Department, SessionUser.GetUser().Id);
+                return RedirectToAction("Index");
             }
             return View();
         }
@@ -142,9 +143,18 @@ namespace ReseauEntreprise.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                G.Department department = new G.Department()
+                {
+                    Id = form.Id,
+                    Title = form.Title,
+                    Created = form.Created,
+                    Description = form.Description,
+                    Admin_Id = form.Admin_Id,
+                    Active = true
+                };
                 try
                 {
-                    // TODO: Add delete logic here
+                    DepartmentService.Delete(SessionUser.GetUser().Id, department);
 
                     return RedirectToAction("Index");
                 }
@@ -154,6 +164,66 @@ namespace ReseauEntreprise.Admin.Controllers
                 }
             }
             return View();
+        }
+
+
+        public ActionResult AddEmployeeToDepartment(int id)
+        {
+            List<SelectListItem> DepartmentList = new List<SelectListItem>();
+            foreach (G.Department dep in DepartmentService.GetAllActive())
+            {
+                DepartmentList.Add(new SelectListItem
+                {
+                    Text = dep.Title,
+                    Value = dep.Id.ToString()
+                });
+            }
+            ED.AddEmployeeToDepartmentForm form = new ED.AddEmployeeToDepartmentForm
+            {
+                SelectedEmployeeId = id,
+                DepartmentList = DepartmentList
+            };
+            return View(form);
+        }
+
+        [HttpPost]
+        public ActionResult AddEmployeeToDepartment(ED.AddEmployeeToDepartmentForm form)
+        {
+            if (ModelState.IsValid)
+            {
+                    DepartmentService.AddEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId);   
+            }
+            return RedirectToAction("Index","Employee");
+        }
+
+        public ActionResult RemoveEmployeeFromDepartment(int id)
+        {
+            List<SelectListItem> DepartmentList = new List<SelectListItem>();
+            foreach (G.Department dep in DepartmentService.GetEmployeeDepartments(id))
+            {
+                DepartmentList.Add(new SelectListItem
+                {
+                    Text = dep.Title,
+                    Value = dep.Id.ToString()
+                });
+            }
+            ED.RemoveEmployeeFromDepartmentForm form = new ED.RemoveEmployeeFromDepartmentForm
+            {
+                SelectedEmployeeId = id,
+                DepartmentList = DepartmentList
+            };
+
+            return View(form);
+        }
+
+        [HttpPost]
+        public ActionResult RemoveEmployeeFromDepartment(ED.RemoveEmployeeFromDepartmentForm form)
+        {
+            if (ModelState.IsValid)
+            {
+                    DepartmentService.RemoveEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId);       
+            }
+            return RedirectToAction("Index", "Employee");
         }
     }
 }
