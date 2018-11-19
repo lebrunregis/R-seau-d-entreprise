@@ -172,6 +172,9 @@
     <Build Include="dbo\SP\Event\RegisterEmployeeToEvent.sql" />
     <Build Include="dbo\SP\Project\GetAllAssociedProjects.sql" />
     <Build Include="dbo\SP\Project\UpdateProject.sql" />
+    <Build Include="dbo\SP\Event\GetAllEvents.sql" />
+    <Build Include="dbo\SP\Event\GetAllActiveEvents.sql" />
+    <Build Include="dbo\SP\Event\GetAllEventsForUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

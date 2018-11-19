@@ -1,13 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[RegisterEmployeeToEvent]
-	@param1 int = 0,
-	@param1 int = 0,
-	@param1 int = 0,
-	@param1 int = 0,
-	@param1 int = 0,
-	@param1 int = 0,
-	@param1 int = 0,
-	@param1 int = 0,
-	@param2 int
+	@IdEvent int ,
+	@IdEmployee int
 AS
-	SELECT @param1, @param2
+	INSERT INTO EmployeeEvent (Employee_Id,Event_Id) VALUES (@IdEvent , @IdEmployee);
 RETURN 0

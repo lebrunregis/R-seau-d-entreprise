@@ -46,6 +46,7 @@
     <Compile Include="Data\Document.cs" />
     <Compile Include="Data\Employee.cs" />
     <Compile Include="Data\EmployeeDepartmentHistory.cs" />
+    <Compile Include="Data\EmployeeEvent.cs" />
     <Compile Include="Data\EmployeeProjectManagerHistory.cs" />
     <Compile Include="Data\EmployeeStatus.cs" />
     <Compile Include="Data\EmployeeStatusHistory.cs" />
