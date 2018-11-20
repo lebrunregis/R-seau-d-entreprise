@@ -15,5 +15,6 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime CreationDate { get; set; }
+        public bool OpenEvent { get; set; }
     }
 }

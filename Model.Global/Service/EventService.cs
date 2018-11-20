@@ -56,6 +56,13 @@ namespace Model.Global.Service
             cmd.AddParameter("DepartmentId", e.DepartmentId);
             return (Connection.ExecuteNonQuery(cmd) > 0);
         }
+        
+        public static Event Get(int id)
+        {
+            Command cmd = new Command("GetEvent", true);
+            cmd.AddParameter("EventId ", id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEvent()).FirstOrDefault();
+        }
 
         public static IEnumerable<Event> GetAll()
         {
