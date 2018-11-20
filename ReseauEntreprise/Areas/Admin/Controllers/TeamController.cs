@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
+using ReseauEntreprise.Areas.Admin.Models.ViewModels.EmployeeTeam;
 
 namespace ReseauEntreprise.Admin.Controllers
 {
@@ -243,6 +244,25 @@ namespace ReseauEntreprise.Admin.Controllers
                 Members = Members
             };
             return View(Form);
+        }
+
+        public ActionResult EmployeesInTeam(int id)
+        {
+            //INSERER VERIFICATION EXISTANCE TREAM 
+            IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
+            IEnumerable<D.Employee> Members = TeamService.GetAllEmployeesForTeam(id);
+            List<EmployeesInTeamForm> EmployeesInTeamFormList = new List<EmployeesInTeamForm>();
+            foreach (D.Employee employee in Employees)
+            {
+                IEnumerable<D.Department> departments = DepartmentService.GetEmployeeDepartments(employee.Employee_Id);
+                EmployeesInTeamFormList.Add(new EmployeesInTeamForm
+                {
+                    Employee = employee,
+                    Departments = departments,
+                    IsInTeam = Members.Any(member => member.Employee_Id == employee.Employee_Id)
+                });
+            }
+            return View(EmployeesInTeamFormList);
         }
     }
 }

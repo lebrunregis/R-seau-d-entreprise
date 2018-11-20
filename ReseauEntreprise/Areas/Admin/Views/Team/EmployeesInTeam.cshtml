@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ReseauEntreprise.Areas.Admin.Models.ViewModels.EmployeeTeam.EmployeesInTeamForm>
+
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Employee)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Departments)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.IsInTeam)
+		</th>
+	</tr>
+
+@foreach (var item in Model) {
+	<tr>
+		<td>
+			@{ Html.RenderPartial("EmployeePartial", item.Employee); }
+		</td>
+		<td>
+			@{ Html.RenderPartial("DepartmentListPartial", item.Departments); }
+		</td>
+		<td>
+			<div class="checkbox">
+				@Html.CheckBoxFor(modelItem => item.IsInTeam, new { id = item.Employee.Employee_Id })
+			</div>
+		</td>
+	</tr>
+}
+
+</table>
+
+<script>
+	var checkboxes = document.getElementsByName('item');
+	foreach(checbox in checkboxes)
+	{
+		checkbox.addEventListener('change', (event) => {
+			if (event.target.checked) {
+				alert('checked', checkbox.id)
+			} else {
+				alert('not checked', checkbox.id)
+			}
+
+	}
+
+</script>
