@@ -35,6 +35,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         {
             return View(new CreateForm());
         }
+
         public ActionResult Update(int id)
         {
             G.Event Event = EventService.Get(id);

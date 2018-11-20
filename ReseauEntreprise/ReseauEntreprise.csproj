@@ -171,6 +171,7 @@
     <Compile Include="Areas\Admin\Models\ViewModels\Event\DeleteForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Event\DetailsForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Event\EditForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Event\EmployeeSelectorForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Event\ListForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\CreateForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\DeleteForm.cs" />
@@ -280,6 +281,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\ViewModels\Team\" />
+    <Folder Include="Areas\Admin\Views\Event\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Employee\Views\Shared\" />
   </ItemGroup>
