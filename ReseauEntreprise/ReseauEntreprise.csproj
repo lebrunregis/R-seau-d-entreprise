@@ -154,7 +154,6 @@
     <Compile Include="Areas\Admin\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Admin\Models\PartialView\EmployeeDetailsForm.cs" />
     <Compile Include="Areas\Admin\Controllers\TeamController.cs" />
-    <Compile Include="Areas\Admin\Models\PartialView\EmployeeDetails.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Employee\EmployeePartial.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Department\CreateForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Department\DeleteForm.cs" />

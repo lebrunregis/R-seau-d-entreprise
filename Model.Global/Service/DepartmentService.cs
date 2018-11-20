@@ -26,9 +26,11 @@ namespace Model.Global.Service
         public static int? Edit(int User, Department d)
         {
             Command cmd = new Command("EditDepartment", true);
-            cmd.AddParameter("DepId", d.Title);
-            cmd.AddParameter("Name", d.Description);
-            cmd.AddParameter("Desc", d.Admin_Id);
+            cmd.AddParameter("DepId", d.Id);
+            cmd.AddParameter("Name", d.Title);
+            cmd.AddParameter("Desc", d.Description);
+            cmd.AddParameter("Active", d.Active);
+            cmd.AddParameter("UserId", User);
             return (int?)Connection.ExecuteScalar(cmd);
         }
 
