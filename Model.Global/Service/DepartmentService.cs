@@ -34,10 +34,10 @@ namespace Model.Global.Service
             return (int?)Connection.ExecuteScalar(cmd);
         }
 
-        public static int? Delete(int User, Department d)
+        public static int? Delete(int User, int depId)
         {
             Command cmd = new Command("DeleteDepartment", true);
-            cmd.AddParameter("DepartmentId", d.Title);
+            cmd.AddParameter("DepartmentId", depId);
             return Connection.ExecuteNonQuery(cmd);
         }
 

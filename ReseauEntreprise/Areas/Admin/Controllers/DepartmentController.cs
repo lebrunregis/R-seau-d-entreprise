@@ -140,30 +140,17 @@ namespace ReseauEntreprise.Admin.Controllers
         // POST: Admin/Department/Delete/5
         [HttpPost]
         public ActionResult Delete(DeleteForm form)
-        {
-            if (ModelState.IsValid)
-            {
-                G.Department department = new G.Department()
-                {
-                    Id = form.Id,
-                    Title = form.Title,
-                    Created = form.Created,
-                    Description = form.Description,
-                    Admin_Id = form.Admin_Id,
-                    Active = true
-                };
+        { 
                 try
                 {
-                    DepartmentService.Delete(SessionUser.GetUser().Id, department);
+                    DepartmentService.Delete(SessionUser.GetUser().Id, form.Id);
 
                     return RedirectToAction("Index");
                 }
-                catch
+                catch (Exception ex)
                 {
-                    return View();
-                }
-            }
-            return View();
+                    throw ex;
+                } 
         }
 
 
