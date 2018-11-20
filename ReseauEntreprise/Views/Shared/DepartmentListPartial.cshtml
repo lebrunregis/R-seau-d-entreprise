@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Global.Model.Data.Department>
+
+<div>
+	@foreach (var item in Model)
+	{
+		<p>
+			@{ Html.RenderPartial("DepartmentPartial", item); }
+		</p>
+	}
+</div>
