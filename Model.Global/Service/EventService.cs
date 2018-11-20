@@ -10,11 +10,12 @@ using ToolBox.DBTools;
 
 namespace Model.Global.Service
 {
-    class EventService
+    public class EventService
     {
         static readonly Connection Connection = new Connection("System.Data.SqlClient", ConfigurationManager.ConnectionStrings["connString"].ConnectionString);
 
-        public static int Create(Event e ){
+        public static int Create(Event e)
+        {
             Command cmd = new Command("CreateEvent", true);
             cmd.AddParameter("Name", e.Name);
             cmd.AddParameter("Address", e.Address);
@@ -70,18 +71,22 @@ namespace Model.Global.Service
 
         public static bool Participate(Event ev, Employee emp)
         {
-             Command cmd = new Command("RegisterEmployeeToEvent", true);
+            Command cmd = new Command("RegisterEmployeeToEvent", true);
             cmd.AddParameter("EmployeeId", ev.Id);
             cmd.AddParameter("EventId", emp.Employee_Id);
             return (Connection.ExecuteNonQuery(cmd) > 0);
         }
 
-        public static bool SubscribeTo(Event e, IEnumerable<Employee> emps)
+        public static void SubscribeTo(Event e, IEnumerable<Employee> emps)
         {
-             Command cmd = new Command("RegisterEmployeeToEvent", true);
-            cmd.AddParameter("EmployeeId", e.Employee_Id);
-            cmd.AddParameter("EventId", e.LastName);
-            return (Connection.ExecuteNonQuery(cmd) > 0);
+            Command cmd = new Command("RegisterEmployeeToEvent", true);
+            foreach (Employee emp in emps)
+            {
+                cmd.AddParameter("EmployeeId", emp.Employee_Id);
+                cmd.AddParameter("EventId", e.Id);
+                Connection.ExecuteNonQuery(cmd) ;
+                cmd.Parameters.Clear();
+            }
         }
     }
 }

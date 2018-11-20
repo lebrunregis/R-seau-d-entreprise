@@ -10,7 +10,7 @@ using G = Model.Global.Data;
 using Model.Global.Service;
 using Réseau_d_entreprise.Session;
 
-namespace ReseauEntreprise.Admin.Controllers
+namespace ReseauEntreprise.Areas.Admin.Controllers
 {
     [RouteArea("Admin")]
     [AdminRequired]

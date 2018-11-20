@@ -11,7 +11,7 @@ using Model.Global.Data;
 using ReseauEntreprise.Admin.Models.ViewModels.Project;
 using ReseauEntreprise.Areas.Admin.Models.ViewModels.Project;
 
-namespace ReseauEntreprise.Admin.Controllers
+namespace ReseauEntreprise.Areas.Admin.Controllers
 {
     [RouteArea("Admin")]
     [AdminRequired]
