@@ -14,7 +14,7 @@ namespace Model.Global.Service
     {
         static readonly Connection Connection = new Connection("System.Data.SqlClient", ConfigurationManager.ConnectionStrings["connString"].ConnectionString);
 
-        public static int Create(Event e)
+        public static int Create(Event e,int UserId)
         {
             Command cmd = new Command("CreateEvent", true);
             cmd.AddParameter("Name", e.Name);
@@ -22,13 +22,13 @@ namespace Model.Global.Service
             cmd.AddParameter("Description", e.Description);
             cmd.AddParameter("StartDate", e.StartDate);
             cmd.AddParameter("EndDate", e.EndDate);
-            cmd.AddParameter("CreatorId", e.CreatorId);
             cmd.AddParameter("DepartmentId", e.DepartmentId);
             cmd.AddParameter("Open", e.Open);
+            cmd.AddParameter("AdminId", UserId);
             return (Connection.ExecuteNonQuery(cmd));
         }
 
-        public static bool Edit(Event e)
+        public static bool Edit(Event e, int UserId)
         {
             Command cmd = new Command("UpdateEvent", true);
             cmd.AddParameter("Id", e.Id);
@@ -43,7 +43,7 @@ namespace Model.Global.Service
             return (Connection.ExecuteNonQuery(cmd) > 0);
         }
 
-        public static bool Delete(Event e)
+        public static bool Delete(Event e, int UserId)
         {
             Command cmd = new Command("DeleteEvent", true);
             cmd.AddParameter("Id", e.Id);
@@ -76,21 +76,21 @@ namespace Model.Global.Service
             return Connection.ExecuteReader(cmd, (dr) => dr.ToEvent());
         }
 
-        public static bool Participate(Event ev, Employee emp)
+        public static bool Participate(int EventId, int EmpId)
         {
             Command cmd = new Command("RegisterEmployeeToEvent", true);
-            cmd.AddParameter("EmployeeId", ev.Id);
-            cmd.AddParameter("EventId", emp.Employee_Id);
+            cmd.AddParameter("EmployeeId", EmpId);
+            cmd.AddParameter("EventId", EventId);
             return (Connection.ExecuteNonQuery(cmd) > 0);
         }
 
-        public static void SubscribeTo(Event e, IEnumerable<Employee> emps)
+        public static void SubscribeTo(int EventId, IEnumerable<int> EmpIds)
         {
             Command cmd = new Command("RegisterEmployeeToEvent", true);
-            foreach (Employee emp in emps)
+            foreach (int empId in EmpIds)
             {
-                cmd.AddParameter("EmployeeId", emp.Employee_Id);
-                cmd.AddParameter("EventId", e.Id);
+                cmd.AddParameter("EmployeeId", empId);
+                cmd.AddParameter("EventId", EventId);
                 Connection.ExecuteNonQuery(cmd) ;
                 cmd.Parameters.Clear();
             }

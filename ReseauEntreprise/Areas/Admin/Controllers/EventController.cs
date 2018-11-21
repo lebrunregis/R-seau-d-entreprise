@@ -33,7 +33,21 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            return View(new CreateForm());
+            List<SelectListItem> DepartmentList = new List<SelectListItem>();
+            foreach (G.Department dep in DepartmentService.GetAllActive())
+            {
+                DepartmentList.Add(new SelectListItem
+                {
+                    Text = dep.Title,
+                    Value = dep.Id.ToString()
+                });
+            }
+            CreateForm form = new CreateForm
+            {
+                DepartmentList = DepartmentList
+            };
+            return View(form);
+
         }
 
         [HttpPost]
@@ -41,16 +55,15 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         {
             EventService.Create(new G.Event
             {
-                CreatorId =SessionUser.GetUser().Id,
-                DepartmentId =Form.,
+                CreatorId = SessionUser.GetUser().Id,
+                DepartmentId = Form.SelectedDepartmentId,
                 Name = Form.Name,
-                Description =Form.Description,
-                Address =Form.Address,
-                StartDate =Form.StartDate,
-                EndDate =Form.EndDate,
-                Open = false,
-                Cancelled = false
-    });
+                Description = Form.Description,
+                Address = Form.Address,
+                StartDate = Form.StartDate,
+                EndDate = Form.EndDate,
+                Open = Form.OpenSubscription
+            },SessionUser.GetUser().Id);
             return View();
         }
 
@@ -137,11 +150,29 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             return View(form);
         }
 
-
-
         public ActionResult ConfirmSubscription(int id)
         {
-            EventService.Get(id);
+            G.Event Event = EventService.Get(id);
+            DetailsForm Form = new DetailsForm
+            {
+                Id = Event.Id,
+                CreatorId = Event.CreatorId,
+                DepartmentId = Event.DepartmentId,
+                Name = Event.Name,
+                Description = Event.Description,
+                Address = Event.Address,
+                StartDate = Event.StartDate,
+                EndDate = Event.EndDate
+            };
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmSubscription(DetailsForm Form)
+        {
+
+            EventService.Participate(Form.Id, SessionUser.GetUser().Id);
             return View();
         }
 

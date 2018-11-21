@@ -174,6 +174,7 @@
     <Compile Include="Areas\Admin\Models\ViewModels\Event\EmployeeSelectorForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Event\ListForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Event\SubscribeListForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Event\SubscriptionForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\CreateForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\DeleteForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\DetailsForm.cs" />
@@ -257,6 +258,7 @@
     <Content Include="Areas\Admin\Views\Event\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Event\SubscribeEmployees.cshtml" />
     <Content Include="Areas\Admin\Views\Event\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Event\ConfirmSubscription.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

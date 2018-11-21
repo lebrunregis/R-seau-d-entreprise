@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
 {
@@ -19,5 +20,9 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         [Required]
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
+        public int SelectedDepartmentId { get; set; }
+        public IEnumerable<SelectListItem> DepartmentList { get; set; }
+        [Required]
+        public bool OpenSubscription { get; set; }
     }
 }

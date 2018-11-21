@@ -13,6 +13,8 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         [Required]
         public int CreatorId { get; set; }
         [Required]
+        public int? DepartmentId { get; set; }
+        [Required]
         public String Name { get; set; }
         [Required]
         public String Description { get; set; }
@@ -27,5 +29,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         [Required]
         [DataType(DataType.Date)]
         public DateTime CreationDate { get; set; }
+        [Required]
+        public bool OpenSubscription { get; set; }
     }
 }

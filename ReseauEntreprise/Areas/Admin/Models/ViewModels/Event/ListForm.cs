@@ -22,5 +22,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         [DataType(DataType.Date)]
         [Required]
         public DateTime EndDate { get; set; }
+        [Required]
+        public bool OpenSubscription { get; set; }
     }
 }
