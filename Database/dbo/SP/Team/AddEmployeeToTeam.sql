@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[AddEmployeeToTeamTeam]
+﻿CREATE PROCEDURE [dbo].[AddEmployeeToTeam]
 	@Employee_Id int,
 	@Team_Id int,
 	@User int

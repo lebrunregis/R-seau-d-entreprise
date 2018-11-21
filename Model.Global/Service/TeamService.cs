@@ -77,5 +77,29 @@ namespace Model.Global.Service
             cmd.AddParameter("Id", Team_Id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee());
         }
+        public static bool AddEmployee(int Team_Id, int Employee_Id, int User)
+        {
+            Command cmd = new Command("AddEmployeeToTeam", true);
+            cmd.AddParameter("Employee_Id", Employee_Id);
+            cmd.AddParameter("Team_Id", Team_Id);
+            cmd.AddParameter("User", User);
+            return (Connection.ExecuteNonQuery(cmd) > 0);
+        }
+        public static bool RemoveEmployee(int Team_Id, int Employee_Id, int User)
+        {
+            Command cmd = new Command("RemoveEmployeeFromTeam", true);
+            cmd.AddParameter("Employee_Id", Employee_Id);
+            cmd.AddParameter("Team_Id", Team_Id);
+            cmd.AddParameter("User", User);
+            return (Connection.ExecuteNonQuery(cmd) > 0);
+        }
+
+        public static bool IsInTeam(int Team_Id, int Employee_Id)
+        {
+            Command cmd = new Command("IsInTeam", true);
+            cmd.AddParameter("Employee_Id", Employee_Id);
+            cmd.AddParameter("Team_Id", Team_Id);
+            return (bool)Connection.ExecuteScalar(cmd);
+        }
     }
 }

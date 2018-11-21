@@ -13,35 +13,40 @@
 		</th>
 	</tr>
 
-@foreach (var item in Model) {
-	<tr>
-		<td>
-			@{ Html.RenderPartial("EmployeePartial", item.Employee); }
-		</td>
-		<td>
-			@{ Html.RenderPartial("DepartmentListPartial", item.Departments); }
-		</td>
-		<td>
-			<div class="checkbox">
-				@Html.CheckBoxFor(modelItem => item.IsInTeam, new { id = item.Employee.Employee_Id })
-			</div>
-		</td>
-	</tr>
-}
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@{ Html.RenderPartial("EmployeePartial", item.Employee); }
+			</td>
+			<td>
+				@{ Html.RenderPartial("DepartmentListPartial", item.Departments); }
+			</td>
+			<td>
+				<div class="checkbox">
+					@Html.CheckBoxFor(modelItem => item.IsInTeam, new { id = item.Employee.Employee_Id })
+				</div>
+			</td>
+		</tr>
+	}
 
 </table>
 
 <script>
-	var checkboxes = document.getElementsByName('item');
-	foreach(checbox in checkboxes)
-	{
-		checkbox.addEventListener('change', (event) => {
-			if (event.target.checked) {
-				alert('checked', checkbox.id)
-			} else {
-				alert('not checked', checkbox.id)
-			}
-
+	var checkboxes = document.querySelectorAll('input[name="item.IsInTeam"][type="checkbox"]');
+	function onsuccess(responseData) {
+		if (responseData == true) {
+			checkbox.checked = true
+		}
+		else {
+			checkbox.checked = false
+		}
 	}
-
+	for (var i = 0; i < checkboxes.length; i++) {
+		checkboxes[i].addEventListener("change", (event) => {
+			var checkbox = event.target;
+			var requestData = { EmployeeId: checkbox.id, IsChecked: checkbox.checked };
+			$.post(window.location.href, requestData, onsuccess);
+		})
+	}
 </script>

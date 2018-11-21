@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[DeleteEmployeeFromTeam]
+﻿CREATE PROCEDURE [dbo].[RemoveEmployeeFromTeam]
 	@Employee_Id int,
 	@Team_Id int,
 	@User int

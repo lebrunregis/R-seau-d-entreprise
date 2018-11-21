@@ -250,7 +250,6 @@ namespace ReseauEntreprise.Admin.Controllers
         {
             //INSERER VERIFICATION EXISTANCE TREAM 
             IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
-            IEnumerable<D.Employee> Members = TeamService.GetAllEmployeesForTeam(id);
             List<EmployeesInTeamForm> EmployeesInTeamFormList = new List<EmployeesInTeamForm>();
             foreach (D.Employee employee in Employees)
             {
@@ -259,10 +258,28 @@ namespace ReseauEntreprise.Admin.Controllers
                 {
                     Employee = employee,
                     Departments = departments,
-                    IsInTeam = Members.Any(member => member.Employee_Id == employee.Employee_Id)
+                    IsInTeam = TeamService.IsInTeam(id, employee.Employee_Id)
                 });
             }
             return View(EmployeesInTeamFormList);
+        }
+
+        [HttpPost]
+        public JsonResult EmployeesInTeam(int id, int EmployeeId, bool IsChecked)
+        {
+            if (IsChecked)
+            {
+                TeamService.AddEmployee(id, EmployeeId, SessionUser.GetUser().Id);
+            }
+            else
+            {
+                TeamService.RemoveEmployee(id, EmployeeId, SessionUser.GetUser().Id);
+            }
+
+            return new JsonResult
+            {
+                Data = TeamService.IsInTeam(id, EmployeeId)
+            };
         }
     }
 }

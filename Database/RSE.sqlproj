@@ -169,7 +169,7 @@
     <Build Include="dbo\FN\FN_GetTeamLeaderId.sql" />
     <Build Include="dbo\SP\Team\AddEmployeeToTeam.sql" />
     <Build Include="dbo\Trigger\OnDeleteEmployeeTeam.sql" />
-    <Build Include="dbo\SP\Team\DeleteEmployeeFromTeam.sql" />
+    <Build Include="dbo\SP\Team\RemoveEmployeeFromTeam.sql" />
     <Build Include="dbo\FN\FN_EndDateTeamLeader.sql" />
     <Build Include="dbo\SP\Team\GetAllEmployeesForTeam.sql" />
     <Build Include="dbo\Trigger\OnDeleteEmployeeDepartment.sql" />
@@ -178,6 +178,8 @@
     <Build Include="dbo\SP\Department\RemoveEmployeeDepartment.sql" />
     <Build Include="dbo\SP\Department\GetEmployeeDepartmentsHistory.sql" />
     <Build Include="dbo\SP\Department\GetAllActiveDepartments.sql" />
+    <Build Include="dbo\FN\FN_IsInTeam.sql" />
+    <Build Include="dbo\SP\Team\IsInTeam.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
