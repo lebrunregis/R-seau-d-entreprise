@@ -10,7 +10,7 @@ using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Admin.Models.ViewModels.Project;
 using Model.Global.Data;
 
-namespace ReseauEntreprise.Employee.Controllers
+namespace ReseauEntreprise.Areas.Employee.Controllers
 {
     [RouteArea("Employee")]
     [AdminRequired]

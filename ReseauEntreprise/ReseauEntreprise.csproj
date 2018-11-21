@@ -173,6 +173,7 @@
     <Compile Include="Areas\Admin\Models\ViewModels\Event\EditForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Event\EmployeeSelectorForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Event\ListForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Event\SubscribeListForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\CreateForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\DeleteForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\DetailsForm.cs" />
@@ -249,6 +250,13 @@
     <Content Include="Areas\Admin\Views\Employee\DepartmentsHistory.cshtml" />
     <Content Include="Areas\Admin\Views\Department\AddEmployeeToDepartment.cshtml" />
     <Content Include="Areas\Admin\Views\Department\RemoveEmployeeFromDepartment.cshtml" />
+    <Content Include="Areas\Admin\Views\Event\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Event\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Event\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Event\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Event\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Event\SubscribeEmployees.cshtml" />
+    <Content Include="Areas\Admin\Views\Event\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -281,7 +289,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\ViewModels\Team\" />
-    <Folder Include="Areas\Admin\Views\Event\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Employee\Views\Shared\" />
   </ItemGroup>

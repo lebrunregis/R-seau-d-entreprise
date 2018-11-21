@@ -36,25 +36,41 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             return View(new CreateForm());
         }
 
-        public ActionResult Update(int id)
+        [HttpPost]
+        public ActionResult Create(CreateForm Form)
+        {
+            EventService.Create(new G.Event
+            {
+                CreatorId =SessionUser.GetUser().Id,
+                DepartmentId =Form.,
+                Name = Form.Name,
+                Description =Form.Description,
+                Address =Form.Address,
+                StartDate =Form.StartDate,
+                EndDate =Form.EndDate,
+                Open = false,
+                Cancelled = false
+    });
+            return View();
+        }
+
+        public ActionResult Edit(int id)
         {
             G.Event Event = EventService.Get(id);
             EditForm form = new EditForm
             {
                 Id = Event.Id,
-                CreatorId = Event.CreatorId,
                 Name = Event.Name,
                 Description = Event.Description,
                 Address = Event.Address,
                 StartDate = Event.StartDate,
                 EndDate = Event.EndDate,
-                CreationDate = Event.CreationDate,
                 OpenEvent = Event.Open
             };
             return View(form);
         }
 
-        public ActionResult CancelEvent(int id)
+        public ActionResult Delete(int id)
         {
             G.Event Event = EventService.Get(id);
             DeleteForm form = new DeleteForm
@@ -89,10 +105,39 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
 
         public ActionResult SubscribeEmployees(int id)
         {
-            EmployeeService.GetAllActive();
-            EventService.Get(id);
-            return View();
+            IEnumerable<G.Employee> Employees = EmployeeService.GetAllActive();
+            List<EmployeeSelectorForm> EmployeesForm = new List<EmployeeSelectorForm>();
+            foreach (G.Employee e in Employees)
+            {
+                EmployeesForm.Add(new EmployeeSelectorForm
+                {
+                    Id = e.Employee_Id,
+                    Identifier = e.FirstName + " " + e.LastName + " " + e.Email,
+                    Selected = false
+                });
+            }
+
+            G.Event Event = EventService.Get(id);
+            DetailsForm EventForm = new DetailsForm
+            {
+                Id = Event.Id,
+                CreatorId = Event.CreatorId,
+                Name = Event.Name,
+                Description = Event.Description,
+                Address = Event.Address,
+                StartDate = Event.StartDate,
+                EndDate = Event.EndDate,
+                CreationDate = Event.CreationDate
+            };
+            SubscribeListForm form = new SubscribeListForm
+            {
+                List = EmployeesForm,
+                Event = EventForm
+            };
+            return View(form);
         }
+
+
 
         public ActionResult ConfirmSubscription(int id)
         {

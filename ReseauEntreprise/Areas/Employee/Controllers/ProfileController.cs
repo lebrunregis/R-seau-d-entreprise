@@ -9,7 +9,7 @@ using Réseau_d_entreprise.Session;
 using Réseau_d_entreprise.Session.Attributes;
 using ReseauEntreprise.Areas.Employee.Models;
 
-namespace ReseauEntreprise.Employee.Controllers
+namespace ReseauEntreprise.Areas.Employee.Controllers
 {
     [EmployeeRequired]
     public class ProfileController : Controller

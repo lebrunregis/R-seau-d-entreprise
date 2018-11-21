@@ -6,13 +6,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
 {
-    public class EmployeeSelectorForm
+    public class SubscribeListForm
     {
-        [Key]
-        public int Id { get; set; }
         [Required]
-        public string Identifier { get; set; }
+        public DetailsForm Event { get; set; }
         [Required]
-        public bool Selected { get; set; }
+        public IEnumerable<EmployeeSelectorForm> List {get;set;}
     }
 }
