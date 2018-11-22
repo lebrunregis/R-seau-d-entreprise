@@ -3,8 +3,8 @@
 	@Name nvarchar(50) ,
 	@Description nvarchar(max) ,
 	@Address nvarchar(max),
-	@StartDate datetime2(0),
-	@EndDate datetime2(0),
+	@StartDate date,
+	@EndDate date,
 	@CreatorId int,
 	@DepartmentId int,
 	@AdminId int

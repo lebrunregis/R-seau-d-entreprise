@@ -33,7 +33,15 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            List<SelectListItem> DepartmentList = new List<SelectListItem>();
+            List<SelectListItem> DepartmentList = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text = "Toute l'entreprise",
+                    Value = "null"
+                }
+            };
+
             foreach (G.Department dep in DepartmentService.GetAllActive())
             {
                 DepartmentList.Add(new SelectListItem

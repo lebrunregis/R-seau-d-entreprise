@@ -88,14 +88,13 @@ namespace Model.Global.Mapper
             {
                 Id = (int)dr["Event_Id"],
                 CreatorId = (int)dr["CreatorId"],
-                DepartmentId = (int)dr["DepartmentId"],
+                DepartmentId = (int?)((dr["DepartmentId"] == DBNull.Value) ? null : dr["DepartmentId"]),
                 Name = (String)dr["Name"],
                 Description = (String)dr["Description"],
                 Address = (String)dr["Address"],
                 StartDate = (DateTime)dr["StartDate"],
                 EndDate = (DateTime)dr["EndDate"],
                 CreationDate = (DateTime)dr["CreationDate"],
-                Subscribed = (DateTime)dr["Id"],
                 Open = (bool)dr["Open"],
                 Cancelled = (bool)dr["Cancelled"]
             };

@@ -6,8 +6,8 @@
 	[Name] nvarchar(50) NOT NULL,
 	[Description] nvarchar(MAX) NOT NULL,
 	[Address] nvarchar(MAX),
-	[StartDate] datetime2(0) NOT NULL,
-	[EndDate] datetime2(0),
+	[StartDate] DATETIME2(0) NOT NULL,
+	[EndDate] DATETIME2(0) NOT NULL,
 	[CreationDate] datetime2(0) NOT NULL DEFAULT SYSDATETIME(),
 	[Open] bit NOT NULL DEFAULT 0,
 	[Cancelled] bit NOT NULL DEFAULT 0

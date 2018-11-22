@@ -31,6 +31,8 @@ GO
 --GO
 DELETE FROM [Department]
 GO
+DELETE FROM [Event];
+GO
 DELETE FROM [ProjectManager];
 GO
 DELETE FROM [Project];
