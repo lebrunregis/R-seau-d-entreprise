@@ -3,7 +3,7 @@
   [EmployeeStatusHistory_Id] int IDENTITY(1,1),
   [Employee_Id] int NOT NULL ,
   [EmployeeStatus_Id] int NOT NULL ,
-  [StartDate] datetime2(0) NOT NULL DEFAULT GetDate(),
+  [StartDate] datetime2(0) NOT NULL DEFAULT SYSDATETIME(),
   [EndDate] datetime2(0),
   PRIMARY KEY ([EmployeeStatusHistory_Id]),
   CONSTRAINT FK_HistoryEmployeeId FOREIGN KEY (Employee_Id) REFERENCES Employee(Employee_Id),

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ReseauEntreprise.Employee.Controllers
+namespace ReseauEntreprise.Areas.Employee.Controllers
 {
     [RouteArea("Employee")]
     public class HomeController : Controller

@@ -18,7 +18,7 @@ namespace ReseauEntreprise.Areas.Admin
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                new string[] { "ReseauEntreprise.Admin.Controllers" }
+                new string[] { "ReseauEntreprise.Areas.Admin.Controllers" }
                 
             );
         }

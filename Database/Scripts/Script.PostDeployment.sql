@@ -9,7 +9,7 @@ Modèle de script de post-déploiement
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-/*DISABLE TRIGGER [OnDeleteEmployee] ON Employee;  
+DISABLE TRIGGER [OnDeleteEmployee] ON Employee;  
 GO
 DISABLE TRIGGER [OnDeleteDocument] ON Document;
 GO
@@ -36,6 +36,8 @@ GO
 DELETE FROM [EmployeeTeamLeader];
 GO
 DELETE FROM [EmployeeTeam];
+GO
+DELETE FROM [Event];
 GO
 DELETE FROM [ProjectManager];
 GO

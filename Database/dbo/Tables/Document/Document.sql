@@ -8,5 +8,5 @@
   [Actif] bit NOT NULL,
   [Employee_Id] int NOT NULL,
   [NextVersion] int, 
-    [Deleted] DATETIME NULL,
+  [Deleted] DATETIME NULL,
 );

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ReseauEntreprise.Admin.Controllers
+namespace ReseauEntreprise.Areas.Admin.Controllers
 {
     [RouteArea("Admin")]
     [AdminRequired]

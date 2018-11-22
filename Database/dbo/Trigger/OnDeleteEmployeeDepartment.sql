@@ -4,5 +4,5 @@ INSTEAD OF DELETE
 AS
 BEGIN
 	SET NOCOUNT ON
-	UPDATE EmployeeDepartment Set EndDate = GetDate() WHERE  Id in (SELECT Id FROM deleted);
+	UPDATE EmployeeDepartment Set EndDate = SYSDATETIME() WHERE  Id in (SELECT Id FROM deleted);
 END

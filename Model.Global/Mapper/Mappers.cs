@@ -12,7 +12,8 @@ namespace Model.Global.Mapper
     {
         internal static Employee ToEmployee(this IDataRecord dr)
         {
-            Employee e = new Employee() {
+            Employee e = new Employee()
+            {
                 Employee_Id = (int)dr["Employee_Id"],
                 LastName = (string)dr["LastName"],
                 FirstName = (string)dr["FirstName"],
@@ -91,6 +92,34 @@ namespace Model.Global.Mapper
                 Disbanded = (DateTime?)((dr["Team_Disbanded"] == DBNull.Value) ? null : dr["EndDate"]),
                 Creator_Id = (int)dr["Creator_Id"],
                 Project_Id = (int)dr["Project_Id"]
+            };
+        }
+        internal static Event ToEvent(this IDataRecord dr)
+        {
+            return new Event()
+            {
+                Id = (int)dr["Event_Id"],
+                CreatorId = (int)dr["CreatorId"],
+                DepartmentId = (int?)((dr["DepartmentId"] == DBNull.Value) ? null : dr["DepartmentId"]),
+                Name = (string)dr["Name"],
+                Description = (string)dr["Description"],
+                Address = (string)((dr["Address"] == DBNull.Value) ? null : dr["Address"]),
+                StartDate = (DateTime)dr["StartDate"],
+                EndDate = (DateTime)dr["EndDate"],
+                CreationDate = (DateTime)dr["CreationDate"],
+                Open = (bool)dr["Open"],
+                Cancelled = (bool)dr["Cancelled"]
+            };
+        }
+        internal static EmployeeEvent ToEmployeeEvent(this IDataRecord dr)
+        {
+            return new EmployeeEvent()
+            {
+                EmployeeId = (int)dr["Employee_Id"],
+                EventId = (int)dr["Event_Id"],
+                Attended = (bool)dr["Attended"],
+                Cancelled = (bool)dr["Cancelled"],
+                Subscribed = (DateTime)dr["Subscribed"] 
             };
         }
     }

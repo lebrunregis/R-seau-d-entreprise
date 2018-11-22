@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [Team] (
-  [Team_Id] int identity(1,1),
+  [Team_Id] int identity,
   [Team_Name] nvarchar(50) NOT NULL,
   Project_Id int NOT NULL,
   [Team_Created] DATETIME2(0) NOT NULL DEFAULT GETDATE(),
