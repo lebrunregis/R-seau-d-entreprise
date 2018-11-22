@@ -2,7 +2,7 @@
 (
   [Team_Id] int NOT NULL ,
   [Employee_Id] int NOT NULL ,
-  [StartDate] datetime2(0),
+  [StartDate] datetime2(0) DEFAULT GETDATE(),
   [EndDate] datetime2(0),
   PRIMARY KEY ([StartDate], [Team_Id], [Employee_Id]),
   CONSTRAINT FK_EmployeeTeamId FOREIGN KEY (Team_Id) REFERENCES Team(Team_Id),

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[EmployeeStatusHistory]
 (
-  [EmployeeStatusHistory_Id] int IDENTITY,
+  [EmployeeStatusHistory_Id] int IDENTITY(1,1),
   [Employee_Id] int NOT NULL ,
   [EmployeeStatus_Id] int NOT NULL ,
   [StartDate] datetime2(0) NOT NULL DEFAULT SYSDATETIME(),

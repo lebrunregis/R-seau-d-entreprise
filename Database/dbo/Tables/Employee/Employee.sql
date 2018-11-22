@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Employee]
 (
-  [Employee_Id] int IDENTITY,
+  [Employee_Id] int IDENTITY(1,1),
   [LastName] nvarchar(50) NOT NULL,
   [FirstName] nvarchar(50) NOT NULL,
   [Email] NVARCHAR(360) NOT NULL,

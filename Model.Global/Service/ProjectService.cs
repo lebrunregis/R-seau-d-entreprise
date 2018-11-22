@@ -26,7 +26,7 @@ namespace Model.Global.Service
             return (int?)Connection.ExecuteScalar(cmd);
         }
 
-        public static int? Edit(int User,Project p)
+        public static bool Edit(int User,Project p)
         {
             Command cmd = new Command("EditProject", true);
             cmd.AddParameter("User", User);
@@ -37,7 +37,7 @@ namespace Model.Global.Service
             cmd.AddParameter("Project_Manager", p.ProjectManagerId);
             cmd.AddParameter("StartDate", p.Start);
             cmd.AddParameter("EndDate", p.End);
-            return (int?)Connection.ExecuteScalar(cmd);
+            return (Connection.ExecuteNonQuery(cmd) > 0);
         }
 
         public static bool Delete(Project p,int User)

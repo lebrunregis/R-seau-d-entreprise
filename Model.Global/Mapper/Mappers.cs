@@ -82,6 +82,18 @@ namespace Model.Global.Mapper
                 EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"])
             };
         }
+        internal static Team ToTeam(this IDataRecord dr)
+        {
+            return new Team()
+            {
+                Id = (int)dr["Team_Id"],
+                Name = (string)dr["Team_Name"],
+                Created = (DateTime)dr["Team_Created"],
+                Disbanded = (DateTime?)((dr["Team_Disbanded"] == DBNull.Value) ? null : dr["EndDate"]),
+                Creator_Id = (int)dr["Creator_Id"],
+                Project_Id = (int)dr["Project_Id"]
+            };
+        }
         internal static Event ToEvent(this IDataRecord dr)
         {
             return new Event()

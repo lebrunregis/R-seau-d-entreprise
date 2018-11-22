@@ -1,0 +1,3 @@
+﻿@model Model.Global.Data.Employee
+
+@Html.ActionLink($"{Model.FirstName} {Model.LastName}({Model.Email})", "Details", "Employee", new { id = Model.Employee_Id }, null)

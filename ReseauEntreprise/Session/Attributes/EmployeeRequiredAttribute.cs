@@ -27,12 +27,12 @@ namespace Réseau_d_entreprise.Session.Attributes
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            // Returns HTTP 401 - see comment in HttpUnauthorizedResult.cs.
             filterContext.Result = new RedirectToRouteResult(
                                        new RouteValueDictionary
                                        {
-                                       { "action", "Login" },
-                                       { "controller", "Registration" }
+                                       { "action", "Index" },
+                                       { "controller", "Home" },
+                                       { "Area", "" }
                                        });
         }
     }

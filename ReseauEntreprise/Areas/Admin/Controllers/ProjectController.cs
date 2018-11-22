@@ -90,6 +90,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                     Value = emp.Employee_Id.ToString()
                 });
             }
+            
             form.ProjectManagerCandidateList = ManagerCandidates;
             return View(form);
         }
@@ -120,6 +121,14 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                     Value = emp.Employee_Id.ToString()
                 });
             }
+            if (!Employees.Any(emp => emp.Employee_Id == Manager.Employee_Id))
+            {
+                ManagerCandidates.Add(new SelectListItem()
+                {
+                    Text = "!!!VIRÉ!!! " + Manager.FirstName + " " + Manager.LastName + " (" + Manager.Email + ")",
+                    Value = Manager.Employee_Id.ToString()
+                });
+            }
             form.ProjectManagerCandidateList = ManagerCandidates;
 
             return View(form);
@@ -142,14 +151,18 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 };
                 try
                 {
-                  ProjectService.Edit(SessionUser.GetUser().Id, Project);
+                   if (ProjectService.Edit(SessionUser.GetUser().Id, Project))
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
                 catch (System.Data.SqlClient.SqlException exception)
                 {
                     throw (exception);
                 }
+                return RedirectToAction("Edit");
             }
-            return RedirectToAction("Index");
+            return View(form);
         }
 
         public ActionResult Delete(int id)
@@ -199,6 +212,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 Name = Project.Name,
                 Description = Project.Description,
                 Manager = Manager,
+                Creator = Creator,
                 StartDate = Project.Start,
                 EndDate = Project.End
             };

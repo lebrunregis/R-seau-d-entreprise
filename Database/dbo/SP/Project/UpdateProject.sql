@@ -16,7 +16,8 @@ EXEC @Manager = dbo.FN_GetProjectManagerId @Project;
 IF ( @IsAdmin = 1  OR @Manager = @User)
        BEGIN
            UPDATE Project SET Project_Name =  @Name, Project_Description = @Description ,StartDate=CAST(@StartDate AS datetime2(0)),EndDate=CAST(@EndDate AS datetime2(0))   WHERE Project_Id = @Project AND CreatorId = @CreatorId;
-           IF (@Project_manager != @Manager)
+           IF (@Project_manager != @Manager AND EXISTS 
+		       (SELECT * FROM Employee WHERE Employee_Id=@Project_manager AND Active=1))
 		       INSERT INTO ProjectManager(Employee_Id, Project_Id) VALUES (@Project_manager, @Project)
 	   END
 END
