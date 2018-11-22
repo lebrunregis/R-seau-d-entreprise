@@ -10,7 +10,7 @@ using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Admin.Models.ViewModels.EmployeeTeam;
 
-namespace ReseauEntreprise.Admin.Controllers
+namespace ReseauEntreprise.Areas.Admin.Controllers
 {
     [RouteArea("Admin")]
     [AdminRequired]
