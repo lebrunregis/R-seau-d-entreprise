@@ -206,6 +206,7 @@ namespace ReseauEntreprise.Admin.Controllers
             G.Project Project = ProjectService.GetProjectById(id);
             G.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
             G.Employee Creator = EmployeeService.Get(Project.CreatorId);
+            IEnumerable<G.Team> Teams = ProjectService.GetAllTeamsForProject(id);
             DetailsForm Form = new DetailsForm
             {
                 Id = Project.Id,
@@ -214,8 +215,10 @@ namespace ReseauEntreprise.Admin.Controllers
                 Manager = Manager,
                 Creator = Creator,
                 StartDate = Project.Start,
-                EndDate = Project.End
+                EndDate = Project.End,
+                Teams = Teams
             };
+
             return View(Form);
         }
     }

@@ -57,6 +57,14 @@
 		<dd>
 			@{ Html.RenderPartial("EmployeePartial", Model.Manager); }
 		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Teams)
+		</dt>
+
+		<dd>
+			@{ Html.RenderPartial("TeamListPartial", Model.Teams); }
+		</dd>
 	</dl>
 </div>
 <p>

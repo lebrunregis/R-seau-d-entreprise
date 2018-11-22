@@ -77,5 +77,12 @@ namespace Model.Global.Service
             cmd.AddParameter("ProjectId", ProjectId); 
             return (int?) Connection.ExecuteScalar(cmd);
         }
+
+        public static IEnumerable<Data.Team> GetAllTeamsForProject(int ProjectId)
+        {
+            Command cmd = new Command("GetAllTeamsForProject", true);
+            cmd.AddParameter("Project_Id", ProjectId);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToTeam());
+        }
     }
 }

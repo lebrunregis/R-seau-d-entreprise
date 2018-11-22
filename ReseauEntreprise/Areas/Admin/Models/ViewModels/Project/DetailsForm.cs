@@ -29,5 +29,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
         public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }
+        [Display(Name = "Equipes")]
+        public IEnumerable<G.Team> Teams { get; set; }
     }
 }

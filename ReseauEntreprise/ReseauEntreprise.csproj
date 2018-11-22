@@ -290,6 +290,8 @@
     <Content Include="Views\Shared\EmployeeListPartial.cshtml" />
     <Content Include="Views\Shared\ProjectListPartial.cshtml" />
     <Content Include="Views\Shared\TeamListPartial.cshtml" />
+    <Content Include="Views\Shared\DepartmentListPartial.cshtml" />
+    <Content Include="Views\Shared\DepartmentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

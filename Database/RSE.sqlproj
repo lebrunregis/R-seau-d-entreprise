@@ -180,6 +180,7 @@
     <Build Include="dbo\SP\Department\GetAllActiveDepartments.sql" />
     <Build Include="dbo\FN\FN_IsInTeam.sql" />
     <Build Include="dbo\SP\Team\IsInTeam.sql" />
+    <Build Include="dbo\SP\Project\GetAllTeamsForProject.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
