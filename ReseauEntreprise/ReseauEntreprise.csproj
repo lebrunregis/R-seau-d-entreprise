@@ -187,6 +187,8 @@
     <Compile Include="Areas\Employee\Models\ViewModels\EditPassForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EditProfileForm.cs" />
     <Compile Include="Areas\Employee\Models\ProjectModel.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\IndexModel.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\ProjectTeams.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">

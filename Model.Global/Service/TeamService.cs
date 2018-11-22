@@ -101,5 +101,12 @@ namespace Model.Global.Service
             cmd.AddParameter("Team_Id", Team_Id);
             return (bool)Connection.ExecuteScalar(cmd);
         }
+
+        public static IEnumerable<Data.Team> GetAllActiveTeamsForEmployee(int Employee_Id)
+        {
+            Command cmd = new Command("GetAllActiveTeams", true);
+            cmd.AddParameter("Employee_Id", Employee_Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToTeam());
+        }
     }
 }
