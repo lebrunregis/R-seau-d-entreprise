@@ -5,7 +5,7 @@
 	[DepartmentId] int FOREIGN KEY REFERENCES Department(Department_Id),
 	[Name] nvarchar(50) NOT NULL,
 	[Description] nvarchar(MAX) NOT NULL,
-	[Address] nvarchar(MAX),
+	[Address] nvarchar(MAX) NOT NULL,
 	[StartDate] DATETIME2(0) NOT NULL,
 	[EndDate] DATETIME2(0) NOT NULL,
 	[CreationDate] datetime2(0) NOT NULL DEFAULT SYSDATETIME(),

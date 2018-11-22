@@ -10,14 +10,15 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
     {
         [Key]
         public int Id { get; set; }
-        [Key]
+        [Required]
         public int CreatorId { get; set; }
         [Required]
         public String Name { get; set; }
         [Required]
         public String Description { get; set; }
-        [Required]
         public String Address { get; set; }
+        [Required]
+        public int? DepartmentId { get; set; }
         [Required]
         [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }

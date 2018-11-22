@@ -20,9 +20,10 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         [Required]
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
+        [Required]
         public int? SelectedDepartmentId { get; set; }
         public IEnumerable<SelectListItem> DepartmentList { get; set; }
         [Required]
-        public bool OpenSubscription { get; set; }
+        public bool OpenEvent { get; set; }
     }
 }

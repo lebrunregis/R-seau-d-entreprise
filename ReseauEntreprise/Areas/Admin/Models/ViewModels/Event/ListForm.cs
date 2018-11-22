@@ -15,6 +15,8 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         [Required]
         public String Description { get; set; }
         [Required]
+        public int? DepartmentId { get; set; }
+        [Required]
         public String Address { get; set; }
         [DataType(DataType.Date)]
         [Required]

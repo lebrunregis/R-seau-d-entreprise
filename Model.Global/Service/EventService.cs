@@ -37,9 +37,10 @@ namespace Model.Global.Service
             cmd.AddParameter("Description", e.Description);
             cmd.AddParameter("StartDate", e.StartDate);
             cmd.AddParameter("EndDate", e.EndDate);
-            cmd.AddParameter("CreatorId", e.CreatorId);
             cmd.AddParameter("DepartmentId", e.DepartmentId);
             cmd.AddParameter("Open", e.Open);
+            cmd.AddParameter("AdminId", UserId);
+
             return (Connection.ExecuteNonQuery(cmd) > 0);
         }
 
@@ -50,10 +51,9 @@ namespace Model.Global.Service
             cmd.AddParameter("Name", e.Name);
             cmd.AddParameter("Address", e.Address);
             cmd.AddParameter("Description", e.Description);
-            cmd.AddParameter("StartDate", e.StartDate);
-            cmd.AddParameter("EndDate", e.EndDate);
             cmd.AddParameter("CreatorId", e.CreatorId);
             cmd.AddParameter("DepartmentId", e.DepartmentId);
+            cmd.AddParameter("AdminId", UserId);
             return (Connection.ExecuteNonQuery(cmd) > 0);
         }
         

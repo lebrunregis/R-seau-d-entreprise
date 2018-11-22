@@ -13,11 +13,11 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         [Required]
         public int CreatorId { get; set; }
         [Required]
-        public int? DepartmentId { get; set; }
-        [Required]
         public String Name { get; set; }
         [Required]
         public String Description { get; set; }
+        [Required]
+        public int? DepartmentId { get; set; }
         [Required]
         public String Address { get; set; }
         [Required]
