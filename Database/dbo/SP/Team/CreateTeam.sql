@@ -11,6 +11,7 @@ DECLARE @team_id int
 
 IF EXISTS(SELECT * FROM [dbo].[Employee] WHERE Employee_Id = @team_leader AND Active = 1) AND 
     (dbo.FN_IsAdmin(@Creator_Id) = 1 OR dbo.FN_GetProjectManagerId(@Project_Id) = @Creator_Id)
+	AND EXISTS(SELECT * FROM Project WHERE Project_Id=@Project_Id AND (EndDate IS NULL OR EndDate > SYSDATETIME()))
        BEGIN
            INSERT INTO [dbo].Team (Team_Name, Creator_Id, Project_Id) VALUES (@name, @Creator_Id, @Project_Id);
 	       SET @team_id = convert(int,IDENT_CURRENT ('dbo.Team'));

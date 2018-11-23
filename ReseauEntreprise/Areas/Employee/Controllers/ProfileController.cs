@@ -11,6 +11,7 @@ using ReseauEntreprise.Areas.Employee.Models;
 
 namespace ReseauEntreprise.Employee.Controllers
 {
+    [RouteArea("Employee")]
     [EmployeeRequired]
     public class ProfileController : Controller
     {

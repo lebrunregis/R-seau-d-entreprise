@@ -67,6 +67,13 @@ namespace Model.Global.Service
             return Connection.ExecuteReader(cmd, (dr) => dr.ToDepartment());
         }
 
+        public static IEnumerable<Department> GetEmployeeActiveDepartments(int Employee_Id)
+        {
+            Command cmd = new Command("GetEmployeeActiveDepartments", true);
+            cmd.AddParameter("EmployeeId", Employee_Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDepartment());
+        }
+
         public static int AddEmployeeDepartment(int Employee_Id, int Department_Id)
         {
             Command cmd = new Command("AddEmployeeDepartment", true);
@@ -87,6 +94,12 @@ namespace Model.Global.Service
             Command cmd = new Command("GetEmployeeDepartmentsHistory", true);
             cmd.AddParameter("EmployeeId", Employee_Id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployeeDepartment());
+        }
+        public static IEnumerable<Department> GetHeadOfDepartmentActiveDepartments(int Employee_Id)
+        {
+            Command cmd = new Command("GetHeadOfDepartmentActiveDepartments", true);
+            cmd.AddParameter("HeadOfDepartment_Id", Employee_Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDepartment());
         }
     }
 }

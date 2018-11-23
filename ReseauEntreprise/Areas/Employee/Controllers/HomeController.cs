@@ -12,6 +12,7 @@ using D = Model.Global.Data;
 namespace ReseauEntreprise.Employee.Controllers
 {
     [RouteArea("Employee")]
+    [EmployeeRequired]
     public class HomeController : Controller
     {
         [EmployeeRequired]
@@ -22,15 +23,33 @@ namespace ReseauEntreprise.Employee.Controllers
             List<ProjectTeams> ProjectTeamList = new List<ProjectTeams>();
             foreach(D.Team team in Teams)
             {
-                IEnumerable<D.>TeamList
-                if (ProjectTeamList.Select(pt => pt.Project.Id).Contains(team.Project_Id))
+                ProjectTeams element = ProjectTeamList.Where(pt => pt.Project.Id == team.Project_Id).FirstOrDefault();
+                if (element is null)
                 {
-
+                    ProjectTeams NewElement = new ProjectTeams
+                    {
+                        Project = ProjectService.GetProjectById(team.Project_Id),
+                        Teams = new List<D.Team>()
+                    };
+                    NewElement.Teams.Add(team);
+                    ProjectTeamList.Add(NewElement);
+                }
+                else
+                {
+                    element.Teams.Add(team);
                 }
             }
-            IndexModel form = new IndexModel();
+            IEnumerable<D.Department> MyDepartments = DepartmentService.GetEmployeeDepartments(Employee_Id);
+            IndexModel form = new IndexModel
+            {
+                ProjectTeamList = ProjectTeamList,
+                MyDepartments = DepartmentService.GetEmployeeActiveDepartments(Employee_Id),
+                ProjectManagerProjects = ProjectService.GetActiveProjectsForManager(Employee_Id),
+                TeamLeaderTeams = TeamService.GetActiveTeamsForTeamLeader(Employee_Id),
+                HeadOfDepartmentDepartments = DepartmentService.GetHeadOfDepartmentActiveDepartments(Employee_Id)
+            };
 
-            return View();
+            return View(form);
         }
 
         public ActionResult About()

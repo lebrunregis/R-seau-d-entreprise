@@ -1,0 +1,112 @@
+﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee.DetailsForm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DetailsForm</h4>
+    <hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.LastName)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.LastName)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.FirstName)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.FirstName)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Email)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Email)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.RegNat)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.RegNat)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Address)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Address)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Phone)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Phone)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.IsAdmin)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.IsAdmin)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Teams)
+		</dt>
+
+		<dd>
+			@{ Html.RenderPartial("TeamListPartial", Model.Teams); }
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Departments)
+		</dt>
+
+		<dd>
+			@{ Html.RenderPartial("DepartmentListPartial", Model.Departments); }
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.TeamLeaderTeams)
+		</dt>
+
+		<dd>
+			@{ Html.RenderPartial("TeamListPartial", Model.TeamLeaderTeams); }
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.ProjectManagerProjects)
+		</dt>
+
+		<dd>
+			@{ Html.RenderPartial("ProjectListPartial", Model.ProjectManagerProjects); }
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.HeadOfDepartmentDepartments)
+		</dt>
+
+		<dd>
+			@{ Html.RenderPartial("DepartmentListPartial", Model.HeadOfDepartmentDepartments); }
+		</dd>
+
+
+	</dl>
+</div>
+@if (Model.IsMe)
+{
+<p>
+    @Html.ActionLink("Edit", "Edit", new { controller = "Profile" })
+</p>
+}

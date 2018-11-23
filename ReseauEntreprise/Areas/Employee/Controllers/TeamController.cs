@@ -1,24 +1,24 @@
 ﻿using D = Model.Global.Data;
 using Model.Global.Service;
 using Réseau_d_entreprise.Session.Attributes;
-using ReseauEntreprise.Areas.Admin.Models.ViewModels.Team;
+using ReseauEntreprise.Areas.Employee.Models.ViewModels.Team;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
-using ReseauEntreprise.Areas.Admin.Models.ViewModels.EmployeeTeam;
+using ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam;
 
-namespace ReseauEntreprise.Admin.Controllers
+namespace ReseauEntreprise.Employee.Controllers
 {
-    [RouteArea("Admin")]
-    [AdminRequired]
+    [RouteArea("Employee")]
+    [EmployeeRequired]
     public class TeamController : Controller
     {
-        // GET: Admin/Team
         public ActionResult Index()
         {
+            int Employee_Id = SessionUser.GetUser().Id;
             List<ListForm> list = new List<ListForm>();
             foreach (D.Team Team in TeamService.GetAllActive())
             {
@@ -26,44 +26,71 @@ namespace ReseauEntreprise.Admin.Controllers
                 D.Employee TeamLeader = EmployeeService.Get((int)TeamLeaderId);
                 D.Employee Creator = EmployeeService.Get(Team.Creator_Id);
                 D.Project Project = ProjectService.GetProjectById(Team.Project_Id);
-                ListForm form = new ListForm(Team, TeamLeader, Creator, Project);
+                ListForm form = new ListForm
+                {
+                    TeamId = Team.Id,
+                    Name = Team.Name,
+                    TeamLeader = TeamLeader,
+                    Creator = Creator,
+                    Project = Project,
+                    CreationDate = Team.Created,
+                    EndDate = Team.Disbanded,
+                    AmIPartOfTeam = ,
+                    AmITeamLeader = (Employee_Id == TeamLeader.Employee_Id),
+                    AmIProductManager = (Employee_Id == ProjectService.GetProjectManagerId(Project.Id))
+                };
                 list.Add(form);
             }
             return View(list);
         }
 
-        // GET: Admin/Team/Create
-        public ActionResult Create()
+        public ActionResult Create(int? Project_Id)
         {
-            CreateForm form = new CreateForm();
-            IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
-            List<SelectListItem> TeamLeaderCandidates = new List<SelectListItem>();
-            foreach (D.Employee emp in Employees)
+            int Employee_Id = SessionUser.GetUser().Id;
+            IEnumerable<D.Project> MyProjects = new List<D.Project>();
+            if (AuthService.IsAdmin(Employee_Id))
             {
-                TeamLeaderCandidates.Add(new SelectListItem()
-                {
-                    Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
-                    Value = emp.Employee_Id.ToString()
-                });
+                MyProjects = ProjectService.GetAllActive();
             }
-            form.TeamLeaderCandidateList = TeamLeaderCandidates;
-
-            IEnumerable<D.Project> Projects = ProjectService.GetAllActive();
-            List<SelectListItem> ProjectCandidates = new List<SelectListItem>();
-            foreach (D.Project p in Projects)
+            else
             {
-                ProjectCandidates.Add(new SelectListItem()
-                {
-                    Text = p.Name,
-                    Value = p.Id.ToString()
-                });
+                MyProjects = ProjectService.GetActiveProjectsForManager(Employee_Id);
             }
-            form.ProjectCandidateList = ProjectCandidates;
+            if (MyProjects.Any())
+            {
+                CreateForm form = new CreateForm();
+                IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
+                List<SelectListItem> TeamLeaderCandidates = new List<SelectListItem>();
+                foreach (D.Employee emp in Employees)
+                {
+                    TeamLeaderCandidates.Add(new SelectListItem()
+                    {
+                        Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
+                        Value = emp.Employee_Id.ToString()
+                    });
+                }
+                form.TeamLeaderCandidateList = TeamLeaderCandidates;
+                
+                List<SelectListItem> ProjectCandidates = new List<SelectListItem>();
+                foreach (D.Project p in MyProjects)
+                {
+                    ProjectCandidates.Add(new SelectListItem()
+                    {
+                        Text = p.Name,
+                        Value = p.Id.ToString()
+                    });
+                }
+                form.ProjectCandidateList = ProjectCandidates;
+                if (!(Project_Id is null) && MyProjects.Any(project => project.Id == Project_Id))
+                {
+                    form.SelectedProjectId = (int)Project_Id;
+                }
 
-            return View(form);
+                return View(form);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
-        // POST: Admin/Team/Create
         [HttpPost]
         public ActionResult Create(CreateForm form)
         {
@@ -115,7 +142,6 @@ namespace ReseauEntreprise.Admin.Controllers
             return View(form);
         }
 
-        // GET: Admin/Team/Edit/5
         public ActionResult Edit(int id)
         {
             D.Team Team = TeamService.GetTeamById(id);
@@ -151,7 +177,6 @@ namespace ReseauEntreprise.Admin.Controllers
             return View(form);
         }
 
-        // POST: Admin/Team/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, EditForm form)
         {
@@ -179,7 +204,6 @@ namespace ReseauEntreprise.Admin.Controllers
             return View(form);
         }
 
-        // GET: Admin/Team/Delete/5
         public ActionResult Delete(int id)
         {
             D.Team Team = TeamService.GetTeamById(id);
@@ -194,7 +218,6 @@ namespace ReseauEntreprise.Admin.Controllers
             return View(form);
         }
 
-        // POST: Admin/Team/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, DeleteForm form)
         {
