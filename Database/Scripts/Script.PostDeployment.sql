@@ -108,4 +108,3 @@ ENABLE TRIGGER [OnDeleteEmployeeTeam] ON [EmployeeTeam];
 GO
 --DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 --GO
-*/
