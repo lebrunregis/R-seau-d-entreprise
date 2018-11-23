@@ -204,34 +204,21 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             return View(form);
         }
 
-        public ActionResult SubscribeEmployees(int id)
+        public ActionResult SubscribeEmployees(int EventId)
         {
-            IEnumerable<G.EmployeeEvent> EmployeesStatus = EventService.GetSubscriptionStatus(id);
+            IEnumerable<G.EmployeeEvent> EmployeesStatus = EventService.GetSubscriptionStatus(EventId);
+            IEnumerable<G.Employee> EmployeeList = EmployeeService.GetAllActive();
 
             List<EmployeeSelectorForm> EmployeesForm = new List<EmployeeSelectorForm>();
-            foreach (G.EmployeeEvent e in EmployeesStatus)
+            foreach (G.Employee e in EmployeeList)
             {
                 EmployeesForm.Add(new EmployeeSelectorForm
                 {
-                    EmployeeId = e.EmployeeId,
-                    Identifier = e.FirstName + " " + e.LastName + " " + e.Email,
+                    Employee = e,
+                    EventId = EventId,
                     Selected = false
                 });
             }
-
-            G.Event Event = EventService.Get(id);
-            DetailsForm EventForm = new DetailsForm
-            {
-                Id = Event.Id,
-                CreatorId = Event.CreatorId,
-                Name = Event.Name,
-                Description = Event.Description,
-                Address = Event.Address,
-                StartDate = Event.StartDate,
-                EndDate = Event.EndDate,
-                CreationDate = Event.CreationDate
-            };
-
             return View(EmployeesForm);
         }
 
@@ -242,7 +229,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             {
                 if (item.Selected)
                 {
-                    EventService.Participate(item.EventId, item.EmployeeId);
+                    EventService.Participate(item.EventId, item.Employee.Employee_Id);
                 }
             }
 
