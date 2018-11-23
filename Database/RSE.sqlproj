@@ -191,6 +191,8 @@
     <Build Include="dbo\FN\FN_IsInTeam.sql" />
     <Build Include="dbo\SP\Team\IsInTeam.sql" />
     <Build Include="dbo\SP\Project\GetAllTeamsForProject.sql" />
+    <Build Include="dbo\SP\Event\GetSubscriptionStatus.sql" />
+    <Build Include="dbo\SP\Event\GetEmployeeSubscriptionStatus.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

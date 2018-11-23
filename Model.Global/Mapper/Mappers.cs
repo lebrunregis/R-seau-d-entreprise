@@ -116,10 +116,13 @@ namespace Model.Global.Mapper
             return new EmployeeEvent()
             {
                 EmployeeId = (int)dr["Employee_Id"],
+                FirstName = (string)dr["LastName"],
+                LastName = (string)dr["FirstName"],
+                Email = (string)dr["Email"],
                 EventId = (int)dr["Event_Id"],
-                Attended = (bool)dr["Attended"],
-                Cancelled = (bool)dr["Cancelled"],
-                Subscribed = (DateTime)dr["Subscribed"] 
+                Attended = (bool?)((dr["Subscribed"] == DBNull.Value) ? null : dr["Attended"]),
+                Cancelled = (bool?)((dr["Subscribed"] == DBNull.Value) ? null : dr["Cancelled"]),
+                Subscribed = (DateTime?)((dr["Subscribed"] == DBNull.Value) ? null : dr["Subscribed"])
             };
         }
     }

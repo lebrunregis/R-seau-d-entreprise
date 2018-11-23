@@ -95,5 +95,20 @@ namespace Model.Global.Service
                 cmd.Parameters.Clear();
             }
         }
+
+        public static IEnumerable<EmployeeEvent> GetSubscriptionStatus(int EventId)
+        {
+            Command cmd = new Command("GetSubscriptionStatus", true);
+            cmd.AddParameter("EventId", EventId);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployeeEvent());
+        }
+
+        public static IEnumerable<EmployeeEvent> GetEmployeeSubscriptionStatus(int EventId,int EmpId)
+        {
+            Command cmd = new Command("GetEmployeeSubscriptionStatus", true);
+            cmd.AddParameter("EmployeeId", EmpId);
+            cmd.AddParameter("EventId", EventId);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployeeEvent());
+        }
     }
 }

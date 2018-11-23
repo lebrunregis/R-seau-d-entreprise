@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Model.Global.Data
 {
-    class EmployeeEvent
+    public class EmployeeEvent
     {
+        public string FirstName { set; get; }
+        public string LastName { set; get; }
+        public string Email { set; get; }
         public int EmployeeId { set; get; }
         public int EventId { set; get; }
-        public bool Attended { set; get; }
-        public bool Cancelled { set; get; }
-        public DateTime  Subscribed { set; get; }
+        public bool? Attended { set; get; }
+        public bool? Cancelled { set; get; }
+        public DateTime?  Subscribed { set; get; }
     }
 }

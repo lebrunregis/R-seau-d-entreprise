@@ -176,8 +176,6 @@
     <Compile Include="Areas\Admin\Models\ViewModels\Event\EditForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Event\EmployeeSelectorForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Event\ListForm.cs" />
-    <Compile Include="Areas\Admin\Models\ViewModels\Event\SubscribeListForm.cs" />
-    <Compile Include="Areas\Admin\Models\ViewModels\Event\SubscriptionForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\CreateForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\DeleteForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\DetailsForm.cs" />

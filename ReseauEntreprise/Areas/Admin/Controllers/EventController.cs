@@ -54,7 +54,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             {
                 DepartmentList = DepartmentList,
                 SelectedDepartmentId = -1
-               
+
             };
             return View(form);
 
@@ -165,24 +165,24 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         public ActionResult Delete(DeleteForm form)
         {
             G.Event e = new G.Event()
-                {
-                    Id = form.Id,
-                    Name = form.Name,
-                    Address = form.Address,
-                    Description = form.Description,
-                    CreatorId = form.CreatorId,
-                    DepartmentId = form.DepartmentId,
-                    StartDate = form.StartDate,
-                    EndDate = form.EndDate
-                };
-                try
-                {
-                    EventService.Delete(e, SessionUser.GetUser().Id);
-                }
-                catch (System.Data.SqlClient.SqlException Exception)
-                {
-                    throw Exception;
-                }
+            {
+                Id = form.Id,
+                Name = form.Name,
+                Address = form.Address,
+                Description = form.Description,
+                CreatorId = form.CreatorId,
+                DepartmentId = form.DepartmentId,
+                StartDate = form.StartDate,
+                EndDate = form.EndDate
+            };
+            try
+            {
+                EventService.Delete(e, SessionUser.GetUser().Id);
+            }
+            catch (System.Data.SqlClient.SqlException Exception)
+            {
+                throw Exception;
+            }
 
             return RedirectToAction("Index");
         }
@@ -206,13 +206,14 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
 
         public ActionResult SubscribeEmployees(int id)
         {
-            IEnumerable<G.Employee> Employees = EmployeeService.GetAllActive();
+            IEnumerable<G.EmployeeEvent> EmployeesStatus = EventService.GetSubscriptionStatus(id);
+
             List<EmployeeSelectorForm> EmployeesForm = new List<EmployeeSelectorForm>();
-            foreach (G.Employee e in Employees)
+            foreach (G.EmployeeEvent e in EmployeesStatus)
             {
                 EmployeesForm.Add(new EmployeeSelectorForm
                 {
-                    Id = e.Employee_Id,
+                    EmployeeId = e.EmployeeId,
                     Identifier = e.FirstName + " " + e.LastName + " " + e.Email,
                     Selected = false
                 });
@@ -230,12 +231,22 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 EndDate = Event.EndDate,
                 CreationDate = Event.CreationDate
             };
-            SubscribeListForm form = new SubscribeListForm
+
+            return View(EmployeesForm);
+        }
+
+        [HttpPost]
+        public ActionResult SubscribeEmployees(IEnumerable<EmployeeSelectorForm> Form)
+        {
+            foreach (EmployeeSelectorForm item in Form)
             {
-                List = EmployeesForm,
-                Event = EventForm
-            };
-            return View(form);
+                if (item.Selected)
+                {
+                    EventService.Participate(item.EventId, item.EmployeeId);
+                }
+            }
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult ConfirmSubscription(int id)
@@ -253,7 +264,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 EndDate = Event.EndDate
             };
 
-            return View();
+            return View(Form);
         }
 
         [HttpPost]
@@ -261,7 +272,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         {
 
             EventService.Participate(Form.Id, SessionUser.GetUser().Id);
-            return View();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Attendance(int id)
