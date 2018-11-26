@@ -30,5 +30,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }
         public IEnumerable<G.Employee> Members { get; set; }
+        public bool AmITeamLeader { get; set; }
+        public bool AmIProjectManagerOrAdmin {get; set; }
     }
 }

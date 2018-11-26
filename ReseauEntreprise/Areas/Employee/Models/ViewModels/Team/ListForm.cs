@@ -12,15 +12,17 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
     {
         [Key]
         public int TeamId { get; set; }
-        public String Name { get; set; }
+        public string Name { get; set; }
         public DateTime CreationDate { get; set; }
         public D.Employee TeamLeader { get; set; }
-        public D.Employee Creator { get; set; }
+        public D.Employee ProjectManager { get; set; }
+        [Display(Name = "Projet")]
         public D.Project Project { get; set; }
-        public DateTime? EndDate { get; set; }
+        [Display(Name = "Deadline du projet")]
+        public DateTime? ProjectDeadLine { get; set; }
         public bool AmIPartOfTeam { get; set; }
         public bool AmITeamLeader { get; set; }
-        public bool AmIProductManager { get; set; }
+        public bool AmIProjectManager { get; set; }
         
     }
 }

@@ -69,6 +69,17 @@
 	</dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+	@if (Model.AmITeamLeader || Model.AmIProjectManagerOrAdmin)
+	{
+		@Html.ActionLink("Changer la composition", "EmployeesInTeam", new { id = Model.Id })
+		<br />
+	}
+	@if (Model.AmIProjectManagerOrAdmin)
+	{
+		@Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+		<br />
+		@Html.ActionLink("Delete", "Delete", new { id = Model.Id })
+		<br />
+	}
+	@Html.ActionLink("Back to List", "Index")
 </p>

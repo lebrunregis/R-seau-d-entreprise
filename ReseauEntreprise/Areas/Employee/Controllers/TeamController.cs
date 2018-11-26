@@ -20,26 +20,83 @@ namespace ReseauEntreprise.Employee.Controllers
         {
             int Employee_Id = SessionUser.GetUser().Id;
             List<ListForm> list = new List<ListForm>();
-            foreach (D.Team Team in TeamService.GetAllActive())
+            foreach (D.Team Team in TeamService.GetAllActiveTeamsForEmployee(Employee_Id))
             {
                 int? TeamLeaderId = TeamService.GetTeamLeaderId(Team.Id);
                 D.Employee TeamLeader = EmployeeService.Get((int)TeamLeaderId);
-                D.Employee Creator = EmployeeService.Get(Team.Creator_Id);
                 D.Project Project = ProjectService.GetProjectById(Team.Project_Id);
+                int? ProjectManagerId = ProjectService.GetProjectManagerId(Project.Id);
+                D.Employee ProjectManager = EmployeeService.Get((int)ProjectManagerId);
                 ListForm form = new ListForm
                 {
                     TeamId = Team.Id,
                     Name = Team.Name,
                     TeamLeader = TeamLeader,
-                    Creator = Creator,
+                    ProjectManager = ProjectManager,
                     Project = Project,
                     CreationDate = Team.Created,
-                    EndDate = Team.Disbanded,
-                    AmIPartOfTeam = ,
-                    AmITeamLeader = (Employee_Id == TeamLeader.Employee_Id),
-                    AmIProductManager = (Employee_Id == ProjectService.GetProjectManagerId(Project.Id))
+                    ProjectDeadLine = Project.End,
+                    AmIPartOfTeam = true
                 };
                 list.Add(form);
+            }
+
+            foreach (D.Team Team in TeamService.GetActiveTeamsForTeamLeader(Employee_Id))
+            {
+                ListForm ThisTeam = list.FirstOrDefault(f => f.TeamId == Team.Id);
+                if (ThisTeam != null)
+                {
+                    ThisTeam.AmITeamLeader = true;
+                }
+                else
+                {
+
+                    D.Employee TeamLeader = EmployeeService.Get(Employee_Id);
+                    D.Project Project = ProjectService.GetProjectById(Team.Project_Id);
+                    int? ProjectManagerId = ProjectService.GetProjectManagerId(Project.Id);
+                    D.Employee ProjectManager = EmployeeService.Get((int)ProjectManagerId);
+                    ListForm form = new ListForm
+                    {
+                        TeamId = Team.Id,
+                        Name = Team.Name,
+                        TeamLeader = TeamLeader,
+                        ProjectManager = ProjectManager,
+                        Project = Project,
+                        CreationDate = Team.Created,
+                        ProjectDeadLine = Project.End,
+                        AmITeamLeader = true
+                    };
+                    list.Add(form);
+                }
+            }
+            foreach (D.Project Project in ProjectService.GetActiveProjectsForManager(Employee_Id))
+            {
+                foreach (D.Team Team in ProjectService.GetAllTeamsForProject(Project.Id))
+                {
+                    ListForm ThisTeam = list.FirstOrDefault(f => f.TeamId == Team.Id);
+                    if (ThisTeam != null)
+                    {
+                        ThisTeam.AmIProjectManager = true;
+                    }
+                    else
+                    {
+                        int? TeamLeaderId = TeamService.GetTeamLeaderId(Team.Id);
+                        D.Employee TeamLeader = EmployeeService.Get((int)TeamLeaderId);
+                        D.Employee ProjectManager = EmployeeService.Get(Employee_Id);
+                        ListForm form = new ListForm
+                        {
+                            TeamId = Team.Id,
+                            Name = Team.Name,
+                            TeamLeader = TeamLeader,
+                            ProjectManager = ProjectManager,
+                            Project = Project,
+                            CreationDate = Team.Created,
+                            ProjectDeadLine = Project.End,
+                            AmIProjectManager = true
+                        };
+                        list.Add(form);
+                    }
+                }
             }
             return View(list);
         }
@@ -144,37 +201,42 @@ namespace ReseauEntreprise.Employee.Controllers
 
         public ActionResult Edit(int id)
         {
+            int Employee_Id = SessionUser.GetUser().Id;
             D.Team Team = TeamService.GetTeamById(id);
-            D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(id));
-            EditForm form = new EditForm()
+            if (AuthService.IsAdmin(Employee_Id) || ProjectService.GetProjectManagerId(Team.Project_Id) == Employee_Id)
             {
-                Id = Team.Id,
-                Name = Team.Name,
-                SelectedTeamLeaderId = TeamLeader.Employee_Id,
-                CreatorId = Team.Creator_Id
-            };
-            IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
-            List<SelectListItem> TeamLeaderCandidates = new List<SelectListItem>();
-            foreach (D.Employee emp in Employees)
-            {
-                TeamLeaderCandidates.Add(new SelectListItem()
+                D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(id));
+                EditForm form = new EditForm()
                 {
-                    Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
-                    Value = emp.Employee_Id.ToString()
-                });
-            }
-            // si le TeamLeader actuel est desactivé
-            if (!Employees.Any(emp => emp.Employee_Id == TeamLeader.Employee_Id))
-            {
-                TeamLeaderCandidates.Add(new SelectListItem()
+                    Id = Team.Id,
+                    Name = Team.Name,
+                    SelectedTeamLeaderId = TeamLeader.Employee_Id,
+                    CreatorId = Team.Creator_Id
+                };
+                IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
+                List<SelectListItem> TeamLeaderCandidates = new List<SelectListItem>();
+                foreach (D.Employee emp in Employees)
                 {
-                    Text = "!!!VIRÉ!!! " + TeamLeader.FirstName + " " + TeamLeader.LastName + " (" + TeamLeader.Email + ")",
-                    Value = TeamLeader.Employee_Id.ToString()
-                });
-            }
-            form.TeamLeaderCandidateList = TeamLeaderCandidates;
+                    TeamLeaderCandidates.Add(new SelectListItem()
+                    {
+                        Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
+                        Value = emp.Employee_Id.ToString()
+                    });
+                }
+                // si le TeamLeader actuel est desactivé
+                if (!Employees.Any(emp => emp.Employee_Id == TeamLeader.Employee_Id))
+                {
+                    TeamLeaderCandidates.Add(new SelectListItem()
+                    {
+                        Text = "!!!VIRÉ!!! " + TeamLeader.FirstName + " " + TeamLeader.LastName + " (" + TeamLeader.Email + ")",
+                        Value = TeamLeader.Employee_Id.ToString()
+                    });
+                }
+                form.TeamLeaderCandidateList = TeamLeaderCandidates;
 
-            return View(form);
+                return View(form);
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -206,16 +268,21 @@ namespace ReseauEntreprise.Employee.Controllers
 
         public ActionResult Delete(int id)
         {
+            int Employee_Id = SessionUser.GetUser().Id;
             D.Team Team = TeamService.GetTeamById(id);
-            DeleteForm form = new DeleteForm()
+            if (AuthService.IsAdmin(Employee_Id) || ProjectService.GetProjectManagerId(Team.Project_Id) == Employee_Id)
             {
-                Team_Id = Team.Id,
-                Name = Team.Name,
-                Created = Team.Created,
-                Creator_Id = Team.Creator_Id,
-                Project_Id = Team.Project_Id
-            };
-            return View(form);
+                DeleteForm form = new DeleteForm()
+                {
+                    Team_Id = Team.Id,
+                    Name = Team.Name,
+                    Created = Team.Created,
+                    Creator_Id = Team.Creator_Id,
+                    Project_Id = Team.Project_Id
+                };
+                return View(form);
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -250,7 +317,7 @@ namespace ReseauEntreprise.Employee.Controllers
         }
         public ActionResult Details(int id)
         {
-
+            int Employee_Id = SessionUser.GetUser().Id;
             D.Team Team = TeamService.GetTeamById(id);
             D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(id));
             D.Employee Creator = EmployeeService.Get(Team.Creator_Id);
@@ -265,27 +332,38 @@ namespace ReseauEntreprise.Employee.Controllers
                 Project = Project,
                 DateCreated = Team.Created,
                 EndDate = Team.Disbanded,
-                Members = Members
+                Members = Members,
+                AmITeamLeader = (Employee_Id == TeamLeader.Employee_Id),
+                AmIProjectManagerOrAdmin = (AuthService.IsAdmin(Employee_Id) || Employee_Id == ProjectService.GetProjectManagerId(Team.Project_Id))
             };
             return View(Form);
         }
 
         public ActionResult EmployeesInTeam(int id)
         {
-            //INSERER VERIFICATION EXISTANCE TREAM 
-            IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
-            List<EmployeesInTeamForm> EmployeesInTeamFormList = new List<EmployeesInTeamForm>();
-            foreach (D.Employee employee in Employees)
+            int Employee_Id = SessionUser.GetUser().Id;
+            D.Team Team = TeamService.GetTeamById(id);
+            if (Team != null &&
+                (AuthService.IsAdmin(Employee_Id) ||
+                 ProjectService.GetProjectManagerId(Team.Project_Id) == Employee_Id ||
+                 TeamService.GetTeamLeaderId(id) == Employee_Id
+                ))
             {
-                IEnumerable<D.Department> departments = DepartmentService.GetEmployeeActiveDepartments(employee.Employee_Id);
-                EmployeesInTeamFormList.Add(new EmployeesInTeamForm
+                IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
+                List<EmployeesInTeamForm> EmployeesInTeamFormList = new List<EmployeesInTeamForm>();
+                foreach (D.Employee employee in Employees)
                 {
-                    Employee = employee,
-                    Departments = departments,
-                    IsInTeam = TeamService.IsInTeam(id, employee.Employee_Id)
-                });
+                    IEnumerable<D.Department> departments = DepartmentService.GetEmployeeActiveDepartments(employee.Employee_Id);
+                    EmployeesInTeamFormList.Add(new EmployeesInTeamForm
+                    {
+                        Employee = employee,
+                        Departments = departments,
+                        IsInTeam = TeamService.IsInTeam(id, employee.Employee_Id)
+                    });
+                }
+                return View(EmployeesInTeamFormList);
             }
-            return View(EmployeesInTeamFormList);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
