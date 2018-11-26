@@ -11,38 +11,39 @@ namespace Réseau_d_entreprise.Models.ViewModels
     {
         [Required]
         [MaxLength(50)]
-        [DisplayName("Nom")]
+        [DisplayName("Last Name")]
         public string LastName { get; set; }
         [Required]
         [MaxLength(50)]
-        [DisplayName("Prénom")]
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
         [Required]
         [MinLength(5)]
         [MaxLength(360)]
         [DataType(DataType.EmailAddress)]
+        [Display(Name = "E-Mail")]
         public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]
         [MaxLength(50)]
-        [DisplayName("Mot de passe")]
+        [DisplayName("Password")]
         public string Password { get; set; }
         [Required]
         [DataType(DataType.Password)]
         [Compare(nameof(Password))]
-        [DisplayName("Retapez le mot de passe")]
+        [DisplayName("Confirm Password")]
         public String Confirm { get; set; }
         [Required]
         [MaxLength(50)]
-        [DisplayName("Numéro de registre national")]
+        [DisplayName("National Number")]
         public string RegNat { get; set; }
         [Required]
         [MinLength(7)]
-        [DisplayName("Adresse")]
+        [DisplayName("Adress")]
         public string Address { get; set; }
         [MaxLength(50)]
         [DataType(DataType.PhoneNumber)]
-        [DisplayName("Numéro de téléphone")]
+        [DisplayName("Phone Number")]
         public string Phone { get; set; }
     }
 }

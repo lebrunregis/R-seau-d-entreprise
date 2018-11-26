@@ -13,10 +13,12 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
         [Key]
         [HiddenInput]
         [Editable(false)]
+        [Display(Name = "Project Id")]
         public int ProjectId { get; set; }
         [Required]
         [MaxLength(50)]
         [Editable(false)]
+        [Display(Name = "Project Name")]
         public String Name { get; set; }
         [Required]
         [DataType(DataType.MultilineText)]
@@ -25,17 +27,21 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
         [Required]
         [DataType(DataType.DateTime)]
         [Editable(false)]
+        [Display(Name = "Start Date")]
         public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
         [Editable(false)]
+        [Display(Name = "End Date")]
         public DateTime? EndDate { get; set; }
         [Required]
         [HiddenInput]
         [Editable(false)]
+        [Display(Name = "Project Manager")]
         public D.Employee ProjectManager { get; set; }
         [Required]
         [HiddenInput]
         [Editable(false)]
+        [Display(Name = "Creator")]
         public D.Employee Creator { get; set; }
 
         public DeleteForm()

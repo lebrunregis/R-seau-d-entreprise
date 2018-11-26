@@ -11,7 +11,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
 {
     public class EmployeeSelectorForm
     {
-        [DisplayName("Employé")]
+        [DisplayName("Employee")]
         public D.Employee Employee { get; set; }
         [Required]
         [HiddenInput]

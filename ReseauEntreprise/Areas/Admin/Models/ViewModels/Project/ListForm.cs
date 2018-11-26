@@ -13,22 +13,28 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
         [Required]
         [HiddenInput]
         [Key]
+        [Display(Name = "Project Id")]
         public int ProjectId { get; set; }
         [Required]
         [MaxLength(50)]
+        [Display(Name = "Project Name")]
         public String Name { get; set; }
         [Required]
         [DataType(DataType.MultilineText)]
+        [Display(Name = "Description")]
         public String Description { get; set; }
         [HiddenInput]
         [Required]
+        [Display(Name = "Project Manager")]
         public D.Employee Manager { get; set; }
         [HiddenInput]
         [Required]
         public D.Employee Creator { get; set; }
         [DataType(DataType.Date)]
+        [Display(Name = "Start Date")]
         public DateTime StartDate;
         [DataType(DataType.Date)]
+        [Display(Name = "End Date")]
         public DateTime? EndDate;
 
 

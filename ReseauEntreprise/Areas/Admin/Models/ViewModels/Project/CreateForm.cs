@@ -21,9 +21,11 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
         public IEnumerable<SelectListItem> ProjectManagerCandidateList { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "Start Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
+        [Display(Name = "End Date")]
         public DateTime? EndDate { get; set; }
     }
 }

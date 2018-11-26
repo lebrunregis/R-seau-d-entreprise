@@ -13,11 +13,12 @@ namespace Réseau_d_entreprise.Models.ViewModels
         [MinLength(5)]
         [MaxLength(360)]
         [DataType(DataType.EmailAddress)]
+        [Display(Name = "E-Mail")]
         public String Email { get; set; }
         [DataType(DataType.Password)]
         [Required]
         [MaxLength(50)]
-        [DisplayName("Mot de passe")]
+        [DisplayName("Password")]
         public String Passwd { get; set; }
     }
 }
