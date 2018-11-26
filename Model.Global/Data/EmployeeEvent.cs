@@ -8,9 +8,6 @@ namespace Model.Global.Data
 {
     public class EmployeeEvent
     {
-        public string FirstName { set; get; }
-        public string LastName { set; get; }
-        public string Email { set; get; }
         public int EmployeeId { set; get; }
         public int EventId { set; get; }
         public bool? Attended { set; get; }

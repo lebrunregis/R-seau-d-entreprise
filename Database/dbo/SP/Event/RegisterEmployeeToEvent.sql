@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[RegisterEmployeeToEvent]
-	@IdEvent int ,
-	@IdEmployee int
+	@EventId int ,
+	@EmployeeId int
 AS
-	INSERT INTO EmployeeEvent (Employee_Id,Event_Id) VALUES (@IdEvent , @IdEmployee);
+	INSERT INTO EmployeeEvent (Employee_Id,Event_Id) VALUES (@EmployeeId , @EventId);
 RETURN 0

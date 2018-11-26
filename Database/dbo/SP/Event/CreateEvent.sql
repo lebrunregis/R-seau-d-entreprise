@@ -8,6 +8,6 @@
 	@AdminId int,
 	@Open bit
 AS
-	INSERT INTO Event (Name,Description ,Address,StartDate,EndDate,CreatorId,DepartmentId) 
-	VALUES (@Name,@Description,@Address,@StartDate,@EndDate,@AdminId,@DepartmentId);
+	INSERT INTO Event ([Name],[Description],[Address],StartDate,EndDate,CreatorId,DepartmentId,[Open]) 
+	VALUES (@Name,@Description,@Address,@StartDate,@EndDate,@AdminId,@DepartmentId,@Open);
 RETURN CONVERT(int,SCOPE_IDENTITY() );

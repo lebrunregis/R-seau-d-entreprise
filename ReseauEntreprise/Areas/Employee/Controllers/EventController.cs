@@ -9,15 +9,15 @@ using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Admin.Models.ViewModels.Event;
 using Réseau_d_entreprise.Session.Attributes;
 
-namespace ReseauEntreprise.Areas.Admin.Controllers
+namespace ReseauEntreprise.Areas.Employee.Controllers
 {
-    [RouteArea("Admin")]
-    [AdminRequired]
+    [RouteArea("Employee")]
+    [EmployeeRequired]
     public class EventController : Controller
     {
         public ActionResult Index()
         {
-            List<ListForm> Events = EventService.GetAllActive()
+            IEnumerable<ListForm> Events = EventService.GetAllActiveForUser(SessionUser.GetUser().Id)
                 .Select(e => new ListForm()
                 {
                     Id = e.Id,
@@ -27,21 +27,10 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                     Address = e.Address,
                     StartDate = e.StartDate,
                     EndDate = e.EndDate,
-                    OpenSubscription = e.Open
-                }).ToList();
-            G.EmployeeEvent status;
-            for (int i =0; i < Events.Count(); i++)
-            {
-               status = EventService.GetEmployeeSubscriptionStatus(Events.ElementAt(i).Id, SessionUser.GetUser().Id).FirstOrDefault();
-                if (status is null)
-                {
-                    Events.ElementAt(i).Subscribed = null;
-                }
-                else
-                {
-                    Events.ElementAt(i).Subscribed = status.Subscribed;
-                }
-            }
+                    OpenSubscription = e.Open,
+                    Subscribed = e.Subscribed
+                });
+
             return View(Events);
         }
 
@@ -231,7 +220,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                     Employee = e,
                     EmployeeId = e.Employee_Id,
                     EventId = id,
-                    Selected = EmployeesStatus.Where((employee) => employee.EmployeeId == e.Employee_Id).Count() == 1
+                    Selected = EmployeesStatus.Where((employee) => employee.EmployeeId == e.Employee_Id).Count() ==1
                 });
             }
             return View(EmployeesForm);

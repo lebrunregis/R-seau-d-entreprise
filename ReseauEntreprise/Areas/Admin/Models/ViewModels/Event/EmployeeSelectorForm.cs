@@ -14,6 +14,9 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         [DisplayName("Employé")]
         public D.Employee Employee { get; set; }
         [Required]
+        [HiddenInput]
+        public int EmployeeId { get; set; }
+        [Required]
         public bool Selected { get; set; }
         [Required]
         [HiddenInput]

@@ -76,6 +76,13 @@ namespace Model.Global.Service
             return Connection.ExecuteReader(cmd, (dr) => dr.ToEvent());
         }
 
+        public static IEnumerable<Event> GetAllActiveForUser(int UserId)
+        {
+            Command cmd = new Command("GetAllActiveEventsForUser", true);
+            cmd.AddParameter("EmpId ", UserId);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEvent());
+        }
+
         public static bool Participate(int EventId, int EmpId)
         {
             Command cmd = new Command("RegisterEmployeeToEvent", true);
@@ -108,7 +115,7 @@ namespace Model.Global.Service
             Command cmd = new Command("GetEmployeeSubscriptionStatus", true);
             cmd.AddParameter("EmployeeId", EmpId);
             cmd.AddParameter("EventId", EventId);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployeeEvent());
+           return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployeeEvent());
         }
     }
 }

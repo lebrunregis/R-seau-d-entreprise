@@ -11,7 +11,7 @@
 {
     @Html.AntiForgeryToken()
     
-<div class="form-horizontal" style="width:50%; c">
+<div class="form-horizontal" style="width:50%;">
     <h4>EmployeeSelectorForm</h4>
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -21,19 +21,30 @@
             <th>@Html.LabelFor(item => Model.FirstOrDefault().Employee, htmlAttributes: new { @class = "control-label col-md-3" })</th>
             <th>@Html.LabelFor(item => Model.FirstOrDefault().Selected, htmlAttributes: new { @class = "control-label col-md-1" })</th>
         </tr>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @{ Html.RenderPartial("EmployeePartial", item.Employee); }
-                </td>
-                <td>
-                    <div class="checkbox">
-                        @Html.CheckBoxFor(modelItem => item.Selected, new { id = item.Employee.Employee_Id })
-                    </div>
-                </td>
-            </tr>
-        }
+
+            @for (int i = 0; i < Model.Count(); ++i)
+            {
+        <tr>
+            <td>
+                @{ Html.RenderPartial("EmployeePartial", Model.ToList()[i].Employee); }
+            </td>
+            @Html.HiddenFor(modelItem => Model.ToList()[i].EventId, new { name = "Model[" + i + "].EventId" })
+            @Html.HiddenFor(modelItem => Model.ToList()[i].EmployeeId, new { name = "Model[" + i + "].EmployeeId" })
+            <td>
+                <div class="checkbox">
+                    @if (Model.ToList()[i].Selected)
+                    {
+                        @Html.CheckBoxFor(modelItem => Model.ToList()[i].Selected, new { id = Model.ToList()[i].Employee.Employee_Id, name = "Model[" + i + "].Selected" , disabled = "disabled" })
+                    }
+                    else
+                    {
+                        @Html.CheckBoxFor(modelItem => Model.ToList()[i].Selected, new { id = Model.ToList()[i].Employee.Employee_Id, name = "Model[" + i + "].Selected" })
+                    }
+                </div>
+            </td>
+        </tr>
+            }
+
     </table>
         <div class="form-group">
             <div class="col-md-offset-2">

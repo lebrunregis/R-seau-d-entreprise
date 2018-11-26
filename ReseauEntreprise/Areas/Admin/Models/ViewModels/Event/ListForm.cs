@@ -26,5 +26,6 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         public DateTime EndDate { get; set; }
         [Required]
         public bool OpenSubscription { get; set; }
+        public DateTime? Subscribed { get; set; }
     }
 }
