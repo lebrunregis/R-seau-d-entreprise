@@ -13,7 +13,7 @@ DECLARE @IsAdmin bit;
 DECLARE @Manager int;
 EXEC @IsAdmin = dbo.FN_IsAdmin @User;
 EXEC @Manager = dbo.FN_GetProjectManagerId @Project;
-IF ( @IsAdmin = 1  OR @Manager = @User)
+IF ( @IsAdmin = 1)
        BEGIN
            UPDATE Project SET Project_Name =  @Name, Project_Description = @Description ,StartDate=CAST(@StartDate AS datetime2(0)),EndDate=CAST(@EndDate AS datetime2(0))   WHERE Project_Id = @Project AND CreatorId = @CreatorId;
            IF (@Project_manager != @Manager AND EXISTS 

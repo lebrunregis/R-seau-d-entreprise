@@ -21,11 +21,11 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Team
         [Display(Name = "Team Leader")]
         public G.Employee TeamLeader { get; set; }
         [Required]
-        [Display(Name = "Creator")]
         public G.Employee Creator { get; set; }
         [Required]
         public G.Project Project { get; set; }
         [DataType(DataType.Date)]
+        [Display(Name = "Creation date")]
         public DateTime DateCreated { get; set; }
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }

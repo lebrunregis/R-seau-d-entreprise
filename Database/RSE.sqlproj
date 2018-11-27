@@ -187,6 +187,8 @@
     <Build Include="dbo\SP\Department\GetEmployeeActiveDepartments.sql" />
     <Build Include="dbo\FN\FN_GetHeadOfDepartmentId.sql" />
     <Build Include="dbo\SP\Department\GetHeadOfDepartmentActiveDepartments.sql" />
+    <Build Include="dbo\SP\Department\GetHeadOfDepartmentId.sql" />
+    <Build Include="dbo\SP\Department\GetEmployeesForDepartment.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

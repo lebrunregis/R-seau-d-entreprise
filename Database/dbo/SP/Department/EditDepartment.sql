@@ -5,4 +5,5 @@
 	@Active bit,
 	@UserId INT
 AS
-	UPDATE Department SET Name = @Name,Description = @Desc , Active = @Active WHERE Department_Id = @DepId
+    IF dbo.FN_IsAdmin(@UserId) = 1
+	    UPDATE Department SET Name = @Name,Description = @Desc , Active = @Active WHERE Department_Id = @DepId

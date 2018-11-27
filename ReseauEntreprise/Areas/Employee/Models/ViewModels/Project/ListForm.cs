@@ -11,7 +11,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
     public class ListForm
     {
         [Required]
-        [HiddenInput]
         [Key]
         public int ProjectId { get; set; }
         [Required]
@@ -20,16 +19,13 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
         [Required]
         [DataType(DataType.MultilineText)]
         public String Description { get; set; }
-        [HiddenInput]
         [Required]
         public D.Employee Manager { get; set; }
-        [HiddenInput]
-        [Required]
-        public D.Employee Creator { get; set; }
         [DataType(DataType.Date)]
-        public DateTime StartDate;
+        public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
-        public DateTime? EndDate;
+        public DateTime? EndDate { get; set; }
+        public bool AmIProjectManager { get; set; }
 
 
         public ListForm()
@@ -37,15 +33,15 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
 
         }
 
-        public ListForm(D.Project Project,D.Employee Manager, D.Employee Creator)
+        public ListForm(D.Project Project,D.Employee Manager, int MyId)
         {
             ProjectId = Project.Id;
             Name = Project.Name;
             Description = Project.Description;
             this.Manager = Manager;
-            this.Creator = Creator;
             this.StartDate = Project.Start;
             this.EndDate = Project.End;
+            AmIProjectManager = (MyId == Manager.Employee_Id);
         }
     }
 }

@@ -48,7 +48,6 @@ namespace ReseauEntreprise.Employee.Controllers
                 TeamLeaderTeams = TeamService.GetActiveTeamsForTeamLeader(Employee_Id),
                 HeadOfDepartmentDepartments = DepartmentService.GetHeadOfDepartmentActiveDepartments(Employee_Id)
             };
-
             return View(form);
         }
 

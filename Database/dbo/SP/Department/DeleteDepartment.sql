@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteDepartment]
-	@DepartmentId int
+	@DepartmentId int, @User int
 AS
-	DELETE FROM Department WHERE Department_Id = @DepartmentId
-RETURN 0
+    IF dbo.FN_IsAdmin(@User) = 1
+	    DELETE FROM Department WHERE Department_Id = @DepartmentId

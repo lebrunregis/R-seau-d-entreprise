@@ -187,7 +187,6 @@
     <Compile Include="Areas\Employee\Controllers\TeamController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\DetailsForm.cs" />
-    <Compile Include="Areas\Employee\Models\ViewModels\Department\EditForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EditEmailForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EditPassForm.cs" />
@@ -196,11 +195,11 @@
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeDepartment\AddEmployeeToDepartmentForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeDepartment\RemoveEmployeeFromDepartmentForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeTeam\EmployeesInTeamForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Employee\DepartmentComparator.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Employee\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\IndexModel.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\ProjectTeams.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\DetailsForm.cs" />
-    <Compile Include="Areas\Employee\Models\ViewModels\Project\EditForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Team\CreateForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Team\DeleteForm.cs" />
@@ -284,6 +283,8 @@
     <Content Include="Areas\Employee\Views\Team\Edit.cshtml" />
     <Content Include="Areas\Employee\Views\Team\EmployeesInTeam.cshtml" />
     <Content Include="Areas\Employee\Views\Team\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\Project\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\Project\Details.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

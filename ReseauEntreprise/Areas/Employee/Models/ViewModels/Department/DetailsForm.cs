@@ -20,11 +20,9 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Department
         public DateTime Created { get; set; }
         [Required]
         public String Description { get; set; }
-        [HiddenInput]
-        [Required]
-        public int Admin_Id { get; set; }
-        [HiddenInput]
         public G.Employee Admin { get; set; }
+        public G.Employee HeadOfDepartment { get; set; }
+        public IEnumerable<G.Employee> Employees { get; set; }
         [Required]
         public bool Active { get; set; }
     }

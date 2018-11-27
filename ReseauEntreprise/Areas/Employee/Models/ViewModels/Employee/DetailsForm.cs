@@ -12,30 +12,29 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee
     {
         [Key]
         public int Id { get; set; }
-        [DisplayName("Nom")]
+        [DisplayName("Last Name")]
         public string LastName { get; set; }
-        [DisplayName("Prénom")]
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [DisplayName("Numéro de registre national")]
+        [DisplayName("National identity number")]
         public string RegNat { get; set; }
         [DisplayName("Adresse")]
         public string Address { get; set; }
         [DataType(DataType.PhoneNumber)]
-        [DisplayName("Numéro de téléphone")]
         public string Phone { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsMe { get; set; }
-        [DisplayName("Equipes")]
         public IEnumerable<D.Team> Teams { get; set; }
-        [DisplayName("Départements")]
         public IEnumerable<D.Department> Departments { get; set; }
-        [DisplayName("Chef des équipes")]
+        [DisplayName("Team leader of teams:")]
         public IEnumerable<D.Team> TeamLeaderTeams { get; set; }
-        [DisplayName("Chef des projets")]
+        [DisplayName("Project manager of projects:")]
         public IEnumerable<D.Project> ProjectManagerProjects { get; set; }
-        [DisplayName("Chef des départements")]
+        [DisplayName("Head of departments:")]
         public IEnumerable<D.Department> HeadOfDepartmentDepartments { get; set; }
+        public bool CanIAddToDepartment { get; set; }
+        public bool CanIRemoveFromDepartment { get; set; }
     }
 }

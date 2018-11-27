@@ -16,7 +16,7 @@ namespace ReseauEntreprise.Employee.Controllers
     [EmployeeRequired]
     public class DepartmentController : Controller
     {
-        // GET: Admin/Department
+        // GET: Employee/Department
         public ActionResult Index()
         {
             List<ListForm> list = new List<ListForm>();
@@ -37,7 +37,7 @@ namespace ReseauEntreprise.Employee.Controllers
             return View(list);
         }
 
-        // GET: Admin/Department/Details/5
+        // GET: Employee/Department/Details/5
         public ActionResult Details(int id)
         {
             G.Department Department = DepartmentService.GetDepartmentById(id);
@@ -47,68 +47,41 @@ namespace ReseauEntreprise.Employee.Controllers
                 Title = Department.Title,
                 Created = Department.Created,
                 Description = Department.Description,
-                Admin_Id = Department.Admin_Id,
                 Admin = null,
                 Active = Department.Active,
             };
             return View(form);
         }
-
-        // GET: Admin/Department/Edit/5
-        public ActionResult Edit(int id)
-        {
-            G.Department Department = DepartmentService.GetDepartmentById(id);
-            EditForm form = new EditForm
-            {
-                Id = Department.Id,
-                Title = Department.Title,
-                Created = Department.Created,
-                Description = Department.Description,
-                Admin_Id = Department.Admin_Id,
-                Admin = null,
-                Active = Department.Active,
-            };
-            return View(form);
-        }
-
-        // POST: Admin/Department/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, EditForm form)
-        {
-            if (ModelState.IsValid)
-            {
-                G.Department Department = new G.Department
-                {
-                    Id = form.Id,
-                    Title = form.Title,
-                    Description = form.Description,
-                    Active = form.Active
-                };
-                try
-                {
-                    DepartmentService.Edit(SessionUser.GetUser().Id, Department);
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
-            }
-            return View();
-        }
-
-
 
         public ActionResult AddEmployeeToDepartment(int id)
         {
-            List<SelectListItem> DepartmentList = new List<SelectListItem>();
-            foreach (G.Department dep in DepartmentService.GetAllActive())
+            int My_Id = SessionUser.GetUser().Id;
+            IEnumerable<G.Department> MyDepartments = new List<G.Department>();
+            if (AuthService.IsAdmin(My_Id))
             {
-                DepartmentList.Add(new SelectListItem
+                MyDepartments = DepartmentService.GetAllActive();
+            }
+            else
+            {
+                MyDepartments = DepartmentService.GetHeadOfDepartmentActiveDepartments(My_Id);
+            }
+            if (!MyDepartments.Any())
+            {
+                return RedirectToAction("Index", "Employee");
+            }
+            IEnumerable<G.Department> EmpDepartments = DepartmentService.GetEmployeeDepartments(id);
+
+            List<SelectListItem> DepartmentList = new List<SelectListItem>();
+            foreach (G.Department dep in MyDepartments)
+            {
+                if (!EmpDepartments.Any(empDep => empDep.Id == dep.Id))
                 {
-                    Text = dep.Title,
-                    Value = dep.Id.ToString()
-                });
+                    DepartmentList.Add(new SelectListItem
+                    {
+                        Text = dep.Title,
+                        Value = dep.Id.ToString()
+                    });
+                }
             }
             ED.AddEmployeeToDepartmentForm form = new ED.AddEmployeeToDepartmentForm
             {
@@ -123,21 +96,40 @@ namespace ReseauEntreprise.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                    DepartmentService.AddEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId);   
+                DepartmentService.AddEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId, SessionUser.GetUser().Id);
+                return RedirectToAction("Detail", "Employee");
             }
-            return RedirectToAction("Index","Employee");
+            return RedirectToAction("AddEmployeeToDepartment");
         }
 
         public ActionResult RemoveEmployeeFromDepartment(int id)
         {
+            int My_Id = SessionUser.GetUser().Id;
+            IEnumerable<G.Department> MyDepartments = new List<G.Department>();
+            if (AuthService.IsAdmin(My_Id))
+            {
+                MyDepartments = DepartmentService.GetAllActive();
+            }
+            else
+            {
+                MyDepartments = DepartmentService.GetHeadOfDepartmentActiveDepartments(My_Id);
+            }
+            if (!MyDepartments.Any())
+            {
+                return RedirectToAction("Index", "Employee");
+            }
+            IEnumerable<G.Department> EmpDepartments = DepartmentService.GetEmployeeDepartments(id);
             List<SelectListItem> DepartmentList = new List<SelectListItem>();
             foreach (G.Department dep in DepartmentService.GetEmployeeDepartments(id))
             {
-                DepartmentList.Add(new SelectListItem
+                if (MyDepartments.Any(MyDep => MyDep.Id == dep.Id))
                 {
-                    Text = dep.Title,
-                    Value = dep.Id.ToString()
-                });
+                    DepartmentList.Add(new SelectListItem
+                    {
+                        Text = dep.Title,
+                        Value = dep.Id.ToString()
+                    });
+                }
             }
             ED.RemoveEmployeeFromDepartmentForm form = new ED.RemoveEmployeeFromDepartmentForm
             {
@@ -153,9 +145,10 @@ namespace ReseauEntreprise.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                    DepartmentService.RemoveEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId);       
+                DepartmentService.RemoveEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId, SessionUser.GetUser().Id);
+                return RedirectToAction("Index", "Employee");
             }
-            return RedirectToAction("Index", "Employee");
+            return RedirectToAction("RemoveEmployeeFromDepartment");
         }
     }
 }

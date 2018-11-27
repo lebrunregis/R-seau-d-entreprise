@@ -1,14 +1,16 @@
 ﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee.DetailsForm
 
 @{
-    ViewBag.Title = "Details";
+	/**/
+
+	ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>DetailsForm</h4>
-    <hr />
+	<h4>DetailsForm</h4>
+	<hr />
 	<dl class="dl-horizontal">
 		<dt>
 			@Html.DisplayNameFor(model => model.LastName)
@@ -106,7 +108,19 @@
 </div>
 @if (Model.IsMe)
 {
-<p>
-    @Html.ActionLink("Edit", "Edit", new { controller = "Profile" })
-</p>
+	<p>
+		@Html.ActionLink("Edit", "Edit", new { controller = "Profile" })
+	</p>
+}
+@if (Model.CanIAddToDepartment)
+{
+	<p>
+		@Html.ActionLink(linkText: "Add Department", actionName: "AddEmployeeToDepartment", controllerName: "Department", routeValues: new { id = Model.Id }, htmlAttributes: null)
+	</p>
+}
+@if (Model.CanIRemoveFromDepartment)
+{
+	<p>
+		@Html.ActionLink(linkText: "Remove Department", actionName: "RemoveEmployeeFromDepartment", controllerName: "Department", routeValues: new { id = Model.Id }, htmlAttributes: null)
+	</p>
 }
