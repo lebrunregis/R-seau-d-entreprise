@@ -1,5 +1,5 @@
-﻿using G = Model.Global.Data;
-using Model.Global.Service;
+﻿using C = Model.Client.Data;
+using Model.Client.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +19,10 @@ namespace ReseauEntreprise.Employee.Controllers
         public ActionResult Details(int id)
         {
             int My_Id = SessionUser.GetUser().Id;
-            G.Employee e = EmployeeService.GetForAdmin(id);
+            C.Employee e = EmployeeService.GetForAdmin(id);
             DetailsForm Details = new DetailsForm()
             {
-                Id = e.Employee_Id,
+                Id = id,
                 LastName = e.LastName,
                 FirstName = e.FirstName,
                 Email = e.Email,
@@ -32,14 +32,14 @@ namespace ReseauEntreprise.Employee.Controllers
                 IsActif = e.Actif,
                 IsAdmin = e.IsAdmin,
                 IsMe = (e.Employee_Id == My_Id),
-                Teams = TeamService.GetAllActiveTeamsForEmployee(e.Employee_Id),
-                Departments = DepartmentService.GetEmployeeActiveDepartments(e.Employee_Id),
-                TeamLeaderTeams = TeamService.GetActiveTeamsForTeamLeader(e.Employee_Id),
-                ProjectManagerProjects = ProjectService.GetActiveProjectsForManager(e.Employee_Id),
-                HeadOfDepartmentDepartments = DepartmentService.GetHeadOfDepartmentActiveDepartments(e.Employee_Id)
+                Teams = TeamService.GetAllActiveTeamsForEmployee(id),
+                Departments = DepartmentService.GetEmployeeActiveDepartments(id),
+                TeamLeaderTeams = TeamService.GetActiveTeamsForTeamLeader(id),
+                ProjectManagerProjects = ProjectService.GetActiveProjectsForManager(id),
+                HeadOfDepartmentDepartments = DepartmentService.GetHeadOfDepartmentActiveDepartments(id)
             };
 
-            IEnumerable<G.Department> MyDepartments = new List<G.Department>();
+            IEnumerable<C.Department> MyDepartments = new List<C.Department>();
             if (AuthService.IsAdmin(My_Id))
             {
                 MyDepartments = DepartmentService.GetAllActive();
@@ -48,7 +48,7 @@ namespace ReseauEntreprise.Employee.Controllers
             {
                 MyDepartments = DepartmentService.GetHeadOfDepartmentActiveDepartments(My_Id);
             }
-            IEnumerable<G.Department> EmpDepartments = DepartmentService.GetEmployeeDepartments(id);
+            IEnumerable<C.Department> EmpDepartments = DepartmentService.GetEmployeeDepartments(id);
             var intersec = from MyDep in MyDepartments
                     join EmpDep in EmpDepartments on MyDep.Id equals EmpDep.Id
                     select new { };

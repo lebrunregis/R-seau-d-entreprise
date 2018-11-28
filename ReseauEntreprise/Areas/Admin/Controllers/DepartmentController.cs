@@ -124,9 +124,9 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 Active = Department.Active,
             };
 
-            IEnumerable<G.Employee> Employees = EmployeeService.GetAllActive();
+            IEnumerable<C.Employee> Employees = EmployeeService.GetAllActive();
             List<SelectListItem> HeadOfDepartmentCandidates = new List<SelectListItem>();
-            foreach (G.Employee emp in Employees)
+            foreach (C.Employee emp in Employees)
             {
                 HeadOfDepartmentCandidates.Add(new SelectListItem()
                 {

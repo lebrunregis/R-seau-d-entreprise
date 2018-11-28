@@ -73,15 +73,15 @@ namespace Model.Client.Service
             return ClientDepartments;
         }
 
-        public static int AddEmployeeDepartment(int Employee_Id, int Department_Id)
+        public static int AddEmployeeDepartment(int Employee_Id, int Department_Id,int User)
         {
 
-            return GS.DepartmentService.AddEmployeeDepartment(Employee_Id, Department_Id);
+            return GS.DepartmentService.AddEmployeeDepartment(Employee_Id, Department_Id,User);
         }
 
-        public static int RemoveEmployeeDepartment(int Employee_Id, int Department_Id)
+        public static int RemoveEmployeeDepartment(int Employee_Id, int Department_Id,int User)
         {
-            return GS.DepartmentService.RemoveEmployeeDepartment(Employee_Id, Department_Id);
+            return GS.DepartmentService.RemoveEmployeeDepartment(Employee_Id, Department_Id,User);
         }
         public static IEnumerable<EmployeeDepartmentHistory> GetEmployeeDepartmentHistory(int Employee_Id)
         {
