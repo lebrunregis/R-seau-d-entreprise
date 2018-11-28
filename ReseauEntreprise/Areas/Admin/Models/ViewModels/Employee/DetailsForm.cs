@@ -23,6 +23,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
         public bool IsAdmin { get; set; }
+        public bool IsActif { get; set; }
         public IEnumerable<StatusForm> StatusHistory { get; set; }
         public IEnumerable<ProjectManagerStatusForm> ProjectManagerHistory { get; set; }
         public IEnumerable<DepartmentForm> DepartmentHistory { get; set; }

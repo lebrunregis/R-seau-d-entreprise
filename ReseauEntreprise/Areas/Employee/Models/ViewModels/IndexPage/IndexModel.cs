@@ -10,13 +10,13 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.IndexPage
     public class IndexModel
     {
         public IEnumerable<ProjectTeams> ProjectTeamList { get; set; }
-        [DisplayName("Mes départements")]
+        [DisplayName("My Departments")]
         public IEnumerable<D.Department> MyDepartments { get; set; }
-        [DisplayName("Projets que je mène")]
+        [DisplayName("Projects where I am Project Manager")]
         public IEnumerable<D.Project> ProjectManagerProjects { get; set; }
-        [DisplayName("Departements que je mène")]
+        [DisplayName("Departments where I am Head of Department")]
         public IEnumerable<D.Department> HeadOfDepartmentDepartments { get; set; }
-        [DisplayName("Equipes que je mène")]
+        [DisplayName("Teams where I am Team Leader")]
         public IEnumerable<D.Team> TeamLeaderTeams { get; set; }
     }
 }

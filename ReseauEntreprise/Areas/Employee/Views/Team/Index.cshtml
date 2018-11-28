@@ -27,7 +27,7 @@
 			@Html.DisplayNameFor(model => model.ProjectDeadLine)
 		</th>
 		<th>
-			Mes roles
+			My roles
 		</th>
 		<th></th>
 	</tr>
@@ -55,15 +55,15 @@
 		<td>
 			@if (item.AmIPartOfTeam)
 			{
-				<span>Membre de l'equipe<br /></span>
+				<span>Team member<br /></span>
 			}
 			@if (item.AmITeamLeader)
 			{
-				<span>Chef d'equipe<br /></span>
+				<span>Team Leader<br /></span>
 			}
 			@if (item.AmIProjectManager)
 			{
-				<span>Chef du projet</span>
+				<span>Project Manager</span>
 			}
 		</td>
 		<td>
@@ -71,7 +71,7 @@
 			<br />
 			@if (item.AmITeamLeader || item.AmIProjectManager)
 			{
-				@Html.ActionLink("Changer la composition", "EmployeesInTeam", new { id = item.TeamId })
+				@Html.ActionLink("Add or remove members", "EmployeesInTeam", new { id = item.TeamId })
 				<br />
 			}
 			@if (item.AmIProjectManager)

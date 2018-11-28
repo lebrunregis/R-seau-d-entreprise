@@ -10,23 +10,13 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Department
 {
     public class ListForm
     {
-        [HiddenInput]
         [Key]
         public int Id { get; set; }
-        [Required]
-        [MaxLength(50)]
         public String Title { get; set; }
         [DataType(DataType.Date)]
-        [Required]
         public DateTime Created { get; set; }
-        [Required]
         public String Description { get; set; }
-        [HiddenInput]
-        [Required]
-        public int Admin_Id { get; set; }
-        [HiddenInput]
-        public G.Employee Admin { get; set; }
-        [Required]
-        public bool Active { get; set; }
+        [Display(Name= "Head of Department")]
+        public G.Employee HeadOfDepartment { get; set; }
     }
 }

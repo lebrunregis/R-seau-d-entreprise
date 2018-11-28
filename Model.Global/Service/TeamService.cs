@@ -115,5 +115,13 @@ namespace Model.Global.Service
             cmd.AddParameter("Employee_Id", Employee_Id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToTeam());
         }
+
+        public static IEnumerable<Data.Team> GetActiveTeamsInCommon(int Emp_Id_1, int Emp_Id_2)
+        {
+            Command cmd = new Command("GetActiveTeamsInCommon", true);
+            cmd.AddParameter("Emp_Id_1", Emp_Id_1);
+            cmd.AddParameter("Emp_Id_2", Emp_Id_2);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToTeam());
+        }
     }
 }

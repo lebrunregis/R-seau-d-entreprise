@@ -20,7 +20,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Department
         public DateTime Created { get; set; }
         [Required]
         public String Description { get; set; }
-        public G.Employee Admin { get; set; }
+        public G.Employee Creator { get; set; }
         public G.Employee HeadOfDepartment { get; set; }
         public IEnumerable<G.Employee> Employees { get; set; }
         [Required]

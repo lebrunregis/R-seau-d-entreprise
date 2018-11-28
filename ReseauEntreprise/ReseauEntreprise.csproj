@@ -197,6 +197,7 @@
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeTeam\EmployeesInTeamForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Employee\DepartmentComparator.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Employee\DetailsForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Employee\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\IndexModel.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\ProjectTeams.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\DetailsForm.cs" />
@@ -285,6 +286,11 @@
     <Content Include="Areas\Employee\Views\Team\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Project\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Project\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\Department\AddEmployeeToDepartment.cshtml" />
+    <Content Include="Areas\Employee\Views\Department\RemoveEmployeeFromDepartment.cshtml" />
+    <Content Include="Areas\Employee\Views\Department\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\Department\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\Employee\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

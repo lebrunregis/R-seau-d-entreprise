@@ -25,6 +25,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
         public bool IsAdmin { get; set; }
+        public bool IsActif { get; set; }
         public bool IsMe { get; set; }
         public IEnumerable<D.Team> Teams { get; set; }
         public IEnumerable<D.Department> Departments { get; set; }
