@@ -26,5 +26,5 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Team
         public DateTime Created { get; set; }
         [HiddenInput]
         public int ProjectId { get; set; }
-}
+    }
 }
