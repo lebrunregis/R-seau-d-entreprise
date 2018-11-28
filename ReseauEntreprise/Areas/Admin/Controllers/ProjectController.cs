@@ -7,7 +7,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
-using Model.Client.Data;
 using ReseauEntreprise.Admin.Models.ViewModels.Project;
 using ReseauEntreprise.Areas.Admin.Models.ViewModels.Project;
 
@@ -20,9 +19,9 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         public ActionResult Index()
         {
             List<ListForm> list = new List<ListForm>();
-            foreach (Project Project in ProjectService.GetAllActive())
+            foreach (C.Project Project in ProjectService.GetAllActive())
             {
-                int? ManagerId = ProjectService.GetProjectManagerId((int) Project.Id);
+                int? ManagerId = ProjectService.GetProjectManagerId((int)Project.Id);
                 C.Employee Manager = EmployeeService.Get((int)ManagerId);
                 C.Employee Creator = EmployeeService.Get(Project.CreatorId);
                 ListForm form = new ListForm(Project, Manager, Creator);
@@ -91,7 +90,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
 
         public ActionResult Edit(int id)
         {
-            Project project = ProjectService.GetProjectById(id);
+            C.Project project = ProjectService.GetProjectById(id);
             C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
             EditForm form = new EditForm()
             {

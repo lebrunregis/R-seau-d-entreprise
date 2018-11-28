@@ -151,7 +151,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                C.Team Team = new C.Team(form.Id, form.Name, form.Created, null, form.CreatorId, form.Project_Id,null);
+                C.Team Team = new C.Team(form.Id, form.Name, form.Created, null, form.CreatorId, form.ProjectId,null);
                 try
                 {
                     if (TeamService.Edit(SessionUser.GetUser().Id, Team, form.SelectedTeamLeaderId))
