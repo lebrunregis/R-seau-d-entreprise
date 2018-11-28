@@ -9,15 +9,21 @@ Modèle de script de post-déploiement
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-DISABLE TRIGGER [OnDeleteEmployee] ON Employee;  
-GO
-DISABLE TRIGGER [OnDeleteDocument] ON Document;
-GO
-DISABLE TRIGGER [OnDeleteEmployeeStatusHistory] ON EmployeeStatusHistory;  
+DISABLE TRIGGER [OnDeleteAdmin] ON [Admin];   
 GO
 DISABLE TRIGGER [OnDeleteDepartment] ON Department;  
 GO
-DISABLE TRIGGER [OnDeleteEvent] ON Event;  
+DISABLE TRIGGER [OnDeleteDocument] ON Document;
+GO
+DISABLE TRIGGER [OnDeleteEmployee] ON Employee;  
+GO
+DISABLE TRIGGER [OnDeleteEmployeeDepartment] ON EmployeeDepartment;
+GO
+DISABLE TRIGGER [OnDeleteEmployeeStatusHistory] ON EmployeeStatusHistory;  
+GO
+DISABLE TRIGGER [OnDeleteEmployeeTeam] ON [EmployeeTeam];  
+GO
+DISABLE TRIGGER [OnDeleteEvent] ON [Event];  
 GO
 DISABLE TRIGGER [OnDeleteProject] ON Project;  
 GO
@@ -25,12 +31,14 @@ DISABLE TRIGGER [OnDeleteTask] ON Task;
 GO
 DISABLE TRIGGER [OnDeleteTeam] ON Team;  
 GO
-DISABLE TRIGGER [OnDeleteAdmin] ON [Admin];   
-GO
-DISABLE TRIGGER [OnDeleteEmployeeTeam] ON [EmployeeTeam];  
-GO
 --DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 --GO
+DELETE FROM [EmployeeEvent]
+GO
+DELETE FROM [EmployeeHeadOfDepartment]
+GO
+DELETE FROM [EmployeeDepartment]
+GO
 DELETE FROM [Department]
 GO
 DELETE FROM [EmployeeTeamLeader];
@@ -88,23 +96,27 @@ DECLARE @last_id int = ident_current('[dbo].Employee');
 Update [dbo].Employee SET Email='admin@test.be' where Employee_Id = @last_id;
 INSERT INTO[dbo].Admin (Employee_Id) VALUES (@last_id);
 
-ENABLE TRIGGER [OnDeleteEmployee] ON Employee;  
+ENABLE TRIGGER [OnDeleteAdmin] ON [Admin];   
+GO
+ENABLE TRIGGER [OnDeleteDepartment] ON Department;  
 GO
 ENABLE TRIGGER [OnDeleteDocument] ON Document;
 GO
+ENABLE TRIGGER [OnDeleteEmployee] ON Employee;  
+GO
+ENABLE TRIGGER [OnDeleteEmployeeDepartment] ON EmployeeDepartment;
+GO
 ENABLE TRIGGER [OnDeleteEmployeeStatusHistory] ON EmployeeStatusHistory;  
 GO
-ENABLE TRIGGER [OnDeleteEvent] ON Event;  
+ENABLE TRIGGER [OnDeleteEmployeeTeam] ON [EmployeeTeam];  
+GO
+ENABLE TRIGGER [OnDeleteEvent] ON [Event];  
 GO
 ENABLE TRIGGER [OnDeleteProject] ON Project;  
 GO
 ENABLE TRIGGER [OnDeleteTask] ON Task;  
 GO
 ENABLE TRIGGER [OnDeleteTeam] ON Team;  
-GO
-ENABLE TRIGGER [OnDeleteAdmin] ON [Admin];   
-GO
-ENABLE TRIGGER [OnDeleteEmployeeTeam] ON [EmployeeTeam];  
 GO
 --DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 --GO
