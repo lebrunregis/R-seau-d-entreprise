@@ -3,5 +3,11 @@
 	@Description nvarchar (max),
 	@AdminId int
 AS
-	INSERT INTO Department(Name,Description,Creator_Id) VALUES (@Name,@Description,@AdminId)
-SELECT  convert(int,SCOPE_IDENTITY() );
+BEGIN
+    IF dbo.FN_IsAdmin(@AdminId) = 1
+	BEGIN
+       DECLARE @DepId table(id int);
+	   INSERT INTO Department(Name,Description,Creator_Id) OUTPUT INSERTED.Department_Id INTO @DepId(id) VALUES (@Name,@Description,@AdminId);
+       SELECT TOP 1 id FROM @DepId;
+	END
+END

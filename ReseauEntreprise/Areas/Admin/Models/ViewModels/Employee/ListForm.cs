@@ -12,18 +12,16 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee
     {
         [HiddenInput]
         public int Id { get; set; }
-        [DisplayName("Nom")]
+        [DisplayName("Last name")]
         public string LastName { get; set; }
-        [DisplayName("Prénom")]
+        [DisplayName("First name")]
         public string FirstName { get; set; }
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [DisplayName("Numéro de registre national")]
+        [DisplayName("National identity number")]
         public string RegNat { get; set; }
-        [DisplayName("Adresse")]
         public string Address { get; set; }
         [DataType(DataType.PhoneNumber)]
-        [DisplayName("Numéro de téléphone")]
         public string Phone { get; set; }
         public bool IsAdmin { get; set; }
     }

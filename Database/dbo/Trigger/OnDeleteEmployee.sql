@@ -12,4 +12,5 @@ BEGIN
 	DELETE FROM EmployeeStatusHistory WHERE Employee_Id IN (SELECT Id FROM @EmpId) AND EmployeeStatus_Id=1 AND EndDate is NULL;
 	DELETE FROM [Admin] WHERE Employee_Id IN (SELECT Id FROM @EmpId);
 	DELETE FROM EmployeeTeam WHERE Employee_Id IN (SELECT Id FROM @EmpId);
+	DELETE FROM EmployeeDepartment WHERE Employee_Id IN (SELECT Id FROM @EmpId);
 END

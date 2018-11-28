@@ -26,6 +26,10 @@ namespace Model.Global.Mapper
             {
                 e.IsAdmin = (dr["Actif"] == DBNull.Value) ? false : (bool)dr["Actif"];
             }
+            if (Enumerable.Range(0, dr.FieldCount).Select(x => dr.GetName(x)).Contains("EmployeeActive"))
+            {
+                e.Actif = (dr["EmployeeActive"] == DBNull.Value) ? false : (bool)dr["EmployeeActive"];
+            }
             return e;
         }
         internal static Project ToProject(this IDataRecord dr)

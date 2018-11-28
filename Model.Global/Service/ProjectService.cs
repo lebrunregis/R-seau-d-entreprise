@@ -84,5 +84,11 @@ namespace Model.Global.Service
             cmd.AddParameter("Project_Id", ProjectId);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToTeam());
         }
+        public static IEnumerable<Data.Project> GetActiveProjectsForManager(int Manager_Id)
+        {
+            Command cmd = new Command("GetActiveProjectsForManager", true);
+            cmd.AddParameter("Manager_Id", Manager_Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToProject());
+        }
     }
 }

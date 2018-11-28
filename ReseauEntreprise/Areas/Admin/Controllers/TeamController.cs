@@ -73,9 +73,10 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 int TeamLeaderId = form.SelectedTeamLeaderId;
                 try
                 {
-                    if (TeamService.Create(t, TeamLeaderId) != null)
+                    int? NewTeam_Id = TeamService.Create(t, TeamLeaderId);
+                    if (NewTeam_Id != null)
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("EmployeesInTeam", new { id = NewTeam_Id });
                     }
                 }
                 catch (System.Data.SqlClient.SqlException exception)

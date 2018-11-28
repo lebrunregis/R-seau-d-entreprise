@@ -44,6 +44,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 Address = e.Address,
                 Phone = e.Phone,
                 RegNat = e.RegNat,
+                IsActif = e.Actif,
                 IsAdmin = (bool) e.IsAdmin
             };
             Details.DepartmentHistory = DepartmentService.GetEmployeeDepartmentHistory(id).Select(tmp => new DepartmentForm()

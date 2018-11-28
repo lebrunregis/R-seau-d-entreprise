@@ -19,6 +19,7 @@ namespace Réseau_d_entreprise.Session.Attributes
 
             if (SessionUser.GetUser() != null)
             {
+                var req = httpContext.Request.Url.Segments[4];
                 accessAllowed = true;
             }
             return accessAllowed;

@@ -15,5 +15,9 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Department
         public String Title { get; set; }
         [Required]
         public String Description { get; set; }
+        [Required]
+        [Display(Name = "Head of department")]
+        public int SelectedHeadOfDepartmentId { get; set; }
+        public IEnumerable<SelectListItem> HeadOfDepartmentCandidateList { get; set; }
     }
 }

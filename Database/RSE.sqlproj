@@ -191,6 +191,15 @@
     <Build Include="dbo\FN\FN_IsInTeam.sql" />
     <Build Include="dbo\SP\Team\IsInTeam.sql" />
     <Build Include="dbo\SP\Project\GetAllTeamsForProject.sql" />
+    <Build Include="dbo\SP\Team\GetAllActiveTeamsForEmployee.sql" />
+    <Build Include="dbo\SP\Project\GetActiveProjectsForManager.sql" />
+    <Build Include="dbo\SP\Team\GetActiveTeamsForTeamLeader.sql" />
+    <Build Include="dbo\SP\Department\GetEmployeeActiveDepartments.sql" />
+    <Build Include="dbo\FN\FN_GetHeadOfDepartmentId.sql" />
+    <Build Include="dbo\SP\Department\GetHeadOfDepartmentActiveDepartments.sql" />
+    <Build Include="dbo\SP\Department\GetHeadOfDepartmentId.sql" />
+    <Build Include="dbo\SP\Department\GetEmployeesForDepartment.sql" />
+    <Build Include="dbo\SP\Team\GetActiveTeamsInCommon.sql" />
     <Build Include="dbo\SP\Event\GetSubscriptionStatus.sql" />
     <Build Include="dbo\SP\Event\GetEmployeeSubscriptionStatus.sql" />
   </ItemGroup>
