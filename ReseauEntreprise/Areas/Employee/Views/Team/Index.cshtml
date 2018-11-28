@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ReseauEntreprise.Areas.Employee.Models.ViewModels.Team.ListForm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mes equipes</h2>
+
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Name)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.CreationDate)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.TeamLeader)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ProjectManager)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Project)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ProjectDeadLine)
+		</th>
+		<th>
+			My roles
+		</th>
+		<th></th>
+	</tr>
+
+@foreach (var item in Model) {
+	<tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.Name)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.CreationDate)
+		</td>
+		<td>
+			@{ Html.RenderPartial("EmployeePartial", item.TeamLeader); }
+		</td>
+		<td>
+			@{ Html.RenderPartial("EmployeePartial", item.ProjectManager); }
+		</td>
+		<td>
+			@{ Html.RenderPartial("ProjectPartial", item.Project); }
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.ProjectDeadLine)
+		</td>
+		<td>
+			@if (item.AmIPartOfTeam)
+			{
+				<span>Team member<br /></span>
+			}
+			@if (item.AmITeamLeader)
+			{
+				<span>Team Leader<br /></span>
+			}
+			@if (item.AmIProjectManager)
+			{
+				<span>Project Manager</span>
+			}
+		</td>
+		<td>
+			@Html.ActionLink("Details", "Details", new { id = item.TeamId })
+			<br />
+			@if (item.AmITeamLeader || item.AmIProjectManager)
+			{
+				@Html.ActionLink("Add or remove members", "EmployeesInTeam", new { id = item.TeamId })
+				<br />
+			}
+			@if (item.AmIProjectManager)
+			{
+				@Html.ActionLink("Edit", "Edit", new { id = item.TeamId })
+				<br />
+				@Html.ActionLink("Delete", "Delete", new { id = item.TeamId })
+			}
+		</td>
+	</tr>
+}
+
+</table>

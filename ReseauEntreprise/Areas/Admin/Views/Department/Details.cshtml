@@ -1,7 +1,7 @@
 ﻿@model ReseauEntreprise.Areas.Admin.Models.ViewModels.Department.DetailsForm
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
@@ -9,48 +9,66 @@
 <div>
     <h4>DetailsForm</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Title)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Title)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Created)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Created)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Description)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Admin_Id)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Admin)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Admin_Id)
-        </dd>
+		<dd>
+			@{Html.RenderPartial("EmployeePartial", Model.Admin);}
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Active)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Active)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Active)
+		</dd>
 
-    </dl>
+		@if (Model.HeadOfDepartment != null)
+		{
+		    <dt>
+			    @Html.DisplayNameFor(model => model.HeadOfDepartment)
+		    </dt>
+
+		    <dd>
+			    @{Html.RenderPartial("EmployeePartial", Model.HeadOfDepartment);}
+		    </dd>
+		}
+		<dt>
+			@Html.DisplayNameFor(model => model.Employees)
+		</dt>
+
+		<dd>
+			@{Html.RenderPartial("EmployeeListPartial", Model.Employees);}
+		</dd>
+
+	</dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

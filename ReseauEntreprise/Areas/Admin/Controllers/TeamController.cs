@@ -78,9 +78,10 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 int TeamLeaderId = form.SelectedTeamLeaderId;
                 try
                 {
-                    if (TeamService.Create(t, TeamLeaderId) != null)
+                    int? NewTeam_Id = TeamService.Create(t, TeamLeaderId);
+                    if (NewTeam_Id != null)
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("EmployeesInTeam", new { id = NewTeam_Id });
                     }
                 }
                 catch (System.Data.SqlClient.SqlException exception)
@@ -253,7 +254,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             List<EmployeesInTeamForm> EmployeesInTeamFormList = new List<EmployeesInTeamForm>();
             foreach (D.Employee employee in Employees)
             {
-                IEnumerable<D.Department> departments = DepartmentService.GetEmployeeDepartments(employee.Employee_Id);
+                IEnumerable<D.Department> departments = DepartmentService.GetEmployeeActiveDepartments(employee.Employee_Id);
                 EmployeesInTeamFormList.Add(new EmployeesInTeamForm
                 {
                     Employee = employee,

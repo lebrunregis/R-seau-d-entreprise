@@ -29,5 +29,9 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Department
         public G.Employee Admin { get; set; }
         [Required]
         public bool Active { get; set; }
+        [Required]
+        [Display(Name = "Head of department")]
+        public int SelectedHeadOfDepartmentId { get; set; }
+        public IEnumerable<SelectListItem> HeadOfDepartmentCandidateList { get; set; }
     }
 }

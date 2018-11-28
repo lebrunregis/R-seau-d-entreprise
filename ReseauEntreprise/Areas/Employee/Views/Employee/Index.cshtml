@@ -1,0 +1,86 @@
+﻿@model IEnumerable<ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee.ListForm>
+
+@{
+	ViewBag.Title = "Employees";
+}
+
+<h2>Employees</h2>
+
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.FirstName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.LastName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Email)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Departments)
+		</th>
+		<th>
+			Teams in common
+		</th>
+		<th>
+			Project
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		int rspan = (item.TeamsInCommon.Count() == 0) ? 1 : item.TeamsInCommon.Count();
+		for (int i = 0; i < rspan; i++)
+		{
+			if (i == 0)
+			{
+			<tr>
+				<td rowspan="@(rspan)">
+					@if (item.IsMe){<span>(It's me!) </span>}
+					@Html.DisplayFor(modelItem => item.FirstName)
+				</td>
+				<td rowspan="@(rspan)">
+					@Html.DisplayFor(modelItem => item.LastName)
+				</td>
+				<td rowspan="@(rspan)">
+					@Html.DisplayFor(modelItem => item.Email)
+				</td>
+				<td rowspan="@(rspan)">
+					@{Html.RenderPartial("DepartmentListPartial", item.Departments);}
+				</td>
+				@if (item.TeamsInCommon.Any())
+				{
+				<td>
+					@{Html.RenderPartial("TeamListPartial", item.TeamsInCommon.ElementAt(i).Teams);}
+				</td>
+				<td>
+					@{Html.RenderPartial("ProjectPartial", item.TeamsInCommon.ElementAt(i).Project);}
+				</td>
+				}
+				else
+				{
+				<td></td>
+				<td></td>
+				}
+				<td rowspan="@(rspan)">
+					@Html.ActionLink("Details", "Details", new { id = item.Id })
+				</td>
+			</tr>
+			}
+			else
+			{
+			<tr>
+				<td>
+					@{Html.RenderPartial("TeamListPartial", item.TeamsInCommon.ElementAt(i).Teams);}
+				</td>
+				<td>
+					@{Html.RenderPartial("ProjectPartial", item.TeamsInCommon.ElementAt(i).Project);}
+				</td>
+			</tr>		
+			}
+		}		
+	}
+
+</table>

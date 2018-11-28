@@ -41,6 +41,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         public ActionResult Details(int id)
         {
             G.Department Department = DepartmentService.GetDepartmentById(id);
+
             DetailsForm form = new DetailsForm
             {
                 Id = Department.Id,
@@ -48,16 +49,34 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 Created = Department.Created,
                 Description = Department.Description,
                 Admin_Id = Department.Admin_Id,
-                Admin = null,
+                Admin = EmployeeService.Get(Department.Admin_Id),
                 Active = Department.Active,
+                Employees = DepartmentService.GetEmployeesForDepartment(id)
             };
+            int? HeadOfDepartmentId = DepartmentService.GetHeadOfDepartmentId(id);
+            if (HeadOfDepartmentId != null)
+            {
+                form.HeadOfDepartment = EmployeeService.Get((int)HeadOfDepartmentId);
+            }
             return View(form);
         }
 
         // GET: Admin/Department/Create
         public ActionResult Create()
         {
-            return View();
+            CreateForm form = new CreateForm();
+            IEnumerable<G.Employee> Employees = EmployeeService.GetAllActive();
+            List<SelectListItem> HeadOfDepartmentCandidates = new List<SelectListItem>();
+            foreach (G.Employee emp in Employees)
+            {
+                HeadOfDepartmentCandidates.Add(new SelectListItem()
+                {
+                    Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
+                    Value = emp.Employee_Id.ToString()
+                });
+            }
+            form.HeadOfDepartmentCandidateList = HeadOfDepartmentCandidates;
+            return View(form);
         }
 
         // POST: Admin/Department/Create
@@ -72,10 +91,27 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                     Description = form.Description
                 };
 
-                DepartmentService.Create(Department, SessionUser.GetUser().Id);
-                return RedirectToAction("Index");
+                int? DepId = DepartmentService.Create(Department, SessionUser.GetUser().Id);
+                if (DepId != null)
+                {
+                    if (DepartmentService.ChangeHeadOfDepartment((int)DepId, form.SelectedHeadOfDepartmentId, SessionUser.GetUser().Id))
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                IEnumerable<G.Employee> Employees = EmployeeService.GetAllActive();
+                List<SelectListItem> HeadOfDepartmentCandidates = new List<SelectListItem>();
+                foreach (G.Employee emp in Employees)
+                {
+                    HeadOfDepartmentCandidates.Add(new SelectListItem()
+                    {
+                        Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
+                        Value = emp.Employee_Id.ToString()
+                    });
+                }
+                form.HeadOfDepartmentCandidateList = HeadOfDepartmentCandidates;
             }
-            return View();
+            return View(form);
         }
 
         // GET: Admin/Department/Edit/5
@@ -92,6 +128,42 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 Admin = null,
                 Active = Department.Active,
             };
+
+            IEnumerable<G.Employee> Employees = EmployeeService.GetAllActive();
+            List<SelectListItem> HeadOfDepartmentCandidates = new List<SelectListItem>();
+            foreach (G.Employee emp in Employees)
+            {
+                HeadOfDepartmentCandidates.Add(new SelectListItem()
+                {
+                    Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
+                    Value = emp.Employee_Id.ToString()
+                });
+            }
+
+            int? HeadOfDepId = DepartmentService.GetHeadOfDepartmentId(id);
+            if (HeadOfDepId == null)
+            {
+                HeadOfDepartmentCandidates.Add(new SelectListItem()
+                {
+                    Text = "!!!NOT CHOSEN!!!",
+                    Value = 0.ToString()
+                });
+                form.SelectedHeadOfDepartmentId = 0;
+            }
+            else
+            {
+                G.Employee HeadOfDepartment = EmployeeService.Get((int)HeadOfDepId);
+                if (!Employees.Any(emp => emp.Employee_Id == HeadOfDepartment.Employee_Id))
+                {
+                    HeadOfDepartmentCandidates.Add(new SelectListItem()
+                    {
+                        Text = "!!!VIRÉ!!! " + HeadOfDepartment.FirstName + " " + HeadOfDepartment.LastName + " (" + HeadOfDepartment.Email + ")",
+                        Value = HeadOfDepartment.Employee_Id.ToString()
+                    });
+                }
+                form.SelectedHeadOfDepartmentId = HeadOfDepartment.Employee_Id;
+            }
+            form.HeadOfDepartmentCandidateList = HeadOfDepartmentCandidates;
             return View(form);
         }
 
@@ -110,13 +182,17 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 };
                 try
                 {
-                    DepartmentService.Edit(SessionUser.GetUser().Id, Department);
-                    return RedirectToAction("Index");
+                    if (DepartmentService.Edit(SessionUser.GetUser().Id, Department))
+                    {
+                        DepartmentService.ChangeHeadOfDepartment(id, form.SelectedHeadOfDepartmentId, SessionUser.GetUser().Id);
+                        return RedirectToAction("Index");
+                    }
                 }
                 catch
                 {
                     return View();
                 }
+                return RedirectToAction("Edit");
             }
             return View();
         }
@@ -139,8 +215,10 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
 
         // POST: Admin/Department/Delete/5
         [HttpPost]
-        public ActionResult Delete(DeleteForm form)
-        { 
+        public ActionResult Delete(int id, DeleteForm form)
+        {
+            if (id == form.Id)
+            {
                 try
                 {
                     DepartmentService.Delete(SessionUser.GetUser().Id, form.Id);
@@ -150,7 +228,9 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 catch (Exception ex)
                 {
                     throw ex;
-                } 
+                }
+            }
+            return View(form);
         }
 
 
@@ -178,7 +258,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                    DepartmentService.AddEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId);   
+                    DepartmentService.AddEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId, SessionUser.GetUser().Id);   
             }
             return RedirectToAction("Index","Employee");
         }
@@ -208,7 +288,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                    DepartmentService.RemoveEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId);       
+                    DepartmentService.RemoveEmployeeDepartment(form.SelectedEmployeeId, form.SelectedDepartmentId, SessionUser.GetUser().Id);       
             }
             return RedirectToAction("Index", "Employee");
         }

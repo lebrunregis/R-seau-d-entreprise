@@ -15,11 +15,11 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]
-        [DisplayName("Nom")]
+        [DisplayName("Last Name")]
         public string LastName { get; set; }
         [Required]
         [MaxLength(50)]
-        [DisplayName("Prénom")]
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
         [Required]
         [MinLength(5)]
@@ -28,23 +28,20 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Employee
         public string Email { get; set; }
         [DataType(DataType.Password)]
         [MaxLength(50)]
-        [DisplayName("Mot de passe")]
         public string Password { get; set; }
         [DataType(DataType.Password)]
         [Compare(nameof(Password))]
-        [DisplayName("Retapez le mot de passe")]
+        [DisplayName("Confirm password")]
         public String Confirm { get; set; }
         [Required]
         [MaxLength(50)]
-        [DisplayName("Numéro de registre national")]
+        [DisplayName("National identity number")]
         public string RegNat { get; set; }
         [Required]
         [MinLength(7)]
-        [DisplayName("Adresse")]
         public string Address { get; set; }
         [MaxLength(50)]
         [DataType(DataType.PhoneNumber)]
-        [DisplayName("Numéro de téléphone")]
         public string Phone { get; set; }
         [Required]
         public bool IsAdmin { get; set; }

@@ -27,5 +27,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Department
         public G.Employee Admin { get; set; }
         [Required]
         public bool Active { get; set; }
+        public G.Employee HeadOfDepartment { get; set; }
+        public IEnumerable<G.Employee> Employees { get; set; }
     }
 }

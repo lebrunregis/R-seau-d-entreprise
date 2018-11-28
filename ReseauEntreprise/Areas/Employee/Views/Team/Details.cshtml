@@ -1,0 +1,85 @@
+﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Team.DetailsForm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DetailsForm</h4>
+    <hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.DateCreated)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.DateCreated)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.EndDate)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.EndDate)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Creator)
+		</dt>
+
+		<dd>
+			@{ Html.RenderPartial("EmployeePartial", Model.Creator); }
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.TeamLeader)
+		</dt>
+
+		<dd>
+			@{ Html.RenderPartial("EmployeePartial", Model.TeamLeader); }
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Project)
+		</dt>
+
+		<dd>
+			@{ Html.RenderPartial("ProjectPartial", Model.Project); }
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Members)
+		</dt>
+
+		<dd>
+			@{ Html.RenderPartial("EmployeeListPartial", Model.Members); }
+		</dd>
+
+	</dl>
+</div>
+<p>
+	@if (Model.AmITeamLeader || Model.AmIProjectManagerOrAdmin)
+	{
+		@Html.ActionLink("Changer la composition", "EmployeesInTeam", new { id = Model.Id })
+		<br />
+	}
+	@if (Model.AmIProjectManagerOrAdmin)
+	{
+		@Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+		<br />
+		@Html.ActionLink("Delete", "Delete", new { id = Model.Id })
+		<br />
+	}
+	@Html.ActionLink("Back to List", "Index")
+</p>
