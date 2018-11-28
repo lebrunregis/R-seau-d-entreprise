@@ -190,6 +190,7 @@
     <Compile Include="Areas\Employee\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Employee\Controllers\EventController.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Employee\Controllers\MessageController.cs" />
     <Compile Include="Areas\Employee\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Employee\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Employee\Controllers\TeamController.cs" />
@@ -208,6 +209,8 @@
     <Compile Include="Areas\Employee\Models\ViewModels\Employee\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\IndexModel.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\ProjectTeams.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Message\SendForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Message\ViewForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Team\CreateForm.cs" />
@@ -346,6 +349,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Employee\Views\Message\" />
     <Folder Include="Areas\Employee\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
