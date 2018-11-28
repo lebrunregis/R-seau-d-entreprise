@@ -35,7 +35,7 @@ namespace Model.Client.Service
         public static Department GetDepartmentById(int Id)
         {
 
-            return Mappers.ToClient(G.DepartmentService.GetDepartmentById(Id));
+            return Mappers.ToClient(GS.DepartmentService.GetDepartmentById(Id));
         }
 
         public static IEnumerable<Department> GetAllActive()

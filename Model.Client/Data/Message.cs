@@ -8,14 +8,14 @@ namespace Model.Client.Data
 {
     public class Message
     {
-        private int id;
+        private int? id;
         private String title;
         private DateTime created;
         private String body;
         private int author;
         private int parent;
 
-        public Message(int id, string title, DateTime created, string body, int author, int parent)
+        public Message(int? id, string title, DateTime created, string body, int author, int parent)
         {
             Id = id;
             Title = title;
@@ -25,7 +25,17 @@ namespace Model.Client.Data
             Parent = parent;
         }
 
-        public int Id { get => id; set => id = value; }
+        public Message(string title, string body, int author, int parent)
+        {
+            Id = id;
+            Title = title;
+            Created = DateTime.Now;
+            Body = body;
+            Author = author;
+            Parent = parent;
+        }
+
+        public int? Id { get => id; set => id = value; }
         public string Title { get => title; set => title = value; }
         public DateTime Created { get => created; set => created = value; }
         public string Body { get => body; set => body = value; }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using G = Model.Global.Data;
+using G = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Team
 {

@@ -1,6 +1,6 @@
 ﻿using Model.Client.Data;
 using Model.Client.Mapper;
-using G =Model.Global.Service;
+using Model.Client.Service;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,17 +16,17 @@ namespace Model.Client.Service
         public static int? Confirm(String email, string pwd)
         {
 
-            return G.AuthService.Confirm(email, pwd);
+            return AuthService.Confirm(email, pwd);
         }
         public static int Register(Data.Employee e)
         {
 
-            return G.AuthService.Register(Mappers.ToGlobal(e));
+            return AuthService.Register(e);
         }
         public static bool IsAdmin(int Employee_Id)
         {
 
-            return G.AuthService.IsAdmin(Employee_Id);
+            return AuthService.IsAdmin(Employee_Id);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Model.Client.Data
 {
     public class Task
     {
-        private int id;
+        private int? id;
         private String name;
         private String description;
         private DateTime startDate;
@@ -16,7 +16,7 @@ namespace Model.Client.Data
         private DateTime? deadline;
         private int subtaskOf;
 
-        public Task(int id, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int subtaskOf)
+        public Task(int? id, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int subtaskOf)
         {
             Id = id;
             Name = name;
@@ -27,7 +27,18 @@ namespace Model.Client.Data
             SubtaskOf = subtaskOf;
         }
 
-        public int Id { get => id; set => id = value; }
+        public Task( string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int subtaskOf)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            StartDate = startDate;
+            EndDate = endDate;
+            Deadline = deadline;
+            SubtaskOf = subtaskOf;
+        }
+
+        public int? Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public string Description { get => description; set => description = value; }
         public DateTime StartDate { get => startDate; set => startDate = value; }

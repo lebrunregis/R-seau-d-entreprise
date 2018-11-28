@@ -8,7 +8,7 @@ namespace Model.Global.Data
 {
     public class Project
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
         public DateTime Start { get; set; }

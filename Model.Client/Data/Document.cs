@@ -8,7 +8,7 @@ namespace Model.Client.Data
 {
     public class Document
     {
-        private int id;
+        private int? id;
         private String name;
         private DateTime created;
         private String link;
@@ -18,7 +18,7 @@ namespace Model.Client.Data
         private int authorEmployee;
         private int nextVersion;
 
-        public Document(int id, string name, DateTime created, string link, float size, string sHA2, bool active, int authorEmployee, int nextVersion)
+        public Document(int? id, string name, DateTime created, string link, float size, string sHA2, bool active, int authorEmployee, int nextVersion)
         {
             Id = id;
             Name = name;
@@ -31,7 +31,7 @@ namespace Model.Client.Data
             NextVersion = nextVersion;
         }
 
-        public int Id { get => id; set => id = value; }
+        public int? Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public DateTime Created { get => created; set => created = value; }
         public string Link { get => link; set => link = value; }

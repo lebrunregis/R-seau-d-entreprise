@@ -1,6 +1,7 @@
 ﻿using Model.Client.Data;
 using Model.Client.Mapper;
-using G = Model.Global.Service;
+using GS = Model.Global.Service;
+using GD = Model.Global.Data;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,47 +17,62 @@ namespace Model.Client.Service
         public static int? Create(Project p, int ProjectManager)
         {
 
-            return 
+            return GS.ProjectService.Create(Mappers.ToGlobal(p), ProjectManager);
         }
 
         public static bool Edit(int User,Project p)
         {
 
-            return 
+            return GS.ProjectService.Edit( User,Mappers.ToGlobal(p));
         }
 
         public static bool Delete(Project p,int User)
         {
 
-            return 
+            return GS.ProjectService.Delete( Mappers.ToGlobal(p),User);
         }
 
         public static Data.Project GetProjectById(int ProjectId)
         {
 
-            return 
+            return Mappers.ToClient(GS.ProjectService.GetProjectById(ProjectId));
         }
 
         public static IEnumerable<Data.Project> GetAllActive()
         {
-
-            return 
+            List<Project> Projects = new List<Project>();
+            IEnumerable<GD.Project> GlobalProjects = GS.ProjectService.GetAllActive();
+            foreach (GD.Project Project in GlobalProjects)
+            {
+                Projects.Add(Mappers.ToClient(Project));
+            }
+            return Projects;
         }
 
         public static IEnumerable<Data.Project> GetAll()
         {
-            return
+            List<Project> Projects = new List<Project>();
+            IEnumerable<GD.Project> GlobalProjects = GS.ProjectService.GetAll();
+            foreach (GD.Project Project in GlobalProjects)
+            {
+                Projects.Add(Mappers.ToClient(Project));
+            }
+            return Projects;
         }
         public static int? GetProjectManagerId(int ProjectId)
         {
-
-            return 
+            return GS.ProjectService.GetProjectManagerId(ProjectId);
         }
 
         public static IEnumerable<Data.Team> GetAllTeamsForProject(int ProjectId)
         {
-
-            return 
+            List<Team> Teams = new List<Team>();
+            IEnumerable<GD.Team> GlobalTeams = GS.ProjectService.GetAllTeamsForProject(ProjectId);
+            foreach (GD.Team Team in GlobalTeams)
+            {
+                Teams.Add(Mappers.ToClient(Team));
+            }
+            return Teams;
         }
     }
 }

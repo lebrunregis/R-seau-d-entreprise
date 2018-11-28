@@ -8,7 +8,7 @@ namespace Model.Global.Data
 {
     public class Document
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public String Name { get; set; }
         public DateTime Created { get; set; }
         public String Link { get; set; }

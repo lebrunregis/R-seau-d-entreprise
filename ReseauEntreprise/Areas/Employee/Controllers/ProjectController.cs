@@ -1,5 +1,5 @@
-﻿using D = Model.Global.Data;
-using Model.Global.Service;
+﻿using Model.Client.Data;
+using Model.Client.Service;
 using Réseau_d_entreprise.Session.Attributes;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Admin.Models.ViewModels.Project;
-using Model.Global.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -20,9 +19,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public ActionResult Index()
         {
             List<ListForm> List = new List<ListForm>();
-            foreach (Project Projet in ProjectService.GetAll())
+            foreach (Project Project in ProjectService.GetAll())
             {
-                ListForm form = new ListForm(Projet, EmployeeService.Get((int)ProjectService.GetProjectManagerId(Projet.Id)), EmployeeService.Get(Projet.CreatorId));
+                ListForm form = new ListForm(Project, EmployeeService.Get((int)ProjectService.GetProjectManagerId((int)Project.Id)), EmployeeService.Get(Project.CreatorId));
                 List.Add(form);
             }
             return View(List);

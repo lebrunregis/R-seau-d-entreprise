@@ -6,8 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using ReseauEntreprise.Areas.Admin.Models.ViewModels.Department;
 using ED = ReseauEntreprise.Areas.Admin.Models.ViewModels.EmployeeDepartment;
-using G = Model.Global.Data;
-using Model.Global.Service;
+using C = Model.Client.Data;
+using Model.Client.Service;
 using Réseau_d_entreprise.Session;
 
 namespace ReseauEntreprise.Areas.Admin.Controllers
@@ -20,11 +20,11 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         public ActionResult Index()
         {
             List<ListForm> list = new List<ListForm>();
-            foreach (G.Department Department in DepartmentService.GetAll())
+            foreach (C.Department Department in DepartmentService.GetAll())
             {
                 ListForm form = new ListForm
                 {
-                    Id = Department.Id,
+                    Id = (int) Department.Id,
                     Title = Department.Title,
                     Created = Department.Created,
                     Description = Department.Description,
@@ -40,10 +40,10 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         // GET: Admin/Department/Details/5
         public ActionResult Details(int id)
         {
-            G.Department Department = DepartmentService.GetDepartmentById(id);
+            C.Department Department = DepartmentService.GetDepartmentById(id);
             DetailsForm form = new DetailsForm
             {
-                Id = Department.Id,
+                Id = (int) Department.Id,
                 Title = Department.Title,
                 Created = Department.Created,
                 Description = Department.Description,
@@ -66,11 +66,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                G.Department Department = new G.Department
-                {
-                    Title = form.Title,
-                    Description = form.Description
-                };
+                C.Department Department = new C.Department( form.Title, DateTime.Now, form.Description, SessionUser.GetUser().Id, true);
 
                 DepartmentService.Create(Department, SessionUser.GetUser().Id);
                 return RedirectToAction("Index");
@@ -81,10 +77,10 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         // GET: Admin/Department/Edit/5
         public ActionResult Edit(int id)
         {
-            G.Department Department = DepartmentService.GetDepartmentById(id);
+            C.Department Department = DepartmentService.GetDepartmentById(id);
             EditForm form = new EditForm
             {
-                Id = Department.Id,
+                Id = (int)Department.Id,
                 Title = Department.Title,
                 Created = Department.Created,
                 Description = Department.Description,
@@ -101,13 +97,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                G.Department Department = new G.Department
-                {
-                    Id = form.Id,
-                    Title = form.Title,
-                    Description = form.Description,
-                    Active = form.Active
-                };
+                C.Department Department = new C.Department(form.Id, form.Title, DateTime.Now, form.Description, SessionUser.GetUser().Id, form.Active);
                 try
                 {
                     DepartmentService.Edit(SessionUser.GetUser().Id, Department);
@@ -124,10 +114,10 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         // GET: Admin/Department/Delete/5
         public ActionResult Delete(int id)
         {
-            G.Department Department = DepartmentService.GetDepartmentById(id);
+            C.Department Department = DepartmentService.GetDepartmentById(id);
             DeleteForm form = new DeleteForm
             {
-                Id = Department.Id,
+                Id = (int) Department.Id,
                 Title = Department.Title,
                 Created = Department.Created,
                 Description = Department.Description,
@@ -157,7 +147,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         public ActionResult AddEmployeeToDepartment(int id)
         {
             List<SelectListItem> DepartmentList = new List<SelectListItem>();
-            foreach (G.Department dep in DepartmentService.GetAllActive())
+            foreach (C.Department dep in DepartmentService.GetAllActive())
             {
                 DepartmentList.Add(new SelectListItem
                 {
@@ -186,7 +176,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         public ActionResult RemoveEmployeeFromDepartment(int id)
         {
             List<SelectListItem> DepartmentList = new List<SelectListItem>();
-            foreach (G.Department dep in DepartmentService.GetEmployeeDepartments(id))
+            foreach (C.Department dep in DepartmentService.GetEmployeeDepartments(id))
             {
                 DepartmentList.Add(new SelectListItem
                 {

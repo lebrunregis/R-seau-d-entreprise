@@ -8,7 +8,7 @@ namespace Model.Client.Data
 {
     public class Team
     {
-        private int id;
+        private int? id;
         private String name;
         private DateTime created;
         private DateTime? disbanded;
@@ -16,7 +16,7 @@ namespace Model.Client.Data
         private int project_Id;
         private List<Employee> employees;
 
-        public Team(int id, string name, DateTime created, DateTime? disbanded, int creator_Id, int project_Id, List<Employee> employees)
+        public Team(int? id, string name, DateTime created, DateTime? disbanded, int creator_Id, int project_Id, List<Employee> employees)
         {
             Id = id;
             Name = name;
@@ -27,7 +27,16 @@ namespace Model.Client.Data
             Employees = employees;
         }
 
-        public int Id { get => id; set => id = value; }
+
+        public Team(string name, int creator_Id, int project_Id)
+        {
+            Name = name;
+            Created = DateTime.Now;
+            Creator_Id = creator_Id;
+            Project_Id = project_Id;
+        }
+
+        public int? Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public DateTime Created { get => created; set => created = value; }
         public DateTime? Disbanded { get => disbanded; set => disbanded = value; }

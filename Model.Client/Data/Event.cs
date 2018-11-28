@@ -8,7 +8,7 @@ namespace Model.Client.Data
 {
     public class Event
     {
-        private int id;
+        private int? id;
         private int creatorId;
         private int? departmentId;
         private string name;
@@ -21,7 +21,7 @@ namespace Model.Client.Data
         private bool open;
         private bool cancelled;
 
-        public Event(int id, int creatorId, int? departmentId, string name, string description, string address, DateTime startDate, DateTime endDate, DateTime creationDate, DateTime? subscribed, bool open, bool cancelled)
+        public Event(int? id, int creatorId, int? departmentId, string name, string description, string address, DateTime startDate, DateTime endDate, DateTime creationDate, DateTime? subscribed, bool open, bool cancelled)
         {
             Id = id;
             CreatorId = creatorId;
@@ -37,7 +37,21 @@ namespace Model.Client.Data
             Cancelled = cancelled;
         }
 
-        public int Id { get => id; set => id = value; }
+        public Event( int creatorId, int? departmentId, string name, string description, string address, DateTime startDate, DateTime endDate, bool open)
+        {
+            CreatorId = creatorId;
+            DepartmentId = departmentId;
+            Name = name;
+            Description = description;
+            Address = address;
+            StartDate = startDate;
+            EndDate = endDate;
+            CreationDate = DateTime.Now;
+            Open = open;
+            Cancelled = false;
+        }
+
+        public int? Id { get => id; set => id = value; }
         public int CreatorId { get => creatorId; set => creatorId = value; }
         public int? DepartmentId { get => departmentId; set => departmentId = value; }
         public string Name { get => name; set => name = value; }

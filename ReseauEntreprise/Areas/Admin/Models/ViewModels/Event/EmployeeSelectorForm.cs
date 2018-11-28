@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using D = Model.Global.Data;
+using D = Model.Client.Data;
 using System.ComponentModel;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event

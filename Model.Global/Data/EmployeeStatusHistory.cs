@@ -8,7 +8,7 @@ namespace Model.Global.Data
 {
     public class EmployeeStatusHistory
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public int Employee { get; set; }
         public int Status { get; set; }
         public string Name { get; set; }

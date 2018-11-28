@@ -23,6 +23,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Team
         [Display(Name = "Team Leader")]
         public int SelectedTeamLeaderId { get; set; }
         public IEnumerable<SelectListItem> TeamLeaderCandidateList { get; set; }
-        
+        [HiddenInput]
+        public DateTime Created { get; set; }
     }
 }

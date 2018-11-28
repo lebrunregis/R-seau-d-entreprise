@@ -8,14 +8,14 @@ namespace Model.Client.Data
 {
     public class EmployeeStatusHistory
     {
-        private int id;
+        private int? id;
         private int employee;
         private int status;
         private string name;
         private DateTime startDate;
         private DateTime? endDate;
 
-        public EmployeeStatusHistory(int id, int employee, int status, string name, DateTime startDate, DateTime? endDate)
+        public EmployeeStatusHistory(int? id, int employee, int status, string name, DateTime startDate, DateTime? endDate)
         {
             Id = id;
             Employee = employee;
@@ -25,7 +25,16 @@ namespace Model.Client.Data
             EndDate = endDate;
         }
 
-        public int Id { get => id; set => id = value; }
+        public EmployeeStatusHistory(int employee, int status, string name, DateTime startDate, DateTime? endDate)
+        {
+            Employee = employee;
+            Status = status;
+            Name = name;
+            StartDate = startDate;
+            EndDate = endDate;
+        }
+
+        public int? Id { get => id; set => id = value; }
         public int Employee { get => employee; set => employee = value; }
         public int Status { get => status; set => status = value; }
         public string Name { get => name; set => name = value; }

@@ -1,4 +1,4 @@
-﻿using D = Model.Global.Data;
+﻿using C = Model.Client.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -26,10 +26,10 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
         [HiddenInput]
         [Required]
         [Display(Name = "Project Manager")]
-        public D.Employee Manager { get; set; }
+        public C.Employee Manager { get; set; }
         [HiddenInput]
         [Required]
-        public D.Employee Creator { get; set; }
+        public C.Employee Creator { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "Start Date")]
         public DateTime StartDate;
@@ -43,9 +43,9 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
 
         }
 
-        public ListForm(D.Project Project,D.Employee Manager, D.Employee Creator)
+        public ListForm(C.Project Project,C.Employee Manager, C.Employee Creator)
         {
-            ProjectId = Project.Id;
+            ProjectId = (int) Project.Id;
             Name = Project.Name;
             Description = Project.Description;
             this.Manager = Manager;

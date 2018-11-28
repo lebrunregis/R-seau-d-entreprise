@@ -23,6 +23,12 @@ namespace Model.Client.Data
             Subscribed = subscribed;
         }
 
+        public EmployeeEvent(int employeeId, int eventId)
+        {
+            EmployeeId = employeeId;
+            EventId = eventId;
+        }
+
         public int EmployeeId { get => employeeId; set => employeeId = value; }
         public int EventId { get => eventId; set => eventId = value; }
         public bool? Attended { get => attended; set => attended = value; }

@@ -8,14 +8,14 @@ namespace Model.Client.Data
 {
     public class Department
     {
-        private int id;
+        private int? id;
         private String title;
         private DateTime created;
         private String description;
         private int admin_Id;
         private bool active;
 
-        public Department(int id, string title, DateTime created, string description, int admin_Id, bool active)
+        public Department(int? id, string title, DateTime created, string description, int admin_Id, bool active)
         {
             Id = id;
             Title = title;
@@ -25,7 +25,16 @@ namespace Model.Client.Data
             Active = active;
         }
 
-        public int Id { get => id; set => id = value; }
+        public Department(string title, DateTime created, string description, int admin_Id, bool active)
+        {
+            Title = title;
+            Created = created;
+            Description = description;
+            Admin_Id = admin_Id;
+            Active = true;
+        }
+
+        public int? Id { get => id; set => id = value; }
         public string Title { get => title; set => title = value; }
         public DateTime Created { get => created; set => created = value; }
         public string Description { get => description; set => description = value; }

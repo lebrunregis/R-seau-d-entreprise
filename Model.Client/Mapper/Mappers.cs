@@ -57,7 +57,7 @@ namespace Model.Client.Mapper
         internal static C.Employee ToClient(this G.Employee entity)
         {
 
-            return new C.Employee(entity.Employee_Id, entity.LastName, entity.FirstName, entity.Email, entity.Passwd, entity.Actif, entity.RegNat, entity.Address, entity.Phone);
+            return new C.Employee(entity.Employee_Id, entity.LastName, entity.FirstName, entity.Email, entity.Passwd, entity.Actif, entity.RegNat,entity.CoordGps, entity.Address, entity.Phone,entity.IsAdmin);
         }
 
         internal static G.Employee ToGlobal(this C.Employee entity)
@@ -88,6 +88,24 @@ namespace Model.Client.Mapper
                 Id = entity.Id,
                 Name = entity.Name,
                 DepId = entity.DepId,
+                StartDate = entity.StartDate,
+                EndDate = entity.EndDate
+            };
+        }
+
+        internal static C.EmployeeStatusHistory ToClient(G.EmployeeStatusHistory entity)
+        {
+            return new C.EmployeeStatusHistory(entity.Id, entity.Employee, entity.Status, entity.Name, entity.StartDate, entity.EndDate);
+        }
+
+        internal static G.EmployeeStatusHistory ToGlobal(this C.EmployeeStatusHistory entity)
+        {
+            return new G.EmployeeStatusHistory
+            {
+                Id = entity.Id,
+                Employee = entity.Employee,
+                Status = entity.Status,
+                Name = entity.Name,
                 StartDate = entity.StartDate,
                 EndDate = entity.EndDate
             };

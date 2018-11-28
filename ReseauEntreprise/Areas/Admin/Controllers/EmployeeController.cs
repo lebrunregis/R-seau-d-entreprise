@@ -1,5 +1,5 @@
-﻿using G = Model.Global.Data;
-using Model.Global.Service;
+﻿using C = Model.Client.Data;
+using Model.Client.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,35 +20,35 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             IEnumerable<ListForm> AllEmployees = EmployeeService.GetAllActiveForAdmin()
                 .Select(e => new ListForm()
                 {
-                    Id = e.Employee_Id,
+                    Id = (int) e.Employee_Id,
                     LastName = e.LastName,
                     FirstName = e.FirstName,
                     Email = e.Email,
                     Address = e.Address,
                     Phone = e.Phone,
                     RegNat = e.RegNat,
-                    IsAdmin = e.IsAdmin
+                    IsAdmin = (bool) e.IsAdmin
                 });
             return View(AllEmployees);
         }
 
         public ActionResult Details(int id)
         {
-            G.Employee e = EmployeeService.GetForAdmin(id);
+            C.Employee e = EmployeeService.GetForAdmin(id);
             DetailsForm Details = new DetailsForm()
             {
-                Id = e.Employee_Id,
+                Id = (int) e.Employee_Id,
                 LastName = e.LastName,
                 FirstName = e.FirstName,
                 Email = e.Email,
                 Address = e.Address,
                 Phone = e.Phone,
                 RegNat = e.RegNat,
-                IsAdmin = e.IsAdmin
+                IsAdmin = (bool) e.IsAdmin
             };
             Details.DepartmentHistory = DepartmentService.GetEmployeeDepartmentHistory(id).Select(tmp => new DepartmentForm()
             {
-                Id = tmp.Id,
+                Id = (int) tmp.Id,
                 StartDate = tmp.StartDate,
                 EndDate = tmp.EndDate,
                 Name = tmp.Name,
@@ -75,7 +75,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
 
         public ActionResult Delete(int id)
         {
-            G.Employee emp = EmployeeService.Get(id);
+            C.Employee emp = EmployeeService.Get(id);
             ListForm e = new ListForm()
             {
                 LastName = emp.LastName,
@@ -97,16 +97,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 {
                     if (HiddenForm.Id == id)
                     {
-                        G.Employee e = new G.Employee()
-                        {
-                            Employee_Id = HiddenForm.Id,
-                            LastName = HiddenForm.LastName,
-                            FirstName = HiddenForm.FirstName,
-                            Email = HiddenForm.Email,
-                            Address = HiddenForm.Address,
-                            Phone = HiddenForm.Phone,
-                            RegNat = HiddenForm.RegNat
-                        };
+                        C.Employee e = new C.Employee(HiddenForm.Id, HiddenForm.LastName, HiddenForm.FirstName, HiddenForm.Email, HiddenForm.Address, true, HiddenForm.RegNat, null, HiddenForm.Address, HiddenForm.Phone, HiddenForm.IsAdmin);
                         if (EmployeeService.Delete(e))
                         {
                             return RedirectToAction("Index");
@@ -126,7 +117,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         {
             try
             {
-                G.Employee e = EmployeeService.GetForAdmin(id);
+                C.Employee e = EmployeeService.GetForAdmin(id);
                 if (!(e is null))
                 {
                     EditForm form = new EditForm()
@@ -138,7 +129,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                         Address = e.Address,
                         Phone = e.Phone,
                         RegNat = e.RegNat,
-                        IsAdmin = e.IsAdmin
+                        IsAdmin = (bool) e.IsAdmin
                     };
 
                     return View(form);
@@ -158,18 +149,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             {
                 if (id == form.Id)
                 {
-                    G.Employee e = new G.Employee()
-                    {
-                        Employee_Id = id,
-                        LastName = form.LastName,
-                        FirstName = form.FirstName,
-                        Email = form.Email,
-                        Passwd = form.Password,
-                        Address = form.Address,
-                        Phone = form.Phone,
-                        RegNat = form.RegNat,
-                        IsAdmin = form.IsAdmin
-                    };
+                    C.Employee e = new C.Employee(form.Id, form.LastName, form.FirstName, form.Email, form.Password, true, form.RegNat, null, form.Address, form.Phone, form.IsAdmin);
                     try
                     {
                         if (EmployeeService.UpdateForAdmin(e))
