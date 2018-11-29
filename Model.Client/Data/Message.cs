@@ -15,7 +15,7 @@ namespace Model.Client.Data
         private int author;
         private int? parent;
 
-        public Message(int? id, string title, DateTime created, string body, int author, int parent)
+        public Message(int? id, string title, DateTime created, string body, int author, int? parent)
         {
             Id = id;
             Title = title;
@@ -25,7 +25,7 @@ namespace Model.Client.Data
             Parent = parent;
         }
 
-        public Message(string title, string body, int author, int parent)
+        public Message(string title, string body, int author, int? parent)
         {
             Id = id;
             Title = title;

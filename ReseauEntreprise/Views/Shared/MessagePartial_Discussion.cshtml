@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.ViewForm>
+
+<style>		
+	.myMessageBox { 
+		margin-left : 30px
+	}
+	.myMessage {
+		background-color: white;
+		border-style: solid;
+		border-color: black
+	}
+</style>
+<script>
+	var InputForm = `
+        <div>
+        </div>
+    `
+	function AddReplyForm(id)
+	{
+		var MessageBox = document.getElementById('message_' + id)
+		MessageBox.innerHTML += " hello two"
+	}
+</script>
+

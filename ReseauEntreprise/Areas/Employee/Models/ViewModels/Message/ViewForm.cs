@@ -16,5 +16,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
         public C.Employee Author { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime CreationTime { get; set; }
+        public IEnumerable<ViewForm> Children { get; set; }
     }
 }

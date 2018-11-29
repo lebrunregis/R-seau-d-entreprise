@@ -209,8 +209,6 @@
     <Compile Include="Areas\Employee\Models\ViewModels\Employee\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\IndexForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\ProjectTeamsForm.cs" />
-    <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\IndexModel.cs" />
-    <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\ProjectTeams.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\SendForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\ViewForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\DetailsForm.cs" />
@@ -284,7 +282,7 @@
     <Content Include="Areas\Admin\Views\Team\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Team\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Team\Delete.cshtml" />
-    <Content Include="Views\Shared\ObjectsPartial\EmployeePartial.cshtml" />
+    <Content Include="Views\Shared\EmployeePartial.cshtml" />
     <Content Include="Areas\Admin\Views\Team\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\DepartmentsHistory.cshtml" />
     <Content Include="Areas\Admin\Views\Department\AddEmployeeToDepartment.cshtml" />
@@ -340,13 +338,16 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Registration\Login.cshtml" />
     <Content Include="Views\Registration\Register.cshtml" />
-    <Content Include="Views\Shared\ObjectsPartial\ProjectPartial.cshtml" />
-    <Content Include="Views\Shared\ObjectsPartial\TeamPartial.cshtml" />
-    <Content Include="Views\Shared\ObjectsPartial\EmployeeListPartial.cshtml" />
-    <Content Include="Views\Shared\ObjectsPartial\ProjectListPartial.cshtml" />
-    <Content Include="Views\Shared\ObjectsPartial\TeamListPartial.cshtml" />
-    <Content Include="Views\Shared\ObjectsPartial\DepartmentListPartial.cshtml" />
-    <Content Include="Views\Shared\ObjectsPartial\DepartmentPartial.cshtml" />
+    <Content Include="Views\Shared\ProjectPartial.cshtml" />
+    <Content Include="Views\Shared\TeamPartial.cshtml" />
+    <Content Include="Views\Shared\EmployeeListPartial.cshtml" />
+    <Content Include="Views\Shared\ProjectListPartial.cshtml" />
+    <Content Include="Views\Shared\TeamListPartial.cshtml" />
+    <Content Include="Views\Shared\DepartmentListPartial.cshtml" />
+    <Content Include="Views\Shared\DepartmentPartial.cshtml" />
+    <Content Include="Views\Shared\MessagePartial_Discussion.cshtml" />
+    <Content Include="Views\Shared\MessagePartial_Messages.cshtml" />
+    <Content Include="Views\Shared\MessagePartial_SendFormTemlate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

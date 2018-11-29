@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.ViewForm>
+
+@foreach (var message in Model)
+{
+	<div class="myMessageBox">
+		<div class="myMessage" id="@("message_" + message.Id.ToString())">
+			@Html.DisplayFor(modelItem => message.CreationTime)
+			@{Html.RenderPartial("EmployeePartial", message.Author);}
+			<h6>@Html.DisplayFor(modelItem => message.Title)</h6>
+			@Html.DisplayFor(modelItem => message.Message)
+			<button onclick="AddReplyForm(@message.Id)">Reply</button>
+		</div>
+		@{Html.RenderPartial("MessagePartial_Messages", message.Children);}
+	</div>
+}
+
