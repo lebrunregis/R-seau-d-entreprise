@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using ProjectTeams = ReseauEntreprise.Areas.Employee.Models.ViewModels.IndexPage.ProjectTeams;
-using D = Model.Global.Data;
+using ProjectTeamsForm = ReseauEntreprise.Areas.Employee.Models.ViewModels.IndexPage.ProjectTeamsForm;
+using D = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee
 {
@@ -17,6 +17,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee
         public string LastName { get; set; }
         public string Email { get; set; }
         public IEnumerable<D.Department> Departments { get; set; }
-        public IEnumerable<ProjectTeams> TeamsInCommon { get; set; }
+        public IEnumerable<ProjectTeamsForm> TeamsInCommon { get; set; }
     }
 }

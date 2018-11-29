@@ -1,4 +1,4 @@
-﻿using D = Model.Global.Data;
+﻿using D = Model.Client.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,7 +35,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
 
         public ListForm(D.Project Project,D.Employee Manager, int MyId)
         {
-            ProjectId = Project.Id;
+            ProjectId = (int)Project.Id;
             Name = Project.Name;
             Description = Project.Description;
             this.Manager = Manager;

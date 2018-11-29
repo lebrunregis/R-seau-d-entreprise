@@ -1,4 +1,4 @@
-﻿using D = Model.Global.Data;
+﻿using D = Model.Client.Data;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;

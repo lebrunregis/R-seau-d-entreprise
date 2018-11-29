@@ -1,5 +1,5 @@
-﻿using G = Model.Global.Data;
-using Model.Global.Service;
+﻿using C = Model.Client.Data;
+using Model.Client.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee;
 using Réseau_d_entreprise.Session.Attributes;
 using Réseau_d_entreprise.Session;
-using ProjectTeams = ReseauEntreprise.Areas.Employee.Models.ViewModels.IndexPage.ProjectTeams;
+using ProjectTeamsForm = ReseauEntreprise.Areas.Employee.Models.ViewModels.IndexPage.ProjectTeamsForm;
 
 namespace ReseauEntreprise.Employee.Controllers
 {
@@ -19,10 +19,10 @@ namespace ReseauEntreprise.Employee.Controllers
         public ActionResult Details(int id)
         {
             int My_Id = SessionUser.GetUser().Id;
-            G.Employee e = EmployeeService.GetForAdmin(id);
+            C.Employee e = EmployeeService.GetForAdmin(id);
             DetailsForm Details = new DetailsForm()
             {
-                Id = e.Employee_Id,
+                Id = id,
                 LastName = e.LastName,
                 FirstName = e.FirstName,
                 Email = e.Email,
@@ -30,16 +30,16 @@ namespace ReseauEntreprise.Employee.Controllers
                 Phone = e.Phone,
                 RegNat = e.RegNat,
                 IsActif = e.Actif,
-                IsAdmin = e.IsAdmin,
+                IsAdmin = (bool)e.IsAdmin,
                 IsMe = (e.Employee_Id == My_Id),
-                Teams = TeamService.GetAllActiveTeamsForEmployee(e.Employee_Id),
-                Departments = DepartmentService.GetEmployeeActiveDepartments(e.Employee_Id),
-                TeamLeaderTeams = TeamService.GetActiveTeamsForTeamLeader(e.Employee_Id),
-                ProjectManagerProjects = ProjectService.GetActiveProjectsForManager(e.Employee_Id),
-                HeadOfDepartmentDepartments = DepartmentService.GetHeadOfDepartmentActiveDepartments(e.Employee_Id)
+                Teams = TeamService.GetAllActiveTeamsForEmployee(id),
+                Departments = DepartmentService.GetEmployeeActiveDepartments(id),
+                TeamLeaderTeams = TeamService.GetActiveTeamsForTeamLeader(id),
+                ProjectManagerProjects = ProjectService.GetActiveProjectsForManager(id),
+                HeadOfDepartmentDepartments = DepartmentService.GetHeadOfDepartmentActiveDepartments(id)
             };
 
-            IEnumerable<G.Department> MyDepartments = new List<G.Department>();
+            IEnumerable<C.Department> MyDepartments = new List<C.Department>();
             if (AuthService.IsAdmin(My_Id))
             {
                 MyDepartments = DepartmentService.GetAllActive();
@@ -48,7 +48,7 @@ namespace ReseauEntreprise.Employee.Controllers
             {
                 MyDepartments = DepartmentService.GetHeadOfDepartmentActiveDepartments(My_Id);
             }
-            IEnumerable<G.Department> EmpDepartments = DepartmentService.GetEmployeeDepartments(id);
+            IEnumerable<C.Department> EmpDepartments = DepartmentService.GetEmployeeDepartments(id);
             var intersec = from MyDep in MyDepartments
                     join EmpDep in EmpDepartments on MyDep.Id equals EmpDep.Id
                     select new { };
@@ -71,12 +71,12 @@ namespace ReseauEntreprise.Employee.Controllers
             IEnumerable<ListForm> FormList = EmployeeService.GetAllActive().Select(emp => new ListForm
             {
                 IsMe = (emp.Employee_Id == My_Id),
-                Id = emp.Employee_Id,
+                Id = (int)emp.Employee_Id,
                 FirstName = emp.FirstName,
                 LastName = emp.LastName,
                 Email = emp.Email,
-                Departments = DepartmentService.GetEmployeeActiveDepartments(emp.Employee_Id),
-                TeamsInCommon = TeamService.GetActiveTeamsInCommon(emp.Employee_Id, My_Id).GroupBy(team => team.Project_Id).Select(teamsGroup => new ProjectTeams
+                Departments = DepartmentService.GetEmployeeActiveDepartments((int)emp.Employee_Id),
+                TeamsInCommon = TeamService.GetActiveTeamsInCommon((int)emp.Employee_Id, My_Id).GroupBy(team => (int)team.Project_Id).Select(teamsGroup => new ProjectTeamsForm
                 {
                     Project = ProjectService.GetProjectById(teamsGroup.Key),
                     Teams = teamsGroup.ToList()

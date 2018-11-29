@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
-using D = Model.Global.Data;
+using D = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.IndexPage
 {
-    public class IndexModel
+    public class IndexForm
     {
-        public IEnumerable<ProjectTeams> ProjectTeamList { get; set; }
+        public IEnumerable<ProjectTeamsForm> ProjectTeamList { get; set; }
         [DisplayName("My Departments")]
         public IEnumerable<D.Department> MyDepartments { get; set; }
         [DisplayName("Projects where I am Project Manager")]

@@ -8,7 +8,7 @@ namespace Model.Global.Data
 {
     public class Team
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public String Name { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Disbanded { get; set; }

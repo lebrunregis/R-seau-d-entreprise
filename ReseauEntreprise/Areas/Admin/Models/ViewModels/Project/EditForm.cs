@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using D = Model.Global.Data;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
 {

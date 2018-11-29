@@ -8,7 +8,7 @@ namespace Model.Global.Data
 {
     public class Event
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public int CreatorId { get; set; }
         public int? DepartmentId { get; set; }
         public string Name { get; set; }

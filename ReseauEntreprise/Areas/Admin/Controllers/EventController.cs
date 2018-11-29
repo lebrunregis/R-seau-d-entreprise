@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using G = Model.Global.Data;
-using Model.Global.Service;
+using C = Model.Client.Data;
+using Model.Client.Service;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Admin.Models.ViewModels.Event;
 using Réseau_d_entreprise.Session.Attributes;
@@ -20,7 +20,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             List<ListForm> Events = EventService.GetAllActive()
                 .Select(e => new ListForm()
                 {
-                    Id = e.Id,
+                    Id = (int)e.Id,
                     DepartmentId = e.DepartmentId,
                     Name = e.Name,
                     Description = e.Description,
@@ -29,10 +29,10 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                     EndDate = e.EndDate,
                     OpenSubscription = e.Open
                 }).ToList();
-            G.EmployeeEvent status;
-            for (int i =0; i < Events.Count(); i++)
+            C.EmployeeEvent status;
+            for (int i = 0; i < Events.Count(); i++)
             {
-               status = EventService.GetEmployeeSubscriptionStatus(Events.ElementAt(i).Id, SessionUser.GetUser().Id).FirstOrDefault();
+                status = EventService.GetEmployeeSubscriptionStatus(Events.ElementAt(i).Id, SessionUser.GetUser().Id).FirstOrDefault();
                 if (status is null)
                 {
                     Events.ElementAt(i).Subscribed = null;
@@ -56,7 +56,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 }
             };
 
-            foreach (G.Department dep in DepartmentService.GetAllActive())
+            foreach (C.Department dep in DepartmentService.GetAllActive())
             {
                 DepartmentList.Add(new SelectListItem
                 {
@@ -83,24 +83,16 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 {
                     Form.SelectedDepartmentId = null;
                 }
-                EventService.Create(new G.Event
-                {
-                    CreatorId = SessionUser.GetUser().Id,
-                    DepartmentId = Form.SelectedDepartmentId,
-                    Name = Form.Name,
-                    Description = Form.Description,
-                    Address = Form.Address,
-                    StartDate = Form.StartDate,
-                    EndDate = Form.EndDate.AddHours(24),
-                    Open = Form.OpenEvent
-                }, SessionUser.GetUser().Id);
+                EventService.Create(
+                    new C.Event(SessionUser.GetUser().Id, Form.SelectedDepartmentId, Form.Name, Form.Description, Form.Address, Form.StartDate, Form.EndDate.AddHours(23.99999), Form.OpenEvent),
+                    SessionUser.GetUser().Id);
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int id)
         {
-            G.Event Event = EventService.Get(id);
+            C.Event Event = EventService.Get(id);
             List<SelectListItem> DepartmentList = new List<SelectListItem>
             {
                 new SelectListItem
@@ -110,7 +102,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 }
             };
 
-            foreach (G.Department dep in DepartmentService.GetAllActive())
+            foreach (C.Department dep in DepartmentService.GetAllActive())
             {
                 DepartmentList.Add(new SelectListItem
                 {
@@ -120,7 +112,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             }
             EditForm form = new EditForm
             {
-                Id = Event.Id,
+                Id = (int)Event.Id,
                 Name = Event.Name,
                 Description = Event.Description,
                 Address = Event.Address,
@@ -128,7 +120,9 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 EndDate = Event.EndDate.AddHours(24),
                 OpenEvent = Event.Open,
                 DepartmentList = DepartmentList,
-                SelectedDepartmentId = Event.DepartmentId
+                SelectedDepartmentId = Event.DepartmentId,
+                CreatorId = Event.CreatorId,
+                Created = Event.CreationDate
             };
             return View(form);
         }
@@ -142,27 +136,17 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 {
                     Form.SelectedDepartmentId = null;
                 }
-                EventService.Edit(new G.Event
-                {
-                    Id = Form.Id,
-                    DepartmentId = Form.SelectedDepartmentId,
-                    Name = Form.Name,
-                    Description = Form.Description,
-                    Address = Form.Address,
-                    StartDate = Form.StartDate,
-                    EndDate = Form.EndDate,
-                    Open = Form.OpenEvent
-                }, SessionUser.GetUser().Id);
+                EventService.Edit(new C.Event(Form.Id, Form.CreatorId, Form.SelectedDepartmentId, Form.Name, Form.Description, Form.Address, Form.StartDate, Form.EndDate, Form.Created, null, Form.OpenEvent, false), SessionUser.GetUser().Id);
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int id)
         {
-            G.Event Event = EventService.Get(id);
+            C.Event Event = EventService.Get(id);
             DeleteForm form = new DeleteForm
             {
-                Id = Event.Id,
+                Id = (int)Event.Id,
                 CreatorId = Event.CreatorId,
                 Name = Event.Name,
                 Description = Event.Description,
@@ -178,17 +162,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Delete(DeleteForm form)
         {
-            G.Event e = new G.Event()
-            {
-                Id = form.Id,
-                Name = form.Name,
-                Address = form.Address,
-                Description = form.Description,
-                CreatorId = form.CreatorId,
-                DepartmentId = form.DepartmentId,
-                StartDate = form.StartDate,
-                EndDate = form.EndDate
-            };
+            C.Event e = new C.Event(form.Id, form.CreatorId, null, form.Name, form.Description, form.Address, form.StartDate, form.EndDate, form.CreationDate, null, form.OpenSubscription, false);
             try
             {
                 EventService.Delete(e, SessionUser.GetUser().Id);
@@ -203,10 +177,10 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
 
         public ActionResult Details(int id)
         {
-            G.Event Event = EventService.Get(id);
+            C.Event Event = EventService.Get(id);
             DetailsForm form = new DetailsForm
             {
-                Id = Event.Id,
+                Id = (int)Event.Id,
                 CreatorId = Event.CreatorId,
                 Name = Event.Name,
                 Description = Event.Description,
@@ -220,16 +194,16 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
 
         public ActionResult SubscribeEmployees(int id)
         {
-            IEnumerable<G.EmployeeEvent> EmployeesStatus = EventService.GetSubscriptionStatus(id);
-            IEnumerable<G.Employee> EmployeeList = EmployeeService.GetAllActive();
+            IEnumerable<C.EmployeeEvent> EmployeesStatus = EventService.GetSubscriptionStatus(id);
+            IEnumerable<C.Employee> EmployeeList = EmployeeService.GetAllActive();
 
             List<EmployeeSelectorForm> EmployeesForm = new List<EmployeeSelectorForm>();
-            foreach (G.Employee e in EmployeeList)
+            foreach (C.Employee e in EmployeeList)
             {
                 EmployeesForm.Add(new EmployeeSelectorForm
                 {
                     Employee = e,
-                    EmployeeId = e.Employee_Id,
+                    EmployeeId = (int)e.Employee_Id,
                     EventId = id,
                     Selected = EmployeesStatus.Where((employee) => employee.EmployeeId == e.Employee_Id).Count() == 1
                 });
@@ -253,10 +227,10 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
 
         public ActionResult ConfirmSubscription(int id)
         {
-            G.Event Event = EventService.Get(id);
+            C.Event Event = EventService.Get(id);
             DetailsForm Form = new DetailsForm
             {
-                Id = Event.Id,
+                Id = (int)Event.Id,
                 CreatorId = Event.CreatorId,
                 DepartmentId = Event.DepartmentId,
                 Name = Event.Name,

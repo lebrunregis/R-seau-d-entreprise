@@ -1,5 +1,5 @@
-﻿using G = Model.Global.Data;
-using Model.Global.Service;
+﻿using C = Model.Client.Data;
+using Model.Client.Service;
 using Réseau_d_entreprise.Session.Attributes;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
-using Model.Global.Data;
 using ReseauEntreprise.Admin.Models.ViewModels.Project;
 using ReseauEntreprise.Areas.Admin.Models.ViewModels.Project;
 
@@ -20,11 +19,11 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         public ActionResult Index()
         {
             List<ListForm> list = new List<ListForm>();
-            foreach (Project Project in ProjectService.GetAllActive())
+            foreach (C.Project Project in ProjectService.GetAllActive())
             {
-                int? ManagerId = ProjectService.GetProjectManagerId(Project.Id);
-                G.Employee Manager = EmployeeService.Get((int)ManagerId);
-                G.Employee Creator = EmployeeService.Get(Project.CreatorId);
+                int? ManagerId = ProjectService.GetProjectManagerId((int)Project.Id);
+                C.Employee Manager = EmployeeService.Get((int)ManagerId);
+                C.Employee Creator = EmployeeService.Get(Project.CreatorId);
                 ListForm form = new ListForm(Project, Manager, Creator);
                 list.Add(form);
             }
@@ -39,9 +38,9 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         {
             CreateForm form = new CreateForm();
             form.StartDate = DateTime.Today;
-            IEnumerable<G.Employee> Employees = EmployeeService.GetAllActive();
+            IEnumerable<C.Employee> Employees = EmployeeService.GetAllActive();
             List<SelectListItem> ManagerCandidates = new List<SelectListItem>();
-            foreach (G.Employee emp in Employees)
+            foreach (C.Employee emp in Employees)
             {
                 ManagerCandidates.Add(new SelectListItem()
                 {
@@ -59,14 +58,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                G.Project p = new G.Project()
-                {
-                    Name = form.Name,
-                    Description = form.Description,
-                    CreatorId = SessionUser.GetUser().Id,
-                    Start =  form.StartDate,
-                    End = form.EndDate
-                };
+                C.Project p = new C.Project( form.Name, form.Description, form.StartDate, form.EndDate, SessionUser.GetUser().Id, form.SelectedProjectManagerId);
                 int ProjectManagerId = form.SelectedProjectManagerId;
                 try
                 {
@@ -80,9 +72,9 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                     throw (exception);
                 }
             }
-            IEnumerable<G.Employee> Employees = EmployeeService.GetAllActive();
+            IEnumerable<C.Employee> Employees = EmployeeService.GetAllActive();
             List<SelectListItem> ManagerCandidates = new List<SelectListItem>();
-            foreach (G.Employee emp in Employees)
+            foreach (C.Employee emp in Employees)
             {
                 ManagerCandidates.Add(new SelectListItem()
                 {
@@ -98,22 +90,22 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
 
         public ActionResult Edit(int id)
         {
-            Project project = ProjectService.GetProjectById(id);
-            G.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
+            C.Project project = ProjectService.GetProjectById(id);
+            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
             EditForm form = new EditForm()
             {
-                Id = project.Id,
+                Id = (int) project.Id,
                 Name = project.Name,
                 Description = project.Description,
-                ProjectManagerId = Manager.Employee_Id,
-                SelectedProjectManagerId = Manager.Employee_Id,
+                ProjectManagerId = (int) Manager.Employee_Id,
+                SelectedProjectManagerId = (int) Manager.Employee_Id,
                 StartDate = project.Start,
                 EndDate = project.End,
                 CreatorId = project.CreatorId
             };
-            IEnumerable<G.Employee> Employees = EmployeeService.GetAllActive();
+            IEnumerable<C.Employee> Employees = EmployeeService.GetAllActive();
             List<SelectListItem> ManagerCandidates = new List<SelectListItem>();
-            foreach (G.Employee emp in Employees)
+            foreach (C.Employee emp in Employees)
             {
                 ManagerCandidates.Add(new SelectListItem()
                 {
@@ -139,16 +131,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                G.Project Project = new G.Project()
-                {
-                    Id = form.Id,
-                    Name = form.Name,
-                    Description = form.Description,
-                    Start = form.StartDate,
-                    End = form.EndDate,
-                    CreatorId = form.CreatorId,
-                    ProjectManagerId = form.SelectedProjectManagerId
-                };
+                C.Project Project = new C.Project(form.Id, form.Name, form.Description, form.StartDate, form.EndDate, form.CreatorId, form.SelectedProjectManagerId);
                 try
                 {
                    if (ProjectService.Edit(SessionUser.GetUser().Id, Project))
@@ -167,9 +150,9 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
 
         public ActionResult Delete(int id)
         {
-            G.Project Project = ProjectService.GetProjectById(id);
-            G.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
-            G.Employee Creator = EmployeeService.Get(Project.CreatorId);
+            C.Project Project = ProjectService.GetProjectById(id);
+            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
+            C.Employee Creator = EmployeeService.Get(Project.CreatorId);
             DeleteForm Form = new DeleteForm(Project, Manager, Creator);
             return View(Form);
         }
@@ -179,15 +162,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                G.Project p = new G.Project()
-                {
-                    Id = form.ProjectId,
-                    Name = form.Name,
-                    Description = form.Description,
-                    CreatorId = form.Creator.Employee_Id,
-                    Start = form.StartDate,
-                    End = form.EndDate 
-                };
+                C.Project p = new C.Project(form.ProjectId, form.Name, form.Description, form.StartDate, form.EndDate, (int) form.Creator.Employee_Id, (int) form.ProjectManager.Employee_Id);
                 try
                 {
                     ProjectService.Delete(p, SessionUser.GetUser().Id);
@@ -203,13 +178,13 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         public ActionResult Details(int id)
         {
 
-            G.Project Project = ProjectService.GetProjectById(id);
-            G.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
-            G.Employee Creator = EmployeeService.Get(Project.CreatorId);
-            IEnumerable<G.Team> Teams = ProjectService.GetAllTeamsForProject(id);
+            C.Project Project = ProjectService.GetProjectById(id);
+            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
+            C.Employee Creator = EmployeeService.Get(Project.CreatorId);
+            IEnumerable<C.Team> Teams = ProjectService.GetAllTeamsForProject(id);
             DetailsForm Form = new DetailsForm
             {
-                Id = Project.Id,
+                Id = (int) Project.Id,
                 Name = Project.Name,
                 Description = Project.Description,
                 Manager = Manager,

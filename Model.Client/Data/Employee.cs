@@ -8,148 +8,71 @@ namespace Model.Client.Data
 {
     public class Employee
     {
-        private int _Employee_Id;
-        private string _LastName;
-        private string _FirstName;
-        private string _Email;
-        private string _Passwd;
-        private Boolean _Actif;
-        private string _RegNat;
-        private string _Address;
-        private string _Phone;
+        private int? _employee_Id;
+        private string _lastName;
+        private string _firstName;
+        private string _email;
+        private string _passwd;
+        private bool _actif;
+        private string _regNat;
+        private string _coordGps;
+        private string _address;
+        private string _phone;
+        private bool? _isAdmin;
 
-        public int Employee_Id
+        public Employee( int? employee_Id, string lastName, string firstName, string email, string passwd, bool actif, string regNat, string coordGps, string address, string phone, bool isAdmin)
         {
-            get
-            {
-                return _Employee_Id;
-            }
-
-            private set
-            {
-                _Employee_Id = value;
-            }
+            Employee_Id = employee_Id;
+            LastName = lastName;
+            FirstName = firstName;
+            Email = email;
+            Passwd = passwd;
+            Actif = actif;
+            RegNat = regNat;
+            CoordGps = coordGps;
+            Address = address;
+            Phone = phone;
+            IsAdmin = isAdmin;
         }
 
-        public string LastName
+        public Employee(string lastName, string firstName, string email, string passwd, string regNat, string address, string phone)
         {
-            get
-            {
-                return _LastName;
-            }
-
-            set
-            {
-                _LastName = value;
-            }
+            LastName = lastName;
+            FirstName = firstName;
+            Email = email;
+            Passwd = passwd;
+            Actif = true;
+            RegNat = regNat;
+            CoordGps = "";
+            Address = address;
+            Phone = phone;
         }
 
-        public string FirstName
-        {
-            get
-            {
-                return _FirstName;
-            }
+        public int? Employee_Id { get => _employee_Id; set => _employee_Id = value; }
+        public string LastName { get => _lastName; set => _lastName = value; }
+        public string FirstName { get => _firstName; set => _firstName = value; }
+        public string Email { get => _email; set => _email = value; }
+        public string Passwd { get => _passwd; set => _passwd = value; }
+        public Boolean Actif { get => _actif; set => _actif = value; }
+        public string RegNat { get => _regNat; set => _regNat = value; }
+        public string CoordGps { get => _coordGps; set => _coordGps = value; }
+        public string Address { get => _address; set => _address = value; }
+        public string Phone { get => _phone; set => _phone = value; }
+        public bool? IsAdmin { get => _isAdmin; set => _isAdmin = value; }
 
-            set
-            {
-                _FirstName = value;
-            }
-        }
 
-        public string Email
-        {
-            get
-            {
-                return _Email;
-            }
 
-            set
-            {
-                _Email = value;
-            }
-        }
-
-        public string Passwd
-        {
-            get
-            {
-                return _Passwd;
-            }
-
-            set
-            {
-                _Passwd = value;
-            }
-        }
-        public Boolean Actif
-        {
-            get
-            {
-                return _Actif;
-            }
-
-            set
-            {
-                _Actif = value;
-            }
-        }
-
-        public string RegNat
-        {
-            get
-            {
-                return _RegNat;
-            }
-
-            set
-            {
-                _RegNat = value;
-            }
-        }
-        public string Address
-        {
-            get
-            {
-                return _Address;
-            }
-
-            set
-            {
-                _Address = value;
-            }
-        }
-        public string Phone
-        {
-            get
-            {
-                return _Phone;
-            }
-
-            set
-            {
-                _Phone = value;
-            }
-        }
 
         public string FullName
         {
             get { return $"{LastName} {FirstName}"; }
         }
 
-        public Employee(string lastName, string firstName, string email, string regNat, string address, string phone)
+        public string Identifier
         {
-            LastName = lastName;
-            FirstName = firstName;
-            Email = email;
-            RegNat = regNat;
-            Address = address;
-            Phone = phone;
+            get { return $"{LastName} {FirstName} ({Email})"; }
         }
 
-        internal Employee(int id, string lastName, string firstName, string email, string regNat, string address, string phone) : this(lastName, firstName, email, regNat, address, phone)
-        {
-            Employee_Id = id;
-        }
+
     }
 }

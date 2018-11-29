@@ -1,5 +1,5 @@
-﻿using G = Model.Global.Data;
-using Model.Global.Service;
+﻿using C = Model.Client.Data;
+using Model.Client.Service;
 using Réseau_d_entreprise.Session.Attributes;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
-using Model.Global.Data;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Project;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
@@ -20,10 +19,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         {
             int Employee_Id = SessionUser.GetUser().Id;
             List<ListForm> list = new List<ListForm>();
-            foreach (Project Project in ProjectService.GetAllActive())
+            foreach (C.Project Project in ProjectService.GetAllActive())
             {
-                int? ManagerId = ProjectService.GetProjectManagerId(Project.Id);
-                G.Employee Manager = EmployeeService.Get((int)ManagerId);
+                int? ManagerId = ProjectService.GetProjectManagerId((int)Project.Id);
+                C.Employee Manager = EmployeeService.Get((int)ManagerId);
                 ListForm form = new ListForm(Project, Manager, Employee_Id);
                 list.Add(form);
             }
@@ -39,13 +38,13 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public ActionResult Details(int id)
         {
             int Employee_Id = SessionUser.GetUser().Id;
-            G.Project Project = ProjectService.GetProjectById(id);
-            G.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
-            G.Employee Creator = EmployeeService.Get(Project.CreatorId);
-            IEnumerable<G.Team> Teams = ProjectService.GetAllTeamsForProject(id);
+            C.Project Project = ProjectService.GetProjectById(id);
+            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
+            C.Employee Creator = EmployeeService.Get(Project.CreatorId);
+            IEnumerable<C.Team> Teams = ProjectService.GetAllTeamsForProject(id);
             DetailsForm Form = new DetailsForm
             {
-                Id = Project.Id,
+                Id = (int)Project.Id,
                 Name = Project.Name,
                 Description = Project.Description,
                 Manager = Manager,

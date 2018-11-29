@@ -41,13 +41,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Department.cs" />
+    <Compile Include="Data\Document.cs" />
     <Compile Include="Data\Employee.cs" />
+    <Compile Include="Data\EmployeeDepartmentHistory.cs" />
+    <Compile Include="Data\EmployeeEvent.cs" />
+    <Compile Include="Data\EmployeeProjectManagerHistory.cs" />
+    <Compile Include="Data\EmployeeStatus.cs" />
+    <Compile Include="Data\EmployeeStatusHistory.cs" />
+    <Compile Include="Data\Event.cs" />
+    <Compile Include="Data\Message.cs" />
+    <Compile Include="Data\Project.cs" />
+    <Compile Include="Data\Task.cs" />
+    <Compile Include="Data\Team.cs" />
     <Compile Include="Mapper\Mappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AuthService.cs" />
+    <Compile Include="Service\DepartmentService.cs" />
+    <Compile Include="Service\EmployeeService.cs" />
+    <Compile Include="Service\EventService.cs" />
+    <Compile Include="Service\ProjectService.cs" />
+    <Compile Include="Service\TeamService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Model.Global\Model.Global.csproj">
       <Project>{dce3299d-11c9-49f3-9358-f03dac52fa61}</Project>

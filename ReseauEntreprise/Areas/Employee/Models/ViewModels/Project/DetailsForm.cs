@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using G = Model.Global.Data;
+using C = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
 {
@@ -22,14 +22,14 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
         public String Description { get; set; }
         [Required]
         [Display(Name = "Project Manager")]
-        public G.Employee Manager { get; set; }
+        public C.Employee Manager { get; set; }
         [Required]
         [Display(Name = "Creator")]
-        public G.Employee Creator { get; set; }
+        public C.Employee Creator { get; set; }
         public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }
-        public IEnumerable<G.Team> Teams { get; set; }
+        public IEnumerable<C.Team> Teams { get; set; }
         public bool AmIProjectManager { get; set; }
     }
 }

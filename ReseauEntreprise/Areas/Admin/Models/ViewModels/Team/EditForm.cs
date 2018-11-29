@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using D = Model.Global.Data;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Team
 {
@@ -23,6 +22,9 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Team
         [Display(Name = "Team Leader")]
         public int SelectedTeamLeaderId { get; set; }
         public IEnumerable<SelectListItem> TeamLeaderCandidateList { get; set; }
-        
+        [HiddenInput]
+        public DateTime Created { get; set; }
+        [HiddenInput]
+        public int ProjectId { get; set; }
     }
 }

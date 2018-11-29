@@ -38,5 +38,11 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         [Required]
         [Display(Name = "Open Subscription")]
         public bool OpenEvent { get; set; }
+        [HiddenInput]
+        [Required]
+        public int CreatorId { get; set; }
+        [HiddenInput]
+        [Required]
+        public DateTime Created { get; set; }
     }
 }

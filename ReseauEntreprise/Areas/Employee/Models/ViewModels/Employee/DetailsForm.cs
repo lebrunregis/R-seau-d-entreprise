@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using D=Model.Global.Data;
+using D=Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee
 {

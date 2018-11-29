@@ -22,14 +22,14 @@ namespace ReseauEntreprise.Employee.Controllers
             List<ListForm> list = new List<ListForm>();
             foreach (D.Team Team in TeamService.GetAllActiveTeamsForEmployee(Employee_Id))
             {
-                int? TeamLeaderId = TeamService.GetTeamLeaderId(Team.Id);
+                int? TeamLeaderId = TeamService.GetTeamLeaderId((int)Team.Id);
                 D.Employee TeamLeader = EmployeeService.Get((int)TeamLeaderId);
                 D.Project Project = ProjectService.GetProjectById(Team.Project_Id);
-                int? ProjectManagerId = ProjectService.GetProjectManagerId(Project.Id);
+                int? ProjectManagerId = ProjectService.GetProjectManagerId((int)Project.Id);
                 D.Employee ProjectManager = EmployeeService.Get((int)ProjectManagerId);
                 ListForm form = new ListForm
                 {
-                    TeamId = Team.Id,
+                    TeamId = (int)Team.Id,
                     Name = Team.Name,
                     TeamLeader = TeamLeader,
                     ProjectManager = ProjectManager,
@@ -53,11 +53,11 @@ namespace ReseauEntreprise.Employee.Controllers
 
                     D.Employee TeamLeader = EmployeeService.Get(Employee_Id);
                     D.Project Project = ProjectService.GetProjectById(Team.Project_Id);
-                    int? ProjectManagerId = ProjectService.GetProjectManagerId(Project.Id);
+                    int? ProjectManagerId = ProjectService.GetProjectManagerId((int)Project.Id);
                     D.Employee ProjectManager = EmployeeService.Get((int)ProjectManagerId);
                     ListForm form = new ListForm
                     {
-                        TeamId = Team.Id,
+                        TeamId = (int)Team.Id,
                         Name = Team.Name,
                         TeamLeader = TeamLeader,
                         ProjectManager = ProjectManager,
@@ -71,7 +71,7 @@ namespace ReseauEntreprise.Employee.Controllers
             }
             foreach (D.Project Project in ProjectService.GetActiveProjectsForManager(Employee_Id))
             {
-                foreach (D.Team Team in ProjectService.GetAllTeamsForProject(Project.Id))
+                foreach (D.Team Team in ProjectService.GetAllTeamsForProject((int)Project.Id))
                 {
                     ListForm ThisTeam = list.FirstOrDefault(f => f.TeamId == Team.Id);
                     if (ThisTeam != null)
@@ -80,12 +80,12 @@ namespace ReseauEntreprise.Employee.Controllers
                     }
                     else
                     {
-                        int? TeamLeaderId = TeamService.GetTeamLeaderId(Team.Id);
+                        int? TeamLeaderId = TeamService.GetTeamLeaderId((int)Team.Id);
                         D.Employee TeamLeader = EmployeeService.Get((int)TeamLeaderId);
                         D.Employee ProjectManager = EmployeeService.Get(Employee_Id);
                         ListForm form = new ListForm
                         {
-                            TeamId = Team.Id,
+                            TeamId = (int)Team.Id,
                             Name = Team.Name,
                             TeamLeader = TeamLeader,
                             ProjectManager = ProjectManager,
@@ -208,9 +208,9 @@ namespace ReseauEntreprise.Employee.Controllers
                 D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(id));
                 EditForm form = new EditForm()
                 {
-                    Id = Team.Id,
+                    Id = (int)Team.Id,
                     Name = Team.Name,
-                    SelectedTeamLeaderId = TeamLeader.Employee_Id,
+                    SelectedTeamLeaderId = (int)TeamLeader.Employee_Id,
                     CreatorId = Team.Creator_Id
                 };
                 IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
@@ -274,7 +274,7 @@ namespace ReseauEntreprise.Employee.Controllers
             {
                 DeleteForm form = new DeleteForm()
                 {
-                    Team_Id = Team.Id,
+                    Team_Id = (int)Team.Id,
                     Name = Team.Name,
                     Created = Team.Created,
                     Creator_Id = Team.Creator_Id,
@@ -325,7 +325,7 @@ namespace ReseauEntreprise.Employee.Controllers
             IEnumerable<D.Employee> Members = TeamService.GetAllEmployeesForTeam(id);
             DetailsForm Form = new DetailsForm
             {
-                Id = Team.Id,
+                Id = (int)Team.Id,
                 Name = Team.Name,
                 TeamLeader = TeamLeader,
                 Creator = Creator,
@@ -353,12 +353,12 @@ namespace ReseauEntreprise.Employee.Controllers
                 List<EmployeesInTeamForm> EmployeesInTeamFormList = new List<EmployeesInTeamForm>();
                 foreach (D.Employee employee in Employees)
                 {
-                    IEnumerable<D.Department> departments = DepartmentService.GetEmployeeActiveDepartments(employee.Employee_Id);
+                    IEnumerable<D.Department> departments = DepartmentService.GetEmployeeActiveDepartments((int)employee.Employee_Id);
                     EmployeesInTeamFormList.Add(new EmployeesInTeamForm
                     {
                         Employee = employee,
                         Departments = departments,
-                        IsInTeam = TeamService.IsInTeam(id, employee.Employee_Id)
+                        IsInTeam = TeamService.IsInTeam(id, (int)employee.Employee_Id)
                     });
                 }
                 return View(EmployeesInTeamFormList);

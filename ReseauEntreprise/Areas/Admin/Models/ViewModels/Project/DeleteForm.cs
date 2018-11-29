@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using D = Model.Global.Data;
+using D = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
 {
@@ -50,7 +50,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
 
         public DeleteForm(D.Project Project,D.Employee ProjectManager, D.Employee Creator)
         {
-            ProjectId = Project.Id;
+            ProjectId = (int) Project.Id;
             Name = Project.Name;
             Description = Project.Description;
             StartDate = Project.Start;

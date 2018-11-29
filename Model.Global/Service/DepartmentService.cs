@@ -92,18 +92,21 @@ namespace Model.Global.Service
             cmd.AddParameter("User", User);
             return Connection.ExecuteNonQuery(cmd);
         }
+
         public static IEnumerable<EmployeeDepartmentHistory> GetEmployeeDepartmentHistory(int Employee_Id)
         {
             Command cmd = new Command("GetEmployeeDepartmentsHistory", true);
             cmd.AddParameter("EmployeeId", Employee_Id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployeeDepartment());
         }
+
         public static IEnumerable<Department> GetHeadOfDepartmentActiveDepartments(int Employee_Id)
         {
             Command cmd = new Command("GetHeadOfDepartmentActiveDepartments", true);
             cmd.AddParameter("HeadOfDepartment_Id", Employee_Id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToDepartment());
         }
+
         public static bool ChangeHeadOfDepartment(int DepId, int EmpId, int User)
         {
             Command cmd = new Command("ChangeHeadOfDepartment", true);
@@ -112,17 +115,20 @@ namespace Model.Global.Service
             cmd.AddParameter("User", User);
             return (Connection.ExecuteNonQuery(cmd) > 0);
         }
+
         public static int? GetHeadOfDepartmentId(int DepartmentId)
         {
             Command cmd = new Command("GetHeadOfDepartmentId", true);
             cmd.AddParameter("departmentId", DepartmentId);
             return (int?)Connection.ExecuteScalar(cmd);
         }
+
         public static IEnumerable<Employee> GetEmployeesForDepartment(int Department_Id)
         {
             Command cmd = new Command("GetEmployeesForDepartment", true);
             cmd.AddParameter("Department_Id", Department_Id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee());
         }
+
     }
 }
