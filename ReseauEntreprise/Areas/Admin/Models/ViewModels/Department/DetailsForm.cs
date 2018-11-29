@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using G = Model.Global.Data;
+using C = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Department
 {
@@ -24,10 +24,10 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Department
         [Required]
         public int Admin_Id { get; set; }
         [HiddenInput]
-        public G.Employee Admin { get; set; }
+        public C.Employee Admin { get; set; }
         [Required]
         public bool Active { get; set; }
-        public G.Employee HeadOfDepartment { get; set; }
-        public IEnumerable<G.Employee> Employees { get; set; }
+        public C.Employee HeadOfDepartment { get; set; }
+        public IEnumerable<C.Employee> Employees { get; set; }
     }
 }
