@@ -1,5 +1,5 @@
-﻿using D = Model.Global.Data;
-using Model.Global.Service;
+﻿using D = Model.Client.Data;
+using Model.Client.Service;
 using Réseau_d_entreprise.Session.Attributes;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Team;
 using System;
@@ -10,7 +10,7 @@ using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam;
 
-namespace ReseauEntreprise.Employee.Controllers
+namespace ReseauEntreprise.Area.Employee.Controllers
 {
     [RouteArea("Employee")]
     [EmployeeRequired]
@@ -244,12 +244,7 @@ namespace ReseauEntreprise.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                D.Team Team = new D.Team()
-                {
-                    Id = form.Id,
-                    Name = form.Name,
-                    Creator_Id = form.CreatorId
-                };
+                D.Team Team = new D.Team(form.Name, form.CreatorId, form.ProjectId);
                 try
                 {
                     if (TeamService.Edit(SessionUser.GetUser().Id, Team, form.SelectedTeamLeaderId))
