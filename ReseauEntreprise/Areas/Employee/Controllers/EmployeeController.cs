@@ -75,8 +75,8 @@ namespace ReseauEntreprise.Employee.Controllers
                 FirstName = emp.FirstName,
                 LastName = emp.LastName,
                 Email = emp.Email,
-                Departments = DepartmentService.GetEmployeeActiveDepartments(((int)emp.Employee_Id),
-                TeamsInCommon = TeamService.GetActiveTeamsInCommon(int)emp.Employee_Id, My_Id).GroupBy(team => (int)team.Project_Id).Select(teamsGroup => new ProjectTeamsForm
+                Departments = DepartmentService.GetEmployeeActiveDepartments((int)emp.Employee_Id),
+                TeamsInCommon = TeamService.GetActiveTeamsInCommon((int)emp.Employee_Id, My_Id).GroupBy(team => (int)team.Project_Id).Select(teamsGroup => new ProjectTeamsForm
                 {
                     Project = ProjectService.GetProjectById(teamsGroup.Key),
                     Teams = teamsGroup.ToList()
