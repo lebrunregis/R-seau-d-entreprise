@@ -310,6 +310,8 @@
     <Content Include="Areas\Employee\Views\Department\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Department\Details.cshtml" />
     <Content Include="Areas\Employee\Views\Employee\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\MessagePartial_SendFormTemlate.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\MessagePartial_SendTemplate.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -352,7 +354,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\Employee\Views\Message\" />
     <Folder Include="Areas\Employee\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
