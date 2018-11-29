@@ -25,7 +25,7 @@ namespace Model.Client.Data
 
         }
 
-        public Employee( int? employee_Id, string lastName, string firstName, string email, string passwd, bool actif, string regNat, string coordGps, string address, string phone, bool isAdmin)
+        public Employee( int? employee_Id, string lastName, string firstName, string email, string passwd, bool actif, string regNat, string coordGps, string address, string phone, bool? isAdmin)
         {
             Employee_Id = employee_Id;
             LastName = lastName;
