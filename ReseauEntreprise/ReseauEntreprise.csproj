@@ -199,7 +199,6 @@
     <Compile Include="Areas\Employee\Models\ViewModels\EditEmailForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EditPassForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EditProfileForm.cs" />
-    <Compile Include="Areas\Employee\Models\ProjectModel.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeDepartment\AddEmployeeToDepartmentForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeDepartment\RemoveEmployeeFromDepartmentForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeTeam\EmployeesInTeamForm.cs" />
