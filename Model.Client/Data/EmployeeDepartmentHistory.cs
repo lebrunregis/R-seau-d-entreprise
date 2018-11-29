@@ -14,6 +14,11 @@ namespace Model.Client.Data
         private DateTime startDate;
         private DateTime? endDate;
 
+        public EmployeeDepartmentHistory()
+        {
+
+        }
+
         public EmployeeDepartmentHistory(int? id, string name, int depId, DateTime startDate, DateTime? endDate)
         {
             Id = id;

@@ -15,6 +15,11 @@ namespace Model.Client.Data
         private int author;
         private int parent;
 
+        public Message()
+        {
+
+        }
+
         public Message(int? id, string title, DateTime created, string body, int author, int parent)
         {
             Id = id;

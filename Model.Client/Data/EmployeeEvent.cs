@@ -14,6 +14,11 @@ namespace Model.Client.Data
         private bool? cancelled;
         private DateTime? subscribed;
 
+        public EmployeeEvent()
+        {
+
+        }
+
         public EmployeeEvent(int employeeId, int eventId, bool? attended, bool? cancelled, DateTime? subscribed)
         {
             EmployeeId = employeeId;

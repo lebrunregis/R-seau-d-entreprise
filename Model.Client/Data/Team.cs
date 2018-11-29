@@ -16,6 +16,11 @@ namespace Model.Client.Data
         private int project_Id;
         private List<Employee> employees;
 
+        public Team()
+        {
+
+        }
+
         public Team(int? id, string name, DateTime created, DateTime? disbanded, int creator_Id, int project_Id, List<Employee> employees)
         {
             Id = id;

@@ -16,6 +16,11 @@ namespace Model.Client.Data
         private int creatorId;
         private int projectManagerId;
 
+        public Project()
+        {
+
+        }
+
         public Project(int? id, string name, string description, DateTime start, DateTime? end, int creatorId, int projectManagerId)
         {
             Id = id;

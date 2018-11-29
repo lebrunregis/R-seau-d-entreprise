@@ -15,6 +15,11 @@ namespace Model.Client.Data
         private DateTime startDate;
         private DateTime? endDate;
 
+        public EmployeeStatusHistory()
+        {
+
+        }
+
         public EmployeeStatusHistory(int? id, int employee, int status, string name, DateTime startDate, DateTime? endDate)
         {
             Id = id;

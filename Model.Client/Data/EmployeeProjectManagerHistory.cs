@@ -13,6 +13,11 @@ namespace Model.Client.Data
         private DateTime startDate;
         private DateTime? endDate;
 
+        public EmployeeProjectManagerHistory()
+        {
+
+        }
+
         public EmployeeProjectManagerHistory(int project_Id, string project_Name, DateTime startDate, DateTime? endDate)
         {
             Project_Id = project_Id;
