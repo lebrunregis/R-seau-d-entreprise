@@ -10,7 +10,7 @@ using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam;
 
-namespace ReseauEntreprise.Area.Employee.Controllers
+namespace ReseauEntreprise.Areas.Employee.Controllers
 {
     [RouteArea("Employee")]
     [EmployeeRequired]
@@ -153,12 +153,7 @@ namespace ReseauEntreprise.Area.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                D.Team t = new D.Team()
-                {
-                    Name = form.Name,
-                    Creator_Id = SessionUser.GetUser().Id,
-                    Project_Id = form.SelectedProjectId
-                };
+                D.Team t = new D.Team(form.Name,SessionUser.GetUser().Id, form.SelectedProjectId);
                 int TeamLeaderId = form.SelectedTeamLeaderId;
                 try
                 {
@@ -287,14 +282,7 @@ namespace ReseauEntreprise.Area.Employee.Controllers
             {
                 if (id == form.Team_Id)
                 {
-                    D.Team Team = new D.Team()
-                    {
-                        Id = form.Team_Id,
-                        Name = form.Name,
-                        Created = form.Created,
-                        Creator_Id = form.Creator_Id,
-                        Project_Id = form.Project_Id
-                    };
+                    D.Team Team = new D.Team(form.Team_Id, form.Name, form.Created, null, form.Creator_Id, form.Project_Id, null);
                     try
                     {
                         if (TeamService.Delete(Team, SessionUser.GetUser().Id))

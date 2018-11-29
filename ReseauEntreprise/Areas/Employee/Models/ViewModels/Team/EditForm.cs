@@ -17,12 +17,14 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         [Required]
         public int CreatorId { get; set; }
         [Required]
+        [HiddenInput]
+        public int ProjectId { get; set; }
+        [Required]
         [MaxLength(50)]
         public String Name { get; set; }
         [Required]
         [Display(Name = "Team Leader")]
         public int SelectedTeamLeaderId { get; set; }
         public IEnumerable<SelectListItem> TeamLeaderCandidateList { get; set; }
-        
     }
 }
