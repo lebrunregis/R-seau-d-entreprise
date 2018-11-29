@@ -33,6 +33,8 @@ DISABLE TRIGGER [OnDeleteTeam] ON Team;
 GO
 --DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 --GO
+
+
 DELETE FROM [EmployeeEvent]
 GO
 DELETE FROM [EmployeeHeadOfDepartment]
@@ -59,9 +61,15 @@ DELETE FROM [EmployeeStatusHistory];
 GO
 DELETE FROM [Employee];
 GO
-DELETE FROM [EmployeeStatus];
+DELETE FROM [TaskStatus];
+GO
+DELETE FROM [Task];
+GO
+DELETE FROM [EmployeeTask];
 GO
 
+DBCC CHECKIDENT ('[EmployeeStatus]', RESEED, 0);
+GO
 DBCC CHECKIDENT ('[Employee]', RESEED, 0);
 GO
 DBCC CHECKIDENT ('[Project]', RESEED, 0);
@@ -69,8 +77,14 @@ GO
 DBCC CHECKIDENT ('[EmployeeStatusHistory]', RESEED, 0);
 GO
 
-
+SET IDENTITY_INSERT [TaskStatus] ON 
+INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (1,'Not started');
+INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (2,'Being worked on');
+INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (3,'On hold');
+INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (4,'Done');
+INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (5,'Cancelled');
 GO
+
 SET IDENTITY_INSERT [EmployeeStatus] ON 
 INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (1,'Joined');
 INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (2,'Left');

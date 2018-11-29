@@ -78,6 +78,7 @@
     <Folder Include="dbo\Tables\Department" />
     <Folder Include="dbo\SP\Event" />
     <Folder Include="dbo\Tables\Event" />
+    <Folder Include="dbo\SP\Tasks" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Message\Message.sql" />
@@ -86,7 +87,6 @@
     <Build Include="dbo\Tables\Message\MessageTask.sql" />
     <Build Include="dbo\Tables\Message\MessageTeam.sql" />
     <Build Include="dbo\Tables\Project\Project.sql" />
-    <Build Include="dbo\Tables\Project\ProjectTask.sql" />
     <Build Include="dbo\Tables\Team\Team.sql" />
     <Build Include="dbo\Tables\Team\TeamTask.sql" />
     <Build Include="dbo\Tables\Task\Task.sql" />
@@ -202,6 +202,14 @@
     <Build Include="dbo\SP\Team\GetActiveTeamsInCommon.sql" />
     <Build Include="dbo\SP\Event\GetSubscriptionStatus.sql" />
     <Build Include="dbo\SP\Event\GetEmployeeSubscriptionStatus.sql" />
+    <Build Include="dbo\SP\Tasks\CreateTask.sql" />
+    <Build Include="dbo\SP\Tasks\UpdateTask.sql" />
+    <Build Include="dbo\SP\Tasks\DeleteTask.sql" />
+    <Build Include="dbo\SP\Tasks\GetTask.sql" />
+    <Build Include="dbo\SP\Tasks\GetSubtasks.sql" />
+    <Build Include="dbo\SP\Tasks\GetTasksForProject.sql" />
+    <Build Include="dbo\SP\Tasks\SetTaskStatus.sql" />
+    <Build Include="dbo\SP\Tasks\AssignEmployeeToTask.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

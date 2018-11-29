@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [Task] (
   [Task_Id] int identity,
+  [Project_Id] int FOREIGN KEY REFERENCES [Project](Project_Id) NOT NULL,
   [Name] nvarchar(50) NOT NULL,
   [Description] nvarchar(max) NOT NULL,
   [StartDate] DATETIME2(0) NOT NULL,
