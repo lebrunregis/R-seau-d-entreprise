@@ -38,7 +38,7 @@ namespace Model.Client.Data
 
             set
             {
-                if (value is null || DateTime.Compare((DateTime)value, StartDate) <= 0)
+                if (value is null || DateTime.Compare((DateTime)value, StartDate) >= 0)
                 {
                     endDate = value;
                 }

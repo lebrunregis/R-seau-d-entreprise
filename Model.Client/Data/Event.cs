@@ -72,7 +72,7 @@ namespace Model.Client.Data
 
             set
             {
-                if (DateTime.Compare((DateTime)value, StartDate) <= 0)
+                if (DateTime.Compare((DateTime)value, StartDate) >= 0)
                 {
                     endDate = value;
                 }

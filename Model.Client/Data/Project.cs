@@ -55,7 +55,7 @@ namespace Model.Client.Data
 
             set
             {
-                if (value is null || DateTime.Compare((DateTime)value, Start) <= 0)
+                if (value is null || DateTime.Compare((DateTime)value, Start) >= 0)
                 {
                     end = value;
                 }
