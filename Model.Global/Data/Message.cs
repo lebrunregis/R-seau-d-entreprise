@@ -13,6 +13,6 @@ namespace Model.Global.Data
         public DateTime Created { get; set; }
         public String Body { get; set; }
         public int Author { get; set; }
-        public int Parent { get; set; }
+        public int? Parent { get; set; }
     }
 }

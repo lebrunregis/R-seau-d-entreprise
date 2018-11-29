@@ -13,7 +13,7 @@ namespace Model.Client.Data
         private DateTime created;
         private String body;
         private int author;
-        private int parent;
+        private int? parent;
 
         public Message(int? id, string title, DateTime created, string body, int author, int parent)
         {
@@ -40,6 +40,6 @@ namespace Model.Client.Data
         public DateTime Created { get => created; set => created = value; }
         public string Body { get => body; set => body = value; }
         public int Author { get => author; set => author = value; }
-        public int Parent { get => parent; set => parent = value; }
+        public int? Parent { get => parent; set => parent = value; }
     }
 }

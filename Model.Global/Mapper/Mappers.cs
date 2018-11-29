@@ -126,5 +126,17 @@ namespace Model.Global.Mapper
                 Subscribed = (DateTime?)((dr["Subscribed"] == DBNull.Value) ? null : dr["Subscribed"])
             };
         }
+        internal static Message ToMessage(this IDataRecord dr)
+        {
+            return new Message()
+            {
+                Id = (int)dr["Message_Id"],
+                Title = (string)((dr["Message_Title"] == DBNull.Value) ? null : dr["Message_Title"]),
+                Created = (DateTime)dr["Message_Date"],
+                Body = (string)dr["Message_Message"],
+                Author = (int)dr["Message_Author"],
+                Parent = (int?)((dr["Message_Parent"] == DBNull.Value) ? null : dr["Message_Parent"])
+            };
+        }
     }
 }

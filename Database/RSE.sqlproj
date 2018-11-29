@@ -78,6 +78,7 @@
     <Folder Include="dbo\Tables\Department" />
     <Folder Include="dbo\SP\Event" />
     <Folder Include="dbo\Tables\Event" />
+    <Folder Include="dbo\SP\Message" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Message\Message.sql" />
@@ -202,6 +203,12 @@
     <Build Include="dbo\SP\Team\GetActiveTeamsInCommon.sql" />
     <Build Include="dbo\SP\Event\GetSubscriptionStatus.sql" />
     <Build Include="dbo\SP\Event\GetEmployeeSubscriptionStatus.sql" />
+    <Build Include="dbo\SP\Message\CreateMessage.sql" />
+    <Build Include="dbo\SP\Message\GetMessage.sql" />
+    <Build Include="dbo\SP\Message\GetProjectMessages.sql" />
+    <Build Include="dbo\SP\Message\GetTaskMessages.sql" />
+    <Build Include="dbo\SP\Message\GetTeamMessages.sql" />
+    <Build Include="dbo\SP\Message\GetMyDiscussionWithEmployee.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
