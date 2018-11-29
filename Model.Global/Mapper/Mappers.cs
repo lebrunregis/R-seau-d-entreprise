@@ -146,8 +146,8 @@ namespace Model.Global.Mapper
                 EndDate = (DateTime)dr["EndDate"],
           Deadline =(DateTime?)dr["Deadline"],
                 SubtaskOf =(int)dr["SubtaskOf"],
-                StatusId = (String)dr["Status_Id"],
-                Status =(int?)dr["Status_Name"],
+                StatusId = (int)dr["Status_Id"],
+                Status =(string)dr["Status_Name"],
             };
         }
 
