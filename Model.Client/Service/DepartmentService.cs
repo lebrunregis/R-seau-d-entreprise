@@ -51,7 +51,13 @@ namespace Model.Client.Service
 
         public static IEnumerable<Department> GetEmployeeActiveDepartments(int id)
         {
-            throw new NotImplementedException();
+            List<Department> ClientDepartments = new List<Department>();
+            IEnumerable<GD.Department> GlobalDepartments = GS.DepartmentService.GetEmployeeActiveDepartments(id);
+            foreach (GD.Department department in GlobalDepartments)
+            {
+                ClientDepartments.Add(Mappers.ToClient(department));
+            }
+            return ClientDepartments;
         }
 
         public static IEnumerable<Department> GetAll()
