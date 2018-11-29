@@ -206,8 +206,8 @@
     <Compile Include="Areas\Employee\Models\ViewModels\Employee\DepartmentComparator.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Employee\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Employee\ListForm.cs" />
-    <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\IndexModel.cs" />
-    <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\ProjectTeams.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\IndexForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\ProjectTeamsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Team\CreateForm.cs" />

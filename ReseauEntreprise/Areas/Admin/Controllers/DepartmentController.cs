@@ -64,9 +64,9 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         public ActionResult Create()
         {
             CreateForm form = new CreateForm();
-            IEnumerable<G.Employee> Employees = EmployeeService.GetAllActive();
+            IEnumerable<C.Employee> Employees = EmployeeService.GetAllActive();
             List<SelectListItem> HeadOfDepartmentCandidates = new List<SelectListItem>();
-            foreach (G.Employee emp in Employees)
+            foreach (C.Employee emp in Employees)
             {
                 HeadOfDepartmentCandidates.Add(new SelectListItem()
                 {
@@ -94,9 +94,9 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                         return RedirectToAction("Index");
                     }
                 }
-                IEnumerable<G.Employee> Employees = EmployeeService.GetAllActive();
+                IEnumerable<C.Employee> Employees = EmployeeService.GetAllActive();
                 List<SelectListItem> HeadOfDepartmentCandidates = new List<SelectListItem>();
-                foreach (G.Employee emp in Employees)
+                foreach (C.Employee emp in Employees)
                 {
                     HeadOfDepartmentCandidates.Add(new SelectListItem()
                     {
@@ -147,7 +147,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             }
             else
             {
-                G.Employee HeadOfDepartment = EmployeeService.Get((int)HeadOfDepId);
+                C.Employee HeadOfDepartment = EmployeeService.Get((int)HeadOfDepId);
                 if (!Employees.Any(emp => emp.Employee_Id == HeadOfDepartment.Employee_Id))
                 {
                     HeadOfDepartmentCandidates.Add(new SelectListItem()
@@ -156,7 +156,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                         Value = HeadOfDepartment.Employee_Id.ToString()
                     });
                 }
-                form.SelectedHeadOfDepartmentId = HeadOfDepartment.Employee_Id;
+                form.SelectedHeadOfDepartmentId = (int)HeadOfDepartment.Employee_Id;
             }
             form.HeadOfDepartmentCandidateList = HeadOfDepartmentCandidates;
             return View(form);

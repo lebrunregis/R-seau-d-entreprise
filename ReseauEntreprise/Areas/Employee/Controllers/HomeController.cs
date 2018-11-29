@@ -20,13 +20,13 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         {
             int Employee_Id = SessionUser.GetUser().Id;
             IEnumerable<D.Team> Teams = TeamService.GetAllActiveTeamsForEmployee(Employee_Id);
-            List<ProjectTeams> ProjectTeamList = new List<ProjectTeams>();
+            List<ProjectTeamsForm> ProjectTeamList = new List<ProjectTeamsForm>();
             foreach(D.Team team in Teams)
             {
-                ProjectTeams element = ProjectTeamList.Where(pt => pt.Project.Id == team.Project_Id).FirstOrDefault();
+                ProjectTeamsForm element = ProjectTeamList.Where(pt => pt.Project.Id == team.Project_Id).FirstOrDefault();
                 if (element is null)
                 {
-                    ProjectTeams NewElement = new ProjectTeams
+                    ProjectTeamsForm NewElement = new ProjectTeamsForm
                     {
                         Project = ProjectService.GetProjectById(team.Project_Id),
                         Teams = new List<D.Team>()
@@ -40,7 +40,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 }
             }
             IEnumerable<D.Department> MyDepartments = DepartmentService.GetEmployeeDepartments(Employee_Id);
-            IndexModel form = new IndexModel
+            IndexForm form = new IndexForm
             {
                 ProjectTeamList = ProjectTeamList,
                 MyDepartments = DepartmentService.GetEmployeeActiveDepartments(Employee_Id),

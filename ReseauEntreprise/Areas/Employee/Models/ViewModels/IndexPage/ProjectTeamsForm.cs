@@ -7,7 +7,7 @@ using D = Model.Global.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.IndexPage
 {
-    public class ProjectTeams
+    public class ProjectTeamsForm
     {
         [DisplayName("My teams")]
         public List<D.Team> Teams { get; set; }

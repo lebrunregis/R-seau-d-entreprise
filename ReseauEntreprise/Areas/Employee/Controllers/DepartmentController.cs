@@ -24,12 +24,12 @@ namespace ReseauEntreprise.Employee.Controllers
             {
                 ListForm form = new ListForm
                 {
-                    Id = Department.Id,
+                    Id = (int)Department.Id,
                     Title = Department.Title,
                     Created = Department.Created,
                     Description = Department.Description
                 };
-                int? HeadOfDepartmentId = DepartmentService.GetHeadOfDepartmentId(Department.Id);
+                int? HeadOfDepartmentId = DepartmentService.GetHeadOfDepartmentId((int)Department.Id);
                 if (HeadOfDepartmentId != null)
                 {
                     form.HeadOfDepartment = EmployeeService.Get((int)HeadOfDepartmentId);
@@ -45,15 +45,15 @@ namespace ReseauEntreprise.Employee.Controllers
             G.Department Department = DepartmentService.GetDepartmentById(id);
             DetailsForm form = new DetailsForm
             {
-                Id = Department.Id,
+                Id = (int)Department.Id,
                 Title = Department.Title,
                 Created = Department.Created,
                 Description = Department.Description,
                 Creator = EmployeeService.Get(Department.Admin_Id),
                 Active = Department.Active,
-                Employees = DepartmentService.GetEmployeesForDepartment(Department.Id)
+                Employees = DepartmentService.GetEmployeesForDepartment((int)Department.Id)
             };
-            int? HeadOfDepartmentId = DepartmentService.GetHeadOfDepartmentId(Department.Id);
+            int? HeadOfDepartmentId = DepartmentService.GetHeadOfDepartmentId((int)Department.Id);
             if (HeadOfDepartmentId != null)
             {
                 form.HeadOfDepartment = EmployeeService.Get((int)HeadOfDepartmentId);

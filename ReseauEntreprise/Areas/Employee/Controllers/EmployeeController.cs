@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee;
 using Réseau_d_entreprise.Session.Attributes;
 using Réseau_d_entreprise.Session;
-using ProjectTeams = ReseauEntreprise.Areas.Employee.Models.ViewModels.IndexPage.ProjectTeams;
+using ProjectTeamsForm = ReseauEntreprise.Areas.Employee.Models.ViewModels.IndexPage.ProjectTeamsForm;
 
 namespace ReseauEntreprise.Employee.Controllers
 {
@@ -30,7 +30,7 @@ namespace ReseauEntreprise.Employee.Controllers
                 Phone = e.Phone,
                 RegNat = e.RegNat,
                 IsActif = e.Actif,
-                IsAdmin = e.IsAdmin,
+                IsAdmin = (bool)e.IsAdmin,
                 IsMe = (e.Employee_Id == My_Id),
                 Teams = TeamService.GetAllActiveTeamsForEmployee(id),
                 Departments = DepartmentService.GetEmployeeActiveDepartments(id),
@@ -71,12 +71,12 @@ namespace ReseauEntreprise.Employee.Controllers
             IEnumerable<ListForm> FormList = EmployeeService.GetAllActive().Select(emp => new ListForm
             {
                 IsMe = (emp.Employee_Id == My_Id),
-                Id = emp.Employee_Id,
+                Id = (int)emp.Employee_Id,
                 FirstName = emp.FirstName,
                 LastName = emp.LastName,
                 Email = emp.Email,
-                Departments = DepartmentService.GetEmployeeActiveDepartments(emp.Employee_Id),
-                TeamsInCommon = TeamService.GetActiveTeamsInCommon(emp.Employee_Id, My_Id).GroupBy(team => team.Project_Id).Select(teamsGroup => new ProjectTeams
+                Departments = DepartmentService.GetEmployeeActiveDepartments(((int)emp.Employee_Id),
+                TeamsInCommon = TeamService.GetActiveTeamsInCommon(int)emp.Employee_Id, My_Id).GroupBy(team => (int)team.Project_Id).Select(teamsGroup => new ProjectTeamsForm
                 {
                     Project = ProjectService.GetProjectById(teamsGroup.Key),
                     Teams = teamsGroup.ToList()

@@ -59,6 +59,18 @@ namespace Model.Client.Service
             }
             return Projects;
         }
+
+        public static IEnumerable<Project> GetActiveProjectsForManager(int id)
+        {
+            List<Project> Projects = new List<Project>();
+            IEnumerable<GD.Project> GlobalProjects = GS.ProjectService.GetActiveProjectsForManager( id);
+            foreach (GD.Project Project in GlobalProjects)
+            {
+                Projects.Add(Mappers.ToClient(Project));
+            }
+            return Projects;
+        }
+
         public static int? GetProjectManagerId(int ProjectId)
         {
             return GS.ProjectService.GetProjectManagerId(ProjectId);

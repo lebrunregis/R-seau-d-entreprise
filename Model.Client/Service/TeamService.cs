@@ -46,6 +46,17 @@ namespace Model.Client.Service
             return Teams;
         }
 
+        public static IEnumerable<Team> GetAllActiveTeamsForEmployee(int id)
+        {
+            List<Team> Teams = new List<Team>();
+            foreach (GD.Team Team in GS.TeamService.GetAllActiveTeamsForEmployee(id))
+            {
+                Teams.Add(Mappers.ToClient(Team));
+            }
+
+            return Teams;
+        }
+
         public static IEnumerable<Data.Team> GetAll()
         {
             List<Team> Teams = new List<Team>();
@@ -56,6 +67,18 @@ namespace Model.Client.Service
             }
             return Teams;
         }
+
+        public static IEnumerable<Team> GetActiveTeamsForTeamLeader(int id)
+        {
+            List<Team> Teams = new List<Team>();
+            foreach(GD.Team Team in GS.TeamService.GetActiveTeamsForTeamLeader(id))
+            {
+                Teams.Add(Mappers.ToClient(Team));
+            }
+
+            return Teams;
+        }
+
         public static int? GetTeamLeaderId(int Team_Id)
         {
             return GS.TeamService.GetTeamLeaderId(Team_Id);
@@ -82,6 +105,17 @@ namespace Model.Client.Service
         public static bool IsInTeam(int Team_Id, int Employee_Id)
         {
             return GS.TeamService.IsInTeam(Team_Id, Employee_Id);
+        }
+
+        public static IEnumerable<Data.Team> GetActiveTeamsInCommon(int Emp_Id_1, int Emp_Id_2)
+        {
+            List<Team> Teams = new List<Team>();
+            foreach (GD.Team Team in GS.TeamService.GetActiveTeamsInCommon( Emp_Id_1, Emp_Id_2))
+            {
+                Teams.Add(Mappers.ToClient(Team));
+            }
+
+            return Teams;
         }
     }
 }

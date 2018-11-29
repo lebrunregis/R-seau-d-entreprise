@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using G = Model.Global.Data;
+using C = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee
 {
-    public class DepartmentComparator : IEqualityComparer<G.Department>
+    public class DepartmentComparator : IEqualityComparer<C.Department>
     {
-        public bool Equals(G.Department x, G.Department y)
+        public bool Equals(C.Department x, C.Department y)
         {
             
             return x.Id == y.Id;
         }
 
-        public int GetHashCode(G.Department obj)
+        public int GetHashCode(C.Department obj)
         { 
-            return obj.Id;
+            return (int)obj.Id;
         }
 
     }
