@@ -72,6 +72,7 @@ namespace Model.Client.Mapper
                 RegNat = entity.RegNat,
                 Address = entity.Address,
                 Phone = entity.Phone,
+                IsAdmin = entity.IsAdmin
             };
         }
 
