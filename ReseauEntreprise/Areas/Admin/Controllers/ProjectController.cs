@@ -165,14 +165,17 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 C.Project p = new C.Project(form.ProjectId, form.Name, form.Description, form.StartDate, form.EndDate, (int) form.Creator.Employee_Id, (int) form.ProjectManager.Employee_Id);
                 try
                 {
-                    ProjectService.Delete(p, SessionUser.GetUser().Id);
+                    if (ProjectService.Delete(p, SessionUser.GetUser().Id))
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
                 catch (System.Data.SqlClient.SqlException Exception)
                 {
                     throw Exception;
                 }
             }
-            return RedirectToAction("Index");
+            return View(form);
         }
 
         public ActionResult Details(int id)
