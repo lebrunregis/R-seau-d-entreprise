@@ -10,7 +10,7 @@ using G = Model.Global.Data;
 using Model.Global.Service;
 using Réseau_d_entreprise.Session;
 
-namespace ReseauEntreprise.Employee.Controllers
+namespace ReseauEntreprise.Areas.Employee.Controllers
 {
     [RouteArea("Employee")]
     [EmployeeRequired]
