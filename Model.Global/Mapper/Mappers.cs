@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Model.Global.Mapper
 {
@@ -32,6 +31,7 @@ namespace Model.Global.Mapper
             }
             return e;
         }
+
         internal static Project ToProject(this IDataRecord dr)
         {
             return new Project()
@@ -44,6 +44,7 @@ namespace Model.Global.Mapper
                 CreatorId = (int)dr["CreatorId"]
             };
         }
+
         internal static EmployeeStatusHistory ToEmployeeStatusHistory(this IDataRecord dr)
         {
             return new EmployeeStatusHistory()
@@ -53,6 +54,7 @@ namespace Model.Global.Mapper
                 EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"])
             };
         }
+
         internal static EmployeeProjectManagerHistory ToEmployeeProjectManagerHistory(this IDataRecord dr)
         {
             return new EmployeeProjectManagerHistory()
@@ -63,6 +65,7 @@ namespace Model.Global.Mapper
                 EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"])
             };
         }
+
         internal static Department ToDepartment(this IDataRecord dr)
         {
             return new Department()
@@ -75,6 +78,7 @@ namespace Model.Global.Mapper
                 Active = (bool)dr["Active"]
             };
         }
+
         internal static EmployeeDepartmentHistory ToEmployeeDepartment(this IDataRecord dr)
         {
             return new EmployeeDepartmentHistory()
@@ -86,6 +90,7 @@ namespace Model.Global.Mapper
                 EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"])
             };
         }
+
         internal static Team ToTeam(this IDataRecord dr)
         {
             return new Team()
@@ -98,6 +103,7 @@ namespace Model.Global.Mapper
                 Project_Id = (int)dr["Project_Id"]
             };
         }
+
         internal static Event ToEvent(this IDataRecord dr)
         {
             return new Event()
@@ -115,6 +121,7 @@ namespace Model.Global.Mapper
                 Cancelled = (bool)dr["Cancelled"]
             };
         }
+
         internal static EmployeeEvent ToEmployeeEvent(this IDataRecord dr)
         {
             return new EmployeeEvent()
@@ -126,5 +133,23 @@ namespace Model.Global.Mapper
                 Subscribed = (DateTime?)((dr["Subscribed"] == DBNull.Value) ? null : dr["Subscribed"])
             };
         }
+
+        internal static Task ToTask(this IDataRecord dr)
+        {
+            return new Task()
+            {
+                Id = (int)dr["Event_Id"],
+                CreatorId = (int)dr["CreatorId"],
+                Name = (string)dr["Name"],
+                Description = (string)dr["Description"],
+                StartDate = (DateTime)dr["StartDate"],
+                EndDate = (DateTime)dr["EndDate"],
+          Deadline =(DateTime?)dr["Deadline"],
+                SubtaskOf =(int)dr["SubtaskOf"],
+                StatusId = (String)dr["Status_Id"],
+                Status =(int?)dr["Status_Name"],
+            };
+        }
+
     }
 }
