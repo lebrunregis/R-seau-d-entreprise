@@ -14,6 +14,6 @@ AS
     EXEC @Manager = dbo.FN_GetProjectManagerId @Id;
     IF ( @IsAdmin = 1  OR @Manager = @User)
 	    DELETE FROM Project 
-	    WHERE Project_Id = @Id AND Project_Name=@Name AND Project_Description=@Description AND
+	    WHERE Project_Id = @Id AND Project_Name=@Name AND
 	    CreatorId=@Creator  AND StartDate = CAST(@StartDate AS datetime2(0))
 		AND ((EndDate = CAST(@EndDate AS datetime2(0)) AND EndDate > SYSDATETIME()) OR (EndDate IS NULL AND @EndDate IS NULL));

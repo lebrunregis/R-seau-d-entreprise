@@ -44,7 +44,7 @@ namespace Model.Client.Data
 
         public int? Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
-        public string Description { get => description; set => description = value; }
+        public string Description { get => description; set => description = value.Normalize(); }
         public DateTime Start { get => start; set => start = value; }
         public DateTime? End
         {
