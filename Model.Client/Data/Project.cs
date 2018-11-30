@@ -16,6 +16,11 @@ namespace Model.Client.Data
         private int creatorId;
         private int projectManagerId;
 
+        public Project()
+        {
+
+        }
+
         public Project(int? id, string name, string description, DateTime start, DateTime? end, int creatorId, int projectManagerId)
         {
             Id = id;
@@ -39,7 +44,7 @@ namespace Model.Client.Data
 
         public int? Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
-        public string Description { get => description; set => description = value; }
+        public string Description { get => description; set => description = value.Normalize(); }
         public DateTime Start { get => start; set => start = value; }
         public DateTime? End
         {
@@ -50,7 +55,7 @@ namespace Model.Client.Data
 
             set
             {
-                if (value is null || DateTime.Compare((DateTime)value, Start) <= 0)
+                if (value is null || DateTime.Compare((DateTime)value, Start) >= 0)
                 {
                     end = value;
                 }

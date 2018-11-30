@@ -1,5 +1,5 @@
-﻿using Model.Global.Data;
-using Model.Global.Service;
+﻿using Model.Client.Data;
+using Model.Client.Service;
 using Réseau_d_entreprise.Models.ViewModels;
 using Réseau_d_entreprise.Session;
 using Réseau_d_entreprise.Session.Attributes;

@@ -41,13 +41,13 @@
 			@Html.DisplayFor(modelItem => item.CreationDate)
 		</td>
 		<td>
-			@{ Html.RenderPartial("EmployeePartial", item.TeamLeader); }
+			@{ Html.RenderPartial("_Employee", item.TeamLeader); }
 		</td>
 		<td>
-			@{ Html.RenderPartial("EmployeePartial", item.ProjectManager); }
+			@{ Html.RenderPartial("_Employee", item.ProjectManager); }
 		</td>
 		<td>
-			@{ Html.RenderPartial("ProjectPartial", item.Project); }
+			@{ Html.RenderPartial("_Project", item.Project); }
 		</td>
 		<td>
 			@Html.DisplayFor(modelItem => item.ProjectDeadLine)

@@ -54,10 +54,9 @@ namespace Model.Global.Mapper
                 EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"])
             };
         }
-
-        internal static EmployeeProjectManagerHistory ToEmployeeProjectManagerHistory(this IDataRecord dr)
+        internal static ProjectManagerHistory ToEmployeeProjectManagerHistory(this IDataRecord dr)
         {
-            return new EmployeeProjectManagerHistory()
+            return new ProjectManagerHistory()
             {
                 Project_Id = (int)dr["Project_Id"],
                 Project_Name = (string)dr["Project_Name"],

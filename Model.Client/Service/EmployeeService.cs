@@ -67,25 +67,25 @@ namespace Model.Client.Service
             return GS.EmployeeService.UpdateForAdmin(Mappers.ToGlobal(e));
         }
 
-        public static IEnumerable<EmployeeStatusHistory> GetEmployeeStatusHistory(int Employee_Id)
+        public static IEnumerable<EmployeeStatusHistory> GetStatusHistory(int Employee_Id)
         {
-            List<EmployeeStatusHistory> ClientEmployeeStatusHistory = new List<EmployeeStatusHistory>();
-            IEnumerable<GD.EmployeeStatusHistory> GlobalEmployeeStatusHistory = GS.EmployeeService.GetEmployeeStatusHistory(Employee_Id);
-            foreach (GD.EmployeeStatusHistory employeeStatusHistory in GlobalEmployeeStatusHistory)
+            List<EmployeeStatusHistory> CESH = new List<EmployeeStatusHistory>();
+            IEnumerable<GD.EmployeeStatusHistory> GESH = GS.EmployeeService.GetEmployeeStatusHistory(Employee_Id);
+            foreach (GD.EmployeeStatusHistory employeeStatusHistory in GESH)
             {
-                ClientEmployeeStatusHistory.Add(Mappers.ToClient(employeeStatusHistory));
+                CESH.Add(Mappers.ToClient(employeeStatusHistory));
             }
-            return ClientEmployeeStatusHistory;
+            return CESH;
         }
-        public static IEnumerable<EmployeeProjectManagerHistory> GetEmployeeProjectManagerHistory(int Employee_Id)
+        public static IEnumerable<ProjectManagerHistory> GetProjectManagerHistory(int Employee_Id)
         {
-            List<EmployeeProjectManagerHistory> ClientEmployeeProjectManagerHistory = new List<EmployeeProjectManagerHistory>();
-            IEnumerable<GD.EmployeeProjectManagerHistory> GlobalEmployeeProjectManagerHistory = GS.EmployeeService.GetEmployeeProjectManagerHistory(Employee_Id);
-            foreach (GD.EmployeeProjectManagerHistory employeeProjectManagerHistory in GlobalEmployeeProjectManagerHistory)
+            List<ProjectManagerHistory> CPMH = new List<ProjectManagerHistory>();
+            IEnumerable<GD.ProjectManagerHistory> GPMHs = GS.EmployeeService.GetProjectManagerHistory(Employee_Id);
+            foreach (GD.ProjectManagerHistory GPMH in GPMHs)
             {
-                ClientEmployeeProjectManagerHistory.Add(Mappers.ToClient(employeeProjectManagerHistory));
+                CPMH.Add(Mappers.ToClient(GPMH));
             }
-            return ClientEmployeeProjectManagerHistory;
+            return CPMH;
         }
 
     }

@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace Model.Client.Data
 {
-    public class EmployeeProjectManagerHistory
+    public class ProjectManagerHistory
     {
         private int project_Id;
         private string project_Name;
         private DateTime startDate;
         private DateTime? endDate;
 
-        public EmployeeProjectManagerHistory(int project_Id, string project_Name, DateTime startDate, DateTime? endDate)
+        public ProjectManagerHistory()
+        {
+
+        }
+
+        public ProjectManagerHistory(int project_Id, string project_Name, DateTime startDate, DateTime? endDate)
         {
             Project_Id = project_Id;
             Project_Name = project_Name;
@@ -33,7 +38,7 @@ namespace Model.Client.Data
 
             set
             {
-                if (value is null || DateTime.Compare((DateTime)value, StartDate) <= 0)
+                if (value is null || DateTime.Compare((DateTime)value, StartDate) >= 0)
                 {
                     endDate = value;
                 }

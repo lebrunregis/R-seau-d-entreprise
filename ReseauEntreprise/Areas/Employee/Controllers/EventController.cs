@@ -51,38 +51,6 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View(form);
         }
 
-        public ActionResult SubscribeEmployees(int id)
-        {
-            IEnumerable<C.EmployeeEvent> EmployeesStatus = EventService.GetSubscriptionStatus(id);
-            IEnumerable<C.Employee> EmployeeList = EmployeeService.GetAllActive();
-
-            List<EmployeeSelectorForm> EmployeesForm = new List<EmployeeSelectorForm>();
-            foreach (C.Employee e in EmployeeList)
-            {
-                EmployeesForm.Add(new EmployeeSelectorForm
-                {
-                    Employee = e,
-                    EmployeeId = (int)e.Employee_Id,
-                    EventId = id,
-                    Selected = EmployeesStatus.Where((employee) => employee.EmployeeId == e.Employee_Id).Count() ==1
-                });
-            }
-            return View(EmployeesForm);
-        }
-
-        [HttpPost]
-        public ActionResult SubscribeEmployees(IEnumerable<EmployeeSelectorForm> Form)
-        {
-            foreach (EmployeeSelectorForm item in Form)
-            {
-                if (item.Selected)
-                {
-                    EventService.Participate(item.EventId, item.EmployeeId);
-                }
-            }
-
-            return RedirectToAction("Index");
-        }
 
         public ActionResult ConfirmSubscription(int id)
         {
@@ -110,12 +78,6 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
 
             EventService.Participate(Form.Id, SessionUser.GetUser().Id);
             return RedirectToAction("Index");
-        }
-
-        public ActionResult Attendance(int id)
-        {
-            EventService.Get(id);
-            return View();
         }
 
         public ActionResult CancelSubscription(int id)

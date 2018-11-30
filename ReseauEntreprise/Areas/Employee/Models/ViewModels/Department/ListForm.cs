@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using G = Model.Global.Data;
+using C = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Department
 {
@@ -17,6 +17,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Department
         public DateTime Created { get; set; }
         public String Description { get; set; }
         [Display(Name= "Head of Department")]
-        public G.Employee HeadOfDepartment { get; set; }
+        public C.Employee HeadOfDepartment { get; set; }
     }
 }

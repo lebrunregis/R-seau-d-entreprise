@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -50,7 +47,9 @@
             @Html.DisplayFor(modelItem => item.RegNat)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Address)
+            <a href=@($"https://www.google.com/maps/search/{item.Address.Replace(" ","+")}/")>
+                @Html.DisplayFor(modelItem => item.Address)
+            </a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Phone)

@@ -11,6 +11,11 @@ namespace Model.Client.Data
         private int id;
         private String name;
 
+        public EmployeeStatus()
+        {
+
+        }
+
         public EmployeeStatus(int id, string name)
         {
             Id = id;

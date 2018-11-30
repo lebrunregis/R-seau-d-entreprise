@@ -57,7 +57,7 @@ namespace Model.Client.Mapper
         internal static C.Employee ToClient(this G.Employee entity)
         {
 
-            return new C.Employee(entity.Employee_Id, entity.LastName, entity.FirstName, entity.Email, entity.Passwd, entity.Actif, entity.RegNat,entity.CoordGps, entity.Address, entity.Phone,entity.IsAdmin);
+            return new C.Employee(entity.Employee_Id, entity.LastName, entity.FirstName, entity.Email, entity.Passwd, entity.Actif, entity.RegNat, entity.CoordGps, entity.Address, entity.Phone, entity.IsAdmin);
         }
 
         internal static G.Employee ToGlobal(this C.Employee entity)
@@ -72,6 +72,7 @@ namespace Model.Client.Mapper
                 RegNat = entity.RegNat,
                 Address = entity.Address,
                 Phone = entity.Phone,
+                IsAdmin = entity.IsAdmin
             };
         }
 
@@ -130,15 +131,15 @@ namespace Model.Client.Mapper
             };
         }
 
-        internal static C.EmployeeProjectManagerHistory ToClient(this G.EmployeeProjectManagerHistory entity)
+        internal static C.ProjectManagerHistory ToClient(this G.ProjectManagerHistory entity)
         {
 
-            return new C.EmployeeProjectManagerHistory(entity.Project_Id, entity.Project_Name, entity.StartDate, entity.EndDate);
+            return new C.ProjectManagerHistory(entity.Project_Id, entity.Project_Name, entity.StartDate, entity.EndDate);
         }
 
-        internal static G.EmployeeProjectManagerHistory ToGlobal(this C.EmployeeProjectManagerHistory entity)
+        internal static G.ProjectManagerHistory ToGlobal(this C.ProjectManagerHistory entity)
         {
-            return new G.EmployeeProjectManagerHistory
+            return new G.ProjectManagerHistory
             {
                 Project_Id = entity.Project_Id,
                 Project_Name = entity.Project_Name,
@@ -234,12 +235,13 @@ namespace Model.Client.Mapper
         internal static C.Team ToClient(this G.Team entity)
         {
             List<C.Employee> Employees = new List<C.Employee>();
-            foreach (G.Employee Employee in entity.Employees)
+            if (!(entity.Employees is null))
             {
-                Employees.Add(ToClient(Employee));
+                foreach (G.Employee Employee in entity.Employees)
+                {
+                    Employees.Add(ToClient(Employee));
+                }
             }
-
-
             return new C.Team(entity.Id, entity.Name, entity.Created, entity.Disbanded, entity.Creator_Id, entity.Project_Id, Employees);
         }
 
@@ -247,11 +249,14 @@ namespace Model.Client.Mapper
         {
 
             List<G.Employee> Employees = new List<G.Employee>();
-            foreach (C.Employee Employee in entity.Employees)
+            if (!(entity.Employees  is null))
             {
-                Employees.Add(ToGlobal(Employee));
+                foreach (C.Employee Employee in entity.Employees)
+                {
+                    Employees.Add(ToGlobal(Employee));
+                }
             }
-
+            
             return new G.Team
             {
                 Id = entity.Id,

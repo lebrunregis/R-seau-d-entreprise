@@ -15,6 +15,11 @@ namespace Model.Client.Data
         private int admin_Id;
         private bool active;
 
+        public Department()
+        {
+
+        }
+
         public Department(int? id, string title, DateTime created, string description, int admin_Id, bool active)
         {
             Id = id;

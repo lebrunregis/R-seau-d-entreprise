@@ -56,14 +56,14 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 EmpId = id,
                 DepId = tmp.DepId,
             });
-            Details.StatusHistory = EmployeeService.GetEmployeeStatusHistory(id)
+            Details.StatusHistory = EmployeeService.GetStatusHistory(id)
                 .Select(tmp => new StatusForm()
                 {
                     StatusName = tmp.Name,
                     StartDate = tmp.StartDate,
                     EndDate = tmp.EndDate
                 });
-            Details.ProjectManagerHistory = EmployeeService.GetEmployeeProjectManagerHistory(id)
+            Details.ProjectManagerHistory = EmployeeService.GetProjectManagerHistory(id)
                 .Select(tmp => new ProjectManagerStatusForm()
                 {
                     Project_Id = tmp.Project_Id,

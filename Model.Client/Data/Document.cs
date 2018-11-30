@@ -18,6 +18,11 @@ namespace Model.Client.Data
         private int authorEmployee;
         private int nextVersion;
 
+        public Document()
+        {
+
+        }
+
         public Document(int? id, string name, DateTime created, string link, float size, string sHA2, bool active, int authorEmployee, int nextVersion)
         {
             Id = id;

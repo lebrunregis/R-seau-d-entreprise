@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -35,13 +32,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Created)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
+        <td style="white-space: pre-wrap;">@Html.DisplayFor(modelItem => item.Description)</td>
 		<td>
 			@if (item.HeadOfDepartment != null)
 			{
-				{Html.RenderPartial("EmployeePartial", item.HeadOfDepartment);}
+				{Html.RenderPartial("_Employee", item.HeadOfDepartment);}
 			}
 		</td>
         <td>

@@ -48,15 +48,15 @@
 					@Html.DisplayFor(modelItem => item.Email)
 				</td>
 				<td rowspan="@(rspan)">
-					@{Html.RenderPartial("DepartmentListPartial", item.Departments);}
+					@{Html.RenderPartial("_DepartmentList", item.Departments);}
 				</td>
 				@if (item.TeamsInCommon.Any())
 				{
 				<td>
-					@{Html.RenderPartial("TeamListPartial", item.TeamsInCommon.ElementAt(i).Teams);}
+					@{Html.RenderPartial("_TeamList", item.TeamsInCommon.ElementAt(i).Teams);}
 				</td>
 				<td>
-					@{Html.RenderPartial("ProjectPartial", item.TeamsInCommon.ElementAt(i).Project);}
+					@{Html.RenderPartial("_Project", item.TeamsInCommon.ElementAt(i).Project);}
 				</td>
 				}
 				else
@@ -73,10 +73,10 @@
 			{
 			<tr>
 				<td>
-					@{Html.RenderPartial("TeamListPartial", item.TeamsInCommon.ElementAt(i).Teams);}
+					@{Html.RenderPartial("_TeamList", item.TeamsInCommon.ElementAt(i).Teams);}
 				</td>
 				<td>
-					@{Html.RenderPartial("ProjectPartial", item.TeamsInCommon.ElementAt(i).Project);}
+					@{Html.RenderPartial("_Project", item.TeamsInCommon.ElementAt(i).Project);}
 				</td>
 			</tr>		
 			}
