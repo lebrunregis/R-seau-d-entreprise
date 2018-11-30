@@ -17,10 +17,10 @@
 	{
 		<tr>
 			<td>
-				@{ Html.RenderPartial("EmployeePartial", item.Employee); }
+				@{ Html.RenderPartial("_Employee", item.Employee); }
 			</td>
 			<td>
-				@{ Html.RenderPartial("DepartmentListPartial", item.Departments); }
+				@{ Html.RenderPartial("_DepartmentList", item.Departments); }
 			</td>
 			<td>
 				<div class="checkbox">

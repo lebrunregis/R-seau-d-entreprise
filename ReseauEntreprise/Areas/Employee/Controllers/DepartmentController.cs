@@ -6,8 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Department;
 using ED = ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeDepartment;
-using G = Model.Global.Data;
-using Model.Global.Service;
+using C = Model.Client.Data;
+using Model.Client.Service;
 using Réseau_d_entreprise.Session;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
@@ -20,7 +20,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public ActionResult Index()
         {
             List<ListForm> list = new List<ListForm>();
-            foreach (G.Department Department in DepartmentService.GetAllActive())
+            foreach (C.Department Department in DepartmentService.GetAllActive())
             {
                 ListForm form = new ListForm
                 {
@@ -42,7 +42,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         // GET: Employee/Department/Details/5
         public ActionResult Details(int id)
         {
-            G.Department Department = DepartmentService.GetDepartmentById(id);
+            C.Department Department = DepartmentService.GetDepartmentById(id);
             DetailsForm form = new DetailsForm
             {
                 Id = (int)Department.Id,
@@ -64,7 +64,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public ActionResult AddEmployeeToDepartment(int id)
         {
             int My_Id = SessionUser.GetUser().Id;
-            IEnumerable<G.Department> MyDepartments = new List<G.Department>();
+            IEnumerable<C.Department> MyDepartments = new List<C.Department>();
             if (AuthService.IsAdmin(My_Id))
             {
                 MyDepartments = DepartmentService.GetAllActive();
@@ -77,10 +77,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             {
                 return RedirectToAction("Index", "Employee");
             }
-            IEnumerable<G.Department> EmpDepartments = DepartmentService.GetEmployeeDepartments(id);
+            IEnumerable<C.Department> EmpDepartments = DepartmentService.GetEmployeeDepartments(id);
 
             List<SelectListItem> DepartmentList = new List<SelectListItem>();
-            foreach (G.Department dep in MyDepartments)
+            foreach (C.Department dep in MyDepartments)
             {
                 if (!EmpDepartments.Any(empDep => empDep.Id == dep.Id))
                 {
@@ -113,7 +113,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public ActionResult RemoveEmployeeFromDepartment(int id)
         {
             int My_Id = SessionUser.GetUser().Id;
-            IEnumerable<G.Department> MyDepartments = new List<G.Department>();
+            IEnumerable<C.Department> MyDepartments = new List<C.Department>();
             if (AuthService.IsAdmin(My_Id))
             {
                 MyDepartments = DepartmentService.GetAllActive();
@@ -126,9 +126,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             {
                 return RedirectToAction("Index", "Employee");
             }
-            IEnumerable<G.Department> EmpDepartments = DepartmentService.GetEmployeeDepartments(id);
+            IEnumerable<C.Department> EmpDepartments = DepartmentService.GetEmployeeDepartments(id);
             List<SelectListItem> DepartmentList = new List<SelectListItem>();
-            foreach (G.Department dep in DepartmentService.GetEmployeeDepartments(id))
+            foreach (C.Department dep in DepartmentService.GetEmployeeDepartments(id))
             {
                 if (MyDepartments.Any(MyDep => MyDep.Id == dep.Id))
                 {

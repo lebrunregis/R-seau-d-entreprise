@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -41,7 +38,7 @@
 		<td>
 			@if (item.HeadOfDepartment != null)
 			{
-				{Html.RenderPartial("EmployeePartial", item.HeadOfDepartment);}
+				{Html.RenderPartial("_Employee", item.HeadOfDepartment);}
 			}
 		</td>
         <td>

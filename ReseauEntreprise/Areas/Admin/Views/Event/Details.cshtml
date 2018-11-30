@@ -47,7 +47,9 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Address)
+            <a href=@($"https://www.google.com/maps/search/{Model.Address.Replace(" ","+")}/")>
+                @Html.DisplayFor(model => model.Address)
+            </a>
         </dd>
 
         <dt>

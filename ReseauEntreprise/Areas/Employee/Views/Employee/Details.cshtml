@@ -48,9 +48,11 @@
 			@Html.DisplayNameFor(model => model.Address)
 		</dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Address)
-		</dd>
+        <dd>
+            <a href=@($"https://www.google.com/maps/search/{Model.Address.Replace(" ","+")}/")>
+                @Html.DisplayFor(model => model.Address)
+            </a>
+        </dd>
 
 		<dt>
 			@Html.DisplayNameFor(model => model.Phone)
@@ -81,35 +83,35 @@
 		</dt>
 
 		<dd>
-			@{ Html.RenderPartial("TeamListPartial", Model.Teams); }
+			@{ Html.RenderPartial("_TeamList", Model.Teams); }
 		</dd>
 		<dt>
 			@Html.DisplayNameFor(model => model.Departments)
 		</dt>
 
 		<dd>
-			@{ Html.RenderPartial("DepartmentListPartial", Model.Departments); }
+			@{ Html.RenderPartial("_DepartmentList", Model.Departments); }
 		</dd>
 		<dt>
 			@Html.DisplayNameFor(model => model.TeamLeaderTeams)
 		</dt>
 
 		<dd>
-			@{ Html.RenderPartial("TeamListPartial", Model.TeamLeaderTeams); }
+			@{ Html.RenderPartial("_TeamList", Model.TeamLeaderTeams); }
 		</dd>
 		<dt>
 			@Html.DisplayNameFor(model => model.ProjectManagerProjects)
 		</dt>
 
 		<dd>
-			@{ Html.RenderPartial("ProjectListPartial", Model.ProjectManagerProjects); }
+			@{ Html.RenderPartial("_ProjectList", Model.ProjectManagerProjects); }
 		</dd>
 		<dt>
 			@Html.DisplayNameFor(model => model.HeadOfDepartmentDepartments)
 		</dt>
 
 		<dd>
-			@{ Html.RenderPartial("DepartmentListPartial", Model.HeadOfDepartmentDepartments); }
+			@{ Html.RenderPartial("_DepartmentList", Model.HeadOfDepartmentDepartments); }
 		</dd>
 
 

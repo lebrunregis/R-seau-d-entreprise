@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.Global.Data
 {
-    public class EmployeeProjectManagerHistory
+    public class ProjectManagerHistory
     {
         public int Project_Id { get; set; }
         public string Project_Name { get; set; }

@@ -48,7 +48,9 @@
                 @Html.DisplayFor(modelItem => item.DepartmentId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Address)
+                <a href=@($"https://www.google.com/maps/search/{item.Address.Replace(" ","+")}/")>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)

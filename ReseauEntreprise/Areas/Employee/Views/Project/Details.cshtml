@@ -47,14 +47,14 @@
 		</dt>
 
 		<dd>
-			@{Html.RenderPartial("EmployeePartial", Model.Manager); }
+			@{Html.RenderPartial("_Employee", Model.Manager); }
 		</dd>
 		<dt>
 			@Html.DisplayNameFor(model => model.Creator)
 		</dt>
 
 		<dd>
-			@{Html.RenderPartial("EmployeePartial", Model.Creator); }
+			@{Html.RenderPartial("_Employee", Model.Creator); }
 		</dd>
 
 		<dt>
@@ -62,7 +62,7 @@
 		</dt>
 
 		<dd>
-			@{Html.RenderPartial("TeamListPartial", Model.Teams);
+			@{Html.RenderPartial("_TeamList", Model.Teams);
 				if (Model.AmIProjectManager)
 				{
 					@Html.ActionLink("Creer nouvelle equipe", "Create", "Team", new { Project_Id = Model.Id }, null)

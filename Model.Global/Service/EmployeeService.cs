@@ -93,7 +93,7 @@ namespace Model.Global.Service
             cmd.AddParameter("Employee_Id", Employee_Id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployeeStatusHistory());
         }
-        public static IEnumerable<EmployeeProjectManagerHistory> GetEmployeeProjectManagerHistory(int Employee_Id)
+        public static IEnumerable<ProjectManagerHistory> GetProjectManagerHistory(int Employee_Id)
         {
             Command cmd = new Command("GetEmployeeProjectManagerHistory", true);
             cmd.AddParameter("Employee_Id", Employee_Id);

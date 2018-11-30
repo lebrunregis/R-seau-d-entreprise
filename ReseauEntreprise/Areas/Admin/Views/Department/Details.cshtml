@@ -39,7 +39,7 @@
 		</dt>
 
 		<dd>
-			@{Html.RenderPartial("EmployeePartial", Model.Admin);}
+			@{Html.RenderPartial("_Employee", Model.Admin);}
 		</dd>
 
 		<dt>
@@ -57,7 +57,7 @@
 		    </dt>
 
 		    <dd>
-			    @{Html.RenderPartial("EmployeePartial", Model.HeadOfDepartment);}
+			    @{Html.RenderPartial("_Employee", Model.HeadOfDepartment);}
 		    </dd>
 		}
 		<dt>
@@ -65,7 +65,7 @@
 		</dt>
 
 		<dd>
-			@{Html.RenderPartial("EmployeeListPartial", Model.Employees);}
+			@{Html.RenderPartial("_EmployeeList", Model.Employees);}
 		</dd>
 
 	</dl>

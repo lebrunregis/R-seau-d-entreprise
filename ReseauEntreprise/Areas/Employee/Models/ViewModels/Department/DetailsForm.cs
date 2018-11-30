@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using G = Model.Global.Data;
+using C = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Department
 {
@@ -20,9 +20,9 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Department
         public DateTime Created { get; set; }
         [Required]
         public String Description { get; set; }
-        public G.Employee Creator { get; set; }
-        public G.Employee HeadOfDepartment { get; set; }
-        public IEnumerable<G.Employee> Employees { get; set; }
+        public C.Employee Creator { get; set; }
+        public C.Employee HeadOfDepartment { get; set; }
+        public IEnumerable<C.Employee> Employees { get; set; }
         [Required]
         public bool Active { get; set; }
     }

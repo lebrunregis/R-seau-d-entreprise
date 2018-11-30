@@ -41,7 +41,7 @@
 			@Html.DisplayFor(modelItem => item.EndDate)
 		</td>
 		<td>
-			@{ Html.RenderPartial("EmployeePartial", item.Manager); }
+			@{ Html.RenderPartial("_Employee", item.Manager); }
 		</td>
 		<td>
 			@Html.ActionLink("Details", "Details", new { id = item.ProjectId })

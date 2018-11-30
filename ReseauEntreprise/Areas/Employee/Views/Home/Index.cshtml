@@ -18,13 +18,13 @@
 	{
 		<tr>
 			<td>
-				@{ Html.RenderPartial("ProjectPartial", item.Project); }
+				@{ Html.RenderPartial("_Project", item.Project); }
 			</td>
 			<td>
 				@Html.DisplayFor(modelItem => item.Project.End)
 			</td>
 			<td>
-				@{ Html.RenderPartial("TeamListPartial", item.Teams); }
+				@{ Html.RenderPartial("_TeamList", item.Teams); }
 			</td>
 		</tr>
 	}
@@ -40,7 +40,7 @@
 	{
 		<tr>
 			<td>
-				@{ Html.RenderPartial("DepartmentPartial", item); }
+				@{ Html.RenderPartial("_Department", item); }
 			</td>
 		</tr>
 	}
@@ -59,7 +59,7 @@
 		{
 			<tr>
 				<td>
-					@{ Html.RenderPartial("TeamPartial", item); }
+					@{ Html.RenderPartial("_Team", item); }
 				</td>
 			</tr>
 		}
@@ -78,7 +78,7 @@
 		{
 			<tr>
 				<td>
-					@{ Html.RenderPartial("ProjectPartial", item); }
+					@{ Html.RenderPartial("_Project", item); }
 				</td>
 			</tr>
 		}
@@ -97,7 +97,7 @@
 		{
 			<tr>
 				<td>
-					@{ Html.RenderPartial("DepartmentPartial", item); }
+					@{ Html.RenderPartial("_Department", item); }
 				</td>
 			</tr>
 		}
