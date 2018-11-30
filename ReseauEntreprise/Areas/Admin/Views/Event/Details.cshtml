@@ -34,13 +34,11 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
 
-        <dt style="white-space: pre-wrap;">
+        <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+        <dd style="white-space: pre-wrap;">@Html.DisplayFor(model => model.Description)</dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Address)

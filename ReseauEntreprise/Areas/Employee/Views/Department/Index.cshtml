@@ -32,9 +32,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Created)
         </td>
-        <td style="white-space: pre-wrap;">
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
+        <td style="white-space: pre-wrap;">@Html.DisplayFor(modelItem => item.Description)</td>
 		<td>
 			@if (item.HeadOfDepartment != null)
 			{
