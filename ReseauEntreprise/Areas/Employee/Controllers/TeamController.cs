@@ -317,7 +317,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 EndDate = Team.Disbanded,
                 Members = Members,
                 AmITeamLeader = (Employee_Id == TeamLeader.Employee_Id),
-                AmIProjectManagerOrAdmin = (AuthService.IsAdmin(Employee_Id) || Employee_Id == ProjectService.GetProjectManagerId(Team.Project_Id))
+                AmIProjectManagerOrAdmin = ((AuthService.IsAdmin(Employee_Id)) || (Employee_Id == ProjectService.GetProjectManagerId(Team.Project_Id)))
             };
             return View(Form);
         }

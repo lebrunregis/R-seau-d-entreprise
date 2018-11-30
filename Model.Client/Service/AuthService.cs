@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GS = Model.Global.Service;
 
 namespace Model.Client.Service
 {
@@ -16,17 +17,17 @@ namespace Model.Client.Service
         public static int? Confirm(String email, string pwd)
         {
 
-            return AuthService.Confirm(email, pwd);
+            return GS.AuthService.Confirm(email, pwd);
         }
         public static int Register(Data.Employee e)
         {
 
-            return AuthService.Register(e);
+            return GS.AuthService.Register(Mappers.ToGlobal(e));
         }
         public static bool IsAdmin(int Employee_Id)
         {
 
-            return AuthService.IsAdmin(Employee_Id);
+            return GS.AuthService.IsAdmin(Employee_Id);
         }
     }
 }
