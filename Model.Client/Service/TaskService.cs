@@ -2,15 +2,11 @@
 using Model.Client.Mapper;
 using GS = Model.Global.Service;
 using GD = Model.Global.Data;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
 
-namespace Model.Global.Service
+namespace Model.Client.Service
 {
-    public class TaskServicecs
+    public class TaskService
     {
         public static int? Create(Task t, int UserId)
         {

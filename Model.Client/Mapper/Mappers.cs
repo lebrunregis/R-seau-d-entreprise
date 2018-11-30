@@ -1,17 +1,16 @@
-﻿using C = Model.Client.Data;
-using G = Model.Global.Data;
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using C = Model.Client.Data;
+using G = Model.Global.Data;
 
 namespace Model.Client.Mapper
 {
     internal static class Mappers
     {
-
 
         internal static C.Department ToClient(this G.Department entity)
         {
@@ -214,7 +213,6 @@ namespace Model.Client.Mapper
 
         internal static C.Task ToClient(this G.Task entity)
         {
-
             return new C.Task(entity.Id, entity.Name, entity.Description, entity.StartDate, entity.EndDate, entity.Deadline, entity.SubtaskOf);
         }
 
