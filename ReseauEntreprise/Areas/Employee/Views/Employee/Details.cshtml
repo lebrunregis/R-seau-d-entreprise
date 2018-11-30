@@ -50,7 +50,7 @@
 
         <dd>
             <a href=@($"https://www.google.com/maps/search/{Model.Address.Replace(" ","+")}/")>
-                @Html.DisplayFor(model => model.Address.Replace(" ", "+"))
+                @Html.DisplayFor(model => model.Address)
             </a>
         </dd>
 
