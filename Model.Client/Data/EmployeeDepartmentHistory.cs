@@ -14,6 +14,11 @@ namespace Model.Client.Data
         private DateTime startDate;
         private DateTime? endDate;
 
+        public EmployeeDepartmentHistory()
+        {
+
+        }
+
         public EmployeeDepartmentHistory(int? id, string name, int depId, DateTime startDate, DateTime? endDate)
         {
             Id = id;
@@ -44,7 +49,7 @@ namespace Model.Client.Data
 
             set
             {
-                if (value is null || DateTime.Compare((DateTime)value, StartDate) <= 0)
+                if (value is null || DateTime.Compare((DateTime)value, StartDate) >= 0)
                 {
                     endDate = value;
                 }

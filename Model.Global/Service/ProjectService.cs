@@ -28,7 +28,7 @@ namespace Model.Global.Service
 
         public static bool Edit(int User,Project p)
         {
-            Command cmd = new Command("EditProject", true);
+            Command cmd = new Command("UpdateProject", true);
             cmd.AddParameter("User", User);
             cmd.AddParameter("Project", p.Id);
             cmd.AddParameter("Name", p.Name);

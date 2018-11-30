@@ -10,7 +10,7 @@ using Réseau_d_entreprise.Session.Attributes;
 using Réseau_d_entreprise.Session;
 using ProjectTeamsForm = ReseauEntreprise.Areas.Employee.Models.ViewModels.IndexPage.ProjectTeamsForm;
 
-namespace ReseauEntreprise.Employee.Controllers
+namespace ReseauEntreprise.Areas.Employee.Controllers
 {
     [RouteArea("Employee")]
     [EmployeeRequired]

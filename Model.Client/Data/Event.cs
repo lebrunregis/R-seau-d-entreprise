@@ -21,6 +21,11 @@ namespace Model.Client.Data
         private bool open;
         private bool cancelled;
 
+        public Event()
+        {
+
+        }
+
         public Event(int? id, int creatorId, int? departmentId, string name, string description, string address, DateTime startDate, DateTime endDate, DateTime creationDate, DateTime? subscribed, bool open, bool cancelled)
         {
             Id = id;
@@ -67,7 +72,7 @@ namespace Model.Client.Data
 
             set
             {
-                if (DateTime.Compare((DateTime)value, StartDate) <= 0)
+                if (DateTime.Compare((DateTime)value, StartDate) >= 0)
                 {
                     endDate = value;
                 }

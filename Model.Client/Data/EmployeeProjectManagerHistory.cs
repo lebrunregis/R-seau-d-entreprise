@@ -13,6 +13,11 @@ namespace Model.Client.Data
         private DateTime startDate;
         private DateTime? endDate;
 
+        public EmployeeProjectManagerHistory()
+        {
+
+        }
+
         public EmployeeProjectManagerHistory(int project_Id, string project_Name, DateTime startDate, DateTime? endDate)
         {
             Project_Id = project_Id;
@@ -33,7 +38,7 @@ namespace Model.Client.Data
 
             set
             {
-                if (value is null || DateTime.Compare((DateTime)value, StartDate) <= 0)
+                if (value is null || DateTime.Compare((DateTime)value, StartDate) >= 0)
                 {
                     endDate = value;
                 }
