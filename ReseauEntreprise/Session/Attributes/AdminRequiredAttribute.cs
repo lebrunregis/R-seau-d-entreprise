@@ -1,4 +1,4 @@
-﻿using Model.Global.Service;
+﻿using Model.Client.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
