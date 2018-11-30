@@ -249,11 +249,14 @@ namespace Model.Client.Mapper
         {
 
             List<G.Employee> Employees = new List<G.Employee>();
-            foreach (C.Employee Employee in entity.Employees)
+            if (!(entity.Employees  is null))
             {
-                Employees.Add(ToGlobal(Employee));
+                foreach (C.Employee Employee in entity.Employees)
+                {
+                    Employees.Add(ToGlobal(Employee));
+                }
             }
-
+            
             return new G.Team
             {
                 Id = entity.Id,
