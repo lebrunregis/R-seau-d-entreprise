@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Model.Client.Service;
 using Réseau_d_entreprise.Session.Attributes;
+using Réseau_d_entreprise.Session;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -20,20 +21,32 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return PartialView(form);
         }
         [HttpPost]
-        public ActionResult Send(SendForm form)
+        public ContentResult Send(SendForm form)
         {
-            return View();
+            MessageService.Create(new C.Message(form.Title, form.Message, SessionUser.GetUser().Id, form.ReplyTo), form.ToEmployee, form.ToProject, form.ToTask, form.ToTeam);
+            return new ContentResult {Content = "success" };
         }
-        public ActionResult ViewProjectDiscussion(int Project_Id)
+        public ActionResult ViewProjectDiscussion(int id)
         {
+            int Project_Id = id;
             IEnumerable<C.Message> messages = MessageService.GetProjectMessages(Project_Id);
-            IEnumerable<ViewForm> form = FillAndAddChildren(messages, null);
+            DiscussionForm form = new DiscussionForm
+            {
+                ToProject = Project_Id,
+                Messages = FillAndAddChildren(messages, null)
+            };
             return View(form);
+        }
+        [HttpPost]
+        public ContentResult ViewProjectDiscussion(ResponseForm form)
+        {
+            string s = string.Join(",", form.ids);
+            return new ContentResult { Content = "success" };
         }
 
         private IEnumerable<ViewForm> FillAndAddChildren(IEnumerable<C.Message> messages, int? ParentId)
         {
-            return messages.Where(message => message.Parent == ParentId).Select(message =>
+            return messages.Where(message => message.Parent == ParentId).OrderBy(message => message.Id).Select(message =>
             new ViewForm
             {
                 Id = (int)message.Id,
@@ -44,11 +57,6 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 CreationTime = message.Created,
                 Children = FillAndAddChildren(messages, message.Id)
             });
-        }
-
-        public ActionResult MessagePartial_SendTemplate()
-        {
-            return View();
         }
     }
 }

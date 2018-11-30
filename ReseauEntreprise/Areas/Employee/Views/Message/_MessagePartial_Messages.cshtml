@@ -6,11 +6,11 @@
 		<div class="myMessage" id="@("message_" + message.Id.ToString())">
 			@Html.DisplayFor(modelItem => message.CreationTime)
 			@{Html.RenderPartial("EmployeePartial", message.Author);}
-			<h6>@Html.DisplayFor(modelItem => message.Title)</h6>
-			@Html.DisplayFor(modelItem => message.Message)
+			<h4>@Html.DisplayFor(modelItem => message.Title)</h4>
+			<div class="multiligneText">@Html.DisplayFor(modelItem => message.Message)</div>
 			<button onclick="AddReplyForm(@message.Id)">Reply</button>
 		</div>
-		@{Html.RenderPartial("MessagePartial_Messages", message.Children);}
+		@{Html.RenderPartial("_MessagePartial_Messages", message.Children);}
 	</div>
 }
 

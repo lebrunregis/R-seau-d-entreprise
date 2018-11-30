@@ -209,7 +209,9 @@
     <Compile Include="Areas\Employee\Models\ViewModels\Employee\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\IndexForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\ProjectTeamsForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Message\ResponseForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\SendForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Message\DiscussionForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\ViewForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\ListForm.cs" />
@@ -310,8 +312,10 @@
     <Content Include="Areas\Employee\Views\Department\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Department\Details.cshtml" />
     <Content Include="Areas\Employee\Views\Employee\Index.cshtml" />
-    <Content Include="Areas\Employee\Views\Message\MessagePartial_SendFormTemlate.cshtml" />
-    <Content Include="Areas\Employee\Views\Message\MessagePartial_SendTemplate.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\ViewProjectDiscussion.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\_MessagePartial_Discussion.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\_MessagePartial_Messages.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\_MessagePartial_SendFormTemplate.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -347,9 +351,6 @@
     <Content Include="Views\Shared\TeamListPartial.cshtml" />
     <Content Include="Views\Shared\DepartmentListPartial.cshtml" />
     <Content Include="Views\Shared\DepartmentPartial.cshtml" />
-    <Content Include="Views\Shared\MessagePartial_Discussion.cshtml" />
-    <Content Include="Views\Shared\MessagePartial_Messages.cshtml" />
-    <Content Include="Views\Shared\MessagePartial_SendFormTemlate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

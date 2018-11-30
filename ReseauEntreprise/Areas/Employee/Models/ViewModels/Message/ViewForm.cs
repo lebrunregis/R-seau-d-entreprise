@@ -11,6 +11,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Message { get; set; }
         public int? Parent { get; set; }
         public C.Employee Author { get; set; }

@@ -33,6 +33,17 @@ DISABLE TRIGGER [OnDeleteTeam] ON Team;
 GO
 --DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 --GO
+
+DELETE FROM [MessageEmployee];
+GO
+DELETE FROM [MessageProject];
+GO
+DELETE FROM [MessageTeam];
+GO
+DELETE FROM [MessageTask];
+GO
+DELETE FROM [Message];
+GO
 DELETE FROM [EmployeeEvent]
 GO
 DELETE FROM [EmployeeHeadOfDepartment]

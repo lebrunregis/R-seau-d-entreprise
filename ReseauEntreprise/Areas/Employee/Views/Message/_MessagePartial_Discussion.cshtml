@@ -1,0 +1,79 @@
+﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.DiscussionForm
+
+<style>
+	.myMessageBox {
+		background-color: transparent;
+		margin-left: 15px
+	}
+	.myMessage {
+		background-color: white;
+		border-style: solid;
+		border-color: black;
+		border-width: 1px
+	}
+	.hidden {
+		display: none
+	}
+	.multiligneText {
+		white-space: pre-wrap
+	}
+</style>
+
+<div id="SendFormTemplate" class="hidden">
+	@{Html.RenderPartial("_MessagePartial_SendFormTemplate", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm());}
+</div>
+
+<script>
+	var SendFormTemplate = document.getElementById("SendFormTemplate");
+	SendFormTemplate.getElementsByClassName("ToEmployee")[0].value = @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null");
+	SendFormTemplate.getElementsByClassName("ToProject")[0].value = @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null");
+	SendFormTemplate.getElementsByClassName("ToTask")[0].value = @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null");
+	SendFormTemplate.getElementsByClassName("ToTeam")[0].value = @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null");
+	const SendFormHtml = document.getElementById("SendFormTemplate").innerHTML;
+
+	function AddReplyForm(id)
+	{
+		var MessageBox = document.getElementById('message_' + id);
+		MessageBox.innerHTML += SendFormHtml;
+		MessageBox.getElementsByClassName("ReplyTo")[0].value = id;
+	}
+
+	function sendmessage(event) {
+		var thisForm = event.target;
+		$.ajax({
+			type: 'POST',
+			url: thisForm.action,
+			data: $(thisForm).serialize(),
+			success: refresh,
+		});
+	}
+
+	function removeform() {
+		this.parentElement.parentElement.parentElement.remove()
+	}
+
+	function refresh() {
+		var messages = document.getElementsByClassName("myMessage");
+		var ids = [];
+		for (var i = 0; i < messages.length; i++) {
+			ids[i] = messages[i].id.replace('message_', '')
+		}
+		$.ajax({
+			type: 'POST',
+			url: window.location.href,
+			data:
+			{
+				"ids": ids,
+				"ToEmployee": @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null"),
+				"ToProject": @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null"),
+				"ToTask": @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null"),
+				"ToTeam": @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null")
+			}
+		});
+	}
+
+</script>
+<section>
+	@{Html.RenderPartial("_MessagePartial_Messages", Model.Messages);}
+</section>
+

@@ -28,7 +28,7 @@ AND (@parent IS NULL
 			        OR(me.Employee_Id=@author AND m.Message_Author=@receiver_employee))
 			  )
 	)
-   BEGIN
+   BEGIN TRAN T1
        INSERT INTO [Message] (Message_Title, Message_Message, Message_Author, Message_Parent) VALUES (@title, @message, @author, @parent);
 	   SET @message_id = convert(int, IDENT_CURRENT('Message'));
 
@@ -42,5 +42,5 @@ AND (@parent IS NULL
 	       INSERT INTO MessageTask(Message_Id, Task_Id) VALUES(@message_id, @receiver_task);
 
 	   SELECT @message_id
-   END
+   COMMIT TRAN T1
 END
