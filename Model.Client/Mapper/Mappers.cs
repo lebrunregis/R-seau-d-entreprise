@@ -264,21 +264,21 @@ namespace Model.Client.Mapper
             };
         }
 
-        /*TEMPLATE
-         *
-         * 
-         internal static C ToClient(this G entity)
-         {
-
-             return new C;
-         }
-
-         internal static G ToGlobal(this C entity)
-         {
-             return new G
+            /*TEMPLATE
+             *
+             * 
+             internal static C ToClient(this G entity)
              {
 
-             };
-         }*/
-    }
+                 return new C;
+             }
+
+             internal static G ToGlobal(this C entity)
+             {
+                 return new G
+                 {
+
+                 };
+             }*/
+        }
 }

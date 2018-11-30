@@ -16,6 +16,11 @@ namespace Model.Client.Data
         private DateTime? deadline;
         private int subtaskOf;
 
+        public Task()
+        {
+
+        }
+
         public Task(int? id, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int subtaskOf)
         {
             Id = id;
