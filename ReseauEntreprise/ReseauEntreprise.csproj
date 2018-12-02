@@ -316,6 +316,7 @@
     <Content Include="Areas\Employee\Views\Message\_MessagePartial_Discussion.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_MessagePartial_Messages.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_MessagePartial_SendFormTemplate.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\AddMessages.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -398,7 +399,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51511</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

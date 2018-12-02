@@ -23,8 +23,12 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         [HttpPost]
         public ContentResult Send(SendForm form)
         {
-            MessageService.Create(new C.Message(form.Title, form.Message, SessionUser.GetUser().Id, form.ReplyTo), form.ToEmployee, form.ToProject, form.ToTask, form.ToTeam);
-            return new ContentResult {Content = "success" };
+            if (ModelState.IsValid)
+            {
+                MessageService.Create(new C.Message(form.Title, form.Message, SessionUser.GetUser().Id, form.ReplyTo), form.ToEmployee, form.ToProject, form.ToTask, form.ToTeam);
+                return new ContentResult { Content = "success" };
+            }
+            return new ContentResult {Content = "fail" };
         }
         public ActionResult ViewProjectDiscussion(int id)
         {
@@ -38,10 +42,69 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View(form);
         }
         [HttpPost]
-        public ContentResult ViewProjectDiscussion(ResponseForm form)
+        public PartialViewResult AddMessages(ResponseForm form)
         {
-            string s = string.Join(",", form.ids);
-            return new ContentResult { Content = "success" };
+            IEnumerable<C.Message> Data = new List<C.Message>();
+            if (!(form.ToProject is null))
+            {
+                if (form.ids.Count == 0)
+                {
+                    Data = MessageService.GetProjectMessages((int)form.ToProject);
+                }
+                else
+                {
+                    string ids = string.Join(",", form.ids) + ",";
+                    Data = MessageService.GetProjectMessagesWithoutSome((int)form.ToProject, ids);
+                }
+            }
+            else if (!(form.ToTask is null))
+            {
+                if (form.ids.Count == 0)
+                {
+                    Data = MessageService.GetTaskMessages((int)form.ToTask);
+                }
+                else
+                {
+                    string ids = string.Join(",", form.ids) + ",";
+                    Data = MessageService.GetTaskMessagesWithoutSome((int)form.ToTask, ids);
+                }
+            }
+            else if (!(form.ToTeam is null))
+            {
+                if (form.ids.Count == 0)
+                {
+                    Data = MessageService.GetTeamMessages((int)form.ToTeam);
+                }
+                else
+                {
+                    string ids = string.Join(",", form.ids) + ",";
+                    Data = MessageService.GetTeamMessagesWithoutSome((int)form.ToTeam, ids);
+                }
+            }
+            else if (!(form.ToEmployee is null))
+            {
+                if (form.ids.Count == 0)
+                {
+                    Data = MessageService.GetMyDiscussionWithEmployee(SessionUser.GetUser().Id, (int)form.ToEmployee);
+                }
+                else
+                {
+                    string ids = string.Join(",", form.ids) + ",";
+                    Data = MessageService.GetMyDiscussionWithEmployeeWithoutSome(SessionUser.GetUser().Id, (int)form.ToEmployee, ids);
+                }
+            }
+            var result = PartialView(Data.OrderByDescending(message => message.Id).Select(message => new ViewForm
+            {
+                Id = (int)message.Id,
+                Title = message.Title,
+                Message = message.Body,
+                Parent = message.Parent,
+                Author = EmployeeService.Get(message.Author),
+                CreationTime = message.Created,
+                Children = new List<ViewForm>()
+            }));
+
+            return result;
         }
 
         private IEnumerable<ViewForm> FillAndAddChildren(IEnumerable<C.Message> messages, int? ParentId)

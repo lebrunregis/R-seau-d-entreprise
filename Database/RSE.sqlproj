@@ -210,6 +210,9 @@
     <Build Include="dbo\SP\Message\GetTeamMessages.sql" />
     <Build Include="dbo\SP\Message\GetMyDiscussionWithEmployee.sql" />
     <Build Include="dbo\SP\Message\GetProjectMessagesWithoutSome.sql" />
+    <Build Include="dbo\SP\Message\GetMyDiscussionWithEmployeeWithoutSome.sql" />
+    <Build Include="dbo\SP\Message\GetTaskMessagesWithoutSome.sql" />
+    <Build Include="dbo\SP\Message\GetTeamMessagesWithoutSome.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

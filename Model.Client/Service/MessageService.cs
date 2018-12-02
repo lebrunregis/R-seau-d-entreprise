@@ -42,5 +42,25 @@ namespace Model.Client.Service
         {
             return GS.MessageService.GetMyDiscussionWithEmployee(MyId, EmployeeId).Select(message => Mappers.ToClient(message));
         }
+
+        public static IEnumerable<Message> GetProjectMessagesWithoutSome(int ProjectId, string ids)
+        {
+            return GS.MessageService.GetProjectMessagesWithoutSome(ProjectId, ids).Select(message => Mappers.ToClient(message));
+        }
+
+        public static IEnumerable<Message> GetTaskMessagesWithoutSome(int TaskId, string ids)
+        {
+            return GS.MessageService.GetTaskMessagesWithoutSome(TaskId, ids).Select(message => Mappers.ToClient(message));
+        }
+
+        public static IEnumerable<Message> GetTeamMessagesWithoutSome(int TeamId, string ids)
+        {
+            return GS.MessageService.GetTeamMessagesWithoutSome(TeamId, ids).Select(message => Mappers.ToClient(message));
+        }
+
+        public static IEnumerable<Message> GetMyDiscussionWithEmployeeWithoutSome(int MyId, int EmployeeId, string ids)
+        {
+            return GS.MessageService.GetMyDiscussionWithEmployeeWithoutSome(MyId, EmployeeId, ids).Select(message => Mappers.ToClient(message));
+        }
     }
 }

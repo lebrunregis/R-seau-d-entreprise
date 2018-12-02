@@ -5,23 +5,46 @@
 		background-color: transparent;
 		margin-left: 15px
 	}
+
 	.myMessage {
 		background-color: white;
 		border-style: solid;
-		border-color: black;
-		border-width: 1px
+		border-color: lightgray;
+		border-width: 1px;
+		border-radius: 4px;
 	}
+
 	.hidden {
 		display: none
 	}
+
 	.multiligneText {
 		white-space: pre-wrap
 	}
+
+	.myform {
+		display: block
+	}
+
+	.whiteblock {
+		background-color: white;
+	}
+	.longtext {
+		width: 100%;
+	}
 </style>
 
-<div id="SendFormTemplate" class="hidden">
-	@{Html.RenderPartial("_MessagePartial_SendFormTemplate", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm());}
+<div id="discussion">
+	@{Html.RenderPartial("_MessagePartial_Messages", Model.Messages);}
 </div>
+<div class="whiteblock">
+	<h4>Compose new message</h4>
+	<div id="SendFormTemplate">
+		@{Html.RenderPartial("_MessagePartial_SendFormTemplate", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm());}
+	</div>
+</div>
+
+<div id="temporal" class="hidden"></div>
 
 <script>
 	var SendFormTemplate = document.getElementById("SendFormTemplate");
@@ -33,9 +56,15 @@
 
 	function AddReplyForm(id)
 	{
-		var MessageBox = document.getElementById('message_' + id);
-		MessageBox.innerHTML += SendFormHtml;
-		MessageBox.getElementsByClassName("ReplyTo")[0].value = id;
+		var Message = document.getElementById('message_' + id);
+		Message.innerHTML += SendFormHtml;
+		Message.getElementsByClassName("ReplyTo")[0].value = id;
+		var ReplyForm = Message.getElementsByTagName("form")[0];
+		ReplyForm.id = ('reply_' + id);
+		var CancelButton = ReplyForm.getElementsByTagName("button")[0];
+		CancelButton.style.display = "inline";
+		CancelButton.onclick = function () { removeform(id) };
+		document.getElementById('button_' + id).style.display = "none";
 	}
 
 	function sendmessage(event) {
@@ -44,12 +73,22 @@
 			type: 'POST',
 			url: thisForm.action,
 			data: $(thisForm).serialize(),
-			success: refresh,
+			success: function (results) {
+				if (results == "fail") {
+					alert("Message must contain some text!")
+				}
+				else if (results == "success") {
+					refresh();
+					var id = thisForm.id.replace('reply_', '');
+					removeform(id);
+				}
+			}
 		});
 	}
 
-	function removeform() {
-		this.parentElement.parentElement.parentElement.remove()
+	function removeform(id) {
+		document.getElementById('reply_' + id).remove();
+		document.getElementById('button_' + id).style.display = 'inline';
 	}
 
 	function refresh() {
@@ -60,20 +99,37 @@
 		}
 		$.ajax({
 			type: 'POST',
-			url: window.location.href,
+			url: "@Url.Action("AddMessages", "Message")",
 			data:
-			{
-				"ids": ids,
-				"ToEmployee": @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null"),
-				"ToProject": @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null"),
-				"ToTask": @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null"),
-				"ToTeam": @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null")
+				{
+					"ids": ids,
+					"ToEmployee": @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null"),
+					"ToProject": @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null"),
+					"ToTask": @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null"),
+					"ToTeam": @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null")
 			}
-		});
+		}).done(function (results) { addNew(results) });
+	}
+
+	function addNew(data) {
+		var temporal = document.getElementById('temporal');
+		var discussion = document.getElementById('discussion');
+		temporal.innerHTML += data;
+		var messages = temporal.getElementsByClassName("myMessageBox");
+		for (var i = messages.length-1; i >= 0; i--) {
+			var parent = messages[i].getAttribute("data-parentId");
+			var html = messages[i].outerHTML;
+			if (parent == "") {
+				discussion.innerHTML += html
+			}
+			else {
+				parentEl = document.getElementById('message_' + parent).parentElement;
+				parentEl.innerHTML += html
+				//alert(messages[i].getElementsByClassName("myMessage")[0].id)
+			}
+			messages[i].remove();
+		}
 	}
 
 </script>
-<section>
-	@{Html.RenderPartial("_MessagePartial_Messages", Model.Messages);}
-</section>
 
