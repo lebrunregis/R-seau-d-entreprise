@@ -43,24 +43,24 @@ namespace Model.Client.Service
             return GS.MessageService.GetMyDiscussionWithEmployee(MyId, EmployeeId).Select(message => Mappers.ToClient(message));
         }
 
-        public static IEnumerable<Message> GetProjectMessagesWithoutSome(int ProjectId, string ids)
+        public static IEnumerable<Message> GetProjectMessagesWithoutSome(int ProjectId, int max_id)
         {
-            return GS.MessageService.GetProjectMessagesWithoutSome(ProjectId, ids).Select(message => Mappers.ToClient(message));
+            return GS.MessageService.GetProjectMessagesWithoutSome(ProjectId, max_id).Select(message => Mappers.ToClient(message));
         }
 
-        public static IEnumerable<Message> GetTaskMessagesWithoutSome(int TaskId, string ids)
+        public static IEnumerable<Message> GetTaskMessagesWithoutSome(int TaskId, int max_id)
         {
-            return GS.MessageService.GetTaskMessagesWithoutSome(TaskId, ids).Select(message => Mappers.ToClient(message));
+            return GS.MessageService.GetTaskMessagesWithoutSome(TaskId, max_id).Select(message => Mappers.ToClient(message));
         }
 
-        public static IEnumerable<Message> GetTeamMessagesWithoutSome(int TeamId, string ids)
+        public static IEnumerable<Message> GetTeamMessagesWithoutSome(int TeamId, int max_id)
         {
-            return GS.MessageService.GetTeamMessagesWithoutSome(TeamId, ids).Select(message => Mappers.ToClient(message));
+            return GS.MessageService.GetTeamMessagesWithoutSome(TeamId, max_id).Select(message => Mappers.ToClient(message));
         }
 
-        public static IEnumerable<Message> GetMyDiscussionWithEmployeeWithoutSome(int MyId, int EmployeeId, string ids)
+        public static IEnumerable<Message> GetMyDiscussionWithEmployeeWithoutSome(int MyId, int EmployeeId, int max_id)
         {
-            return GS.MessageService.GetMyDiscussionWithEmployeeWithoutSome(MyId, EmployeeId, ids).Select(message => Mappers.ToClient(message));
+            return GS.MessageService.GetMyDiscussionWithEmployeeWithoutSome(MyId, EmployeeId, max_id).Select(message => Mappers.ToClient(message));
         }
     }
 }

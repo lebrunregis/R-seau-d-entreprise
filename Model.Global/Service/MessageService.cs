@@ -63,36 +63,36 @@ namespace Model.Global.Service
             cmd.AddParameter("EmployeeId", EmployeeId);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToMessage());
         }
-        public static IEnumerable<Message> GetProjectMessagesWithoutSome(int ProjectId, string ids)
+        public static IEnumerable<Message> GetProjectMessagesWithoutSome(int ProjectId, int max_id)
         {
             Command cmd = new Command("GetProjectMessagesWithoutSome", true);
             cmd.AddParameter("ProjectId", ProjectId);
-            cmd.AddParameter("NotNeededIds", ids);
+            cmd.AddParameter("max_id", max_id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToMessage());
         }
 
-        public static IEnumerable<Message> GetTaskMessagesWithoutSome(int TaskId, string ids)
+        public static IEnumerable<Message> GetTaskMessagesWithoutSome(int TaskId, int max_id)
         {
             Command cmd = new Command("GetTaskMessagesWithoutSome", true);
             cmd.AddParameter("TaskId", TaskId);
-            cmd.AddParameter("NotNeededIds", ids);
+            cmd.AddParameter("max_id", max_id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToMessage());
         }
 
-        public static IEnumerable<Message> GetTeamMessagesWithoutSome(int TeamId, string ids)
+        public static IEnumerable<Message> GetTeamMessagesWithoutSome(int TeamId, int max_id)
         {
             Command cmd = new Command("GetTeamMessagesWithoutSome", true);
             cmd.AddParameter("TeamId", TeamId);
-            cmd.AddParameter("NotNeededIds", ids);
+            cmd.AddParameter("max_id", max_id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToMessage());
         }
 
-        public static IEnumerable<Message> GetMyDiscussionWithEmployeeWithoutSome(int MyId, int EmployeeId, string ids)
+        public static IEnumerable<Message> GetMyDiscussionWithEmployeeWithoutSome(int MyId, int EmployeeId, int max_id)
         {
             Command cmd = new Command("GetMyDiscussionWithEmployeeWithoutSome", true);
             cmd.AddParameter("MyId", MyId);
             cmd.AddParameter("EmployeeId", EmployeeId);
-            cmd.AddParameter("NotNeededIds", ids);
+            cmd.AddParameter("max_id", max_id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToMessage());
         }
     }

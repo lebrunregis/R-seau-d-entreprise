@@ -32,9 +32,19 @@
 	.longtext {
 		width: 100%;
 	}
+	.right {
+		position: absolute;
+		right: 0px;
+		bottom: 0px;
+	}
+	.rel {
+		position: relative;
+	}
 </style>
-
 <div id="discussion">
+	<div class="rel">
+		<button onclick="refresh()" class="btn btn-default right">Refresh</button>
+	</div>
 	@{Html.RenderPartial("_MessagePartial_Messages", Model.Messages);}
 </div>
 <div class="whiteblock">
@@ -65,6 +75,7 @@
 		CancelButton.style.display = "inline";
 		CancelButton.onclick = function () { removeform(id) };
 		document.getElementById('button_' + id).style.display = "none";
+		ReplyForm.getElementsByTagName("textarea")[0].focus();
 	}
 
 	function sendmessage(event) {
@@ -75,7 +86,7 @@
 			data: $(thisForm).serialize(),
 			success: function (results) {
 				if (results == "fail") {
-					alert("Message must contain some text!")
+					alert("Message must contain some text and title must not be longer then 50 characters")
 				}
 				else if (results == "success") {
 					refresh();
@@ -93,16 +104,18 @@
 
 	function refresh() {
 		var messages = document.getElementsByClassName("myMessage");
-		var ids = [];
-		for (var i = 0; i < messages.length; i++) {
-			ids[i] = messages[i].id.replace('message_', '')
+		var max_id = 0;
+		var id;
+		for (var i = 0; i < messages.length; i++) { 
+			id = messages[i].id.replace('message_', '')
+			max_id = Math.max(max_id, id)
 		}
 		$.ajax({
 			type: 'POST',
 			url: "@Url.Action("AddMessages", "Message")",
 			data:
 				{
-					"ids": ids,
+					"max_id": max_id,
 					"ToEmployee": @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null"),
 					"ToProject": @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null"),
 					"ToTask": @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null"),

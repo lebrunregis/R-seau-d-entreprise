@@ -47,50 +47,46 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             IEnumerable<C.Message> Data = new List<C.Message>();
             if (!(form.ToProject is null))
             {
-                if (form.ids.Count == 0)
+                if (form.max_id == 0)
                 {
                     Data = MessageService.GetProjectMessages((int)form.ToProject);
                 }
                 else
                 {
-                    string ids = string.Join(",", form.ids) + ",";
-                    Data = MessageService.GetProjectMessagesWithoutSome((int)form.ToProject, ids);
+                    Data = MessageService.GetProjectMessagesWithoutSome((int)form.ToProject, form.max_id);
                 }
             }
             else if (!(form.ToTask is null))
             {
-                if (form.ids.Count == 0)
+                if (form.max_id == 0)
                 {
                     Data = MessageService.GetTaskMessages((int)form.ToTask);
                 }
                 else
                 {
-                    string ids = string.Join(",", form.ids) + ",";
-                    Data = MessageService.GetTaskMessagesWithoutSome((int)form.ToTask, ids);
+                    Data = MessageService.GetTaskMessagesWithoutSome((int)form.ToTask, form.max_id);
                 }
             }
             else if (!(form.ToTeam is null))
             {
-                if (form.ids.Count == 0)
+                if (form.max_id == 0)
                 {
                     Data = MessageService.GetTeamMessages((int)form.ToTeam);
                 }
                 else
                 {
-                    string ids = string.Join(",", form.ids) + ",";
-                    Data = MessageService.GetTeamMessagesWithoutSome((int)form.ToTeam, ids);
+                    Data = MessageService.GetTeamMessagesWithoutSome((int)form.ToTeam, form.max_id);
                 }
             }
             else if (!(form.ToEmployee is null))
             {
-                if (form.ids.Count == 0)
+                if (form.max_id == 0)
                 {
                     Data = MessageService.GetMyDiscussionWithEmployee(SessionUser.GetUser().Id, (int)form.ToEmployee);
                 }
                 else
                 {
-                    string ids = string.Join(",", form.ids) + ",";
-                    Data = MessageService.GetMyDiscussionWithEmployeeWithoutSome(SessionUser.GetUser().Id, (int)form.ToEmployee, ids);
+                    Data = MessageService.GetMyDiscussionWithEmployeeWithoutSome(SessionUser.GetUser().Id, (int)form.ToEmployee, form.max_id);
                 }
             }
             var result = PartialView(Data.OrderByDescending(message => message.Id).Select(message => new ViewForm
