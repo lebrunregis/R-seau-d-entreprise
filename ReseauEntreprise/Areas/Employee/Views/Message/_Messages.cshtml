@@ -5,7 +5,7 @@
 	<div class="myMessageBox" data-parentId="@(message.Parent)">
 		<div class="myMessage" id="@("message_" + message.Id.ToString())">
 			@Html.DisplayFor(modelItem => message.CreationTime)
-			@{Html.RenderPartial("EmployeePartial", message.Author);}
+			@{Html.RenderPartial("_Employee", message.Author);}
 			<h4>@Html.DisplayFor(modelItem => message.Title)</h4>
 			<div class="multiligneText">@Html.DisplayFor(modelItem => message.Message)</div>
 			<button id="@("button_" + message.Id.ToString())" onclick="AddReplyForm(@message.Id)" class="btn btn-default">Reply</button>

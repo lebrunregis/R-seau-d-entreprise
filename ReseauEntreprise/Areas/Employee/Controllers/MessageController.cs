@@ -118,7 +118,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
 
         public ActionResult mailbox(int id)
         {
-            MailboxForm form = new MailboxForm();
+            IEnumerable<MailboxForm> form = MessageService.GetResponsesToEmployee(id).Select(message => new MailboxForm(message));
             return View(form);
         }
     }

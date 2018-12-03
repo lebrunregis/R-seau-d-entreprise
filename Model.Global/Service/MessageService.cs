@@ -95,5 +95,31 @@ namespace Model.Global.Service
             cmd.AddParameter("max_id", max_id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToMessage());
         }
+
+        public static IEnumerable<Message> GetResponsesToEmployee(int EmployeeId)
+        {
+            Command cmd = new Command("GetResponsesToEmployee", true);
+            cmd.AddParameter("EmployeeId", EmployeeId);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToMessage());
+        }
+
+        public static Project GetProjectForMessage(int MessageId)
+        {
+            Command cmd = new Command("GetProjectForMessage", true);
+            cmd.AddParameter("MessageId", MessageId);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToProject()).FirstOrDefault();
+        }
+        public static Team GetTeamForMessage(int MessageId)
+        {
+            Command cmd = new Command("GetteamForMessage", true);
+            cmd.AddParameter("MessageId", MessageId);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToTeam()).FirstOrDefault();
+        }
+        /*public static Project GetTaskForMessage(int MessageId)
+        {
+            Command cmd = new Command("GetTaskForMessage", true);
+            cmd.AddParameter("MessageId", MessageId);
+            return Connection.ExecuteReader(cmd, (dr) => dr.Totask()).FirstOrDefault();
+        }*/
     }
 }

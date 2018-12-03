@@ -203,6 +203,7 @@
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeDepartment\AddEmployeeToDepartmentForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeDepartment\RemoveEmployeeFromDepartmentForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeTeam\EmployeesInTeamForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\EmployeeTeam\EmployeeTeamForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Employee\DepartmentComparator.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Employee\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Employee\ListForm.cs" />

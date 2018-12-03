@@ -62,5 +62,22 @@ namespace Model.Client.Service
         {
             return GS.MessageService.GetMyDiscussionWithEmployeeWithoutSome(MyId, EmployeeId, max_id).Select(message => Mappers.ToClient(message));
         }
+        public static IEnumerable<Message> GetResponsesToEmployee(int EmployeeId)
+        {
+            return GS.MessageService.GetResponsesToEmployee(EmployeeId).Select(message => Mappers.ToClient(message));
+        }
+
+        public static Project GetProjectForMessage(int MessageId)
+        {
+            return Mappers.ToClient(GS.MessageService.GetProjectForMessage(MessageId));
+        }
+        public static Team GetTeamForMessage(int MessageId)
+        {
+            return Mappers.ToClient(GS.MessageService.GetTeamForMessage(MessageId));
+        }
+        /*public static Project GetTaskForMessage(int MessageId)
+        {
+            return Mappers.ToClient(GS.MessageService.GetTaskForMessage(MessageId));
+        }*/
     }
 }

@@ -71,7 +71,7 @@
 <p>
 	@if (Model.AmITeamLeader || Model.AmIProjectManagerOrAdmin)
 	{
-		@Html.ActionLink("Changer la composition", "EmployeesInTeam", new { id = Model.Id })
+		@Html.ActionLink("Change employees in team", "EmployeesInTeam", new { id = Model.Id })
 		<br />
 	}
 	@if (Model.AmIProjectManagerOrAdmin)

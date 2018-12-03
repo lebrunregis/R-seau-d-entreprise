@@ -333,18 +333,23 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 ))
             {
                 IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
-                List<EmployeesInTeamForm> EmployeesInTeamFormList = new List<EmployeesInTeamForm>();
+                List<EmployeeTeamForm> EmployeesInTeamFormList = new List<EmployeeTeamForm>();
                 foreach (D.Employee employee in Employees)
                 {
                     IEnumerable<D.Department> departments = DepartmentService.GetEmployeeActiveDepartments((int)employee.Employee_Id);
-                    EmployeesInTeamFormList.Add(new EmployeesInTeamForm
+                    EmployeesInTeamFormList.Add(new EmployeeTeamForm
                     {
                         Employee = employee,
                         Departments = departments,
                         IsInTeam = TeamService.IsInTeam(id, (int)employee.Employee_Id)
                     });
                 }
-                return View(EmployeesInTeamFormList);
+                EmployeesInTeamForm form = new EmployeesInTeamForm
+                {
+                    team = Team,
+                    Employees = EmployeesInTeamFormList
+                };
+                return View(form);
             }
             return RedirectToAction("Index");
         }

@@ -24,7 +24,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
             message = new ViewForm(m);
             employee = message.Author;
         }
-        public MailboxForm(C.Message m, int )
+        /*public MailboxForm(C.Message m, int )
         {
             message = new ViewForm(m);
             employee = message.Author;
@@ -38,6 +38,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
         {
             message = new ViewForm(m);
             employee = message.Author;
-        }
+        }*/
     }
 }

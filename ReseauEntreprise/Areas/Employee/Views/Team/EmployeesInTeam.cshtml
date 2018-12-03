@@ -1,20 +1,23 @@
-﻿@model IEnumerable<ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam.EmployeesInTeamForm>
+﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam.EmployeesInTeamForm
+
+<h3>@Model.team.Name</h3>
 
 <table class="table">
 	<tr>
 		<th>
-			@Html.DisplayNameFor(model => model.Employee)
+			@Html.DisplayNameFor(model => model.Employees.FirstOrDefault().Employee)
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.Departments)
+			@Html.DisplayNameFor(model => model.Employees.FirstOrDefault().Departments)
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.IsInTeam)
+			@Html.DisplayNameFor(model => model.Employees.FirstOrDefault().IsInTeam)
 		</th>
 	</tr>
 
-	@foreach (var item in Model)
+	@for (int i = 0; i < Model.Employees.Count(); i++)
 	{
+		var item = Model.Employees.ElementAt(i);
 		<tr>
 			<td>
 				@{ Html.RenderPartial("_Employee", item.Employee); }
@@ -24,7 +27,7 @@
 			</td>
 			<td>
 				<div class="checkbox">
-					@Html.CheckBoxFor(modelItem => item.IsInTeam, new { id = item.Employee.Employee_Id })
+					@Html.CheckBoxFor(m => m.Employees.ElementAt(i).IsInTeam, new { id = item.Employee.Employee_Id })
 				</div>
 			</td>
 		</tr>
@@ -32,9 +35,13 @@
 
 </table>
 
+
+@Html.ActionLink("Back to team", "Details", new { id = Model.team.Id}) <br />
+@Html.ActionLink("Back to list", "Index")
+
 <script>
-	var checkboxes = document.querySelectorAll('input[name="item.IsInTeam"][type="checkbox"]');
-	
+	var checkboxes = document.querySelectorAll('input[name="IsInTeam"][type="checkbox"]');
+
 	for (var i = 0; i < checkboxes.length; i++) {
 		checkboxes[i].addEventListener("change", (event) => {
 

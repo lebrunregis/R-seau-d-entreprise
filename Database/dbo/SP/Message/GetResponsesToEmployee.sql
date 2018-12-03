@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetResponcesToEmployee]
+﻿CREATE PROCEDURE [dbo].[GetResponsesToEmployee]
 	@EmployeeId int
 AS
 	SELECT m.Message_Id, m.Message_Title, m.Message_Date, m.Message_Message, m.Message_Parent, m.Message_Author
