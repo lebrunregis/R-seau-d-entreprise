@@ -41,16 +41,17 @@
 		position: relative;
 	}
 </style>
+<h3>Discussion</h3>
 <div id="discussion">
 	<div class="rel">
 		<button onclick="refresh()" class="btn btn-default right">Refresh</button>
 	</div>
-	@{Html.RenderPartial("_MessagePartial_Messages", Model.Messages);}
+	@{Html.RenderPartial("_Messages", Model.Messages);}
 </div>
 <div class="whiteblock">
 	<h4>Compose new message</h4>
 	<div id="SendFormTemplate">
-		@{Html.RenderPartial("_MessagePartial_SendFormTemplate", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm());}
+		@{Html.RenderPartial("_SendFormTemplate", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm());}
 	</div>
 </div>
 
@@ -112,7 +113,7 @@
 		}
 		$.ajax({
 			type: 'POST',
-			url: "@Url.Action("AddMessages", "Message")",
+			url: "@Url.Action("_Messages", "Message")",
 			data:
 				{
 					"max_id": max_id,
@@ -138,7 +139,6 @@
 			else {
 				parentEl = document.getElementById('message_' + parent).parentElement;
 				parentEl.innerHTML += html
-				//alert(messages[i].getElementsByClassName("myMessage")[0].id)
 			}
 			messages[i].remove();
 		}

@@ -312,11 +312,9 @@
     <Content Include="Areas\Employee\Views\Department\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Department\Details.cshtml" />
     <Content Include="Areas\Employee\Views\Employee\Index.cshtml" />
-    <Content Include="Areas\Employee\Views\Message\ViewProjectDiscussion.cshtml" />
-    <Content Include="Areas\Employee\Views\Message\_MessagePartial_Discussion.cshtml" />
-    <Content Include="Areas\Employee\Views\Message\_MessagePartial_Messages.cshtml" />
-    <Content Include="Areas\Employee\Views\Message\_MessagePartial_SendFormTemplate.cshtml" />
-    <Content Include="Areas\Employee\Views\Message\AddMessages.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\_Discussion.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\_Messages.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\_SendFormTemplate.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

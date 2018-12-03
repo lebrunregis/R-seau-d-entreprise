@@ -15,11 +15,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
     [EmployeeRequired]
     public class MessageController : Controller
     {
-        public ActionResult Send()
-        {
-            SendForm form = new SendForm();
-            return PartialView(form);
-        }
+
         [HttpPost]
         public ContentResult Send(SendForm form)
         {
@@ -30,19 +26,39 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             }
             return new ContentResult {Content = "fail" };
         }
-        public ActionResult ViewProjectDiscussion(int id)
+
+        public ActionResult _Discussion(int? ProjectId = null, int? TaskId = null, int? TeamId = null, int? EmployeeId = null)
         {
-            int Project_Id = id;
-            IEnumerable<C.Message> messages = MessageService.GetProjectMessages(Project_Id);
+            IEnumerable<C.Message> messages = new List<C.Message>();
+            if (!(ProjectId is null))
+            {
+                messages = MessageService.GetProjectMessages((int)ProjectId);
+            }
+            else if (!(TaskId is null))
+            {
+                messages = MessageService.GetTaskMessages((int)TaskId);
+            }
+            else if (!(TeamId is null))
+            {
+                messages = MessageService.GetTeamMessages((int)TeamId);
+            }
+            else if (!(EmployeeId is null))
+            {
+                messages = MessageService.GetMyDiscussionWithEmployee(SessionUser.GetUser().Id, (int)EmployeeId);
+            }
             DiscussionForm form = new DiscussionForm
             {
-                ToProject = Project_Id,
+                ToEmployee = EmployeeId,
+                ToProject = ProjectId,
+                ToTeam = TeamId,
+                ToTask = TaskId,
                 Messages = FillAndAddChildren(messages, null)
             };
-            return View(form);
+            return PartialView(form);
         }
+
         [HttpPost]
-        public PartialViewResult AddMessages(ResponseForm form)
+        public PartialViewResult _Messages(ResponseForm form)
         {
             IEnumerable<C.Message> Data = new List<C.Message>();
             if (!(form.ToProject is null))
@@ -89,16 +105,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     Data = MessageService.GetMyDiscussionWithEmployeeWithoutSome(SessionUser.GetUser().Id, (int)form.ToEmployee, form.max_id);
                 }
             }
-            var result = PartialView(Data.OrderByDescending(message => message.Id).Select(message => new ViewForm
-            {
-                Id = (int)message.Id,
-                Title = message.Title,
-                Message = message.Body,
-                Parent = message.Parent,
-                Author = EmployeeService.Get(message.Author),
-                CreationTime = message.Created,
-                Children = new List<ViewForm>()
-            }));
+            var result = PartialView(Data.OrderByDescending(message => message.Id).Select(message => new ViewForm(message)));
 
             return result;
         }
@@ -106,16 +113,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         private IEnumerable<ViewForm> FillAndAddChildren(IEnumerable<C.Message> messages, int? ParentId)
         {
             return messages.Where(message => message.Parent == ParentId).OrderBy(message => message.Id).Select(message =>
-            new ViewForm
-            {
-                Id = (int)message.Id,
-                Title = message.Title,
-                Message = message.Body,
-                Parent = ParentId,
-                Author = EmployeeService.Get(message.Author),
-                CreationTime = message.Created,
-                Children = FillAndAddChildren(messages, message.Id)
-            });
+            new ViewForm(message, FillAndAddChildren(messages, message.Id)));
         }
     }
 }

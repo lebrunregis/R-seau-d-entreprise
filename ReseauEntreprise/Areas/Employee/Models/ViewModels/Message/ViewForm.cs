@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Client.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,5 +19,22 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
         [DataType(DataType.DateTime)]
         public DateTime CreationTime { get; set; }
         public IEnumerable<ViewForm> Children { get; set; }
+
+        public ViewForm() { }
+
+        public ViewForm(C.Message message) : this(message, new List<ViewForm>())
+        {
+        }
+
+        public ViewForm(C.Message message, IEnumerable<ViewForm> Children)
+        {
+            Id = (int)message.Id;
+            Title = message.Title;
+            Message = message.Body;
+            Parent = message.Parent;
+            Author = EmployeeService.Get(message.Author);
+            CreationTime = message.Created;
+            this.Children = Children;
+        }
     }
 }
