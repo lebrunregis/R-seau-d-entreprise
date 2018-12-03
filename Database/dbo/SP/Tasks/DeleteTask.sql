@@ -7,5 +7,10 @@
 	@DeadLine DATETIME2(0),
 	@SubtaskOf int
 AS
-	DELETE FROM Task WHERE Task_Id = @Id AND Name = @Name AND Description = @Description AND SubtaskOf = @SubtaskOf
+	DELETE 
+	FROM Task 
+	WHERE Task_Id = @Id 
+	AND Name = @Name 
+	AND Description = @Description 
+	AND SubtaskOf = @SubtaskOf
 RETURN 0

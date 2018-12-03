@@ -209,7 +209,12 @@
     <Build Include="dbo\SP\Tasks\GetSubtasks.sql" />
     <Build Include="dbo\SP\Tasks\GetTasksForProject.sql" />
     <Build Include="dbo\SP\Tasks\SetTaskStatus.sql" />
-    <Build Include="dbo\SP\Tasks\AssignEmployeeToTask.sql" />
+    <Build Include="dbo\SP\Tasks\SetEmployeeToTask.sql" />
+    <Build Include="dbo\SP\Tasks\GetTasksForUser.sql" />
+    <Build Include="dbo\SP\Tasks\GetEmployeesForTask.sql" />
+    <Build Include="dbo\SP\Tasks\GetTaskStatusList.sql" />
+    <Build Include="dbo\SP\Employee\GetEmployeeStatusList.sql" />
+    <Build Include="dbo\SP\Employee\SetEmployeeStatus.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

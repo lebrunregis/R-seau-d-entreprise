@@ -76,6 +76,8 @@ DBCC CHECKIDENT ('[Project]', RESEED, 0);
 GO
 DBCC CHECKIDENT ('[EmployeeStatusHistory]', RESEED, 0);
 GO
+DBCC CHECKIDENT ('[TaskStatus]', RESEED, 0);
+GO
 
 SET IDENTITY_INSERT [TaskStatus] ON 
 INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (1,'Not started');

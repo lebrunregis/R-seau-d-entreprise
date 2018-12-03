@@ -42,6 +42,13 @@ namespace Model.Global.Service
             return Connection.ExecuteReader(cmd, (dr) => dr.ToTask());
         }
 
+        public static IEnumerable<Task> GetForUser( int UserId)
+        {
+            Command cmd = new Command("GetTasksForUser", true);
+            cmd.AddParameter("UserId", UserId);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToTask());
+        }
+
         public static IEnumerable<Task> GetForProject(Project p, int UserId)
         {
             Command cmd = new Command("GetTasksForProject", true);

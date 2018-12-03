@@ -1,5 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[GetSubtasks]
-	@Id int
+	@TaskId int
 AS
-	SELECT Task_Id, Name,Description,StartDate,EndDate,Deadline,SubtaskOf FROM Task WHERE SubtaskOf = @Id 
+	SELECT Task_Id, Name,Description,StartDate,EndDate,Deadline,SubtaskOf 
+	FROM Task 
+	WHERE SubtaskOf = @TaskId 
 RETURN 0

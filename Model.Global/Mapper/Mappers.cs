@@ -143,10 +143,11 @@ namespace Model.Global.Mapper
                 Description = (string)dr["Description"],
                 StartDate = (DateTime)dr["StartDate"],
                 EndDate = (DateTime)dr["EndDate"],
-          Deadline =(DateTime?)dr["Deadline"],
+                Deadline =(DateTime?)dr["Deadline"],
                 SubtaskOf =(int)dr["SubtaskOf"],
                 StatusId = (int)dr["Status_Id"],
                 Status =(string)dr["Status_Name"],
+                Users = (string)((dr["Users"] == DBNull.Value) ? "Not set" : dr["Users"])
             };
         }
 

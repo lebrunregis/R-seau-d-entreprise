@@ -7,5 +7,7 @@
 	@SubtaskOf int,
 	@UserId int
 AS
-	INSERT INTO Task (Name,Description,StartDate,EndDate,Deadline,SubtaskOf,Creator) VALUES (@Name, @Description,@StartDate,@EndDate,@DeadLine,@SubtaskOf,@UserId)
+	INSERT INTO Task 
+	(Name,Description,StartDate,EndDate,Deadline,SubtaskOf,Creator) 
+	VALUES (@Name, @Description,@StartDate,@EndDate,@DeadLine,@SubtaskOf,@UserId)
 RETURN 0

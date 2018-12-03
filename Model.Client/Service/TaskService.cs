@@ -29,6 +29,17 @@ namespace Model.Client.Service
             return Tasks;
         }
 
+        public static IEnumerable<Task> GetForUser(int UserId)
+        {
+            List<Task> Tasks = new List<Task>();
+            IEnumerable<GD.Task> GlobalTasks = GS.TaskService.GetForUser(UserId);
+            foreach (GD.Task Task in GlobalTasks)
+            {
+                Tasks.Add(Mappers.ToClient(Task));
+            }
+            return Tasks;
+        }
+
         public static IEnumerable<Task> GetForProject(Project p, int UserId)
         {
             List<Task> Tasks = new List<Task>();
