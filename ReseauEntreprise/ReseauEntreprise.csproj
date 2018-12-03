@@ -200,7 +200,6 @@
     <Compile Include="Areas\Employee\Models\ViewModels\EditEmailForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EditPassForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EditProfileForm.cs" />
-    <Compile Include="Areas\Employee\Models\ProjectModel.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeDepartment\AddEmployeeToDepartmentForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeDepartment\RemoveEmployeeFromDepartmentForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeTeam\EmployeesInTeamForm.cs" />
@@ -252,9 +251,9 @@
     </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Employee\Views\web.config" />
-    <Content Include="Views\Shared\_EmployeeLayout.cshtml" />
+    <Content Include="Views\Shared\_LayoutEmployee.cshtml" />
     <Content Include="Areas\Employee\Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Areas\Admin\Views\Home\About.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Contact.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
@@ -285,7 +284,7 @@
     <Content Include="Areas\Admin\Views\Team\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Team\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Team\Delete.cshtml" />
-    <Content Include="Views\Shared\EmployeePartial.cshtml" />
+    <Content Include="Views\Shared\_Employee.cshtml" />
     <Content Include="Areas\Admin\Views\Team\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\DepartmentsHistory.cshtml" />
     <Content Include="Areas\Admin\Views\Department\AddEmployeeToDepartment.cshtml" />
@@ -337,20 +336,21 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Registration\Login.cshtml" />
     <Content Include="Views\Registration\Register.cshtml" />
-    <Content Include="Views\Shared\ProjectPartial.cshtml" />
-    <Content Include="Views\Shared\TeamPartial.cshtml" />
-    <Content Include="Views\Shared\EmployeeListPartial.cshtml" />
-    <Content Include="Views\Shared\ProjectListPartial.cshtml" />
-    <Content Include="Views\Shared\TeamListPartial.cshtml" />
-    <Content Include="Views\Shared\DepartmentListPartial.cshtml" />
-    <Content Include="Views\Shared\DepartmentPartial.cshtml" />
+    <Content Include="Views\Shared\_Project.cshtml" />
+    <Content Include="Views\Shared\_Team.cshtml" />
+    <Content Include="Views\Shared\_EmployeeList.cshtml" />
+    <Content Include="Views\Shared\_ProjectList.cshtml" />
+    <Content Include="Views\Shared\_TeamList.cshtml" />
+    <Content Include="Views\Shared\_DepartmentList.cshtml" />
+    <Content Include="Views\Shared\_Department.cshtml" />
+    <Content Include="Views\Shared\_Event.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

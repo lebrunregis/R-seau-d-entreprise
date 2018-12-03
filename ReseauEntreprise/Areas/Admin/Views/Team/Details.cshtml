@@ -39,7 +39,7 @@
 		</dt>
 
 		<dd>
-			@{ Html.RenderPartial("EmployeePartial", Model.Creator); }
+			@{ Html.RenderPartial("_Employee", Model.Creator); }
 		</dd>
 
 		<dt>
@@ -47,7 +47,7 @@
 		</dt>
 
 		<dd>
-			@{ Html.RenderPartial("EmployeePartial", Model.TeamLeader); }
+			@{ Html.RenderPartial("_Employee", Model.TeamLeader); }
 		</dd>
 
 		<dt>
@@ -55,7 +55,7 @@
 		</dt>
 
 		<dd>
-			@{ Html.RenderPartial("ProjectPartial", Model.Project); }
+			@{ Html.RenderPartial("_Project", Model.Project); }
 		</dd>
 
 		<dt>
@@ -63,7 +63,7 @@
 		</dt>
 
 		<dd>
-			@{ Html.RenderPartial("EmployeeListPartial", Model.Members); }
+			@{ Html.RenderPartial("_EmployeeList", Model.Members); }
 		</dd>
 
 	</dl>

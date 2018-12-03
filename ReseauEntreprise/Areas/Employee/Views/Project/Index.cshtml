@@ -31,9 +31,7 @@
 		<td>
 			@Html.DisplayFor(modelItem => item.Name)
 		</td>
-		<td>
-			@Html.DisplayFor(modelItem => item.Description)
-		</td>
+		<td style="white-space: pre-wrap;">@Html.DisplayFor(modelItem => item.Description)</td>
 		<td>
 			@Html.DisplayFor(modelItem => item.StartDate)
 		</td>
@@ -41,7 +39,7 @@
 			@Html.DisplayFor(modelItem => item.EndDate)
 		</td>
 		<td>
-			@{ Html.RenderPartial("EmployeePartial", item.Manager); }
+			@{ Html.RenderPartial("_Employee", item.Manager); }
 		</td>
 		<td>
 			@Html.ActionLink("Details", "Details", new { id = item.ProjectId })

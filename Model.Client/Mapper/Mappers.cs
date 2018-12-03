@@ -131,15 +131,15 @@ namespace Model.Client.Mapper
             };
         }
 
-        internal static C.EmployeeProjectManagerHistory ToClient(this G.EmployeeProjectManagerHistory entity)
+        internal static C.ProjectManagerHistory ToClient(this G.ProjectManagerHistory entity)
         {
 
-            return new C.EmployeeProjectManagerHistory(entity.Project_Id, entity.Project_Name, entity.StartDate, entity.EndDate);
+            return new C.ProjectManagerHistory(entity.Project_Id, entity.Project_Name, entity.StartDate, entity.EndDate);
         }
 
-        internal static G.EmployeeProjectManagerHistory ToGlobal(this C.EmployeeProjectManagerHistory entity)
+        internal static G.ProjectManagerHistory ToGlobal(this C.ProjectManagerHistory entity)
         {
-            return new G.EmployeeProjectManagerHistory
+            return new G.ProjectManagerHistory
             {
                 Project_Id = entity.Project_Id,
                 Project_Name = entity.Project_Name,
