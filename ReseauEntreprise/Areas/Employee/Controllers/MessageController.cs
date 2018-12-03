@@ -115,5 +115,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return messages.Where(message => message.Parent == ParentId).OrderBy(message => message.Id).Select(message =>
             new ViewForm(message, FillAndAddChildren(messages, message.Id)));
         }
+
+        public ActionResult mailbox(int id)
+        {
+            MailboxForm form = new MailboxForm();
+            return View(form);
+        }
     }
 }
