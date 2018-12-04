@@ -22,22 +22,10 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
         public MailboxForm(C.Message m)
         {
             message = new ViewForm(m);
+            project = MessageService.GetProjectForMessage((int)m.Id);
+            team = MessageService.GetTeamForMessage((int)m.Id);
+            //task = MessageService.GetTaskForMessage((int)m.Id);
             employee = message.Author;
         }
-        /*public MailboxForm(C.Message m, int )
-        {
-            message = new ViewForm(m);
-            employee = message.Author;
-        }
-        public MailboxForm(C.Message m)
-        {
-            message = new ViewForm(m);
-            employee = message.Author;
-        }
-        public MailboxForm(C.Message m)
-        {
-            message = new ViewForm(m);
-            employee = message.Author;
-        }*/
     }
 }

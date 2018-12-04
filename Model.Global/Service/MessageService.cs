@@ -103,6 +103,14 @@ namespace Model.Global.Service
             return Connection.ExecuteReader(cmd, (dr) => dr.ToMessage());
         }
 
+        public static IEnumerable<Message> GetResponsesToEmployeeWithoutSome(int EmployeeId, int max_id)
+        {
+            Command cmd = new Command("GetResponsesToEmployeeWithoutSome", true);
+            cmd.AddParameter("EmployeeId", EmployeeId);
+            cmd.AddParameter("max_id", max_id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToMessage());
+        }
+
         public static Project GetProjectForMessage(int MessageId)
         {
             Command cmd = new Command("GetProjectForMessage", true);
