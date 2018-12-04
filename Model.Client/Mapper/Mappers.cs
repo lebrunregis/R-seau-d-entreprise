@@ -267,9 +267,30 @@ namespace Model.Client.Mapper
             };
         }
 
-        internal static G.TaskStatus ToTaskStatus(this C.TaskStatus entity)
+        internal static C.TaskStatusHistory ToClient(this G.TaskStatusHistory entity)
         {
-            return new G.TaskStatus()
+            return new C.TaskStatusHistory(entity.TaskId,entity.TaskStatusId,entity.StatusName,entity.Date);
+        }
+
+        internal static G.TaskStatusHistory ToGlobal(this C.TaskStatusHistory entity)
+        {
+            return new G.TaskStatusHistory
+            {
+                TaskId = entity.TaskId,
+                TaskStatusId = entity.TaskStatusId,
+                StatusName = entity.StatusName,
+                Date = entity.Date
+            };
+        }
+
+        internal static C.TaskStatus ToClient(this G.TaskStatus entity)
+        {
+            return new C.TaskStatus(entity.Id,entity.Name);
+        }
+
+        internal static G.TaskStatus ToGlobal(this C.TaskStatus entity)
+        {
+            return new G.TaskStatus
             {
                 Id = entity.Id,
                 Name = entity.Name

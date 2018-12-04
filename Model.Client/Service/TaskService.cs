@@ -82,16 +82,16 @@ namespace Model.Client.Service
             return GS.TaskService.Delete(Mappers.ToGlobal(t), UserId);
         }
 
-        public static IEnumerable<TaskStatus> GetTaskStatusesHistory(Task t, int UserId)
+        public static IEnumerable<TaskStatusHistory> GetTaskStatusesHistory(Task t, int UserId)
 
         {
             List<TaskStatusHistory> TSH = new List<TaskStatusHistory>();
-            List<GD.TaskStatusHistory> Tasks = GS.TaskService.GetTaskStatusesHistory(Mappers.ToGlobal(t), UserId);
+            IEnumerable<GD.TaskStatusHistory> Tasks = GS.TaskService.GetTaskStatusesHistory(Mappers.ToGlobal(t), UserId);
             foreach (GD.TaskStatusHistory Task in Tasks)
             {
-                Tasks.Add(Mappers.ToClient(Task));
+                TSH.Add(Mappers.ToClient(Task));
             }
-            return Tasks;
+            return TSH;
         }
     }
 }

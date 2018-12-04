@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.Global.Data
 {
-    class TaskStatusHistory
+   public class TaskStatusHistory
     {
         public int TaskId { get; set; }
         public int TaskStatusId { get; set; }
