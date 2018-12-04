@@ -24,7 +24,7 @@ namespace Model.Client.Data
 
         }
 
-        public Task( int? id, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf,string statusName,DateTime statusDate)
+        public Task( int? id, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf,string statusName,DateTime? statusDate)
         {
             Id = id;
             Name = name;

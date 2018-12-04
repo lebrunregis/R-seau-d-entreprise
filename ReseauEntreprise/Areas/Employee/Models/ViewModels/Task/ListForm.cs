@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace Model.Global.Data
+namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
 {
-    public class Task
+    public class ListForm
     {
         public int? Id { get; set; }
         public int ProjectId { get; set; }

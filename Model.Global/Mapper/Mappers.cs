@@ -147,8 +147,7 @@ namespace Model.Global.Mapper
                 SubtaskOf = (int)dr["SubtaskOf"],
                 StatusId = (int)dr["Status_Id"],
                 StatusName = (string)dr["Status_Name"],
-                StatusDate = (DateTime)dr["Status_Date"],
-                Users = (string)((dr["Users"] == DBNull.Value) ? "Not set" : dr["Users"])
+                StatusDate = (DateTime)dr["Status_Date"]
             };
         }
 

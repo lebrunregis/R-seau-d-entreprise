@@ -1,26 +1,45 @@
-﻿using System.Collections.Generic;
+﻿using Réseau_d_entreprise.Session.Attributes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
-using C = Model.Client.Data;
-using Réseau_d_entreprise.Session;
-using ReseauEntreprise.Areas.Employee.Models.ViewModels.Project;
-using Model.Client.Service;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
+    [RouteArea("Employee")]
+    [EmployeeRequired]
     public class TaskController : Controller
     {
+        // GET: Employee/Task
         public ActionResult Index()
         {
+            return View();
+        }
 
-                int Employee_Id = SessionUser.GetUser().Id;
-                List<ListForm> list = new List<ListForm>();
-                foreach (C.Task Task in TaskService.GetForUser(Employee_Id))
-                {
-                    ListForm form = new ListForm();
-                    list.Add(form);
-                }
-                return View(list);
-         
+        public ActionResult TeamTasks(int id)
+        {
+            return View();
+        }
+
+        public ActionResult AddProjectTask(int id)
+        {
+            return View();
+        }
+
+        public ActionResult AddSubtask(int id)
+        {
+            return View();
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        public ActionResult Details(int id)
+        {
+            return View();
         }
     }
 }

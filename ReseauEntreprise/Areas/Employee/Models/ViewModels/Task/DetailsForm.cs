@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace Model.Global.Data
+namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
 {
-    public class Task
+    public class DetailsForm
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public int ProjectId { get; set; }
         public int CreatorId { get; set; }
         public String Name { get; set; }
@@ -18,7 +17,7 @@ namespace Model.Global.Data
         public DateTime? Deadline { get; set; }
         public int? SubtaskOf { get; set; }
         public String StatusName { get; set; }
-        public DateTime? StatusDate { get; set; }
-        public int? StatusId { get; set; }
+        public DateTime StatusDate { get; set; }
+        public int StatusId { get; set; }
     }
 }
