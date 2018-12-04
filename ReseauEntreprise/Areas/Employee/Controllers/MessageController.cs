@@ -116,9 +116,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             new ViewForm(message, FillAndAddChildren(messages, message.Id)));
         }
 
-        public ActionResult Mailbox(int id)
+        public ActionResult Mailbox()
         {
-            IEnumerable<MailboxForm> form = MessageService.GetResponsesToEmployee(id).Select(message => new MailboxForm(message));
+            IEnumerable<MailboxForm> form = MessageService.GetResponsesToEmployee(SessionUser.GetUser().Id).Select(message => new MailboxForm(message));
             return View(form);
         }
     }

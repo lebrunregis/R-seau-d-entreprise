@@ -111,23 +111,23 @@ namespace Model.Global.Service
             return Connection.ExecuteReader(cmd, (dr) => dr.ToMessage());
         }
 
-        public static Project GetProjectForMessage(int MessageId)
+        public static IEnumerable<Project> GetProjectForMessage(int MessageId)
         {
             Command cmd = new Command("GetProjectForMessage", true);
             cmd.AddParameter("MessageId", MessageId);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToProject()).FirstOrDefault();
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToProject());
         }
-        public static Team GetTeamForMessage(int MessageId)
+        public static IEnumerable<Team> GetTeamForMessage(int MessageId)
         {
-            Command cmd = new Command("GetteamForMessage", true);
+            Command cmd = new Command("GetTeamForMessage", true);
             cmd.AddParameter("MessageId", MessageId);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToTeam()).FirstOrDefault();
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToTeam());
         }
-        /*public static Project GetTaskForMessage(int MessageId)
+        /*public static IEnumerable<Task> GetTaskForMessage(int MessageId)
         {
             Command cmd = new Command("GetTaskForMessage", true);
             cmd.AddParameter("MessageId", MessageId);
-            return Connection.ExecuteReader(cmd, (dr) => dr.Totask()).FirstOrDefault();
+            return Connection.ExecuteReader(cmd, (dr) => dr.Totask());
         }*/
     }
 }

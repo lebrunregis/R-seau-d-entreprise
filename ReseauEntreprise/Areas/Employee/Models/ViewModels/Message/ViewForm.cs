@@ -22,7 +22,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
 
         public ViewForm() { }
 
-        public ViewForm(C.Message message) : this(message, new List<ViewForm>())
+        public ViewForm(C.Message message) : this(message, null)
         {
         }
 

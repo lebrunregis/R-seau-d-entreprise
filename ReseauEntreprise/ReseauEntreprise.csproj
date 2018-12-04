@@ -316,6 +316,8 @@
     <Content Include="Areas\Employee\Views\Message\_Discussion.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_Messages.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_SendFormTemplate.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\Mailbox.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\_Message.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

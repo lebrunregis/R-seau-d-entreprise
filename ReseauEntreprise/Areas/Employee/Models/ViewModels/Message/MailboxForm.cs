@@ -14,6 +14,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
         public C.Task task { get; set; }
         public C.Team team { get; set; }
         public C.Employee employee { get; set; }
+        public SendForm form { get; set; }
 
         public MailboxForm()
         {
@@ -22,10 +23,17 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
         public MailboxForm(C.Message m)
         {
             message = new ViewForm(m);
-            project = MessageService.GetProjectForMessage((int)m.Id);
-            team = MessageService.GetTeamForMessage((int)m.Id);
+            project = MessageService.GetProjectForMessage((int)m.Id).FirstOrDefault();
+            team = MessageService.GetTeamForMessage((int)m.Id).FirstOrDefault();
             //task = MessageService.GetTaskForMessage((int)m.Id);
             employee = message.Author;
+            form = new SendForm {
+                ToEmployee = (task == null && project== null && team==null) ? employee.Employee_Id : null,
+                ToTask = (task != null) ? task.Id : null,
+                ToTeam = (team != null) ? team.Id : null,
+                ToProject = (project != null) ? project.Id : null,
+                ReplyTo = message.Id
+            };
         }
     }
 }

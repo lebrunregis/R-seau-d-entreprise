@@ -8,4 +8,4 @@ AS
 
 	WHERE (me.Employee_Id=@EmployeeId)
 	   OR (me.Employee_Id IS NULL AND mp.Message_Author=@EmployeeId)
-	ORDER BY m.Message_Id
+	ORDER BY m.Message_Id DESC

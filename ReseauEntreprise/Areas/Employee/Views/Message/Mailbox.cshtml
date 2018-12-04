@@ -1,0 +1,109 @@
+﻿@model IEnumerable<ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.MailboxForm>
+
+@{
+    ViewBag.Title = "Mailbox";
+}
+
+<style>
+	.myMessage {
+		background-color: white;
+		border-style: solid;
+		border-color: lightgray;
+		border-width: 1px;
+		border-radius: 4px;
+	}
+	.multiligneText {
+		white-space: pre-wrap
+	}
+	.longtext {
+		width: 100%;
+	}
+</style>
+
+<h2>Mailbox</h2>
+
+<table class="table">
+	<tr>
+		<th>Discussion</th>
+
+		<th>Message</th>
+	</tr>
+
+@foreach (var message in Model)
+{
+    <tr>
+		<td>
+			@if (message.project != null)
+			{
+				<span>Project </span>
+				@Html.ActionLink(message.project.Name,
+		 "Details", "Project", null, null, $"anchor_{message.message.Id}",
+		 new { id = message.project.Id }, null)
+			}
+			/*else if (message.task != null)
+			{
+				<span>Task </span>
+				@Html.ActionLink(message.task.Name,
+					"Details", "Task", null, null, $"anchor_{message.message.Id}",
+					new { id = message.task.Id }, null)
+			}*/
+			else if (message.team != null)
+			{
+				<span>Team </span>
+				@Html.ActionLink(message.team.Name,
+	 "Details", "Team", null, null, $"anchor_{message.message.Id}",
+	 new { id = message.team.Id }, null)
+			}
+			else
+			{
+				<span>Employee </span>
+				@Html.ActionLink($"{message.employee.FirstName} {message.employee.LastName}({message.employee.Email})",
+		 "Details", "Employee", null, null, $"anchor_{message.message.Id}",
+		 new { id = message.employee.Employee_Id }, null)
+			}
+		</td>
+		<td>
+			@{Html.RenderPartial("_Message", message.message);}
+			<div style="display: none">
+				@{Html.RenderPartial("_SendFormTemplate", message.form);}
+			</div>
+		</td>
+    </tr>
+}
+
+</table>
+
+<script>
+	function sendmessage(event) {
+		var thisForm = event.target;
+		$.ajax({
+			type: 'POST',
+			url: thisForm.action,
+			data: $(thisForm).serialize(),
+			success: function (results) {
+				if (results == "fail") {
+					alert("Message must contain some text and title must not be longer then 50 characters")
+				}
+				else if (results == "success") {
+					removeform(thisForm);
+				}
+			}
+		});
+	}
+	function AddReplyForm(id) {
+		var Message = document.getElementById('message_' + id);
+		var ReplyForm = Message.parentElement.nextElementSibling.getElementsByTagName("form")[0];
+		ReplyForm.parentElement.style.display = "block";
+		var CancelButton = ReplyForm.getElementsByTagName("button")[0];
+		CancelButton.style.display = "inline";
+		CancelButton.onclick = function () { removeform(ReplyForm) };
+		document.getElementById('button_' + id).style.display = "none";
+		ReplyForm.getElementsByTagName("textarea")[0].focus();
+	}
+
+	function removeform(form)
+	{
+		form.reset();
+		form.parentElement.style.display = "none";
+	};
+</script>

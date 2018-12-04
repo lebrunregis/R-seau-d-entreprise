@@ -73,19 +73,19 @@ namespace Model.Client.Service
             return GS.MessageService.GetResponsesToEmployeeWithoutSome(EmployeeId, max_id).Select(message => Mappers.ToClient(message));
         }
 
-        public static Project GetProjectForMessage(int MessageId)
+        public static IEnumerable<Project> GetProjectForMessage(int MessageId)
         {
-            return Mappers.ToClient(GS.MessageService.GetProjectForMessage(MessageId));
+            return GS.MessageService.GetProjectForMessage(MessageId).Select(project => Mappers.ToClient(project));
         }
 
-        public static Team GetTeamForMessage(int MessageId)
+        public static IEnumerable<Team> GetTeamForMessage(int MessageId)
         {
-            return Mappers.ToClient(GS.MessageService.GetTeamForMessage(MessageId));
+            return GS.MessageService.GetTeamForMessage(MessageId).Select(team => Mappers.ToClient(team));
         }
 
-        /*public static Project GetTaskForMessage(int MessageId)
+        /*public static IEnumerable<Task> GetTaskForMessage(int MessageId)
         {
-            return Mappers.ToClient(GS.MessageService.GetTaskForMessage(MessageId));
+            GS.MessageService.GetTaskForMessage(MessageId).Select(task => Mappers.ToClient(task));
         }*/
     }
 }
