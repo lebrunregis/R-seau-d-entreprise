@@ -1,4 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[GetTaskStatusList]
 AS
-	SELECT TaskStatus_Id,Status_Name FROM TaskStatus
+	SELECT TaskStatus_Id,TaskStatus.Name FROM TaskStatus
 RETURN 0

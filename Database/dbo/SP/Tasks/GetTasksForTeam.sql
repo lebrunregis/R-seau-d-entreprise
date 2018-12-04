@@ -1,6 +1,5 @@
-﻿CREATE PROCEDURE [dbo].[GetTaskForProject]
-	@ProjectId int,
-	@UserId int
+﻿CREATE PROCEDURE [dbo].[GetTasksForTeam]
+@TeamId int
 AS
 	SELECT 
 	Task.Task_Id AS Task_Id,
@@ -18,6 +17,6 @@ AS
 	LEFT JOIN TaskStatusHistory ON Task.Task_Id = TaskStatusHistory.Task_Id 
 	LEFT JOIN EmployeeTask ON EmployeeTask.Task_Id = Task.Task_Id
 	LEFT JOIN TaskStatus ON TaskStatus.TaskStatus_Id = TaskStatus.TaskStatus_Id
-	WHERE Task.Project_Id = @ProjectId
+	WHERE Task.Team_Id = @TeamId
 	GROUP BY Task.Task_Id
 	ORDER BY TaskStatusHistory.date

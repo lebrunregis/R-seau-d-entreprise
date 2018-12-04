@@ -40,6 +40,17 @@ namespace Model.Client.Service
             return Tasks;
         }
 
+        public static IEnumerable<Task> GetForTeam(Team t, int UserId)
+        {
+            List<Task> Tasks = new List<Task>();
+            IEnumerable<GD.Task> GlobalTasks = GS.TaskService.GetForTeam(Mappers.ToGlobal(t), UserId);
+            foreach (GD.Task Task in GlobalTasks)
+            {
+                Tasks.Add(Mappers.ToClient(Task));
+            }
+            return Tasks;
+        }
+
         public static IEnumerable<Task> GetForProject(Project p, int UserId)
         {
             List<Task> Tasks = new List<Task>();
@@ -69,6 +80,18 @@ namespace Model.Client.Service
         public static bool Delete(Task t, int UserId)
         {
             return GS.TaskService.Delete(Mappers.ToGlobal(t), UserId);
+        }
+
+        public static IEnumerable<TaskStatus> GetTaskStatusesHistory(Task t, int UserId)
+
+        {
+            List<TaskStatusHistory> TSH = new List<TaskStatusHistory>();
+            IEnumerable<GD.Task> GlobalTasks = GS.TaskService.GetForProject(Mappers.ToGlobal(p), UserId);
+            foreach (GD.Task Task in GlobalTasks)
+            {
+                Tasks.Add(Mappers.ToClient(Task));
+            }
+            return Tasks;
         }
     }
 }

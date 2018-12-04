@@ -213,7 +213,7 @@ namespace Model.Client.Mapper
 
         internal static C.Task ToClient(this G.Task entity)
         {
-            return new C.Task(entity.Id, entity.Name, entity.Description, entity.StartDate, entity.EndDate, entity.Deadline, entity.SubtaskOf);
+            return new C.Task(entity.Id, entity.Name, entity.Description, entity.StartDate, entity.EndDate, entity.Deadline, entity.SubtaskOf,entity.StatusName,entity.StatusDate);
         }
 
         internal static G.Task ToGlobal(this C.Task entity)
@@ -267,21 +267,30 @@ namespace Model.Client.Mapper
             };
         }
 
-            /*TEMPLATE
-             *
-             * 
-             internal static C ToClient(this G entity)
-             {
-
-                 return new C;
-             }
-
-             internal static G ToGlobal(this C entity)
-             {
-                 return new G
-                 {
-
-                 };
-             }*/
+        internal static G.TaskStatus ToTaskStatus(this C.TaskStatus entity)
+        {
+            return new G.TaskStatus()
+            {
+                Id = entity.Id,
+                Name = entity.Name
+            };
         }
+
+        /*TEMPLATE
+         *
+         * 
+         internal static C ToClient(this G entity)
+         {
+
+             return new C;
+         }
+
+         internal static G ToGlobal(this C entity)
+         {
+             return new G
+             {
+
+             };
+         }*/
+    }
 }

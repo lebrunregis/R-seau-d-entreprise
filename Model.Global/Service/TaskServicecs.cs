@@ -42,6 +42,14 @@ namespace Model.Global.Service
             return Connection.ExecuteReader(cmd, (dr) => dr.ToTask());
         }
 
+        public static IEnumerable<Task> GetForTeam(Team team, int userId)
+        {
+            Command cmd = new Command("GetTasksForProject", true);
+            cmd.AddParameter("TeamId", team.Id);
+            cmd.AddParameter("UserId", userId);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToTask());
+        }
+
         public static IEnumerable<Task> GetForUser( int UserId)
         {
             Command cmd = new Command("GetTasksForUser", true);
@@ -103,6 +111,20 @@ namespace Model.Global.Service
             cmd.AddParameter("DeadLine", t.Deadline);
             cmd.AddParameter("SubtaskOf", t.SubtaskOf);
             cmd.AddParameter("UserId", UserId);
+            return (Connection.ExecuteNonQuery(cmd) > 0);
+        }
+
+        public static IEnumerable<TaskStatus>  GetTaskStatusesHistory(Task t, int UserId)
+        {
+            Command cmd = new Command("GetTaskStatusesHistory", true);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToTaskStatus());
+        }
+
+        public static bool SetTaskStatus(Task t, TaskStatus status,int UserId)
+        {
+            Command cmd = new Command("SetTaskStatus", true);
+            cmd.AddParameter("TaskId", t.Id);
+            cmd.AddParameter("StatusId", status.Id);
             return (Connection.ExecuteNonQuery(cmd) > 0);
         }
     }

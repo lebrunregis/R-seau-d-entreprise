@@ -143,13 +143,22 @@ namespace Model.Global.Mapper
                 Description = (string)dr["Description"],
                 StartDate = (DateTime)dr["StartDate"],
                 EndDate = (DateTime)dr["EndDate"],
-                Deadline =(DateTime?)dr["Deadline"],
-                SubtaskOf =(int)dr["SubtaskOf"],
+                Deadline = (DateTime?)dr["Deadline"],
+                SubtaskOf = (int)dr["SubtaskOf"],
                 StatusId = (int)dr["Status_Id"],
-                Status =(string)dr["Status_Name"],
+                StatusName = (string)dr["Status_Name"],
+                StatusDate = (DateTime)dr["Status_Date"],
                 Users = (string)((dr["Users"] == DBNull.Value) ? "Not set" : dr["Users"])
             };
         }
 
+        internal static TaskStatus ToTaskStatus(this IDataRecord dr)
+        {
+            return new TaskStatus()
+            {
+                Id = (int)dr["TaskStatus_Id"],
+                Name = (string)dr["Status_Name"]
+            };
+        }
     }
 }

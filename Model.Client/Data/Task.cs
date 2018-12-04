@@ -15,17 +15,16 @@ namespace Model.Client.Data
         private DateTime? endDate;
         private DateTime? deadline;
         private int? subtaskOf;
-        private string users;
         private int? statusId;
         private string statusName;
-        private DateTime? lastStatusDate;
+        private DateTime? statusDate;
 
         public Task()
         {
 
         }
 
-        public Task( int? id, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf,string StatusName,string Users,DateTime LastStatusDate)
+        public Task( int? id, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf,string statusName,DateTime statusDate)
         {
             Id = id;
             Name = name;
@@ -34,6 +33,8 @@ namespace Model.Client.Data
             EndDate = endDate;
             Deadline = deadline;
             SubtaskOf = subtaskOf;
+            StatusName = statusName;
+            StatusDate = statusDate;
         }
 
         public int? Id { get => id; set => id = value; }
@@ -45,8 +46,7 @@ namespace Model.Client.Data
         public int? SubtaskOf { get => subtaskOf; set => subtaskOf = value; }
         public int? StatusId { get => statusId; set => statusId = value; }
         public string StatusName { get => statusName; set => statusName = value; }
-        public DateTime? LastStatusDate { get => lastStatusDate; set => lastStatusDate = value; }
-        public string Users { get => users; set => users = value; }
+        public DateTime? StatusDate { get => statusDate; set => statusDate = value; }
         
     }
 }

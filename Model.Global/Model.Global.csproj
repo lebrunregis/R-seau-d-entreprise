@@ -54,6 +54,7 @@
     <Compile Include="Data\Message.cs" />
     <Compile Include="Data\Project.cs" />
     <Compile Include="Data\Task.cs" />
+    <Compile Include="Data\TaskStatusHistory.cs" />
     <Compile Include="Data\Team.cs" />
     <Compile Include="Mapper\Mappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Service\ProjectService.cs" />
     <Compile Include="Service\TaskServicecs.cs" />
     <Compile Include="Service\TeamService.cs" />
+    <Compile Include="Data\TaskStatus.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

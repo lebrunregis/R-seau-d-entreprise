@@ -181,6 +181,11 @@
     <Compile Include="Areas\Admin\Models\ViewModels\Project\DetailsForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\ListForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\EditForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Task\CreateForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Task\DeleteForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Task\DetailsForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Task\EditForm.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\Task\ListForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Team\CreateForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Team\DeleteForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Team\DetailsForm.cs" />

@@ -17,7 +17,8 @@ namespace Model.Global.Data
         public DateTime? EndDate { get; set; }
         public DateTime? Deadline { get; set; }
         public int? SubtaskOf { get; set; }
-        public String Status { get; set; }
+        public String StatusName { get; set; }
+        public DateTime StatusDate { get; set; }
         public int? StatusId { get; set; }
         public String Users { get; set; }
     }

@@ -85,16 +85,18 @@ INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (2,'Being worked on');
 INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (3,'On hold');
 INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (4,'Done');
 INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (5,'Cancelled');
+INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (6,'Transferred to other team');
 GO
+SET IDENTITY_INSERT [TaskStatus] OFF
 
-SET IDENTITY_INSERT [EmployeeStatus] ON 
+SET IDENTITY_INSERT [EmployeeStatus] ON
 INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (1,'Joined');
 INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (2,'Left');
 INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (3,'Sick');
 INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (4,'Dead');
 INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (5,'Admin');
 GO
-
+SET IDENTITY_INSERT [EmployeeStatus] OFF
 
 EXEC [dbo].Register_Demo @LastName = 'Aliyah',@FirstName ='Ellis';
 EXEC [dbo].Register_Demo @LastName = 'Izabelle',@FirstName ='Hanna';

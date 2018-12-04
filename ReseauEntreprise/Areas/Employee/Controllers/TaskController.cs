@@ -14,11 +14,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
 
                 int Employee_Id = SessionUser.GetUser().Id;
                 List<ListForm> list = new List<ListForm>();
-                foreach (C.Project Project in TaskService.Get(0))
+                foreach (C.Task Task in TaskService.GetForUser(Employee_Id))
                 {
-                    int? ManagerId = ProjectService.GetProjectManagerId((int)Project.Id);
-                    C.Employee Manager = EmployeeService.Get((int)ManagerId);
-                    ListForm form = new ListForm(Project, Manager, Employee_Id);
+                    ListForm form = new ListForm();
                     list.Add(form);
                 }
                 return View(list);
