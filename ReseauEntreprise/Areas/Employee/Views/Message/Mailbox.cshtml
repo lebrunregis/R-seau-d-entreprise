@@ -105,5 +105,7 @@
 	{
 		form.reset();
 		form.parentElement.style.display = "none";
+		var ReplyButton = form.parentElement.previousSibling.getElementsByTagName("button")[0];
+		ReplyButton.style.display = "inline";
 	};
 </script>
