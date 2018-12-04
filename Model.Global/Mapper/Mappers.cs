@@ -160,5 +160,19 @@ namespace Model.Global.Mapper
                 Name = (string)dr["Status_Name"]
             };
         }
+
+        internal static TaskStatus ToTaskStatusHistory(this IDataRecord dr)
+        {
+            return new TaskStatusHistory()
+            {
+               St= (int)dr["TaskStatus_Id"],
+                Name = (string)dr["TaskStatus.Name"],
+
+
+                    SELECT TaskStatusHistory.TaskStatus_Id AS TaskStatus_Id,
+                TaskStatus.Name,
+                date
+            };
+        }
     }
 }

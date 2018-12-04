@@ -86,8 +86,8 @@ namespace Model.Client.Service
 
         {
             List<TaskStatusHistory> TSH = new List<TaskStatusHistory>();
-            IEnumerable<GD.Task> GlobalTasks = GS.TaskService.GetForProject(Mappers.ToGlobal(p), UserId);
-            foreach (GD.Task Task in GlobalTasks)
+            List<GD.TaskStatusHistory> Tasks = GS.TaskService.GetTaskStatusesHistory(Mappers.ToGlobal(t), UserId);
+            foreach (GD.TaskStatusHistory Task in Tasks)
             {
                 Tasks.Add(Mappers.ToClient(Task));
             }

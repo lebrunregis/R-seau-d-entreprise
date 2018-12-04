@@ -54,6 +54,7 @@
     <Compile Include="Data\Project.cs" />
     <Compile Include="Data\Task.cs" />
     <Compile Include="Data\TaskStatus.cs" />
+    <Compile Include="Data\TaskStatusHistory.cs" />
     <Compile Include="Data\Team.cs" />
     <Compile Include="Mapper\Mappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

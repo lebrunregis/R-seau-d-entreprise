@@ -114,10 +114,10 @@ namespace Model.Global.Service
             return (Connection.ExecuteNonQuery(cmd) > 0);
         }
 
-        public static IEnumerable<TaskStatus>  GetTaskStatusesHistory(Task t, int UserId)
+        public static IEnumerable<TaskStatusHistory>  GetTaskStatusesHistory(Task t, int UserId)
         {
             Command cmd = new Command("GetTaskStatusesHistory", true);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToTaskStatus());
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToTaskStatusHistory());
         }
 
         public static bool SetTaskStatus(Task t, TaskStatus status,int UserId)
