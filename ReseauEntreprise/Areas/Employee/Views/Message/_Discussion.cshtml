@@ -23,10 +23,6 @@
 		white-space: pre-wrap
 	}
 
-	.myform {
-		display: block
-	}
-
 	.whiteblock {
 		background-color: white;
 	}
@@ -97,6 +93,7 @@
 	SendFormTemplate.getElementsByClassName("ToTask")[0].value = @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null");
 	SendFormTemplate.getElementsByClassName("ToTeam")[0].value = @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null");
 	const SendFormHtml = document.getElementById("SendFormTemplate").innerHTML;
+	setInterval(refresh, 20000);
 
 	function AddReplyForm(id)
 	{

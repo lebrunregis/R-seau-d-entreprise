@@ -87,5 +87,10 @@ namespace Model.Client.Service
         {
             GS.MessageService.GetTaskForMessage(MessageId).Select(task => Mappers.ToClient(task));
         }*/
+
+        public static bool IsMessageRepliedByEmployee(int MessageId, int EmployeeId)
+        {
+            return GS.MessageService.IsMessageRepliedByEmployee(MessageId, EmployeeId);
+        }
     }
 }

@@ -1,0 +1,7 @@
+﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Profile.IsAdminForm
+@{ Layout = null; }
+
+@if (Model.isAdmin)
+{
+	<li>@Html.ActionLink("View site as admin", "Index", "Home", new { area = "Admin" }, new { })</li>
+}

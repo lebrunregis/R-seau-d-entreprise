@@ -45,10 +45,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -197,9 +216,10 @@
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\ListForm.cs" />
-    <Compile Include="Areas\Employee\Models\ViewModels\EditEmailForm.cs" />
-    <Compile Include="Areas\Employee\Models\ViewModels\EditPassForm.cs" />
-    <Compile Include="Areas\Employee\Models\ViewModels\EditProfileForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Message\MaxIdForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Profile\EditEmailForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Profile\EditPassForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Profile\EditProfileForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeDepartment\AddEmployeeToDepartmentForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeDepartment\RemoveEmployeeFromDepartmentForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\EmployeeTeam\EmployeesInTeamForm.cs" />
@@ -214,6 +234,7 @@
     <Compile Include="Areas\Employee\Models\ViewModels\Message\SendForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\DiscussionForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\ViewForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Profile\IsAdminForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Team\CreateForm.cs" />
@@ -235,6 +256,7 @@
     <Compile Include="Session\Attributes\TeamLeaderRequiredAttribute.cs" />
     <Compile Include="Session\SessionUser.cs" />
     <Compile Include="Session\User.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -252,6 +274,8 @@
     </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Employee\Views\web.config" />
+    <Content Include="Scripts\jquery.signalR-2.4.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.0.min.js" />
     <Content Include="Views\Shared\_LayoutEmployee.cshtml" />
     <Content Include="Areas\Employee\Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
@@ -316,8 +340,9 @@
     <Content Include="Areas\Employee\Views\Message\_Discussion.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_Messages.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_SendFormTemplate.cshtml" />
-    <Content Include="Areas\Employee\Views\Message\Mailbox.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\_Mailbox.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_Message.cshtml" />
+    <Content Include="Areas\Employee\Views\Message\Mailbox.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -354,11 +379,13 @@
     <Content Include="Views\Shared\_DepartmentList.cshtml" />
     <Content Include="Views\Shared\_Department.cshtml" />
     <Content Include="Views\Shared\_Event.cshtml" />
+    <Content Include="Areas\Employee\Views\Profile\_ToAdminLink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Employee\Views\Shared\" />
+    <Folder Include="Hubs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

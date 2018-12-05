@@ -28,8 +28,9 @@
 					<li>@Html.ActionLink("Employees", "Index", "Employee")</li>
 					<li>@Html.ActionLink("Projects", "Index", "Project")</li>
 					<li>@Html.ActionLink("Departments", "Index", "Department")</li>
+					<li>@Html.ActionLink("Message box", "Mailbox", "Message")</li>
 					<li>@Html.ActionLink("Logout", "Logout", "Registration", new { area = "" }, new { })</li>
-                    <li>@Html.ActionLink("View site as admin", "Index", "Home", new { area = "Admin" }, new { })</li>
+					@{Html.RenderAction("_ToAdminLink", "Profile");}
 				</ul>
             </div>
         </div>

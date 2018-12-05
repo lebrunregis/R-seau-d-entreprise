@@ -129,5 +129,12 @@ namespace Model.Global.Service
             cmd.AddParameter("MessageId", MessageId);
             return Connection.ExecuteReader(cmd, (dr) => dr.Totask());
         }*/
+        public static bool IsMessageRepliedByEmployee(int MessageId, int EmployeeId)
+        {
+            Command cmd = new Command("IsMessageRepliedByEmployee", true);
+            cmd.AddParameter("MessageId", MessageId);
+            cmd.AddParameter("EmployeeId", EmployeeId);
+            return (bool)Connection.ExecuteScalar(cmd);
+        }
     }
 }

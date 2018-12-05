@@ -21,8 +21,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                MessageService.Create(new C.Message(form.Title, form.Message, SessionUser.GetUser().Id, form.ReplyTo), form.ToEmployee, form.ToProject, form.ToTask, form.ToTeam);
-                return new ContentResult { Content = "success" };
+                int? newMessageId = MessageService.Create(new C.Message(form.Title, form.Message, SessionUser.GetUser().Id, form.ReplyTo), form.ToEmployee, form.ToProject, form.ToTask, form.ToTeam);
+                if (newMessageId != null)
+                {
+                    return new ContentResult { Content = "success" };
+                }
             }
             return new ContentResult {Content = "fail" };
         }
@@ -118,8 +121,17 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
 
         public ActionResult Mailbox()
         {
-            IEnumerable<MailboxForm> form = MessageService.GetResponsesToEmployee(SessionUser.GetUser().Id).Select(message => new MailboxForm(message));
+            int EmployeeId = SessionUser.GetUser().Id;
+            IEnumerable<MailboxForm> form = MessageService.GetResponsesToEmployee(EmployeeId).Select(message => new MailboxForm(message, EmployeeId));
             return View(form);
+        }
+
+        [HttpPost]
+        public PartialViewResult _Mailbox(MaxIdForm MaxId)
+        {
+            int EmployeeId = SessionUser.GetUser().Id;
+            IEnumerable<MailboxForm> form = MessageService.GetResponsesToEmployeeWithoutSome(EmployeeId, MaxId.max_id).Select(message => new MailboxForm(message, EmployeeId));
+            return PartialView(form);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm
 
-@using (Html.BeginForm("Send", "Message", FormMethod.Post, new { onsubmit = "sendmessage(event); return false;", @class = "myform" }))
+@using (Html.BeginForm("Send", "Message", FormMethod.Post, new { onsubmit = "sendmessage(event); return false;"}))
 {
 	@Html.AntiForgeryToken()
 
@@ -20,13 +20,13 @@
 			@Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
 		</div>
 	</div>
-
-	@Html.EditorFor(model => model.ToEmployee, new { htmlAttributes = new { @class = "ToEmployee" } })
-	@Html.EditorFor(model => model.ToTask, new { htmlAttributes = new { @class = "ToTask" } })
-	@Html.EditorFor(model => model.ToTeam, new { htmlAttributes = new { @class = "ToTeam" } })
-	@Html.EditorFor(model => model.ToProject, new { htmlAttributes = new { @class = "ToProject" } })
-	@Html.EditorFor(model => model.ReplyTo, new { htmlAttributes = new { @class = "ReplyTo" } })
-
+	<div class="hidden">
+		@Html.EditorFor(model => model.ToEmployee, new { htmlAttributes = new { @class = "ToEmployee" } })
+		@Html.EditorFor(model => model.ToTask, new { htmlAttributes = new { @class = "ToTask" } })
+		@Html.EditorFor(model => model.ToTeam, new { htmlAttributes = new { @class = "ToTeam" } })
+		@Html.EditorFor(model => model.ToProject, new { htmlAttributes = new { @class = "ToProject" } })
+		@Html.EditorFor(model => model.ReplyTo, new { htmlAttributes = new { @class = "ReplyTo" } })
+	</div>
 	<div>
 		<input type="submit" value="Send" class="btn btn-default" />
 		<button class="btn btn-default" type="button" style="display: none">Cancel</button>

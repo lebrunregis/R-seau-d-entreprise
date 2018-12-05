@@ -18,62 +18,26 @@
 	.longtext {
 		width: 100%;
 	}
+	.hidden {
+		display: none
+	}
 </style>
 
 <h2>Mailbox</h2>
-
+<button onclick="refresh()" class="btn btn-default right">Refresh</button>
 <table class="table">
-	<tr>
+	<tr id="mailboxTableHead">
 		<th>Discussion</th>
-
-		<th>Message</th>
+		<th>@Html.DisplayNameFor(model => model.Message)</th>
+		<th>@Html.DisplayNameFor(model => model.isReplied)</th>
 	</tr>
 
-@foreach (var message in Model)
-{
-    <tr>
-		<td>
-			@if (message.project != null)
-			{
-				<span>Project </span>
-				@Html.ActionLink(message.project.Name,
-		 "Details", "Project", null, null, $"anchor_{message.message.Id}",
-		 new { id = message.project.Id }, null)
-			}
-			/*else if (message.task != null)
-			{
-				<span>Task </span>
-				@Html.ActionLink(message.task.Name,
-					"Details", "Task", null, null, $"anchor_{message.message.Id}",
-					new { id = message.task.Id }, null)
-			}*/
-			else if (message.team != null)
-			{
-				<span>Team </span>
-				@Html.ActionLink(message.team.Name,
-	 "Details", "Team", null, null, $"anchor_{message.message.Id}",
-	 new { id = message.team.Id }, null)
-			}
-			else
-			{
-				<span>Employee </span>
-				@Html.ActionLink($"{message.employee.FirstName} {message.employee.LastName}({message.employee.Email})",
-		 "Details", "Employee", null, null, $"anchor_{message.message.Id}",
-		 new { id = message.employee.Employee_Id }, null)
-			}
-		</td>
-		<td>
-			@{Html.RenderPartial("_Message", message.message);}
-			<div style="display: none">
-				@{Html.RenderPartial("_SendFormTemplate", message.form);}
-			</div>
-		</td>
-    </tr>
-}
+	@{Html.RenderPartial("_Mailbox", Model);}
 
 </table>
 
 <script>
+	setInterval(refresh, 20000);
 	function sendmessage(event) {
 		var thisForm = event.target;
 		$.ajax({
@@ -86,6 +50,9 @@
 				}
 				else if (results == "success") {
 					removeform(thisForm);
+					var id = thisForm.getElementsByClassName("ReplyTo")[0].value;
+					var isReplied = document.getElementById("isReplied_" + id).getElementsByTagName("input")[0];
+					isReplied.checked = "checked";
 				}
 			}
 		});
@@ -105,7 +72,31 @@
 	{
 		form.reset();
 		form.parentElement.style.display = "none";
-		var ReplyButton = form.parentElement.previousSibling.getElementsByTagName("button")[0];
+		var ReplyButton = form.parentElement.previousElementSibling.getElementsByTagName("button")[0];
 		ReplyButton.style.display = "inline";
 	};
+
+	function refresh() {
+		var messages = document.getElementsByClassName("myMessage");
+		var max_id = 0;
+		var id;
+		for (var i = 0; i < messages.length; i++) { 
+			id = messages[i].id.replace('message_', '');
+			max_id = Math.max(max_id, id);
+		}
+		$.ajax({
+			type: 'POST',
+			url: "@Url.Action("_Mailbox", "Message")",
+			data:
+				{
+					"max_id": max_id
+			}
+		}).done(function (results) { addNew(results); });
+	}
+
+	function addNew(results)
+	{
+		var tableHead = document.getElementById("mailboxTableHead");
+		tableHead.insertAdjacentHTML("afterend", results);
+	}
 </script>

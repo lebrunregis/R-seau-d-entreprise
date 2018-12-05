@@ -8,6 +8,6 @@ AS
 	LEFT JOIN MessageEmployee me ON m.Message_Id=me.Message_Id
 
 	WHERE ((me.Employee_Id=@EmployeeId)
-	   OR (me.Employee_Id IS NULL AND mp.Message_Author=@EmployeeId))
+	   OR (me.Employee_Id IS NULL AND mp.Message_Author=@EmployeeId AND m.Message_Author != @EmployeeId))
 	   AND m.Message_Id > @max_id
 	ORDER BY m.Message_Id DESC
