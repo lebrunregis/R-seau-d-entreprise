@@ -3,6 +3,7 @@ using Model.Client.Mapper;
 using GS = Model.Global.Service;
 using GD = Model.Global.Data;
 using System.Collections.Generic;
+using System;
 
 namespace Model.Client.Service
 {
@@ -40,10 +41,10 @@ namespace Model.Client.Service
             return Tasks;
         }
 
-        public static IEnumerable<Task> GetForTeam(Team t, int UserId)
+        public static IEnumerable<Task> GetForTeam(int teamId, int UserId)
         {
             List<Task> Tasks = new List<Task>();
-            IEnumerable<GD.Task> GlobalTasks = GS.TaskService.GetForTeam(Mappers.ToGlobal(t), UserId);
+            IEnumerable<GD.Task> GlobalTasks = GS.TaskService.GetForTeam(teamId, UserId);
             foreach (GD.Task Task in GlobalTasks)
             {
                 Tasks.Add(Mappers.ToClient(Task));
@@ -51,10 +52,10 @@ namespace Model.Client.Service
             return Tasks;
         }
 
-        public static IEnumerable<Task> GetForProject(Project p, int UserId)
+        public static IEnumerable<Task> GetForProject(int projectId, int UserId)
         {
             List<Task> Tasks = new List<Task>();
-            IEnumerable<GD.Task> GlobalTasks = GS.TaskService.GetForProject(Mappers.ToGlobal(p), UserId);
+            IEnumerable<GD.Task> GlobalTasks = GS.TaskService.GetForProject(projectId, UserId);
             foreach (GD.Task Task in GlobalTasks)
             {
                 Tasks.Add(Mappers.ToClient(Task));
@@ -67,7 +68,7 @@ namespace Model.Client.Service
             return GS.TaskService.SetStatus(Mappers.ToGlobal(t), Status, UserId);
         }
 
-        public static bool Update(Task t, int UserId)
+        public static bool Edit(Task t, int UserId)
         {
             return GS.TaskService.Update(Mappers.ToGlobal(t), UserId);
         }
@@ -92,6 +93,17 @@ namespace Model.Client.Service
                 TSH.Add(Mappers.ToClient(Task));
             }
             return TSH;
+        }
+
+        public static IEnumerable<TaskStatus> GetStatusList()
+        {
+            List<TaskStatus> TS = new List<TaskStatus>();
+            IEnumerable<GD.TaskStatus> Statuses = GS.TaskService.GetStatusList();
+            foreach (GD.TaskStatus Task in Statuses)
+            {
+                TS.Add(Mappers.ToClient(Task));
+            }
+            return TS;
         }
     }
 }

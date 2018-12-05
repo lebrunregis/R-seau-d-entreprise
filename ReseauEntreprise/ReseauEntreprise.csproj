@@ -181,11 +181,6 @@
     <Compile Include="Areas\Admin\Models\ViewModels\Project\DetailsForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\ListForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Project\EditForm.cs" />
-    <Compile Include="Areas\Admin\Models\ViewModels\Task\CreateForm.cs" />
-    <Compile Include="Areas\Admin\Models\ViewModels\Task\DeleteForm.cs" />
-    <Compile Include="Areas\Admin\Models\ViewModels\Task\DetailsForm.cs" />
-    <Compile Include="Areas\Admin\Models\ViewModels\Task\EditForm.cs" />
-    <Compile Include="Areas\Admin\Models\ViewModels\Task\ListForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Team\CreateForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Team\DeleteForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Team\DetailsForm.cs" />
@@ -235,6 +230,7 @@
     <Compile Include="Session\Attributes\AdminRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\AnonymousRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\EmployeeRequiredAttribute.cs" />
+    <Compile Include="Session\Attributes\ProjectManagerRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\TeamLeaderRequiredAttribute.cs" />
     <Compile Include="Session\SessionUser.cs" />
     <Compile Include="Session\User.cs" />
@@ -316,6 +312,13 @@
     <Content Include="Areas\Employee\Views\Department\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Department\Details.cshtml" />
     <Content Include="Areas\Employee\Views\Employee\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\AddProjectTask.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\Edit.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\AddSubtask.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\_TeamTasks.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\_ProjectTasks.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -357,7 +360,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Employee\Views\Shared\" />
-    <Folder Include="Areas\Employee\Views\Task\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

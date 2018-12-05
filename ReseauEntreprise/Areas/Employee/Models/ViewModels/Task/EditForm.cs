@@ -22,20 +22,28 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         [Required]
         public String Name { get; set; }
         [Required]
+        [DataType(DataType.MultilineText)]
         public String Description { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public DateTime? Deadline { get; set; }
         [HiddenInput]
         public int? SubtaskOf { get; set; }
         [HiddenInput]
         public String StatusName { get; set; }
         [HiddenInput]
+        [DataType(DataType.Date)]
         public DateTime StatusDate { get; set; }
         [Required]
         public int? StatusId { get; set; }
+        [Required]
+        public int SelectedStatusId { get; set; }
+
     }
 }

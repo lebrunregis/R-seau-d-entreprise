@@ -19,9 +19,9 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         [Required]
         public int CreatorId { get; set; }
         [Required]
-        public String Name { get; set; }
+        public string Name { get; set; }
         [Required]
-        public String Description { get; set; }
+        public string Description { get; set; }
         [Required]
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
@@ -29,12 +29,14 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         [Required]
         public int? SubtaskOf { get; set; }
         [Required]
-        public String StatusName { get; set; }
+        public string StatusName { get; set; }
         [Required]
         [HiddenInput]
         public DateTime? StatusDate { get; set; }
         [Required]
         [HiddenInput]
         public int? StatusId { get; set; }
+        public IEnumerable<SelectListItem> StatusList { get; set; }
+
     }
 }
