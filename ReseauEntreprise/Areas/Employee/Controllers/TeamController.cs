@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam;
+using ReseauEntreprise.Session.Attributes;
+
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -100,7 +102,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             }
             return View(list);
         }
-
+        
+        
         public ActionResult Create(int? Project_Id)
         {
             int Employee_Id = SessionUser.GetUser().Id;

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Model.Client.Data;
+using Model.Client.Service;
 
 namespace Réseau_d_entreprise.Session
 {
@@ -15,6 +17,7 @@ namespace Réseau_d_entreprise.Session
         {
             HttpContext.Current.Session["User"] = user;
         }
+
         public static void Reset()
         {
             HttpContext.Current.Session.RemoveAll();

@@ -232,6 +232,7 @@
     <Compile Include="Session\Attributes\EmployeeRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\ProjectManagerRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\TeamLeaderRequiredAttribute.cs" />
+    <Compile Include="Session\Attributes\TeamMemberRequiredAttribute.cs" />
     <Compile Include="Session\SessionUser.cs" />
     <Compile Include="Session\User.cs" />
   </ItemGroup>

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Model.Client.Data;
+using Model.Client.Service;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,19 +9,28 @@ namespace Réseau_d_entreprise.Session.Attributes
 {
     public class TeamLeaderRequiredAttribute : AuthorizeAttribute
     {
-        public string RedirectActionName { get; set; }
-        public string RedirectControllerName { get; set; }
-
+        public string ControllerName { get; set; }
+        public string ActionName { get; set; }
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            var accessAllowed = false;
-
-            if (SessionUser.GetUser() != null)
+            bool accessAllowed = false;
+            string req = httpContext.Request.Url.Segments.Last();
+            try
             {
-                var req = httpContext.Request.Url.Segments[4];
-                accessAllowed = true;
+                int.TryParse(req.ToString(), out int teamId);
+                int teamLeader = (int)TeamService.GetTeamLeaderId(teamId);
+
+                if (SessionUser.GetUser().Id == teamLeader)
+                {
+                    accessAllowed = true;
+                }
             }
+            catch
+            {
+                return false;
+            }
+
             return accessAllowed;
         }
 

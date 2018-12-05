@@ -10,9 +10,6 @@ namespace Réseau_d_entreprise.Session.Attributes
 {
     public class AdminRequiredAttribute : AuthorizeAttribute
     {
-        public string RedirectActionName { get; set; }
-        public string RedirectControllerName { get; set; }
-
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {

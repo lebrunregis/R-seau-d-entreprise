@@ -6,8 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Task;
-using C = Model.Client.Data;
+using Model.Client.Data;
 using Model.Client.Service;
+using ReseauEntreprise.Session.Attributes;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -20,7 +21,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         {
             int Employee_Id = SessionUser.GetUser().Id;
             List<ListForm> list = new List<ListForm>();
-            foreach (C.Task Task in TaskService.GetForUser(Employee_Id))
+            foreach (Task Task in TaskService.GetForUser(Employee_Id))
             {
                 ListForm form = new ListForm()
                 {
@@ -42,12 +43,12 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View(list);
         }
 
-
+        [ProjectManagerRequired]
         public ActionResult ProjectTasks(int id)
         {
             int Employee_Id = SessionUser.GetUser().Id;
             List<ListForm> list = new List<ListForm>();
-            foreach (C.Task Task in TaskService.GetForProject(id, Employee_Id))
+            foreach (Task Task in TaskService.GetForProject(id, Employee_Id))
             {
                 ListForm form = new ListForm()
                 {
@@ -69,11 +70,12 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View(list);
         }
 
+        [TeamMemberRequired]
         public ActionResult TeamTasks(int id)
         {
             int Employee_Id = SessionUser.GetUser().Id;
             List<ListForm> list = new List<ListForm>();
-            foreach (C.Task Task in TaskService.GetForTeam(id, Employee_Id))
+            foreach (Task Task in TaskService.GetForTeam(id, Employee_Id))
             {
                 ListForm form = new ListForm()
                 {
@@ -95,6 +97,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View(list);
         }
 
+        [ProjectManagerRequired]
         public ActionResult AddProjectTask(int id)
         {
             CreateForm form = new CreateForm
@@ -111,7 +114,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                C.Task t = new C.Task();
+                Task t = new Task();
                 try
                 {
                     if (TaskService.Create(t, SessionUser.GetUser().Id) != null)
@@ -127,11 +130,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View(form);
         }
 
-
         public ActionResult Edit(int id)
         {
-            C.Task task = TaskService.Get(id, SessionUser.GetUser().Id);
-            IEnumerable<C.TaskStatus> Statuses = TaskService.GetStatusList();
+            Task task = TaskService.Get(id, SessionUser.GetUser().Id);
+            IEnumerable<TaskStatus> Statuses = TaskService.GetStatusList();
             EditForm form = new EditForm()
             {
                 Id = (int)task.Id,
@@ -158,7 +160,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                C.Task Task = new C.Task();
+                Task Task = new Task();
                 try
                 {
                     if (TaskService.Edit(Task, SessionUser.GetUser().Id))
@@ -179,9 +181,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View(form);
         }
 
+        [TeamMemberRequired]
         public ActionResult AddSubtask(int id)
         {
-            C.Task Parent = TaskService.Get(id, SessionUser.GetUser().Id);
+            Task Parent = TaskService.Get(id, SessionUser.GetUser().Id);
             CreateForm form = new CreateForm
             {
                 ProjectId = Parent.ProjectId,
@@ -197,7 +200,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                C.Task t = new C.Task();
+                Task t = new Task();
                 try
                 {
                     if (TaskService.Create(t, SessionUser.GetUser().Id) != null)
@@ -212,15 +215,15 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             }
             return View(form);
         }
-
+        [TeamMemberRequired]
         public ActionResult Details(int id)
         {
-            C.Task Task = TaskService.Get(id, SessionUser.GetUser().Id);
+            Task Task = TaskService.Get(id, SessionUser.GetUser().Id);
             if (!(Task.SubtaskOf is null))
             {
-                C.Task Parent = TaskService.Get((int)Task.SubtaskOf, SessionUser.GetUser().Id);
+                Task Parent = TaskService.Get((int)Task.SubtaskOf, SessionUser.GetUser().Id);
             }
-            IEnumerable<C.Task> Subtasks = TaskService.GetSubtasks(Task, SessionUser.GetUser().Id);
+            IEnumerable<Task> Subtasks = TaskService.GetSubtasks(Task, SessionUser.GetUser().Id);
             DetailsForm form = new DetailsForm()
             {
 
