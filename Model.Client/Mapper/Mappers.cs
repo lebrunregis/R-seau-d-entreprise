@@ -213,7 +213,9 @@ namespace Model.Client.Mapper
 
         internal static C.Task ToClient(this G.Task entity)
         {
-            return new C.Task(entity.Id, entity.Name, entity.Description, entity.StartDate, entity.EndDate, entity.Deadline, entity.SubtaskOf,entity.StatusName,entity.StatusDate);
+            return new C.Task((int)entity.Id,entity.ProjectId, entity.CreatorId,entity.TeamId,
+                entity.Name, entity.Description, entity.StartDate, entity.EndDate, entity.Deadline,
+                entity.SubtaskOf,entity.StatusName,entity.StatusDate);
         }
 
         internal static G.Task ToGlobal(this C.Task entity)
