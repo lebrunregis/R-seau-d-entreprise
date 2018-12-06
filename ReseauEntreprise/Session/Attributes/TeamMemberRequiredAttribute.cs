@@ -1,5 +1,6 @@
 ﻿using Model.Client.Data;
 using Model.Client.Service;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -7,7 +8,7 @@ using System.Web.Routing;
 
 namespace Réseau_d_entreprise.Session.Attributes
 {
-    public class TeamLeaderRequiredAttribute : AuthorizeAttribute
+    public class TeamMemberRequiredAttribute : AuthorizeAttribute
     {
         public string ControllerName { get; set; }
         public string ActionName { get; set; }
@@ -19,9 +20,14 @@ namespace Réseau_d_entreprise.Session.Attributes
             try
             {
                 int.TryParse(req.ToString(), out int teamId);
-                int teamLeader = (int)TeamService.GetTeamLeaderId(teamId);
+                IEnumerable<Employee> team = TeamService.GetAllEmployeesForTeam(teamId);
+                
+                    
+                var result = from employee in team
+                where employee.Employee_Id == SessionUser.GetUser().Id
+                select employee;
 
-                if (SessionUser.GetUser().Id == teamLeader)
+                if (result.Count() ==1)
                 {
                     accessAllowed = true;
                 }

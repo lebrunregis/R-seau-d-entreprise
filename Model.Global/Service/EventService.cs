@@ -91,18 +91,6 @@ namespace Model.Global.Service
             return (Connection.ExecuteNonQuery(cmd) > 0);
         }
 
-        public static void SubscribeTo(int EventId, IEnumerable<int> EmpIds)
-        {
-            Command cmd = new Command("RegisterEmployeeToEvent", true);
-            foreach (int empId in EmpIds)
-            {
-                cmd.AddParameter("EmployeeId", empId);
-                cmd.AddParameter("EventId", EventId);
-                Connection.ExecuteNonQuery(cmd) ;
-                cmd.Parameters.Clear();
-            }
-        }
-
         public static IEnumerable<EmployeeEvent> GetSubscriptionStatus(int EventId)
         {
             Command cmd = new Command("GetSubscriptionStatus", true);

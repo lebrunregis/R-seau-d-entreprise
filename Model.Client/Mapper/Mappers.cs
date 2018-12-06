@@ -1,22 +1,22 @@
-﻿using C = Model.Client.Data;
-using G = Model.Global.Data;
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using C = Model.Client.Data;
+using G = Model.Global.Data;
 
 namespace Model.Client.Mapper
 {
     internal static class Mappers
     {
 
-
         internal static C.Department ToClient(this G.Department entity)
         {
 
-            return new C.Department(entity.Id, entity.Title, entity.Created, entity.Description, entity.Admin_Id, entity.Active);
+            return new C.Department(entity.Id, entity.Title, entity.Created, 
+                entity.Description, entity.Admin_Id, entity.Active);
         }
 
         internal static G.Department ToGlobal(this C.Department entity)
@@ -35,7 +35,8 @@ namespace Model.Client.Mapper
         internal static C.Document ToClient(this G.Document entity)
         {
 
-            return new C.Document(entity.Id, entity.Name, entity.Created, entity.Link, entity.Size, entity.SHA2, entity.Active, entity.AuthorEmployee, entity.NextVersion);
+            return new C.Document(entity.Id, entity.Name, entity.Created, entity.Link, entity.Size,
+                entity.SHA2, entity.Active, entity.AuthorEmployee, entity.NextVersion);
         }
 
         internal static G.Document ToGlobal(this C.Document entity)
@@ -57,7 +58,8 @@ namespace Model.Client.Mapper
         internal static C.Employee ToClient(this G.Employee entity)
         {
 
-            return new C.Employee(entity.Employee_Id, entity.LastName, entity.FirstName, entity.Email, entity.Passwd, entity.Actif, entity.RegNat, entity.CoordGps, entity.Address, entity.Phone, entity.IsAdmin);
+            return new C.Employee(entity.Employee_Id, entity.LastName, entity.FirstName, entity.Email, entity.Passwd,
+                entity.Actif, entity.RegNat, entity.CoordGps, entity.Address, entity.Phone, entity.IsAdmin);
         }
 
         internal static G.Employee ToGlobal(this C.Employee entity)
@@ -79,7 +81,8 @@ namespace Model.Client.Mapper
         internal static C.EmployeeDepartmentHistory ToClient(this G.EmployeeDepartmentHistory entity)
         {
 
-            return new C.EmployeeDepartmentHistory(entity.Id, entity.Name, entity.DepId, entity.StartDate, entity.EndDate);
+            return new C.EmployeeDepartmentHistory(entity.Id, entity.Name, entity.DepId, 
+                entity.StartDate, entity.EndDate);
         }
 
         internal static G.EmployeeDepartmentHistory ToGlobal(this C.EmployeeDepartmentHistory entity)
@@ -96,7 +99,8 @@ namespace Model.Client.Mapper
 
         internal static C.EmployeeStatusHistory ToClient(G.EmployeeStatusHistory entity)
         {
-            return new C.EmployeeStatusHistory(entity.Id, entity.Employee, entity.Status, entity.Name, entity.StartDate, entity.EndDate);
+            return new C.EmployeeStatusHistory(entity.Id, entity.Employee, entity.Status,
+                entity.Name, entity.StartDate, entity.EndDate);
         }
 
         internal static G.EmployeeStatusHistory ToGlobal(this C.EmployeeStatusHistory entity)
@@ -115,7 +119,8 @@ namespace Model.Client.Mapper
         internal static C.EmployeeEvent ToClient(this G.EmployeeEvent entity)
         {
 
-            return new C.EmployeeEvent(entity.EmployeeId, entity.EventId, entity.Attended, entity.Cancelled, entity.Subscribed);
+            return new C.EmployeeEvent(entity.EmployeeId, entity.EventId,
+                entity.Attended, entity.Cancelled, entity.Subscribed);
         }
 
         internal static G.EmployeeEvent ToGlobal(this C.EmployeeEvent entity)
@@ -151,7 +156,9 @@ namespace Model.Client.Mapper
         internal static C.Event ToClient(this G.Event entity)
         {
 
-            return new C.Event(entity.Id, entity.CreatorId, entity.DepartmentId, entity.Name, entity.Description, entity.Address, entity.StartDate, entity.EndDate, entity.CreationDate, entity.Subscribed, entity.Open, entity.Cancelled);
+            return new C.Event(entity.Id, entity.CreatorId, entity.DepartmentId,
+                entity.Name, entity.Description, entity.Address, entity.StartDate, entity.EndDate,
+                entity.CreationDate, entity.Subscribed, entity.Open, entity.Cancelled);
         }
 
         internal static G.Event ToGlobal(this C.Event entity)
@@ -176,7 +183,8 @@ namespace Model.Client.Mapper
         internal static C.Message ToClient(this G.Message entity)
         {
 
-            return new C.Message(entity.Id, entity.Title, entity.Created, entity.Body, entity.Author, entity.Parent);
+            return new C.Message(entity.Id, entity.Title, entity.Created, 
+                entity.Body, entity.Author, entity.Parent);
         }
 
         internal static G.Message ToGlobal(this C.Message entity)
@@ -195,7 +203,8 @@ namespace Model.Client.Mapper
         internal static C.Project ToClient(this G.Project entity)
         {
 
-            return new C.Project(entity.Id, entity.Name, entity.Description, entity.Start, entity.End, entity.CreatorId, entity.ProjectManagerId);
+            return new C.Project(entity.Id, entity.Name, entity.Description, entity.Start, 
+                entity.End, entity.CreatorId, entity.ProjectManagerId);
         }
 
         internal static G.Project ToGlobal(this C.Project entity)
@@ -214,8 +223,9 @@ namespace Model.Client.Mapper
 
         internal static C.Task ToClient(this G.Task entity)
         {
-
-            return new C.Task(entity.Id, entity.Name, entity.Description, entity.StartDate, entity.EndDate, entity.Deadline, entity.SubtaskOf);
+            return new C.Task((int)entity.Id,entity.ProjectId, entity.CreatorId,entity.TeamId,
+                entity.Name, entity.Description, entity.StartDate, entity.EndDate, entity.Deadline,
+                entity.SubtaskOf,entity.StatusName,entity.StatusDate);
         }
 
         internal static G.Task ToGlobal(this C.Task entity)
@@ -266,6 +276,36 @@ namespace Model.Client.Mapper
                 Creator_Id = entity.Creator_Id,
                 Project_Id = entity.Project_Id,
                 Employees = Employees
+            };
+        }
+
+        internal static C.TaskStatusHistory ToClient(this G.TaskStatusHistory entity)
+        {
+            return new C.TaskStatusHistory(entity.TaskId,entity.TaskStatusId,entity.StatusName,entity.Date);
+        }
+
+        internal static G.TaskStatusHistory ToGlobal(this C.TaskStatusHistory entity)
+        {
+            return new G.TaskStatusHistory
+            {
+                TaskId = entity.TaskId,
+                TaskStatusId = entity.TaskStatusId,
+                StatusName = entity.StatusName,
+                Date = entity.Date
+            };
+        }
+
+        internal static C.TaskStatus ToClient(this G.TaskStatus entity)
+        {
+            return new C.TaskStatus(entity.Id,entity.Name);
+        }
+
+        internal static G.TaskStatus ToGlobal(this C.TaskStatus entity)
+        {
+            return new G.TaskStatus
+            {
+                Id = entity.Id,
+                Name = entity.Name
             };
         }
 
