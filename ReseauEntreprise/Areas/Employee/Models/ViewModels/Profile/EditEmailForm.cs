@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace ReseauEntreprise.Areas.Employee.Models
+namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Profile
 {
     public class EditEmailForm
     {
