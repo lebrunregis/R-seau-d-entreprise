@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.MailboxForm>
+
+@foreach (var message in Model)
+{
+    <tr>
+		<td>
+			@if (message.project != null)
+			{
+				<span>Project </span>
+				@Html.ActionLink(message.project.Name,
+		 "Details", "Project", null, null, $"anchor_{message.Message.Id}",
+		 new { id = message.project.Id }, null)
+			}
+			/*else if (message.task != null)
+			{
+				<span>Task </span>
+				@Html.ActionLink(message.task.Name,
+					"Details", "Task", null, null, $"anchor_{message.message.Id}",
+					new { id = message.task.Id }, null)
+			}*/
+			else if (message.team != null)
+			{
+				<span>Team </span>
+				@Html.ActionLink(message.team.Name,
+	 "Details", "Team", null, null, $"anchor_{message.Message.Id}",
+	 new { id = message.team.Id }, null)
+			}
+			else
+			{
+				<span>Employee </span>
+				@Html.ActionLink($"{message.employee.FirstName} {message.employee.LastName}({message.employee.Email})",
+		 "Details", "Employee", null, null, $"anchor_{message.Message.Id}",
+		 new { id = message.employee.Employee_Id }, null)
+			}
+		</td>
+
+		<td>
+			@{Html.RenderPartial("_Message", message.Message);}
+			<div style="display: none">
+				@{Html.RenderPartial("_SendFormTemplate", message.form);}
+			</div>
+		</td>
+
+		<td>
+			<span id="@($"isReplied_{message.Message.Id}")">
+				@Html.DisplayFor(modelItem => message.isReplied)
+			</span>
+		</td>
+    </tr>
+}

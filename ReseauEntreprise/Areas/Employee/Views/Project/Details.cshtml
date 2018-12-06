@@ -65,7 +65,7 @@
 			@{Html.RenderPartial("_TeamList", Model.Teams);
 				if (Model.AmIProjectManager)
 				{
-					@Html.ActionLink("Creer nouvelle equipe", "Create", "Team", new { Project_Id = Model.Id }, null)
+					@Html.ActionLink("Create new team", "Create", "Team", new { Project_Id = Model.Id }, null)
 				}
 			}
 		</dd>
@@ -76,3 +76,4 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+@Html.Action("_Discussion", "Message", new { ProjectId = Model.Id })

@@ -7,11 +7,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam
 {
     public class EmployeesInTeamForm
     {
-        [DisplayName("Employé")]
-        public D.Employee Employee { get; set; }
-        [DisplayName("Departements")]
-        public IEnumerable<D.Department> Departments { get; set; }
-        [DisplayName("Dans cette équipe")]
-        public bool IsInTeam { get; set; }
+        public D.Team team { get; set; }
+        public IEnumerable<EmployeeTeamForm> Employees { get; set; }
     }
 }

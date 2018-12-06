@@ -78,6 +78,7 @@
     <Folder Include="dbo\Tables\Department" />
     <Folder Include="dbo\SP\Event" />
     <Folder Include="dbo\Tables\Event" />
+    <Folder Include="dbo\SP\Message" />
     <Folder Include="dbo\SP\Tasks" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +202,21 @@
     <Build Include="dbo\SP\Team\GetActiveTeamsInCommon.sql" />
     <Build Include="dbo\SP\Event\GetSubscriptionStatus.sql" />
     <Build Include="dbo\SP\Event\GetEmployeeSubscriptionStatus.sql" />
+    <Build Include="dbo\SP\Message\CreateMessage.sql" />
+    <Build Include="dbo\SP\Message\GetMessage.sql" />
+    <Build Include="dbo\SP\Message\GetProjectMessages.sql" />
+    <Build Include="dbo\SP\Message\GetTaskMessages.sql" />
+    <Build Include="dbo\SP\Message\GetTeamMessages.sql" />
+    <Build Include="dbo\SP\Message\GetMyDiscussionWithEmployee.sql" />
+    <Build Include="dbo\SP\Message\GetProjectMessagesWithoutSome.sql" />
+    <Build Include="dbo\SP\Message\GetMyDiscussionWithEmployeeWithoutSome.sql" />
+    <Build Include="dbo\SP\Message\GetTaskMessagesWithoutSome.sql" />
+    <Build Include="dbo\SP\Message\GetTeamMessagesWithoutSome.sql" />
+    <Build Include="dbo\SP\Message\GetResponsesToEmployee.sql" />
+    <Build Include="dbo\SP\Message\GetProjectForMessage.sql" />
+    <Build Include="dbo\SP\Message\GetTeamForMessage.sql" />
+    <Build Include="dbo\SP\Message\GetResponsesToEmployeeWithoutSome.sql" />
+    <Build Include="dbo\SP\Message\IsMessageRepliedByEmployee.sql" />
     <Build Include="dbo\SP\Tasks\CreateTask.sql" />
     <Build Include="dbo\SP\Tasks\UpdateTask.sql" />
     <Build Include="dbo\SP\Tasks\DeleteTask.sql" />

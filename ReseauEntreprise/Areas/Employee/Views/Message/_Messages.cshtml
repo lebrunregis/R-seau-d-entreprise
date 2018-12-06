@@ -1,0 +1,7 @@
+﻿@model IEnumerable<ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.ViewForm>
+
+@foreach (var message in Model)
+{
+	Html.RenderPartial("_Message", message);
+}
+

@@ -1,0 +1,118 @@
+﻿@model IEnumerable<ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.MailboxForm>
+
+@{
+    ViewBag.Title = "Mailbox";
+}
+
+<style>
+	.myMessage {
+		background-color: white;
+		border-style: solid;
+		border-color: lightgray;
+		border-width: 1px;
+		border-radius: 4px;
+	}
+	.multiligneText {
+		white-space: pre-wrap
+	}
+	.longtext {
+		width: 100%;
+	}
+	.hidden {
+		display: none
+	}
+</style>
+
+<h2>Mailbox</h2>
+<button onclick="refresh()" class="btn btn-default right">Refresh</button>
+<table class="table">
+	<tr id="mailboxTableHead">
+		<th>Discussion</th>
+		<th>@Html.DisplayNameFor(model => model.Message)</th>
+		<th>@Html.DisplayNameFor(model => model.isReplied)</th>
+	</tr>
+
+	@{Html.RenderPartial("_Mailbox", Model);}
+
+</table>
+
+<script>
+	setInterval(refresh, 10000);
+	function sendmessage(event) {
+		var thisForm = event.target;
+		$.ajax({
+			type: 'POST',
+			url: thisForm.action,
+			data: $(thisForm).serialize(),
+			success: function (results) {
+				if (results == "fail") {
+					alert("Message must contain some text and title must not be longer then 50 characters")
+				}
+				else if (results == "success") {
+					removeform(thisForm);
+					var id = thisForm.getElementsByClassName("ReplyTo")[0].value;
+					var isReplied = document.getElementById("isReplied_" + id).getElementsByTagName("input")[0];
+					isReplied.checked = "checked";
+				}
+			}
+		});
+	}
+	function AddReplyForm(id) {
+		var Message = document.getElementById('message_' + id);
+		var ReplyForm = Message.parentElement.nextElementSibling.getElementsByTagName("form")[0];
+		ReplyForm.parentElement.style.display = "block";
+		var CancelButton = ReplyForm.getElementsByTagName("button")[0];
+		CancelButton.style.display = "inline";
+		CancelButton.onclick = function () { removeform(ReplyForm) };
+		document.getElementById('button_' + id).style.display = "none";
+		ReplyForm.getElementsByTagName("textarea")[0].focus();
+	}
+
+	function removeform(form)
+	{
+		form.reset();
+		form.parentElement.style.display = "none";
+		var ReplyButton = form.parentElement.previousElementSibling.getElementsByTagName("button")[0];
+		ReplyButton.style.display = "inline";
+	};
+
+	function refresh() {
+		var messages = document.getElementsByClassName("myMessage");
+		var max_id = 0;
+		var id;
+		for (var i = 0; i < messages.length; i++) { 
+			id = messages[i].id.replace('message_', '');
+			max_id = Math.max(max_id, id);
+		}
+		$.ajax({
+			type: 'POST',
+			url: "@Url.Action("_Mailbox", "Message")",
+			data:
+				{
+					"max_id": max_id
+			}
+		}).done(function (results) { addNew(results); });
+	}
+
+	function addNew(results)
+	{
+		var tableHead = document.getElementById("mailboxTableHead");
+		tableHead.insertAdjacentHTML("afterend", results);
+	}
+
+	function refreshReplied() {
+		var messages = document.getElementsByClassName("myMessage");
+		var ids = [];
+		for (var i = 0; i < messages.length; i++) { 
+			ids[i] = messages[i].id.replace('message_', '');
+		}
+		$.ajax({
+			type: 'POST',
+			url: "@Url.Action("_Mailbox", "Message")",
+			data:
+				{
+					"ids": ids
+			}
+		}).done(function (results) { addNew(results); });
+	}
+</script>

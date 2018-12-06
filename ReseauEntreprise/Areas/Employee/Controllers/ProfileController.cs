@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using Model.Global.Service;
 using Réseau_d_entreprise.Session;
 using Réseau_d_entreprise.Session.Attributes;
-using ReseauEntreprise.Areas.Employee.Models;
+using ReseauEntreprise.Areas.Employee.Models.ViewModels.Profile;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -138,6 +138,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 }
             }
             return View();
+        }
+
+        public ActionResult _ToAdminLink()
+        {
+            return View(new IsAdminForm(SessionUser.GetUser().Id));
         }
     }
 }

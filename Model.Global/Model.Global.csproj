@@ -62,6 +62,7 @@
     <Compile Include="Service\DepartmentService.cs" />
     <Compile Include="Service\EmployeeService.cs" />
     <Compile Include="Service\EventService.cs" />
+    <Compile Include="Service\MessageService.cs" />
     <Compile Include="Service\ProjectService.cs" />
     <Compile Include="Service\TaskServicecs.cs" />
     <Compile Include="Service\TeamService.cs" />

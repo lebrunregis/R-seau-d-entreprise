@@ -1,0 +1,18 @@
+﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.ViewForm
+
+<div class="myMessageBox" data-parentId="@(Model.Parent)">
+	<div class="blackline2"></div>
+	<div class="blackline"></div>
+	<div class="myMessage" id="@("message_" + Model.Id.ToString())">
+		<div class="anchor" id="@("anchor_" + Model.Id.ToString())"></div>
+		@Html.DisplayFor(modelItem => Model.CreationTime)
+		@{Html.RenderPartial("_Employee", Model.Author);}
+		<h4>@Html.DisplayFor(modelItem => Model.Title)</h4>
+		<div class="multiligneText">@Html.DisplayFor(modelItem => Model.Message)</div>
+		<button id="@("button_" + Model.Id.ToString())" onclick="AddReplyForm(@Model.Id)" class="btn btn-default">Reply</button>
+	</div>
+	@if (Model.Children != null)
+	{
+		Html.RenderPartial("_Messages", Model.Children);
+	}
+</div>

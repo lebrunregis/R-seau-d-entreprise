@@ -1,14 +1,14 @@
 ﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Team.DetailsForm
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>DetailsForm</h4>
-    <hr />
+	<h4>DetailsForm</h4>
+	<hr />
 	<dl class="dl-horizontal">
 		<dt>
 			@Html.DisplayNameFor(model => model.Name)
@@ -71,7 +71,7 @@
 <p>
 	@if (Model.AmITeamLeader || Model.AmIProjectManagerOrAdmin)
 	{
-		@Html.ActionLink("Changer la composition", "EmployeesInTeam", new { id = Model.Id })
+		@Html.ActionLink("Change employees in team", "EmployeesInTeam", new { id = Model.Id })
 		<br />
 	}
 	@if (Model.AmIProjectManagerOrAdmin)
@@ -83,3 +83,5 @@
 	}
 	@Html.ActionLink("Back to List", "Index")
 </p>
+
+@Html.Action("_Discussion", "Message", new { TeamId = Model.Id })
