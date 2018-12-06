@@ -36,8 +36,12 @@ namespace Réseau_d_entreprise.Controllers
 
                 if (id != null)
                 {
-                    SessionUser.SetUser(new User { Id = (int)id });
-                    if (AuthService.IsAdmin((int)id))
+                    User user = new User((int)id);
+
+                    SessionUser.UpdateUser();
+                    SessionUser.SetUser(user);
+                    
+                    if (SessionUser.GetUser().IsAdmin)
                     {
                         return RedirectToAction("Index", "Home", new { area = "Admin" });
                     }
@@ -84,7 +88,7 @@ namespace Réseau_d_entreprise.Controllers
                 try
                 {
                     int Employee_Id = AuthService.Register(e);
-                    SessionUser.SetUser(new User { Id = Employee_Id });
+                    SessionUser.SetUser(new User (Employee_Id) );
                     return RedirectToAction("Index", "Home", new { area = "Employee" });
                 }
                 catch (System.Data.SqlClient.SqlException exeption)

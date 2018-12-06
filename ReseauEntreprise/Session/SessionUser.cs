@@ -22,5 +22,10 @@ namespace Réseau_d_entreprise.Session
         {
             HttpContext.Current.Session.RemoveAll();
         }
+
+        public static void UpdateUser()
+        {
+
+        }
     }
 }

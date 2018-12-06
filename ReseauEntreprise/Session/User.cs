@@ -8,6 +8,7 @@ namespace Réseau_d_entreprise.Session
 {
     public class User
     {
+
         public int Id { get; set; }
         public bool IsAdmin { get; set; }
         public List<int> TeamLeader { get; set; }
@@ -17,5 +18,10 @@ namespace Réseau_d_entreprise.Session
         public List<int> AuthorizedProjects { get; set; }
         public List<int> HeadOfDepartment { get; set; }
         public List<int> AuthorizedDepartmments { get; set; }
+
+        public User(int id)
+        {
+            Id = id;
+        }
     }
 }
