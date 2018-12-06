@@ -2,6 +2,7 @@
 using Microsoft.Owin;
 using Microsoft.AspNet.SignalR;
 using ReseauEntreprise.Session;
+using ReseauEntreprise.Hubs;
 
 [assembly: OwinStartup(typeof(SignalRChat.Startup))]
 namespace SignalRChat

@@ -27,9 +27,6 @@ namespace ReseauEntreprise.Hubs
             return base.OnConnected();
         }
 
-
-
-
         public void SendMessage(string msg)
         {
             var hubContext = GlobalHost.ConnectionManager.GetHubContext<AuthorizationHub>();
