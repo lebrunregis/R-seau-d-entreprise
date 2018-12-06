@@ -213,6 +213,7 @@
     <Compile Include="Areas\Employee\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Employee\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Employee\Controllers\TeamController.cs" />
+    <Compile Include="Areas\Employee\Controllers\TestController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\ListForm.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Models\ViewModels\Registration\LoginForm.cs" />
     <Compile Include="Models\ViewModels\Registration\RegistrationForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -255,6 +257,7 @@
     <Compile Include="Session\Attributes\EmployeeRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\TeamLeaderRequiredAttribute.cs" />
     <Compile Include="Session\SessionUser.cs" />
+    <Compile Include="Session\SignalRUser.cs" />
     <Compile Include="Session\User.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -343,6 +346,7 @@
     <Content Include="Areas\Employee\Views\Message\_Mailbox.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_Message.cshtml" />
     <Content Include="Areas\Employee\Views\Message\Mailbox.cshtml" />
+    <Content Include="Areas\Employee\Views\Test\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -385,7 +389,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Employee\Views\Shared\" />
-    <Folder Include="Hubs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
