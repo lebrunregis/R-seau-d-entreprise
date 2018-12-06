@@ -1,8 +1,10 @@
-﻿using Model.Client.Data;
+﻿using Microsoft.AspNet.SignalR;
+using Model.Client.Data;
 using Model.Client.Service;
 using Réseau_d_entreprise.Models.ViewModels;
 using Réseau_d_entreprise.Session;
 using Réseau_d_entreprise.Session.Attributes;
+using ReseauEntreprise.Hubs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +42,8 @@ namespace Réseau_d_entreprise.Controllers
 
                     SessionUser.UpdateUser();
                     SessionUser.SetUser(user);
-                 
+                  
+                
 
                     if (SessionUser.GetUser().IsAdmin)
                     {

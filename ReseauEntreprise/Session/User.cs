@@ -8,7 +8,6 @@ namespace Réseau_d_entreprise.Session
 {
     public class User
     {
-        internal HashSet<string> ConnectionIds;
 
         public int Id { get; set; }
         public bool IsAdmin { get; set; }

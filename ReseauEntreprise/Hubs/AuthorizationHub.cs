@@ -26,10 +26,15 @@ namespace ReseauEntreprise.Hubs
 
             return base.OnConnected();
         }
-        public void Send(string name, string message)
+
+
+
+
+        public void SendMessage(string msg)
         {
-            // Call the broadcastMessage method to update clients.
-            Clients.User(name);
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<AuthorizationHub>();
+            string userId = Context.User.Identity.Name;
+            hubContext.Clients.All.foo(msg);
         }
     }
 }
