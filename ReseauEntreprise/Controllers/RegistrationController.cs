@@ -40,7 +40,8 @@ namespace Réseau_d_entreprise.Controllers
 
                     SessionUser.UpdateUser();
                     SessionUser.SetUser(user);
-                    
+                 
+
                     if (SessionUser.GetUser().IsAdmin)
                     {
                         return RedirectToAction("Index", "Home", new { area = "Admin" });

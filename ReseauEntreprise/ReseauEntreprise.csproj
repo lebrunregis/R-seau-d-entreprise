@@ -252,6 +252,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\AuthorizationHub.cs" />
+    <Compile Include="Hubs\ConnectionMapper.cs" />
     <Compile Include="Models\ViewModels\Registration\LoginForm.cs" />
     <Compile Include="Models\ViewModels\Registration\RegistrationForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -262,6 +264,7 @@
     <Compile Include="Session\Attributes\TeamLeaderRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\TeamMemberRequiredAttribute.cs" />
     <Compile Include="Session\SessionUser.cs" />
+    <Compile Include="Session\SessionUserProvider.cs" />
     <Compile Include="Session\User.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -399,7 +402,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Employee\Views\Shared\" />
-    <Folder Include="Hubs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
