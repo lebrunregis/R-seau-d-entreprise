@@ -37,7 +37,7 @@
 </table>
 
 <script>
-	setInterval(refresh, 20000);
+	setInterval(refresh, 10000);
 	function sendmessage(event) {
 		var thisForm = event.target;
 		$.ajax({
@@ -98,5 +98,21 @@
 	{
 		var tableHead = document.getElementById("mailboxTableHead");
 		tableHead.insertAdjacentHTML("afterend", results);
+	}
+
+	function refreshReplied() {
+		var messages = document.getElementsByClassName("myMessage");
+		var ids = [];
+		for (var i = 0; i < messages.length; i++) { 
+			ids[i] = messages[i].id.replace('message_', '');
+		}
+		$.ajax({
+			type: 'POST',
+			url: "@Url.Action("_Mailbox", "Message")",
+			data:
+				{
+					"ids": ids
+			}
+		}).done(function (results) { addNew(results); });
 	}
 </script>
