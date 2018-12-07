@@ -263,6 +263,9 @@
     <Compile Include="Session\Attributes\ProjectManagerRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\TeamLeaderRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\TeamMemberRequiredAttribute.cs" />
+    <Compile Include="Session\AuthorizeObservable.cs" />
+    <Compile Include="Session\AuthorizeObservers.cs" />
+    <Compile Include="Session\CurrentSessions.cs" />
     <Compile Include="Session\SessionUser.cs" />
     <Compile Include="Session\SessionUserProvider.cs" />
     <Compile Include="Session\User.cs" />

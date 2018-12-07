@@ -40,10 +40,8 @@ namespace Réseau_d_entreprise.Controllers
                 {
                     User user = new User((int)id);
 
-                    SessionUser.UpdateUser();
                     SessionUser.SetUser(user);
-                  
-                
+                    SessionUser.GetUser().Update();
 
                     if (SessionUser.GetUser().IsAdmin)
                     {
