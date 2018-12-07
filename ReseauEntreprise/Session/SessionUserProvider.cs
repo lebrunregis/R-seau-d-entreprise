@@ -7,11 +7,11 @@ using System.Web;
 
 namespace ReseauEntreprise.Session
 {
-    public class SessionUserProvider : IUserIdProvider
+    /*public class SessionUserProvider : IUserIdProvider
     {
         public string GetUserId(IRequest request)
         {
           return SessionUser.GetUser().Id.ToString();
         }
-    }
+    }*/
 }

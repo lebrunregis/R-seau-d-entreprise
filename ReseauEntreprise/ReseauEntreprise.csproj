@@ -218,6 +218,7 @@
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\ListForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Message\DiscussionScriptForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\MaxIdForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Profile\EditEmailForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Profile\EditPassForm.cs" />
@@ -366,6 +367,7 @@
     <Content Include="Areas\Employee\Views\Message\_Message.cshtml" />
     <Content Include="Areas\Employee\Views\Message\Mailbox.cshtml" />
     <Content Include="Areas\Employee\Views\Test\Index.cshtml" />
+    <Content Include="Views\Shared\_DiscussionScript.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

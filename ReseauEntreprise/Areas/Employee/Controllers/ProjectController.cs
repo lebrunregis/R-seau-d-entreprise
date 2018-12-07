@@ -52,7 +52,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 StartDate = Project.Start,
                 EndDate = Project.End,
                 Teams = Teams,
-                AmIProjectManager = (Employee_Id == Manager.Employee_Id)
+                AmIProjectManager = (Employee_Id == Manager.Employee_Id),
+                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToProject = Project.Id }
             };
 
             return View(Form);

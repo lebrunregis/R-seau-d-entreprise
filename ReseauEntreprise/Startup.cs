@@ -13,7 +13,7 @@ namespace SignalRChat
         {
             // Any connection or hub wire up and configuration should go here
             app.MapSignalR();
-            GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => new SessionUserProvider());
+            //GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => new SessionUserProvider());
         }
 
 

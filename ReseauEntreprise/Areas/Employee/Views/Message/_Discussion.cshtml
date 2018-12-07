@@ -26,21 +26,26 @@
 	.whiteblock {
 		background-color: white;
 	}
+
 	.longtext {
 		width: 100%;
 	}
+
 	.right {
 		position: absolute;
 		right: 0px;
 		bottom: 0px;
 	}
+
 	.rel {
 		position: relative;
 	}
+
 	.anchor {
 		position: relative;
 		top: -55px;
 	}
+
 	.myMessageBox > .myMessageBox:not(:last-child) > .blackline {
 		position: absolute;
 		background-color: transparent;
@@ -55,6 +60,7 @@
 		border-bottom-width: 1px;
 		border-left-width: 1px;
 	}
+
 	.myMessageBox > .myMessageBox:nth-child(4) > .blackline2 {
 		position: absolute;
 		background-color: transparent;
@@ -85,97 +91,3 @@
 </div>
 
 <div id="temporal" class="hidden"></div>
-
-<script>
-	var SendFormTemplate = document.getElementById("SendFormTemplate");
-	SendFormTemplate.getElementsByClassName("ToEmployee")[0].value = @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null");
-	SendFormTemplate.getElementsByClassName("ToProject")[0].value = @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null");
-	SendFormTemplate.getElementsByClassName("ToTask")[0].value = @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null");
-	SendFormTemplate.getElementsByClassName("ToTeam")[0].value = @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null");
-	const SendFormHtml = document.getElementById("SendFormTemplate").innerHTML;
-	setInterval(refresh, 10000);
-
-	function AddReplyForm(id)
-	{
-		var Message = document.getElementById('message_' + id);
-		Message.innerHTML += SendFormHtml;
-		Message.getElementsByClassName("ReplyTo")[0].value = id;
-		var ReplyForm = Message.getElementsByTagName("form")[0];
-		ReplyForm.id = ('reply_' + id);
-		var CancelButton = ReplyForm.getElementsByTagName("button")[0];
-		CancelButton.style.display = "inline";
-		CancelButton.onclick = function () { removeform(id) };
-		document.getElementById('button_' + id).style.display = "none";
-		ReplyForm.getElementsByTagName("textarea")[0].focus();
-	}
-
-	function sendmessage(event) {
-		var thisForm = event.target;
-		$.ajax({
-			type: 'POST',
-			url: thisForm.action,
-			data: $(thisForm).serialize(),
-			success: function (results) {
-				if (results == "fail") {
-					alert("Message must contain some text and title must not be longer then 50 characters")
-				}
-				else if (results == "success") {
-					thisForm.reset(); 
-					refresh();
-					var id = thisForm.id.replace('reply_', '');
-					if (id != "") {
-						removeform(id);
-					}
-				}
-			}
-		});
-	}
-
-	function removeform(id) {
-		document.getElementById('reply_' + id).remove();
-		document.getElementById('button_' + id).style.display = 'inline';
-	}
-
-	function refresh() {
-		var messages = document.getElementsByClassName("myMessage");
-		var max_id = 0;
-		var id;
-		for (var i = 0; i < messages.length; i++) { 
-			id = messages[i].id.replace('message_', '')
-			max_id = Math.max(max_id, id)
-		}
-		$.ajax({
-			type: 'POST',
-			url: "@Url.Action("_Messages", "Message")",
-			data:
-				{
-					"max_id": max_id,
-					"ToEmployee": @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null"),
-					"ToProject": @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null"),
-					"ToTask": @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null"),
-					"ToTeam": @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null")
-			}
-		}).done(function (results) { addNew(results) });
-	}
-
-	function addNew(data) {
-		var temporal = document.getElementById('temporal');
-		var discussion = document.getElementById('discussion');
-		temporal.innerHTML += data;
-		var messages = temporal.getElementsByClassName("myMessageBox");
-		for (var i = messages.length-1; i >= 0; i--) {
-			var parent = messages[i].getAttribute("data-parentId");
-			var html = messages[i].outerHTML;
-			if (parent == "") {
-				discussion.innerHTML += html
-			}
-			else {
-				parentEl = document.getElementById('message_' + parent).parentElement;
-				parentEl.innerHTML += html
-			}
-			messages[i].remove();
-		}
-	}
-
-</script>
-

@@ -9,6 +9,9 @@ using Model.Client.Service;
 using Réseau_d_entreprise.Session.Attributes;
 using Réseau_d_entreprise.Session;
 
+using Microsoft.AspNet.SignalR;
+using ReseauEntreprise.Hubs;
+
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
     [RouteArea("Employee")]
@@ -24,6 +27,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 int? newMessageId = MessageService.Create(new C.Message(form.Title, form.Message, SessionUser.GetUser().Id, form.ReplyTo), form.ToEmployee, form.ToProject, form.ToTask, form.ToTeam);
                 if (newMessageId != null)
                 {
+                    if (form.ToProject != null)
+                    {
+                        ProjectHub.Send((int)form.ToProject);
+                    }
                     return new ContentResult { Content = "success" };
                 }
             }
