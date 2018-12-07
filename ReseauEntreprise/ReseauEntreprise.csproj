@@ -214,7 +214,6 @@
     <Compile Include="Areas\Employee\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Employee\Controllers\TaskController.cs" />
     <Compile Include="Areas\Employee\Controllers\TeamController.cs" />
-    <Compile Include="Areas\Employee\Controllers\TestController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\ListForm.cs" />
@@ -364,7 +363,6 @@
     <Content Include="Areas\Employee\Views\Message\_Mailbox.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_Message.cshtml" />
     <Content Include="Areas\Employee\Views\Message\Mailbox.cshtml" />
-    <Content Include="Areas\Employee\Views\Test\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
