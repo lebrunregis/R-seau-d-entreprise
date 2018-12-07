@@ -1,12 +1,5 @@
-﻿using Model.Client.Data;
-using Model.Client.Mapper;
-using Model.Client.Service;
+﻿using Model.Client.Mapper;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GS = Model.Global.Service;
 
 namespace Model.Client.Service

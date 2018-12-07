@@ -2,12 +2,7 @@
 using Model.Client.Mapper;
 using GS = Model.Global.Service;
 using GD = Model.Global.Data;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model.Client.Service
 {
@@ -77,12 +72,7 @@ namespace Model.Client.Service
             return GS.EventService.Participate(EventId, EmpId);
         }
 
-        public static void SubscribeTo(int EventId, IEnumerable<int> EmpIds)
-        {
-           GS.EventService.SubscribeTo(EventId, EmpIds);
-        }
-
-        public static IEnumerable<EmployeeEvent> GetSubscriptionStatus(int EventId)
+         public static IEnumerable<EmployeeEvent> GetSubscriptionStatus(int EventId)
         {
             List<EmployeeEvent> EmployeeEvents = new List<EmployeeEvent>();
             IEnumerable<GD.EmployeeEvent> GlobalEmployeeEvents = GS.EventService.GetSubscriptionStatus(EventId);

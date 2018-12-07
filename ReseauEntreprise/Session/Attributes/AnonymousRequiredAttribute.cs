@@ -9,10 +9,6 @@ namespace Réseau_d_entreprise.Session.Attributes
 {
     public class AnonymousRequiredAttribute : AuthorizeAttribute
     {
-        public string RedirectActionName { get; set; }
-        public string RedirectControllerName { get; set; }
-
-
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             var accessAllowed = false;

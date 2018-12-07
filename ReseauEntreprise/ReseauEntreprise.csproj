@@ -52,11 +52,11 @@
       <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
@@ -212,6 +212,7 @@
     <Compile Include="Areas\Employee\Controllers\MessageController.cs" />
     <Compile Include="Areas\Employee\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Employee\Controllers\ProjectController.cs" />
+    <Compile Include="Areas\Employee\Controllers\TaskController.cs" />
     <Compile Include="Areas\Employee\Controllers\TeamController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\DetailsForm.cs" />
@@ -237,6 +238,10 @@
     <Compile Include="Areas\Employee\Models\ViewModels\Profile\IsAdminForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Project\ListForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Task\CreateForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Task\DetailsForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Task\EditForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Task\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Team\CreateForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Team\DeleteForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Team\DetailsForm.cs" />
@@ -247,6 +252,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\AuthorizationHub.cs" />
+    <Compile Include="Hubs\ConnectionMapper.cs" />
     <Compile Include="Hubs\EmployeeHub.cs" />
     <Compile Include="Hubs\ProjectHub.cs" />
     <Compile Include="Hubs\TaskHub.cs" />
@@ -257,8 +264,11 @@
     <Compile Include="Session\Attributes\AdminRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\AnonymousRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\EmployeeRequiredAttribute.cs" />
+    <Compile Include="Session\Attributes\ProjectManagerRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\TeamLeaderRequiredAttribute.cs" />
+    <Compile Include="Session\Attributes\TeamMemberRequiredAttribute.cs" />
     <Compile Include="Session\SessionUser.cs" />
+    <Compile Include="Session\SessionUserProvider.cs" />
     <Compile Include="Session\User.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -341,6 +351,13 @@
     <Content Include="Areas\Employee\Views\Department\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Department\Details.cshtml" />
     <Content Include="Areas\Employee\Views\Employee\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\AddProjectTask.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\Edit.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\AddSubtask.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\_TeamTasks.cshtml" />
+    <Content Include="Areas\Employee\Views\Task\_ProjectTasks.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_Discussion.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_Messages.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_SendFormTemplate.cshtml" />

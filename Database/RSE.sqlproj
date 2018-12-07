@@ -79,6 +79,7 @@
     <Folder Include="dbo\SP\Event" />
     <Folder Include="dbo\Tables\Event" />
     <Folder Include="dbo\SP\Message" />
+    <Folder Include="dbo\SP\Tasks" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Message\Message.sql" />
@@ -87,9 +88,7 @@
     <Build Include="dbo\Tables\Message\MessageTask.sql" />
     <Build Include="dbo\Tables\Message\MessageTeam.sql" />
     <Build Include="dbo\Tables\Project\Project.sql" />
-    <Build Include="dbo\Tables\Project\ProjectTask.sql" />
     <Build Include="dbo\Tables\Team\Team.sql" />
-    <Build Include="dbo\Tables\Team\TeamTask.sql" />
     <Build Include="dbo\Tables\Task\Task.sql" />
     <Build Include="dbo\Tables\Task\TaskStatusHistory.sql" />
     <Build Include="dbo\Tables\Task\TaskStatus.sql" />
@@ -218,6 +217,21 @@
     <Build Include="dbo\SP\Message\GetTeamForMessage.sql" />
     <Build Include="dbo\SP\Message\GetResponsesToEmployeeWithoutSome.sql" />
     <Build Include="dbo\SP\Message\IsMessageRepliedByEmployee.sql" />
+    <Build Include="dbo\SP\Tasks\CreateTask.sql" />
+    <Build Include="dbo\SP\Tasks\UpdateTask.sql" />
+    <Build Include="dbo\SP\Tasks\DeleteTask.sql" />
+    <Build Include="dbo\SP\Tasks\GetTask.sql" />
+    <Build Include="dbo\SP\Tasks\GetSubtasks.sql" />
+    <Build Include="dbo\SP\Tasks\GetTasksForProject.sql" />
+    <Build Include="dbo\SP\Tasks\SetTaskStatus.sql" />
+    <Build Include="dbo\SP\Tasks\SetEmployeeToTask.sql" />
+    <Build Include="dbo\SP\Tasks\GetTasksForUser.sql" />
+    <Build Include="dbo\SP\Tasks\GetEmployeesForTask.sql" />
+    <Build Include="dbo\SP\Tasks\GetTaskStatusList.sql" />
+    <Build Include="dbo\SP\Employee\GetEmployeeStatusList.sql" />
+    <Build Include="dbo\SP\Employee\SetEmployeeStatus.sql" />
+    <Build Include="dbo\SP\Tasks\GetTasksForTeam.sql" />
+    <Build Include="dbo\SP\Tasks\GetTaskStatusHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
