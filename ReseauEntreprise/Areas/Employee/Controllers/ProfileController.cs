@@ -143,6 +143,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
 
         public ActionResult _ToAdminLink()
         {
+            var ff = new IsAdminForm(SessionUser.GetUser().Id);
             return View(new IsAdminForm(SessionUser.GetUser().Id));
         }
     }
