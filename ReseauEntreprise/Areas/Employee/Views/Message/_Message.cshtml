@@ -3,7 +3,7 @@
 <div class="myMessageBox" data-parentId="@(Model.Parent)">
 	<div class="blackline2">
 		<div class="hideButton" onclick="hideBranch(@(Model.Parent))"></div>
-		<div class="showButton" onclick="showBranch(@(Model.Parent))"></div>
+		<div class="showButton" onclick="showBranch(@(Model.Parent))" style="display : none"></div>
 	</div>
 	<div class="blackline"></div>
 	<div class="myMessage" id="@("message_" + Model.Id.ToString())">
