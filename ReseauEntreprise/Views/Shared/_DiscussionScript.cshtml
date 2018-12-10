@@ -99,6 +99,15 @@
 		}
 	}
 
+	function hideBranch(id) {
+		alert(id);
+		var parentMessageBox = document.getElementById('message_' + id).parentElement;
+		var childMessageBoxes = parentMessageBox.getElementsByClassName("myMessageBox");
+		for (var i = 0; i < messages.length; i++) {
+			childMessageBoxes.style.display = none;
+		}
+	}
+
 	$(function () {
 		const ThisDiscussionId = @(Model.ToEmployee ?? Model.ToProject ?? Model.ToTask ?? Model.ToTeam);
 		var notifier = $.connection.@(Model.ToEmployee.HasValue ? "employeeHub" :

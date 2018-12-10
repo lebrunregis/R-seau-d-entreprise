@@ -1,7 +1,10 @@
 ﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.ViewForm
 
 <div class="myMessageBox" data-parentId="@(Model.Parent)">
-	<div class="blackline2"></div>
+	<div class="blackline2">
+		<div class="hideButton" onclick="hideBranch(@(Model.Parent))"></div>
+		<div class="showButton" onclick="showBranch(@(Model.Parent))"></div>
+	</div>
 	<div class="blackline"></div>
 	<div class="myMessage" id="@("message_" + Model.Id.ToString())">
 		<div class="anchor" id="@("anchor_" + Model.Id.ToString())"></div>
