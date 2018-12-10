@@ -40,7 +40,7 @@ namespace Model.Client.Data
             SubtaskOf = subtaskOf;
         }
 
-        public Task(int id, int projectId, int creatorId, int teamId, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf,string statusName,DateTime? statusDate)
+        public Task(int id, int projectId, int creatorId, int teamId, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf,string statusName,DateTime? statusDate,int statusId)
         {
             Id = id;
             ProjectId = projectId;
@@ -54,6 +54,7 @@ namespace Model.Client.Data
             SubtaskOf = subtaskOf;
             this.statusName = statusName;
             this.statusDate = statusDate;
+            this.statusId = statusId;
         }
 
         public int? Id { get => id; set => id = value; }

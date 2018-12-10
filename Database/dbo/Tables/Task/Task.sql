@@ -4,7 +4,7 @@
   [Team_Id] int FOREIGN KEY REFERENCES [Team](Team_Id),
   [Name] nvarchar(50) NOT NULL,
   [Description] nvarchar(max) NOT NULL,
-  [Creator] int REFERENCES [Employee](Employee_Id) NOT NULL,
+  [CreatorId] int REFERENCES [Employee](Employee_Id) NOT NULL,
   [StartDate] DATETIME2(0) NOT NULL,
   [EndDate] DATETIME2(0),
   [Deadline] DATETIME2(0),

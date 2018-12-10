@@ -9,6 +9,7 @@ namespace Réseau_d_entreprise.Session
 {
     public static class SessionUser
     {
+
         public static User GetUser()
         {
             return (User)HttpContext.Current.Session["User"];

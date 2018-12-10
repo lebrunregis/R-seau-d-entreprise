@@ -36,6 +36,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         [Required]
         [HiddenInput]
         public int? StatusId { get; set; }
+        [HiddenInput]
         public IEnumerable<SelectListItem> StatusList { get; set; }
 
     }

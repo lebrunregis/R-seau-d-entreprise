@@ -30,6 +30,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }
         public IEnumerable<C.Team> Teams { get; set; }
+        public IEnumerable<C.Task> Tasks { get; set; }
         public bool AmIProjectManager { get; set; }
     }
 }
