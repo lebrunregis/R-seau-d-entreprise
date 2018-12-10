@@ -37,7 +37,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 TeamLeaderTeams = TeamService.GetActiveTeamsForTeamLeader(id),
                 ProjectManagerProjects = ProjectService.GetActiveProjectsForManager(id),
                 HeadOfDepartmentDepartments = DepartmentService.GetHeadOfDepartmentActiveDepartments(id),
-                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToEmployee = id }
+                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm
+                {
+                    ToEmployee = id,
+                    MyId = My_Id
+                }
             };
 
             IEnumerable<C.Department> MyDepartments = new List<C.Department>();

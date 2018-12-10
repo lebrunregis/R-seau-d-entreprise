@@ -218,6 +218,7 @@
     <Compile Include="Areas\Employee\Models\ViewModels\Department\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\DiscussionScriptForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Message\MailboxGeneralForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\MaxIdForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Profile\EditEmailForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Profile\EditPassForm.cs" />
@@ -256,6 +257,7 @@
     <Compile Include="Hubs\AuthorizationHub.cs" />
     <Compile Include="Hubs\ConnectionMapper.cs" />
     <Compile Include="Hubs\EmployeeHub.cs" />
+    <Compile Include="Hubs\MailboxHub.cs" />
     <Compile Include="Hubs\ProjectHub.cs" />
     <Compile Include="Hubs\TaskHub.cs" />
     <Compile Include="Hubs\TeamHub.cs" />
