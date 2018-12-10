@@ -101,10 +101,15 @@
 
 	function hideBranch(id) {
 		var parentMessageBox = document.getElementById('message_' + id).parentElement;
+		var showButton = parentMessageBox.getElementsByClassName("showButton")[0];
 		var childMessageBoxes = parentMessageBox.getElementsByClassName("myMessageBox");
+		var hiddenMessagesCount = 0;
 		for (var i = 0; i < childMessageBoxes.length; i++) {
 			childMessageBoxes[i].style.display = "none";
+			hiddenMessagesCount += childMessageBoxes[i].getElementsByClassName("myMessage").length;
 		}
+		showButton.style.display = "block";
+		showButton.innerText = "view " + hiddenMessagesCount + " hidden messages";
 	}
 
 	$(function () {
