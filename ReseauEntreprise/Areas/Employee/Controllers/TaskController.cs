@@ -108,13 +108,21 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
 
             return View(form);
         }
-
+        [ProjectManagerRequired]
         [HttpPost]
         public ActionResult AddProjectTask(CreateForm form)
         {
             if (ModelState.IsValid)
             {
-                Task t = new Task();
+                Task t = new Task()
+                {
+                    ProjectId = form.ProjectId,
+                    Name = form.Name,
+                    Description = form.Description,
+                    StartDate = form.StartDate,
+                    Deadline = form.Deadline,
+                    SubtaskOf = null
+                };
                 try
                 {
                     if (TaskService.Create(t, SessionUser.GetUser().Id) != null)
@@ -200,7 +208,15 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                Task t = new Task();
+                Task t = new Task()
+                {
+                    ProjectId = form.ProjectId,
+                    Name = form.Name,
+                    Description = form.Description,
+                    StartDate = form.StartDate,
+                    Deadline = form.Deadline,
+                    SubtaskOf = form.SubtaskOf
+                };
                 try
                 {
                     if (TaskService.Create(t, SessionUser.GetUser().Id) != null)

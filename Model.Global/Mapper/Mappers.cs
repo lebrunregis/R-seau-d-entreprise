@@ -42,7 +42,7 @@ namespace Model.Global.Mapper
                 Start = (DateTime)dr["StartDate"],
                 End = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"]),
                 CreatorId = (int)dr["CreatorId"],
-                ProjectManagerId = (int)dr["ProjectManager"]
+                ProjectManagerId = (int)dr["ProjectManagerId"]
             };
         }
 
@@ -138,17 +138,17 @@ namespace Model.Global.Mapper
         {
             return new Task()
             {
-                Id = (int)dr["Event_Id"],
+                Id = (int)dr["Task_Id"],
                 CreatorId = (int)dr["CreatorId"],
                 Name = (string)dr["Name"],
                 Description = (string)dr["Description"],
                 StartDate = (DateTime)dr["StartDate"],
-                EndDate = (DateTime)dr["EndDate"],
-                Deadline = (DateTime?)dr["Deadline"],
-                SubtaskOf = (int)dr["SubtaskOf"],
-                StatusId = (int)dr["Status_Id"],
+                EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"]),
+                Deadline = (DateTime?)((dr["Deadline"] == DBNull.Value) ? null : dr["Deadline"]),
+                SubtaskOf = (int?)((dr["SubtaskOf"] == DBNull.Value) ? null : dr["SubtaskOf"]),
+                StatusId = (int)((dr["Status_Id"] == DBNull.Value) ? null : dr["Status_Id"]),
                 StatusName = (string)dr["Status_Name"],
-                StatusDate = (DateTime)dr["Status_Date"]
+                StatusDate = (DateTime)((dr["Status_Date"] == DBNull.Value) ? null : dr["Status_Date"])
             };
         }
 

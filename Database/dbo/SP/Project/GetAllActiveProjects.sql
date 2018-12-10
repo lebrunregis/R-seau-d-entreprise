@@ -7,7 +7,7 @@ AS
 	StartDate,
 	EndDate,
 	[CreatorId] ,
-	LAST_VALUE(ProjectManager.Employee_Id) OVER (ORDER BY Date) AS ProjectManager
+	LAST_VALUE(ProjectManager.Employee_Id) OVER (ORDER BY Date) AS ProjectManagerId
 	FROM [dbo].Project 
 	JOIN ProjectManager 
 	ON ProjectManager.Project_Id = Project.Project_Id
