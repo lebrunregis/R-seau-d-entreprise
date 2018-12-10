@@ -27,9 +27,21 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 int? newMessageId = MessageService.Create(new C.Message(form.Title, form.Message, SessionUser.GetUser().Id, form.ReplyTo), form.ToEmployee, form.ToProject, form.ToTask, form.ToTeam);
                 if (newMessageId != null)
                 {
-                    if (form.ToProject != null)
+                    if (form.ToEmployee != null)
+                    {
+                        EmployeeHub.Send((int)form.ToEmployee);
+                    }
+                    else if (form.ToProject != null)
                     {
                         ProjectHub.Send((int)form.ToProject);
+                    }
+                    else if (form.ToTask != null)
+                    {
+                        TaskHub.Send((int)form.ToTask);
+                    }
+                    else if (form.ToTeam != null)
+                    {
+                        TeamHub.Send((int)form.ToTeam);
                     }
                     return new ContentResult { Content = "success" };
                 }

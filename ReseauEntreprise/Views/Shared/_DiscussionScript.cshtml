@@ -94,7 +94,10 @@
 
 	$(function () {
 		const MyId = @(Model.ToEmployee ?? Model.ToProject ?? Model.ToTask ?? Model.ToTeam);
-		var notifier = $.connection.projectHub;
+		var notifier = $.connection.@(Model.ToEmployee.HasValue ? "employeeHub" :
+			                          Model.ToProject.HasValue ? "projectHub" :
+									  Model.ToTeam.HasValue ? "teamHub" :
+									                           "taskHub");
 		notifier.client.RefreshMessagesId = function (id) {
 			if (id == MyId) {
 				refresh();

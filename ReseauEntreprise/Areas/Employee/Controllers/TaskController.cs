@@ -226,7 +226,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             IEnumerable<Task> Subtasks = TaskService.GetSubtasks(Task, SessionUser.GetUser().Id);
             DetailsForm form = new DetailsForm()
             {
-
+                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToTask = Task.Id }
             };
             return View(form);
         }

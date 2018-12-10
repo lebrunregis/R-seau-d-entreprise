@@ -32,5 +32,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         public IEnumerable<G.Employee> Members { get; set; }
         public bool AmITeamLeader { get; set; }
         public bool AmIProjectManagerOrAdmin {get; set; }
+
+        public Message.DiscussionScriptForm DiscScriptForm { get; set; }
     }
 }

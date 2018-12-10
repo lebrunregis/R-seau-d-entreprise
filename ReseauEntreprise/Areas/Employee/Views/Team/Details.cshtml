@@ -85,3 +85,7 @@
 </p>
 
 @Html.Action("_Discussion", "Message", new { TeamId = Model.Id })
+@section scripts
+{
+	@{Html.RenderPartial("_DiscussionScript", Model.DiscScriptForm);}
+}
