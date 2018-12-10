@@ -54,7 +54,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 EndDate = Project.End,
                 Teams = Teams,
                 Tasks = Tasks,
-                AmIProjectManager = (Employee_Id == Manager.Employee_Id)
+                IsProjectManager = (Employee_Id == Manager.Employee_Id)
             };
 
             return View(Form);

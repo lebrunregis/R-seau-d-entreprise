@@ -31,6 +31,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
         public DateTime? EndDate { get; set; }
         public IEnumerable<C.Team> Teams { get; set; }
         public IEnumerable<C.Task> Tasks { get; set; }
-        public bool AmIProjectManager { get; set; }
+        public bool IsProjectManager { get; set; }
     }
 }

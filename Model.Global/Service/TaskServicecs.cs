@@ -45,7 +45,7 @@ namespace Model.Global.Service
 
         public static IEnumerable<Task> GetForTeam(int teamId, int userId)
         {
-            Command cmd = new Command("GetTasksForProject", true);
+            Command cmd = new Command("GetTasksForTeam", true);
             cmd.AddParameter("TeamId", teamId);
             cmd.AddParameter("UserId", userId);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToTask());

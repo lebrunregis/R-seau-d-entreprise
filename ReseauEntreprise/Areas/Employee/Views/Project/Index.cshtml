@@ -43,7 +43,7 @@
 		</td>
         <td>
             @Html.ActionLink("Details", "Details", new { id = item.ProjectId })
-            @if (item.AmIProjectManager)
+            @if (item.IsProjectManager)
             {
                 <br />
                 @Html.ActionLink("Create new team", "Create", "Team", new { Project_Id = item.ProjectId }, null)
