@@ -76,6 +76,8 @@ DELETE FROM [Task];
 GO
 DELETE FROM [EmployeeTask];
 GO
+DELETE FROM [EmployeeStatus];
+GO
 
 DBCC CHECKIDENT ('[EmployeeStatus]', RESEED, 0);
 GO

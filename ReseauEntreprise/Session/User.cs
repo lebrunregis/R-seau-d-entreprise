@@ -10,26 +10,17 @@ namespace Réseau_d_entreprise.Session
     public class User
     {
 
-        public int Id { get; set; }
-        public bool IsAdmin { get; set; }
-        public IEnumerable<Team> AuthorizedTeams { get; set; }
-        public IEnumerable<Task> AuthorizedTasks { get; set; }
-        public IEnumerable<Project> ProjectManager { get; set; }
-        public IEnumerable<Project> AuthorizedProjects { get; set; }
-        public IEnumerable<int> HeadOfDepartment { get; set; }
-        public IEnumerable<Department> AuthorizedDepartmments { get; set; }
+        public int Id { get;  }
+        public bool IsAdmin { get => AuthService.IsAdmin(Id);  }
+        public IEnumerable<Team> AuthorizedTeams { get => TeamService.GetAllActiveTeamsForEmployee(Id); }
+        public IEnumerable<Task> AuthorizedTasks { get => TaskService.GetForUser(Id); }
+        public IEnumerable<Project> AuthorizedProjects { get => ProjectService.GetAllActive(); }
+        public IEnumerable<int> HeadOfDepartment { get;  }
+        public IEnumerable<Department> AuthorizedDepartmments { get => DepartmentService.GetEmployeeActiveDepartments(Id); }
 
         public User(int id)
         {
             Id = id;
-        }
-
-        public void Update()
-        {
-            IsAdmin = AuthService.IsAdmin(Id);
-            AuthorizedTeams = TeamService.GetAllActiveTeamsForEmployee(Id);
-           // AuthorizedTasks = TaskService.GetForUser(Id);
-            AuthorizedDepartmments = DepartmentService.GetEmployeeActiveDepartments(Id);
         }
     }
 }

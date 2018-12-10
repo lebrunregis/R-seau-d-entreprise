@@ -44,11 +44,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
 
         [ProjectManagerRequired]
-        public ActionResult ProjectTasks(int id)
+        public ActionResult ProjectTasks(int Project_Id)
         {
             int Employee_Id = SessionUser.GetUser().Id;
             List<ListForm> list = new List<ListForm>();
-            foreach (Task Task in TaskService.GetForProject(id, Employee_Id))
+            foreach (Task Task in TaskService.GetForProject(Project_Id, Employee_Id))
             {
                 ListForm form = new ListForm()
                 {
@@ -71,11 +71,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
 
         [TeamMemberRequired]
-        public ActionResult TeamTasks(int id)
+        public ActionResult TeamTasks(int Team_Id)
         {
             int Employee_Id = SessionUser.GetUser().Id;
             List<ListForm> list = new List<ListForm>();
-            foreach (Task Task in TaskService.GetForTeam(id, Employee_Id))
+            foreach (Task Task in TaskService.GetForTeam(Team_Id, Employee_Id))
             {
                 ListForm form = new ListForm()
                 {
@@ -98,11 +98,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
 
         [ProjectManagerRequired]
-        public ActionResult AddProjectTask(int id)
+        public ActionResult AddProjectTask(int Project_Id)
         {
             CreateForm form = new CreateForm
             {
-                ProjectId = id,
+                ProjectId = Project_Id,
                 StartDate = DateTime.Today
             };
 
@@ -130,9 +130,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View(form);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int Task_Id)
         {
-            Task task = TaskService.Get(id, SessionUser.GetUser().Id);
+            Task task = TaskService.Get(Task_Id, SessionUser.GetUser().Id);
             IEnumerable<TaskStatus> Statuses = TaskService.GetStatusList();
             EditForm form = new EditForm()
             {
@@ -182,13 +182,13 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
 
         [TeamMemberRequired]
-        public ActionResult AddSubtask(int id)
+        public ActionResult AddSubtask(int Task_Id)
         {
-            Task Parent = TaskService.Get(id, SessionUser.GetUser().Id);
+            Task Parent = TaskService.Get(Task_Id, SessionUser.GetUser().Id);
             CreateForm form = new CreateForm
             {
                 ProjectId = Parent.ProjectId,
-                SubtaskOf = id,
+                SubtaskOf = Task_Id,
                 StartDate = DateTime.Today
             };
 
@@ -216,17 +216,31 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View(form);
         }
         [TeamMemberRequired]
-        public ActionResult Details(int id)
+        public ActionResult Details(int Task_Id)
         {
-            Task Task = TaskService.Get(id, SessionUser.GetUser().Id);
+            Task Task = TaskService.Get(Task_Id, SessionUser.GetUser().Id);
+            Task Parent = null;
+
             if (!(Task.SubtaskOf is null))
             {
-                Task Parent = TaskService.Get((int)Task.SubtaskOf, SessionUser.GetUser().Id);
+                Parent = TaskService.Get((int)Task.SubtaskOf, SessionUser.GetUser().Id);
             }
             IEnumerable<Task> Subtasks = TaskService.GetSubtasks(Task, SessionUser.GetUser().Id);
             DetailsForm form = new DetailsForm()
             {
-
+                Subtasks = Subtasks,
+                Parent = Parent,
+                Id = (int)Task.Id,
+                Name = Task.Name,
+                ProjectId = Task.ProjectId,
+                CreatorId = Task.CreatorId,
+                Description = Task.Description,
+                StartDate = Task.StartDate,
+                EndDate = Task.EndDate,
+                Deadline = Task.Deadline,
+                StatusName = Task.StatusName,
+                StatusDate = (DateTime)Task.StatusDate,
+                StatusId = (int)Task.StatusId
             };
             return View(form);
         }
