@@ -6,7 +6,7 @@
 	<script>
 		$(function () {
 			var div = document.getElementById("test");
-			var notifier = $.connection.ProjectHub;
+			var notifier = $.connection.projectHub;
 			notifier.client.RefreshMessagesId = function (id) {
 				div.innerText += id;
 				div.innerHtml += "<br/>";

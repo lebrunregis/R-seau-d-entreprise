@@ -11,8 +11,6 @@
 	SendFormTemplate.getElementsByClassName("ToTeam")[0].value = @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null");
 	const SendFormHtml = document.getElementById("SendFormTemplate").innerHTML;
 
-	//const SendToId = @(Model.ToEmployee ?? Model.ToProject ?? Model.ToTask ?? Model.ToTeam);
-
 	function AddReplyForm(id)
 	{
 		var Message = document.getElementById('message_' + id);
@@ -39,7 +37,6 @@
 				}
 				else if (results == "success") {
 					thisForm.reset();
-					refresh();
 					var id = thisForm.id.replace('reply_', '');
 					if (id != "") {
 						removeform(id);
@@ -94,5 +91,16 @@
 			messages[i].remove();
 		}
 	}
+
+	$(function () {
+		const MyId = @(Model.ToEmployee ?? Model.ToProject ?? Model.ToTask ?? Model.ToTeam);
+		var notifier = $.connection.projectHub;
+		notifier.client.RefreshMessagesId = function (id) {
+			if (id == MyId) {
+				refresh();
+			}
+		};
+		$.connection.hub.start();
+	});
 
 </script>
