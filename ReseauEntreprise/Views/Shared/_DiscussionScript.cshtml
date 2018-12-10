@@ -77,18 +77,25 @@
 		var temporal = document.getElementById('temporal');
 		var discussion = document.getElementById('discussion');
 		temporal.innerHTML += data;
-		var messages = temporal.getElementsByClassName("myMessageBox");
-		for (var i = messages.length-1; i >= 0; i--) {
-			var parent = messages[i].getAttribute("data-parentId");
-			var html = messages[i].outerHTML;
-			if (parent == "") {
-				discussion.innerHTML += html
+		if (temporal.getElementsByTagName("title").length > 0) // this is not our parial view
+		{
+			location.reload(true);
+		}
+		else
+		{
+			var messages = temporal.getElementsByClassName("myMessageBox");
+			for (var i = messages.length - 1; i >= 0; i--) {
+				var parent = messages[i].getAttribute("data-parentId");
+				var html = messages[i].outerHTML;
+				if (parent == "") {
+					discussion.innerHTML += html
+				}
+				else {
+					parentEl = document.getElementById('message_' + parent).parentElement;
+					parentEl.innerHTML += html
+				}
+				messages[i].remove();
 			}
-			else {
-				parentEl = document.getElementById('message_' + parent).parentElement;
-				parentEl.innerHTML += html
-			}
-			messages[i].remove();
 		}
 	}
 
