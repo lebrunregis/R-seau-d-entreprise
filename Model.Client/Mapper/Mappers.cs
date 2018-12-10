@@ -233,6 +233,7 @@ namespace Model.Client.Mapper
             return new G.Task
             {
                 Id = entity.Id,
+                ProjectId = entity.ProjectId,
                 Name = entity.Name,
                 Description = entity.Description,
                 StartDate = entity.StartDate,

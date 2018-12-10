@@ -23,7 +23,6 @@ namespace ReseauEntreprise.Hubs
             string sessionId = HttpContext.Current.Session.SessionID;
             string connectionId = Context.ConnectionId;
             string userId = Context.User.Identity.Name;
-
             return base.OnConnected();
         }
 

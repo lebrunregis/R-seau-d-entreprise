@@ -11,6 +11,7 @@ AS
 	EndDate,
 	Deadline,
 	SubtaskOf,
+	CreatorId,
 	ISNULL(TaskStatus.TaskStatus_Id,1) AS LastStatusId,  
 	ISNULL(TaskStatusHistory.date,StartDate) AS LastStatusDate,
 	LAST_VALUE(TaskStatus.Name) OVER (ORDER BY TaskStatusHistory.date) AS LastStatusName

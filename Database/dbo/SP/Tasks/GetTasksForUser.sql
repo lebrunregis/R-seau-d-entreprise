@@ -10,6 +10,7 @@ AS
 	EndDate,
 	Deadline,
 	SubtaskOf,
+	CreatorId,
 	ISNULL(TaskStatus.TaskStatus_Id,1) AS LastStatusId,  
 	ISNULL(TaskStatusHistory.date,StartDate) AS LastStatusDate,
 	LAST_VALUE(TaskStatus.Name) OVER (ORDER BY TaskStatusHistory.date) AS LastStatusName
@@ -18,5 +19,4 @@ AS
 	LEFT JOIN EmployeeTask ON EmployeeTask.Task_Id = Task.Task_Id
 	LEFT JOIN TaskStatus ON TaskStatus.TaskStatus_Id = TaskStatus.TaskStatus_Id
 	WHERE EmployeeTask.Employee_Id = @UserId 
-	GROUP BY Task.Task_Id
 	ORDER BY TaskStatusHistory.date

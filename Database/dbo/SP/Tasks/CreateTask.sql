@@ -9,6 +9,6 @@
 	@ProjectId int
 AS
 	INSERT INTO Task 
-	(Name,Description,StartDate,EndDate,Deadline,SubtaskOf,Creator,Project_Id) 
+	(Name,Description,StartDate,EndDate,Deadline,SubtaskOf,CreatorId,Project_Id) 
 	VALUES (@Name, @Description,@StartDate,@EndDate,@DeadLine,@SubtaskOf,@UserId,@ProjectId)
 RETURN 0

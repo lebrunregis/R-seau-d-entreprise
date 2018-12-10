@@ -10,6 +10,8 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
     public class CreateForm
     {
         [Required]
+        [HiddenInput]
+        [Editable(false)]
         public int ProjectId { get; set; }
         [Required]
         [MaxLength(50)]
