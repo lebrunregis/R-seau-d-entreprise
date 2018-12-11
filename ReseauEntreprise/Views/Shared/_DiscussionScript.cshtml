@@ -97,19 +97,42 @@
 				messages[i].remove();
 			}
 		}
+
+		var showButtons = document.querySelectorAll('.showButton[style*="display: block"]');
+		for (var i = 0; i < showButtons.length; i++) {
+			var showButton = showButtons[i];
+			var id = showButton.id.replace('show_', '');
+			var newCount = countMessagesInside(id);
+			var counterSpan = showButton.getElementsByClassName("counter")[0]
+			var oldCount = counterSpan.innerText;
+			if (oldCount != newCount) {
+				counterSpan.innerText = newCount;
+
+				//animate!
+				var newone = counterSpan.cloneNode(true);
+				counterSpan.parentNode.replaceChild(newone, counterSpan);
+			}
+		}
 	}
 
 	function hideBranch(id) {
 		var parentMessageBox = document.getElementById('message_' + id).parentElement;
-		var showButton = parentMessageBox.getElementsByClassName("showButton")[0];
-		var childMessageBoxes = parentMessageBox.getElementsByClassName("myMessageBox");
-		var hiddenMessagesCount = 0;
-		for (var i = 0; i < childMessageBoxes.length; i++) {
-			childMessageBoxes[i].style.display = "none";
-			hiddenMessagesCount += childMessageBoxes[i].getElementsByClassName("myMessage").length;
-		}
+		parentMessageBox.classList.add("hideBranch")
+		var showButton = document.getElementById('show_' + id);
 		showButton.style.display = "block";
-		showButton.innerText = "view " + hiddenMessagesCount + " hidden messages";
+		showButton.getElementsByClassName("counter")[0].innerText = countMessagesInside(id);
+	}
+
+	function countMessagesInside(id) {
+		var parentMessageBox = document.getElementById('message_' + id).parentElement;
+		return parentMessageBox.getElementsByClassName("myMessage").length - 1;
+	}
+
+	function showBranch(id) {
+		var showButton = document.getElementById('show_' + id);
+		showButton.style.display = "none";
+		var parentMessageBox = document.getElementById('message_' + id).parentElement;
+		parentMessageBox.classList.remove("hideBranch")
 	}
 
 	$(function () {

@@ -1,18 +1,20 @@
 ﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.ViewForm
 
-<div class="showButton" onclick="showBranch(@(Model.Parent))" style="display : none"></div>
 <div class="myMessageBox" data-parentId="@(Model.Parent)">
-	<div class="blackline2">
-		<div class="hideButton" onclick="hideBranch(@(Model.Parent))"></div>
-	</div>
 	<div class="blackline"></div>
-	<div class="myMessage" id="@("message_" + Model.Id.ToString())">
-		<div class="anchor" id="@("anchor_" + Model.Id.ToString())"></div>
+	<div class="blackline2">
+		<div class="hideButton" onclick="hideBranch(@(Model.Parent))" title="hide this branch">—</div>
+	</div>
+	<div class="myMessage" id="message_@(Model.Id)">
+		<div class="anchor" id="anchor_@(Model.Id)"></div>
 		@Html.DisplayFor(modelItem => Model.CreationTime)
 		@{Html.RenderPartial("_Employee", Model.Author);}
 		<h4>@Html.DisplayFor(modelItem => Model.Title)</h4>
 		<div class="multiligneText">@Html.DisplayFor(modelItem => Model.Message)</div>
-		<button id="@("button_" + Model.Id.ToString())" onclick="AddReplyForm(@Model.Id)" class="btn btn-default">Reply</button>
+		<button id="button_@(Model.Id)" onclick="AddReplyForm(@Model.Id)" class="btn btn-default">Reply</button>
+	</div>
+	<div class="showButton" id="show_@(Model.Id)" onclick="showBranch(@(Model.Id))" style="display : none">
+		view <span class="counter"></span> hidden messages
 	</div>
 	@if (Model.Children != null)
 	{
