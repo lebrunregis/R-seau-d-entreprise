@@ -135,7 +135,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     throw (exception);
                 }
             }
-            return View(form);
+            return RedirectToAction("Details","Project",new { Project_Id = form.ProjectId});
         }
 
         public ActionResult Edit(int Task_Id)
@@ -184,9 +184,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 {
                     throw (exception);
                 }
-                return RedirectToAction("Edit");
             }
-            return View(form);
+            return RedirectToAction("Details", "Project", new { Project_Id = form.ProjectId });
         }
 
         [TeamMemberRequired]
@@ -229,7 +228,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     throw (exception);
                 }
             }
-            return View(form);
+            return RedirectToAction("Details", "Project", new { Project_Id = form.ProjectId });
         }
         [TeamMemberRequired]
         public ActionResult Details(int Task_Id)
