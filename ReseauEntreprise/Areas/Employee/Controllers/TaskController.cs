@@ -44,11 +44,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
 
         [ProjectManagerRequired]
-        public ActionResult ProjectTasks(int Project_Id)
+        public ActionResult ProjectTasks(int id)
         {
             int Employee_Id = SessionUser.GetUser().Id;
             List<ListForm> list = new List<ListForm>();
-            foreach (Task Task in TaskService.GetForProject(Project_Id, Employee_Id))
+            foreach (Task Task in TaskService.GetForProject(id, Employee_Id))
             {
                 ListForm form = new ListForm()
                 {
@@ -71,11 +71,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
 
         [TeamMemberRequired]
-        public ActionResult TeamTasks(int Team_Id)
+        public ActionResult TeamTasks(int id)
         {
             int Employee_Id = SessionUser.GetUser().Id;
             List<ListForm> list = new List<ListForm>();
-            foreach (Task Task in TaskService.GetForTeam(Team_Id, Employee_Id))
+            foreach (Task Task in TaskService.GetForTeam(id, Employee_Id))
             {
                 ListForm form = new ListForm()
                 {
@@ -98,11 +98,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
 
         [ProjectManagerRequired]
-        public ActionResult AddProjectTask(int Project_Id)
+        public ActionResult AddProjectTask(int id)
         {
             CreateForm form = new CreateForm
             {
-                ProjectId = Project_Id,
+                ProjectId = id,
                 StartDate = DateTime.Today
             };
 
@@ -135,12 +135,12 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     throw (exception);
                 }
             }
-            return RedirectToAction("Details","Project",new { Project_Id = form.ProjectId});
+            return RedirectToAction("Details","Project",new { id = form.ProjectId});
         }
 
-        public ActionResult Edit(int Task_Id)
+        public ActionResult Edit(int id)
         {
-            Task task = TaskService.Get(Task_Id, SessionUser.GetUser().Id);
+            Task task = TaskService.Get(id, SessionUser.GetUser().Id);
             IEnumerable<TaskStatus> Statuses = TaskService.GetStatusList();
             EditForm form = new EditForm()
             {
@@ -185,17 +185,17 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     throw (exception);
                 }
             }
-            return RedirectToAction("Details", "Project", new { Project_Id = form.ProjectId });
+            return RedirectToAction("Details", "Project", new { id = form.ProjectId });
         }
 
         [TeamMemberRequired]
-        public ActionResult AddSubtask(int Task_Id)
+        public ActionResult AddSubtask(int id)
         {
-            Task Parent = TaskService.Get(Task_Id, SessionUser.GetUser().Id);
+            Task Parent = TaskService.Get(id, SessionUser.GetUser().Id);
             CreateForm form = new CreateForm
             {
                 ProjectId = Parent.ProjectId,
-                SubtaskOf = Task_Id,
+                SubtaskOf = id,
                 StartDate = DateTime.Today
             };
 
@@ -228,12 +228,12 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     throw (exception);
                 }
             }
-            return RedirectToAction("Details", "Project", new { Project_Id = form.ProjectId });
+            return RedirectToAction("Details", "Project", new { id = form.ProjectId });
         }
         [TeamMemberRequired]
-        public ActionResult Details(int Task_Id)
+        public ActionResult Details(int id)
         {
-            Task Task = TaskService.Get(Task_Id, SessionUser.GetUser().Id);
+            Task Task = TaskService.Get(id, SessionUser.GetUser().Id);
             Task Parent = null;
 
             if (!(Task.SubtaskOf is null))

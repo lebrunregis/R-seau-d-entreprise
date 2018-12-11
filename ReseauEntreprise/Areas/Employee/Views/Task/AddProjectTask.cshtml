@@ -71,9 +71,9 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        @Html.ActionLink("Back to Project", controllerName: "Project", actionName: "Details", routeValues: new { id = Model.ProjectId }, htmlAttributes: null)
+    </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

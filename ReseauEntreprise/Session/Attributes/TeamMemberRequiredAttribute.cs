@@ -19,8 +19,7 @@ namespace Réseau_d_entreprise.Session.Attributes
             string req = httpContext.Request.Url.Segments.Last();
             try
             {
-                int.TryParse(req.ToString(), out int teamId);
-                IEnumerable<Employee> team = TeamService.GetAllEmployeesForTeam(teamId);
+                IEnumerable<Employee> team = TeamService.GetAllEmployeesForTeam(int.Parse(req));
                 
                     
                 var result = from employee in team
