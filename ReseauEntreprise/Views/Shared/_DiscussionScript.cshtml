@@ -85,16 +85,18 @@
 		{
 			var messages = temporal.getElementsByClassName("myMessageBox");
 			for (var i = messages.length - 1; i >= 0; i--) {
-				var parent = messages[i].getAttribute("data-parentId");
-				var html = messages[i].outerHTML;
+				var message = messages[i];
+				message.classList.add("gradientopacity");
+				var parent = message.getAttribute("data-parentId");
+				var newMessage = message.cloneNode(true);
 				if (parent == "") {
-					discussion.innerHTML += html
+					var parentEl = discussion;
 				}
 				else {
-					parentEl = document.getElementById('message_' + parent).parentElement;
-					parentEl.innerHTML += html
+					var parentEl = document.getElementById('message_' + parent).parentElement;
 				}
-				messages[i].remove();
+				parentEl.insertAdjacentElement('beforeend', newMessage)
+				message.remove();
 			}
 		}
 

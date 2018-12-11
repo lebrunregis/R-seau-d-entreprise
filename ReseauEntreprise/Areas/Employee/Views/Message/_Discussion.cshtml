@@ -65,7 +65,7 @@
 		position: absolute;
 		background-color: transparent;
 		width: 7px;
-		height: 17px;
+		height: 20px;
 		top: 0px;
 		left: -8px;
 		border-bottom-style: solid;
@@ -81,13 +81,20 @@
 		border-style: solid;
 		border-color: lightgray;
 		border-width: 1px;
-		border-radius: 6px;
-		width: 12px;
-		height: 12px;
+		border-radius: 7px;
+		width: 14px;
+		height: 14px;
 		position: absolute;
-		left: -6px;
-		text-align: center;
-		font-size: 8px;
+		left: -7px;
+	}
+
+	.minus {
+		background-color: gray;
+		width: 10px;
+		height: 1px;
+		position: absolute;
+		left: 1px;
+		top: 6px;
 	}
 
 	:not(.showButton) + .myMessageBox > .blackline2 {
@@ -104,7 +111,9 @@
 	}
 
 	.hideBranch > .myMessageBox:nth-child(n + 4) {
-		display: none;
+		height: 0;
+		width: 0;
+		overflow: hidden;
 	}
 
 	@@keyframes coloralert {
@@ -112,9 +121,19 @@
 		to {color: black;}
 	}
 
+	@@keyframes opacitychange {
+		from {opacity: 0;}
+		to {opacity: 1;}
+	}
+
 	.counter {
 		animation-name: coloralert;
 		animation-duration: 2s;
+	}
+
+	.gradientopacity {
+		animation-name: opacitychange;
+		animation-duration: 1s;
 	}
 </style>
 <h3>Discussion</h3>

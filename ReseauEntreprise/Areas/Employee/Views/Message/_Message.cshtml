@@ -3,7 +3,9 @@
 <div class="myMessageBox" data-parentId="@(Model.Parent)">
 	<div class="blackline"></div>
 	<div class="blackline2">
-		<div class="hideButton" onclick="hideBranch(@(Model.Parent))" title="hide this branch">—</div>
+		<button class="hideButton" onclick="hideBranch(@(Model.Parent))" title="hide this branch">
+			<div class="minus"></div>
+		</button>
 	</div>
 	<div class="myMessage" id="message_@(Model.Id)">
 		<div class="anchor" id="anchor_@(Model.Id)"></div>
