@@ -55,7 +55,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Teams = Teams,
                 Tasks = Tasks,
                 
-                AmIProjectManager = (Employee_Id == Manager.Employee_Id),
+                IsProjectManager = (Employee_Id == Manager.Employee_Id),
                 DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToProject = Project.Id }
             };
 
