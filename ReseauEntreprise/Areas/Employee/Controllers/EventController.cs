@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using C = Model.Client.Data;
 using Model.Client.Service;
 using Réseau_d_entreprise.Session;
-using ReseauEntreprise.Areas.Admin.Models.ViewModels.Event;
+using ReseauEntreprise.Areas.Employee.Models.ViewModels.Event;
 using Réseau_d_entreprise.Session.Attributes;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers

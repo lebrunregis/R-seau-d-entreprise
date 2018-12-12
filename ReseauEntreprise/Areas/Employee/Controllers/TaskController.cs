@@ -256,7 +256,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Deadline = Task.Deadline,
                 StatusName = Task.StatusName,
                 StatusDate = (DateTime)Task.StatusDate,
-                StatusId = (int)Task.StatusId
+                StatusId = (int)Task.StatusId,
                 DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToTask = Task.Id }
             };
             return View(form);

@@ -214,13 +214,11 @@
     <Compile Include="Areas\Employee\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Employee\Controllers\TaskController.cs" />
     <Compile Include="Areas\Employee\Controllers\TeamController.cs" />
-    <Compile Include="Areas\Employee\Controllers\TestController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\ListForm.cs" />
-    <Compile Include="Areas\Employee\Models\ViewModels\Employee\EditEmailForm.cs" />
-    <Compile Include="Areas\Employee\Models\ViewModels\Employee\EditPassForm.cs" />
-    <Compile Include="Areas\Employee\Models\ViewModels\Employee\EditProfileForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Event\DetailsForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Event\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\DiscussionScriptForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\MailboxGeneralForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\MaxIdForm.cs" />
@@ -375,9 +373,10 @@
     <Content Include="Areas\Employee\Views\Message\_Mailbox.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_Message.cshtml" />
     <Content Include="Areas\Employee\Views\Message\Mailbox.cshtml" />
->>>>>>>>> Temporary merge branch 2
     <Content Include="Views\Shared\_DiscussionScript.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_MessageSimple.cshtml" />
+    <Content Include="Areas\Employee\Views\Event\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\Event\Details.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

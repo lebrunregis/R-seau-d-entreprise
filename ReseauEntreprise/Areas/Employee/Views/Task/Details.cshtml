@@ -94,19 +94,20 @@
 			@Html.DisplayNameFor(model => model.StatusId)
 		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StatusId)
-        </dd>
-        @{Html.RenderPartial("_ProjectTasks", Model.Subtasks);
+		<dd>
+			@Html.DisplayFor(model => model.StatusId)
+		</dd>
+		@{Html.RenderPartial("_ProjectTasks", Model.Subtasks);
 
-                @Html.ActionLink("Add Subtask", "Create", "AddSubtask", new { Task_Id = Model.Id }, null)
-            }
-    </dl>
+			@Html.ActionLink("Add Subtask", "Create", "AddSubtask", new { Task_Id = Model.Id }, null)
+		}
+	</dl>
 </div>
 <p>
 	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
 	@Html.ActionLink("Back to List", "Index")
 </p>
+@Html.Action("_Discussion", "Message", new { TaskId = Model.Id })
 @section scripts
 {
 	@{Html.RenderPartial("_DiscussionScript", Model.DiscScriptForm);}
