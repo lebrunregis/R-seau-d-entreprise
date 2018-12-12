@@ -127,7 +127,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 {
                     if (TaskService.Create(t, SessionUser.GetUser().Id) != null)
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Details", "Project", new { id = form.ProjectId });
                     }
                 }
                 catch (System.Data.SqlClient.SqlException exception)
