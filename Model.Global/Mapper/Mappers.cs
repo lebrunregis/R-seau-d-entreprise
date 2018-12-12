@@ -140,7 +140,7 @@ namespace Model.Global.Mapper
             {
                 Id = (int)dr["Task_Id"],
                 CreatorId = (int)dr["CreatorId"],
-                Task.TeamId = (int?)((dr["Team_Id"] == DBNull.Value) ? null : dr["Team_Id"]);
+                TeamId = (int?)((dr["Team_Id"] == DBNull.Value) ? null : dr["Team_Id"]),
                 Name = (string)dr["Name"],
                 Description = (string)dr["Description"],
                 StartDate = (DateTime)dr["StartDate"],
