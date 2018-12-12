@@ -151,7 +151,10 @@
 </div>
 <div class="whiteblock">
 	<h4>Compose new message</h4>
-	<div id="SendFormTemplate">
+	<div id="SendNew">
+		@{Html.RenderPartial("_SendFormTemplateRoot", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm());}
+	</div>
+	<div id="SendFormTemplate" class="hidden">
 		@{Html.RenderPartial("_SendFormTemplate", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm());}
 	</div>
 </div>

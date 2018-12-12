@@ -4,12 +4,18 @@
 <script src="~/signalr/hubs"></script>
 <script>
 	var SendFormTemplate = document.getElementById("SendFormTemplate");
+	var SendNew = document.getElementById("SendNew");
 
 	SendFormTemplate.getElementsByClassName("ToEmployee")[0].value = @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null");
 	SendFormTemplate.getElementsByClassName("ToProject")[0].value = @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null");
 	SendFormTemplate.getElementsByClassName("ToTask")[0].value = @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null");
 	SendFormTemplate.getElementsByClassName("ToTeam")[0].value = @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null");
 	const SendFormHtml = document.getElementById("SendFormTemplate").innerHTML;
+
+	SendNew.getElementsByClassName("ToEmployee")[0].value = @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null");
+	SendNew.getElementsByClassName("ToProject")[0].value = @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null");
+	SendNew.getElementsByClassName("ToTask")[0].value = @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null");
+	SendNew.getElementsByClassName("ToTeam")[0].value = @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null");
 
 	function AddReplyForm(id)
 	{

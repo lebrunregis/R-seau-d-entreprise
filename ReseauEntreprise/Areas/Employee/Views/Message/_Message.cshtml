@@ -11,7 +11,7 @@
 		<div class="anchor" id="anchor_@(Model.Id)"></div>
 		@Html.DisplayFor(modelItem => Model.CreationTime)
 		@{Html.RenderPartial("_Employee", Model.Author);}
-		<h4>@Html.DisplayFor(modelItem => Model.Title)</h4>
+		<h4>@(Model.Parent.HasValue ? "Re: " : "") @Html.DisplayFor(modelItem => Model.Title)</h4>
 		<div class="multiligneText">@Html.DisplayFor(modelItem => Model.Message)</div>
 		<button id="button_@(Model.Id)" onclick="AddReplyForm(@Model.Id)" class="btn btn-default">Reply</button>
 	</div>
