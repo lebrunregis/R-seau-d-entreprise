@@ -155,7 +155,6 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 SubtaskOf = task.SubtaskOf,
                 StatusName = task.StatusName,
                 StatusDate = (DateTime)task.StatusDate,
-                StatusId = (int)task.StatusId,
                 SelectedStatusId = (int)task.StatusId
 
             };
@@ -168,12 +167,13 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                Task Task = new Task();
                 try
                 {
+                    Task Task = TaskService.Get(form.Id, SessionUser.GetUser().Id);
+
                     if (TaskService.Edit(Task, SessionUser.GetUser().Id))
                     {
-                        if (form.StatusId != form.SelectedStatusId)
+                        if (Task.StatusId != form.SelectedStatusId)
                         {
                             TaskService.SetStatus(Task, form.SelectedStatusId, SessionUser.GetUser().Id);
                         }
