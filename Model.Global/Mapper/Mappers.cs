@@ -146,9 +146,9 @@ namespace Model.Global.Mapper
                 EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"]),
                 Deadline = (DateTime?)((dr["Deadline"] == DBNull.Value) ? null : dr["Deadline"]),
                 SubtaskOf = (int?)((dr["SubtaskOf"] == DBNull.Value) ? null : dr["SubtaskOf"]),
-                StatusId = (int)((dr["Status_Id"] == DBNull.Value) ? null : dr["Status_Id"]),
+                StatusId = (int)dr["Status_Id"],
                 StatusName = (string)dr["Status_Name"],
-                StatusDate = (DateTime)((dr["Status_Date"] == DBNull.Value) ? null : dr["Status_Date"])
+                StatusDate = (DateTime)dr["Status_Date"]
             };
         }
 
