@@ -100,7 +100,7 @@
 			}
 		}
 
-		var showButtons = document.querySelectorAll('.showButton[style*="display: block"]');
+		var showButtons = document.querySelectorAll('.hideBranch > .showButton');
 		for (var i = 0; i < showButtons.length; i++) {
 			var showButton = showButtons[i];
 			var id = showButton.id.replace('show_', '');
@@ -121,7 +121,6 @@
 		var parentMessageBox = document.getElementById('message_' + id).parentElement;
 		parentMessageBox.classList.add("hideBranch")
 		var showButton = document.getElementById('show_' + id);
-		showButton.style.display = "block";
 		showButton.getElementsByClassName("counter")[0].innerText = countMessagesInside(id);
 	}
 
@@ -131,8 +130,6 @@
 	}
 
 	function showBranch(id) {
-		var showButton = document.getElementById('show_' + id);
-		showButton.style.display = "none";
 		var parentMessageBox = document.getElementById('message_' + id).parentElement;
 		parentMessageBox.classList.remove("hideBranch")
 	}

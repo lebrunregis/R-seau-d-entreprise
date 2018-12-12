@@ -110,6 +110,12 @@
 		font-size: 90%;
 	}
 
+	:not(.hideBranch) > .showButton {
+		height: 0;
+		width: 0;
+		overflow: hidden;
+	}
+
 	.hideBranch > .myMessageBox:nth-child(n + 4) {
 		height: 0;
 		width: 0;
@@ -133,7 +139,7 @@
 
 	.gradientopacity {
 		animation-name: opacitychange;
-		animation-duration: 1s;
+		animation-duration: 0.5s;
 	}
 </style>
 <h3>Discussion</h3>

@@ -15,7 +15,7 @@
 		<div class="multiligneText">@Html.DisplayFor(modelItem => Model.Message)</div>
 		<button id="button_@(Model.Id)" onclick="AddReplyForm(@Model.Id)" class="btn btn-default">Reply</button>
 	</div>
-	<div class="showButton" id="show_@(Model.Id)" onclick="showBranch(@(Model.Id))" style="display : none">
+	<div class="showButton" id="show_@(Model.Id)" onclick="showBranch(@(Model.Id))" >
 		view <span class="counter"></span> hidden messages
 	</div>
 	@if (Model.Children != null)
