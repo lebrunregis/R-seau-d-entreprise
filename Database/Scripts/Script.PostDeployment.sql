@@ -92,12 +92,12 @@ DBCC CHECKIDENT ('[TaskStatus]', RESEED, 0);
 GO
 
 SET IDENTITY_INSERT [TaskStatus] ON 
-INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (1,'Not started');
-INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (2,'Being worked on');
-INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (3,'On hold');
-INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (4,'Done');
-INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (5,'Cancelled');
-INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (6,'Transferred to other team');
+INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (0,'Not started');
+INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (1,'Being worked on');
+INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (2,'On hold');
+INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (3,'Done');
+INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (4,'Cancelled');
+INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (5,'Transferred to other team');
 GO
 SET IDENTITY_INSERT [TaskStatus] OFF
 

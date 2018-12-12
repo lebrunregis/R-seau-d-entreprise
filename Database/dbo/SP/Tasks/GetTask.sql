@@ -12,7 +12,7 @@ AS
 	Deadline,
 	SubtaskOf,
 	CreatorId,
-	ISNULL(TaskStatus.TaskStatus_Id,1) AS Status_Id,  
+	ISNULL(TaskStatus.TaskStatus_Id,0) AS Status_Id,  
 	ISNULL(TaskStatusHistory.date,StartDate) AS Status_Date,
 	LAST_VALUE(TaskStatus.Name) OVER (ORDER BY TaskStatusHistory.date) AS Status_Name
 	FROM Task 

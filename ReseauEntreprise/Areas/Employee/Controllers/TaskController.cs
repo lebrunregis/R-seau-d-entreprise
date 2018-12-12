@@ -135,7 +135,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     throw (exception);
                 }
             }
-            return RedirectToAction("Details","Project",new { id = form.ProjectId});
+            return RedirectToAction("Details", "Project", new { id = form.ProjectId });
         }
 
         public ActionResult Edit(int id)
@@ -170,14 +170,19 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 try
                 {
                     Task Task = TaskService.Get(form.Id, SessionUser.GetUser().Id);
-
+                    Task.Name = form.Name;
+                    Task.Description = form.Description;
+                    Task.StartDate = form.StartDate;
+                    Task.EndDate = form.EndDate;
+                    Task.Deadline = form.Deadline;
+                    
                     if (TaskService.Edit(Task, SessionUser.GetUser().Id))
                     {
                         if (Task.StatusId != form.SelectedStatusId)
                         {
                             TaskService.SetStatus(Task, form.SelectedStatusId, SessionUser.GetUser().Id);
                         }
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Details", "Project", new { id = Task.ProjectId });
                     }
                 }
                 catch (System.Data.SqlClient.SqlException exception)
