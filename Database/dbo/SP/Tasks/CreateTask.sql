@@ -6,9 +6,10 @@
 	@DeadLine DATETIME2(0) ,
 	@SubtaskOf int,
 	@UserId int,
-	@ProjectId int
+	@ProjectId int,
+	@TeamId int
 AS
 	INSERT INTO Task 
-	(Name,Description,StartDate,EndDate,Deadline,SubtaskOf,CreatorId,Project_Id) 
-	VALUES (@Name, @Description,@StartDate,@EndDate,@DeadLine,@SubtaskOf,@UserId,@ProjectId)
+	(Name,Description,StartDate,EndDate,Deadline,SubtaskOf,CreatorId,Project_Id,Team_Id) 
+	VALUES (@Name, @Description,@StartDate,@EndDate,@DeadLine,@SubtaskOf,@UserId,@ProjectId,@TeamId)
 RETURN 0

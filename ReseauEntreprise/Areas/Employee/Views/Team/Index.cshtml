@@ -67,18 +67,18 @@
 			}
 		</td>
 		<td>
-			@Html.ActionLink("Details", "Details", new { id = item.TeamId })
+			@Html.ActionLink("Details", "Details", new { teamId = item.TeamId })
 			<br />
 			@if (item.AmITeamLeader || item.AmIProjectManager)
 			{
-				@Html.ActionLink("Add or remove members", "EmployeesInTeam", new { id = item.TeamId })
+				@Html.ActionLink("Add or remove members", "EmployeesInTeam", new { teamId = item.TeamId })
 				<br />
 			}
 			@if (item.AmIProjectManager)
 			{
-				@Html.ActionLink("Edit", "Edit", new { id = item.TeamId })
+				@Html.ActionLink("Edit", "Edit", new { teamId = item.TeamId })
 				<br />
-				@Html.ActionLink("Delete", "Delete", new { id = item.TeamId })
+				@Html.ActionLink("Delete", "Delete", new { teamId = item.TeamId })
 			}
 		</td>
 	</tr>

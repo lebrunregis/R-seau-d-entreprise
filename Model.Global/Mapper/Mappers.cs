@@ -140,6 +140,7 @@ namespace Model.Global.Mapper
             {
                 Id = (int)dr["Task_Id"],
                 CreatorId = (int)dr["CreatorId"],
+                Task.TeamId = (int?)((dr["Team_Id"] == DBNull.Value) ? null : dr["Team_Id"]);
                 Name = (string)dr["Name"],
                 Description = (string)dr["Description"],
                 StartDate = (DateTime)dr["StartDate"],
@@ -165,7 +166,7 @@ namespace Model.Global.Mapper
         {
             return new TaskStatusHistory()
             {
-              TaskId= (int)dr["Task_Id"],
+                TaskId = (int)dr["Task_Id"],
                 TaskStatusId = (int)dr["TaskStatus_Id"],
                 StatusName = (string)dr["TaskStatus.Name"],
                 Date = (DateTime)dr["date"]

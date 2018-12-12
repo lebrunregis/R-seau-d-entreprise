@@ -44,11 +44,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
 
         [ProjectManagerRequired]
-        public ActionResult ProjectTasks(int id)
+        public ActionResult ProjectTasks(int taskId)
         {
             int Employee_Id = SessionUser.GetUser().Id;
             List<ListForm> list = new List<ListForm>();
-            foreach (Task Task in TaskService.GetForProject(id, Employee_Id))
+            foreach (Task Task in TaskService.GetForProject(taskId, Employee_Id))
             {
                 ListForm form = new ListForm()
                 {
@@ -71,11 +71,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
 
         [TeamMemberRequired]
-        public ActionResult TeamTasks(int id)
+        public ActionResult TeamTasks(int taskId)
         {
             int Employee_Id = SessionUser.GetUser().Id;
             List<ListForm> list = new List<ListForm>();
-            foreach (Task Task in TaskService.GetForTeam(id, Employee_Id))
+            foreach (Task Task in TaskService.GetForTeam(taskId, Employee_Id))
             {
                 ListForm form = new ListForm()
                 {
@@ -98,12 +98,23 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
 
         [ProjectManagerRequired]
-        public ActionResult AddProjectTask(int id)
+        public ActionResult AddProjectTask(int projectId)
         {
+            IEnumerable<Team> Teams = ProjectService.GetAllTeamsForProject(projectId);
+            List<SelectListItem> TeamList = new List<SelectListItem>();
+            foreach (Team Team in Teams)
+            {
+                TeamList.Add(new SelectListItem
+                {
+                    Text = Team.Name,
+                    Value = Team.Id.ToString()
+                });
+            }
             CreateForm form = new CreateForm
             {
-                ProjectId = id,
-                StartDate = DateTime.Today
+                ProjectId = projectId,
+                StartDate = DateTime.Today,
+                TeamList = TeamList
             };
 
             return View(form);
@@ -138,15 +149,25 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return RedirectToAction("Details", "Project", new { id = form.ProjectId });
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int taskId)
         {
-            Task task = TaskService.Get(id, SessionUser.GetUser().Id);
+            Task task = TaskService.Get(taskId, SessionUser.GetUser().Id);
             IEnumerable<TaskStatus> Statuses = TaskService.GetStatusList();
+            List<SelectListItem> StatusList = new List<SelectListItem>();
+            foreach (TaskStatus Status in Statuses)
+            {
+                StatusList.Add(new SelectListItem
+                {
+                    Text = Status.Name,
+                    Value = Status.Id.ToString()
+                });
+            }
             EditForm form = new EditForm()
             {
                 Id = (int)task.Id,
                 ProjectId = (int)task.ProjectId,
                 CreatorId = (int)task.CreatorId,
+                TeamId = (int)task.TeamId,
                 Name = task.Name,
                 Description = task.Description,
                 StartDate = task.StartDate,
@@ -155,8 +176,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 SubtaskOf = task.SubtaskOf,
                 StatusName = task.StatusName,
                 StatusDate = (DateTime)task.StatusDate,
-                SelectedStatusId = (int)task.StatusId
-
+                SelectedStatusId = (int)task.StatusId,
+                StatusList = StatusList
             };
 
             return View(form);
@@ -175,6 +196,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     Task.StartDate = form.StartDate;
                     Task.EndDate = form.EndDate;
                     Task.Deadline = form.Deadline;
+                    Task.TeamId = form.TeamId;
                     
                     if (TaskService.Edit(Task, SessionUser.GetUser().Id))
                     {
@@ -194,13 +216,13 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
 
         [TeamMemberRequired]
-        public ActionResult AddSubtask(int id)
+        public ActionResult AddSubtask(int taskId)
         {
-            Task Parent = TaskService.Get(id, SessionUser.GetUser().Id);
+            Task Parent = TaskService.Get(taskId, SessionUser.GetUser().Id);
             CreateForm form = new CreateForm
             {
                 ProjectId = Parent.ProjectId,
-                SubtaskOf = id,
+                SubtaskOf = taskId,
                 StartDate = DateTime.Today
             };
 
@@ -236,9 +258,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return RedirectToAction("Details", "Project", new { id = form.ProjectId });
         }
         [TeamMemberRequired]
-        public ActionResult Details(int id)
+        public ActionResult Details(int taskId)
         {
-            Task Task = TaskService.Get(id, SessionUser.GetUser().Id);
+            Task Task = TaskService.Get(taskId, SessionUser.GetUser().Id);
             Task Parent = null;
 
             if (!(Task.SubtaskOf is null))

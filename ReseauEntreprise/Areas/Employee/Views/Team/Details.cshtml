@@ -70,23 +70,21 @@
         </dt>
         <dd>
             @{Html.RenderPartial("_TeamTasks", Model.Tasks); }
-
-            @Html.ActionLink("Create new subtask", "AddSubtask", "Task", new { Task_Id = Model.Id }, null)
         </dd>
     </dl>
 </div>
 <p>
-	@if (Model.IsTeamLeader || Model.IsProjectManagerOrAdmin)
+    @if (Model.IsTeamLeader || Model.IsProjectManagerOrAdmin)
     {
-		@Html.ActionLink("Change employees in team", "EmployeesInTeam", new { id = Model.Id });
-            <div> | </div>
-	}
-	@if (Model.IsProjectManagerOrAdmin)
+        @Html.ActionLink("Change employees in team", "EmployeesInTeam", new { id = Model.Id });
+        <text> | </text>
+    }
+    @if (Model.IsProjectManagerOrAdmin)
     {
-		@Html.ActionLink("Edit", "Edit", new { id = Model.Id }); <div> | </div>
-		@Html.ActionLink("Delete", "Delete", new { id = Model.Id }); <div> | </div>
-	}
-	@Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id });<text> | </text>
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id });<text> | </text>
+    }
+    @Html.ActionLink("Back to List", "Index")
 </p>
 
 @Html.Action("_Discussion", "Message", new { TeamId = Model.Id })
