@@ -61,23 +61,23 @@
 
         <dd>
             @{Html.RenderPartial("_TeamList", Model.Teams);
-                if (Model.AmIProjectManager)
+                if (Model.IsProjectManager)
                 {
-                    @Html.ActionLink("Create new team", "Create", "Team", new { Project_Id = Model.Id }, null)
+                    @Html.ActionLink("Create new team", "Create", "Team", new { id = Model.Id }, null)
                 }
             }
-
-
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Tasks)
         </dt>
+
         <dd>
             @{Html.RenderPartial("_ProjectTasks", Model.Tasks);
-                if (Model.AmIProjectManager)
+                if (Model.IsProjectManager)
                 {
-                    @Html.ActionLink("Create new master task", "AddProjectTask", "Task", new { Project_Id = Model.Id }, null)
-                }}
+                    @Html.ActionLink("Create new master task", "AddProjectTask", "Task", new { id = Model.Id }, null)}
+                }
         </dd>
     </dl>
 </div>

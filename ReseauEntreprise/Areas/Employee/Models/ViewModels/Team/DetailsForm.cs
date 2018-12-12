@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using G = Model.Client.Data;
+using C =Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
 {
@@ -19,20 +19,20 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         public String Name { get; set; }
         [Required]
         [Display(Name = "Team Leader")]
-        public G.Employee TeamLeader { get; set; }
+        public C.Employee TeamLeader { get; set; }
         [Required]
         [Display(Name = "Creator")]
-        public G.Employee Creator { get; set; }
+        public C.Employee Creator { get; set; }
         [Required]
-        public G.Project Project { get; set; }
+        public C.Project Project { get; set; }
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }
-        public IEnumerable<G.Employee> Members { get; set; }
-        public bool AmITeamLeader { get; set; }
-        public bool AmIProjectManagerOrAdmin {get; set; }
-
+        public IEnumerable<C.Employee> Members { get; set; }
+        public bool IsTeamLeader { get; set; }
+        public bool IsProjectManagerOrAdmin {get ; set; }
+        public IEnumerable<C.Task> Tasks { get ; set; }
         public Message.DiscussionScriptForm DiscScriptForm { get; set; }
     }
 }

@@ -308,6 +308,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(id));
             D.Employee Creator = EmployeeService.Get(Team.Creator_Id);
             D.Project Project = ProjectService.GetProjectById(Team.Project_Id);
+            IEnumerable<D.Task> Tasks = TaskService.GetForTeam(id, Employee_Id);
             IEnumerable<D.Employee> Members = TeamService.GetAllEmployeesForTeam(id);
             DetailsForm Form = new DetailsForm
             {
@@ -319,9 +320,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 DateCreated = Team.Created,
                 EndDate = Team.Disbanded,
                 Members = Members,
-                AmITeamLeader = (Employee_Id == TeamLeader.Employee_Id),
-                AmIProjectManagerOrAdmin = ((AuthService.IsAdmin(Employee_Id)) || (Employee_Id == ProjectService.GetProjectManagerId(Team.Project_Id))),
                 DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToTeam = Team.Id }
+                Tasks = Tasks,
+                IsTeamLeader = (Employee_Id == TeamLeader.Employee_Id),
+                IsProjectManagerOrAdmin = ((AuthService.IsAdmin(Employee_Id)) || (Employee_Id == ProjectService.GetProjectManagerId(Team.Project_Id)))
             };
             return View(Form);
         }

@@ -30,7 +30,7 @@ namespace Model.Global.Service
         public static Task Get(int id, int UserId)
         {
             Command cmd = new Command("GetTask", true);
-            cmd.AddParameter("Id", id);
+            cmd.AddParameter("TaskId", id);
             cmd.AddParameter("UserId", UserId);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToTask()).FirstOrDefault();
         }
@@ -38,14 +38,14 @@ namespace Model.Global.Service
         public static IEnumerable<Task> GetSubtasks(Task t, int UserId)
         {
             Command cmd = new Command("GetSubtasks", true);
-            cmd.AddParameter("Id", t.Id);
+            cmd.AddParameter("TaskId", t.Id);
             cmd.AddParameter("UserId", UserId);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToTask());
         }
 
         public static IEnumerable<Task> GetForTeam(int teamId, int userId)
         {
-            Command cmd = new Command("GetTasksForProject", true);
+            Command cmd = new Command("GetTasksForTeam", true);
             cmd.AddParameter("TeamId", teamId);
             cmd.AddParameter("UserId", userId);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToTask());

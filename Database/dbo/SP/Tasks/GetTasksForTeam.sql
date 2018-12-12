@@ -1,5 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[GetTasksForTeam]
-@TeamId int
+@TeamId int,
+@UserId int
 AS
 	SELECT 
 	Task.Task_Id AS Task_Id,

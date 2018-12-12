@@ -157,7 +157,7 @@ namespace Model.Global.Mapper
             return new TaskStatus()
             {
                 Id = (int)dr["TaskStatus_Id"],
-                Name = (string)dr["Status_Name"]
+                Name = (string)dr["Name"]
             };
         }
 

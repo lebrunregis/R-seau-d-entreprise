@@ -25,7 +25,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
         public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }
-        public bool AmIProjectManager { get; set; }
+        public bool IsProjectManager { get; set; }
 
 
         public ListForm()
@@ -41,7 +41,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
             this.Manager = Manager;
             this.StartDate = Project.Start;
             this.EndDate = Project.End;
-            AmIProjectManager = (MyId == Manager.Employee_Id);
+            IsProjectManager = (MyId == Manager.Employee_Id);
         }
     }
 }
