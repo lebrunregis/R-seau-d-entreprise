@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using D = Model.Global.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
 {
@@ -28,5 +29,9 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         public DateTime? Deadline { get; set; }
         [HiddenInput]
         public int? SubtaskOf { get; set; }
+        public IEnumerable<SelectListItem> TeamList { get; set; }
+        [Required]
+        [HiddenInput]
+        public int SelectedTeamId { get; set; }
     }
 }

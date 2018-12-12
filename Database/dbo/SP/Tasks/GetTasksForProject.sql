@@ -8,6 +8,7 @@ AS
 	EndDate,
 	Deadline,
 	SubtaskOf,
+	Team_Id,
 	CreatorId, 
 	CASE WHEN TaskStatus.TaskStatus_Id is NULL THEN 1 ELSE TaskStatus.TaskStatus_Id END AS Status_Id,
 	ISNULL(TaskStatusHistory.date,StartDate) AS Status_Date,
