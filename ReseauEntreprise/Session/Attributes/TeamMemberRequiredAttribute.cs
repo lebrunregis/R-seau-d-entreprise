@@ -1,5 +1,6 @@
 ﻿using Model.Client.Data;
 using Model.Client.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,24 +17,44 @@ namespace Réseau_d_entreprise.Session.Attributes
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             bool accessAllowed = false;
-            string req = httpContext.Request.Url.Segments.Last();
+            string teamId = httpContext.Request.Params.Get("teamId");
+            string taskId = httpContext.Request.Params.Get("taskId");
+            Task Task;
+            IEnumerable<Employee> Team = null;
             try
             {
-                IEnumerable<Employee> team = TeamService.GetAllEmployeesForTeam(int.Parse(req));
-                
-                    
-                var result = from employee in team
-                where employee.Employee_Id == SessionUser.GetUser().Id
-                select employee;
+                if (!(taskId is null))
+                {
+                    Task = TaskService.Get(int.Parse(taskId), SessionUser.GetUser().Id);
+                    if (Task.TeamId is null)
+                    {
+                        accessAllowed = true;
+                    }
+                    else
+                    {
+                        Team = TeamService.GetAllEmployeesForTeam((int)Task.TeamId);
+                    }
 
-                if (result.Count() ==1)
+                }
+                else
+                if (!(teamId is null))
+                {
+                    Team = TeamService.GetAllEmployeesForTeam(int.Parse(teamId));
+                }
+
+                var Result = from Employee in Team
+                             where Employee.Employee_Id == SessionUser.GetUser().Id
+                             select Employee;
+
+                if (Result.Count() == 1)
                 {
                     accessAllowed = true;
                 }
             }
-            catch
+
+            catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
 
             return accessAllowed;

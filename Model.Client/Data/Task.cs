@@ -11,7 +11,7 @@ namespace Model.Client.Data
         private int? id;
         private int projectId;
         private int creatorId;
-        private int teamId;
+        private int? teamId;
         private String name;
         private String description;
         private DateTime startDate;
@@ -27,7 +27,7 @@ namespace Model.Client.Data
 
         }
 
-        public Task( int projectId, int creatorId, int teamId, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf)
+        public Task( int projectId, int creatorId, int? teamId, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf)
         {
             ProjectId = projectId;
             CreatorId = creatorId;
@@ -40,7 +40,7 @@ namespace Model.Client.Data
             SubtaskOf = subtaskOf;
         }
 
-        public Task(int id, int projectId, int creatorId, int teamId, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf,string statusName,DateTime? statusDate,int statusId)
+        public Task(int id, int projectId, int creatorId, int? teamId, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf,string statusName,DateTime? statusDate,int statusId)
         {
             Id = id;
             ProjectId = projectId;
@@ -69,6 +69,6 @@ namespace Model.Client.Data
         public DateTime? StatusDate { get => statusDate;  }
         public int ProjectId { get => projectId; set => projectId = value; }
         public int CreatorId { get => creatorId; set => creatorId = value; }
-        public int TeamId { get => teamId; set => teamId = value; }
+        public int? TeamId { get => teamId; set => teamId = value; }
     }
 }

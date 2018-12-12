@@ -11,7 +11,7 @@ namespace Model.Global.Data
         public int? Id { get; set; }
         public int ProjectId { get; set; }
         public int CreatorId { get; set; }
-        public int TeamId { get; set; }
+        public int? TeamId { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
         public DateTime StartDate { get; set; }

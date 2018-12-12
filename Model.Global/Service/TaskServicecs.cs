@@ -23,6 +23,7 @@ namespace Model.Global.Service
             cmd.AddParameter("DeadLine", t.Deadline);
             cmd.AddParameter("SubtaskOf", t.SubtaskOf);
             cmd.AddParameter("ProjectId", t.ProjectId);
+            cmd.AddParameter("TeamId", t.TeamId);
             cmd.AddParameter("UserId",UserId);
             return (int?)Connection.ExecuteScalar(cmd);
         }

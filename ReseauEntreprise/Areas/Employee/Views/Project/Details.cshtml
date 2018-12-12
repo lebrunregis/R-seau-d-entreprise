@@ -76,7 +76,7 @@
             @{Html.RenderPartial("_ProjectTasks", Model.Tasks);
                 if (Model.IsProjectManager)
                 {
-                    @Html.ActionLink("Create new master task", "AddProjectTask", "Task", new { id = Model.Id }, null)}
+                    @Html.ActionLink("Create new master task", "AddProjectTask", "Task", new { projectId = Model.Id }, null)}
                 }
         </dd>
     </dl>

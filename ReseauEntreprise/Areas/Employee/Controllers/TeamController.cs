@@ -197,13 +197,13 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View(form);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int teamId)
         {
             int Employee_Id = SessionUser.GetUser().Id;
-            D.Team Team = TeamService.GetTeamById(id);
+            D.Team Team = TeamService.GetTeamById(teamId);
             if (AuthService.IsAdmin(Employee_Id) || ProjectService.GetProjectManagerId(Team.Project_Id) == Employee_Id)
             {
-                D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(id));
+                D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(teamId));
                 EditForm form = new EditForm()
                 {
                     Id = (int)Team.Id,
@@ -259,10 +259,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View(form);
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int teamId)
         {
             int Employee_Id = SessionUser.GetUser().Id;
-            D.Team Team = TeamService.GetTeamById(id);
+            D.Team Team = TeamService.GetTeamById(teamId);
             if (AuthService.IsAdmin(Employee_Id) || ProjectService.GetProjectManagerId(Team.Project_Id) == Employee_Id)
             {
                 DeleteForm form = new DeleteForm()
@@ -301,15 +301,15 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             }
             return View(form);
         }
-        public ActionResult Details(int id)
+        public ActionResult Details(int teamId)
         {
             int Employee_Id = SessionUser.GetUser().Id;
-            D.Team Team = TeamService.GetTeamById(id);
-            D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(id));
+            D.Team Team = TeamService.GetTeamById(teamId);
+            D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(teamId));
             D.Employee Creator = EmployeeService.Get(Team.Creator_Id);
             D.Project Project = ProjectService.GetProjectById(Team.Project_Id);
-            IEnumerable<D.Task> Tasks = TaskService.GetForTeam(id, Employee_Id);
-            IEnumerable<D.Employee> Members = TeamService.GetAllEmployeesForTeam(id);
+            IEnumerable<D.Task> Tasks = TaskService.GetForTeam(teamId, Employee_Id);
+            IEnumerable<D.Employee> Members = TeamService.GetAllEmployeesForTeam(teamId);
             DetailsForm Form = new DetailsForm
             {
                 Id = (int)Team.Id,
@@ -327,14 +327,14 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View(Form);
         }
 
-        public ActionResult EmployeesInTeam(int id)
+        public ActionResult EmployeesInTeam(int teamId)
         {
             int Employee_Id = SessionUser.GetUser().Id;
-            D.Team Team = TeamService.GetTeamById(id);
+            D.Team Team = TeamService.GetTeamById(teamId);
             if (Team != null &&
                 (AuthService.IsAdmin(Employee_Id) ||
                  ProjectService.GetProjectManagerId(Team.Project_Id) == Employee_Id ||
-                 TeamService.GetTeamLeaderId(id) == Employee_Id
+                 TeamService.GetTeamLeaderId(teamId) == Employee_Id
                 ))
             {
                 IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
@@ -346,7 +346,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     {
                         Employee = employee,
                         Departments = departments,
-                        IsInTeam = TeamService.IsInTeam(id, (int)employee.Employee_Id)
+                        IsInTeam = TeamService.IsInTeam(teamId, (int)employee.Employee_Id)
                     });
                 }
                 EmployeesInTeamForm form = new EmployeesInTeamForm
