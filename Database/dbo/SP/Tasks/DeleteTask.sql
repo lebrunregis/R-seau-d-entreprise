@@ -5,7 +5,8 @@
 	@StartDate DATETIME2(0),
 	@EndDate DATETIME2(0),
 	@DeadLine DATETIME2(0),
-	@SubtaskOf int
+	@SubtaskOf int,
+	@CreatorId int
 AS
 	DELETE 
 	FROM Task 
@@ -13,4 +14,4 @@ AS
 	AND Name = @Name 
 	AND Description = @Description 
 	AND SubtaskOf = @SubtaskOf
-RETURN 0
+	AND CreatorId = @CreatorId

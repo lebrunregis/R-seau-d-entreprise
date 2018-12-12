@@ -214,9 +214,13 @@
     <Compile Include="Areas\Employee\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Employee\Controllers\TaskController.cs" />
     <Compile Include="Areas\Employee\Controllers\TeamController.cs" />
+    <Compile Include="Areas\Employee\Controllers\TestController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\ListForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Employee\EditEmailForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Employee\EditPassForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Employee\EditProfileForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\DiscussionScriptForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\MailboxGeneralForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\MaxIdForm.cs" />
@@ -256,6 +260,7 @@
     </Compile>
     <Compile Include="Hubs\AuthorizationHub.cs" />
     <Compile Include="Hubs\ConnectionMapper.cs" />
+    <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\EmployeeHub.cs" />
     <Compile Include="Hubs\MailboxHub.cs" />
     <Compile Include="Hubs\ProjectHub.cs" />
@@ -270,6 +275,9 @@
     <Compile Include="Session\Attributes\ProjectManagerRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\TeamLeaderRequiredAttribute.cs" />
     <Compile Include="Session\Attributes\TeamMemberRequiredAttribute.cs" />
+    <Compile Include="Session\AuthorizeObservable.cs" />
+    <Compile Include="Session\AuthorizeObservers.cs" />
+    <Compile Include="Session\CurrentSessions.cs" />
     <Compile Include="Session\SessionUser.cs" />
     <Compile Include="Session\SessionUserProvider.cs" />
     <Compile Include="Session\User.cs" />
@@ -367,6 +375,7 @@
     <Content Include="Areas\Employee\Views\Message\_Mailbox.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_Message.cshtml" />
     <Content Include="Areas\Employee\Views\Message\Mailbox.cshtml" />
+>>>>>>>>> Temporary merge branch 2
     <Content Include="Views\Shared\_DiscussionScript.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_MessageSimple.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

@@ -41,14 +41,16 @@
 		<td>
 			@{ Html.RenderPartial("_Employee", item.Manager); }
 		</td>
-		<td>
-			@Html.ActionLink("Details", "Details", new { id = item.ProjectId })
-			@if (item.AmIProjectManager)
-			{
-				<br />
-				@Html.ActionLink("Create new team", "Create", "Team", new { Project_Id = item.ProjectId }, null)
-			}
-		</td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.ProjectId })
+            @if (item.AmIProjectManager)
+            {
+                <br />
+                @Html.ActionLink("Create new team", "Create", "Team", new { Project_Id = item.ProjectId }, null)
+                <br />
+                @Html.ActionLink("Create master task", "AddProjectTask", "Task", new { Project_Id = item.ProjectId }, null)
+            }
+        </td>
 	</tr>
 }
 

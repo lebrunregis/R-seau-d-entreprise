@@ -94,11 +94,14 @@
 			@Html.DisplayNameFor(model => model.StatusId)
 		</dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.StatusId)
-		</dd>
+        <dd>
+            @Html.DisplayFor(model => model.StatusId)
+        </dd>
+        @{Html.RenderPartial("_ProjectTasks", Model.Subtasks);
 
-	</dl>
+                @Html.ActionLink("Add Subtask", "Create", "AddSubtask", new { Task_Id = Model.Id }, null)
+            }
+    </dl>
 </div>
 <p>
 	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

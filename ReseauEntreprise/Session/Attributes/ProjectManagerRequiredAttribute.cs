@@ -18,28 +18,31 @@ namespace ReseauEntreprise.Session.Attributes
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             bool accessAllowed = false;
-            Task task = null;
-            Project project = null;
-            string req = httpContext.Request.Url.Segments.Last();
-
+            string ActionName = httpContext.Request.Url.Segments.Last();
+            string Id;
             try
             {
                 if (ActionName.Equals("Edit"))
                 {
-                    int.TryParse(req, out int taskId);
-                    task = TaskService.Get(taskId, SessionUser.GetUser().Id);
-                    project = ProjectService.GetProjectById(task.ProjectId);
+                    Id = httpContext.Request.Params.Get("ProjectId");
+
                 }
                 else if (ActionName.Equals("AddProjectTask") || ActionName.Equals("ProjectTasks"))
                 {
-                    int.TryParse(req, out int projId);
-                    project = ProjectService.GetProjectById(projId);
+                    Id = httpContext.Request.Params.Get("Project_Id");
+
+
+                    IEnumerable<Project> projects = SessionUser.GetUser().AuthorizedProjects;
+                    int UserId = SessionUser.GetUser().Id;
+                    IEnumerable<Project> results = projects.Where(x => x.Id == int.Parse(Id) && x.ProjectManagerId == UserId);
+
+                    if (results.Count() == 1)
+                    {
+                        accessAllowed = true;
+                    }
                 }
 
-                if (SessionUser.GetUser().Id == project.ProjectManagerId)
-                {
-                    accessAllowed = true;
-                }
+
             }
             catch
             {

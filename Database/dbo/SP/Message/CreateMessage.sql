@@ -16,7 +16,7 @@ INSERT INTO @arguments_verifier(receiver) VALUES (@receiver_employee), (@receive
 DECLARE @CountReceivers int;
 SELECT @CountReceivers=count(receiver) FROM @arguments_verifier;
 
-IF EXISTS(SELECT * FROM [dbo].[Employee] WHERE Employee_Id = @Author AND Active = 1)
+IF EXISTS(SELECT * FROM [dbo].[Employee] WHERE Employee_Id = @author AND Active = 1)
 AND @CountReceivers = 1
 AND (@parent IS NULL
     OR EXISTS (SELECT * FROM MessageProject WHERE Message_Id=@parent AND Project_Id=@receiver_project)

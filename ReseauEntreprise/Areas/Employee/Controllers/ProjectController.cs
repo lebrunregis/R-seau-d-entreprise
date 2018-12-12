@@ -42,6 +42,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
             C.Employee Creator = EmployeeService.Get(Project.CreatorId);
             IEnumerable<C.Team> Teams = ProjectService.GetAllTeamsForProject(id);
+            IEnumerable<C.Task> Tasks = TaskService.GetForProject(id, Employee_Id);
             DetailsForm Form = new DetailsForm
             {
                 Id = (int)Project.Id,
@@ -52,6 +53,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 StartDate = Project.Start,
                 EndDate = Project.End,
                 Teams = Teams,
+                Tasks = Tasks,
                 AmIProjectManager = (Employee_Id == Manager.Employee_Id),
                 DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToProject = Project.Id }
             };

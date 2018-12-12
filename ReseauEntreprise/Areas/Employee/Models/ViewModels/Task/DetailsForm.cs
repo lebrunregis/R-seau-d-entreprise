@@ -30,9 +30,10 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         public DateTime StatusDate { get; set; }
         [Required]
         public int StatusId { get; set; }
-        C.Task Parent { get; set; }
-        IEnumerable<C.Task> Subtasks { get; set; }
+
 
         public Message.DiscussionScriptForm DiscScriptForm { get; set; }
+        public C.Task Parent { get; set; }
+        public IEnumerable<C.Task> Subtasks { get; set; }
     }
 }

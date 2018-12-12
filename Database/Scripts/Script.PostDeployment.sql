@@ -34,6 +34,8 @@ GO
 --DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 --GO
 
+
+
 DELETE FROM [MessageEmployee];
 GO
 DELETE FROM [MessageProject];
@@ -62,6 +64,10 @@ DELETE FROM [ProjectManager];
 GO
 DELETE FROM [Team];
 GO
+DELETE FROM [EmployeeTask];
+GO
+DELETE FROM [Task];
+GO
 DELETE FROM [Project];
 GO
 DELETE FROM [Admin];
@@ -72,9 +78,8 @@ DELETE FROM [Employee];
 GO
 DELETE FROM [TaskStatus];
 GO
-DELETE FROM [Task];
-GO
-DELETE FROM [EmployeeTask];
+
+DELETE FROM [EmployeeStatus];
 GO
 
 DBCC CHECKIDENT ('[EmployeeStatus]', RESEED, 0);
