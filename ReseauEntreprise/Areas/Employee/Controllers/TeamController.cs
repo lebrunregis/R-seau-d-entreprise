@@ -320,7 +320,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 DateCreated = Team.Created,
                 EndDate = Team.Disbanded,
                 Members = Members,
-                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToTeam = Team.Id }
+                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToTeam = Team.Id },
                 Tasks = Tasks,
                 IsTeamLeader = (Employee_Id == TeamLeader.Employee_Id),
                 IsProjectManagerOrAdmin = ((AuthService.IsAdmin(Employee_Id)) || (Employee_Id == ProjectService.GetProjectManagerId(Team.Project_Id)))
