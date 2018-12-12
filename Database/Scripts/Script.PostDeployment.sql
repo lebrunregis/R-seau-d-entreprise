@@ -88,6 +88,8 @@ DBCC CHECKIDENT ('[Project]', RESEED, 0);
 GO
 DBCC CHECKIDENT ('[EmployeeStatusHistory]', RESEED, 0);
 GO
+DBCC CHECKIDENT ('[Task]', RESEED, 0);
+GO
 DBCC CHECKIDENT ('[TaskStatus]', RESEED, 0);
 GO
 
@@ -125,6 +127,10 @@ GO
 DECLARE @last_id int = ident_current('[dbo].Employee');
 Update [dbo].Employee SET Email='admin@test.be' where Employee_Id = @last_id;
 INSERT INTO[dbo].Admin (Employee_Id) VALUES (@last_id);
+
+EXEC [dbo].CreateProject @name = 'Test Project',@description = 'Test project description',@creator = 10,@project_manager = 1,@startDate = SYSDATETIME,@endDate = null;
+SET @last_id =ident_current('[dbo].Project');
+EXEC [dbo].CreateTask @Name = 'Test task',@Description = 'Test task description',@ProjectId = @last_id,@UserId = 1,@StartDate = SYSDATETIME,@EndDate = null,@DeadLine = null,@SubtaskOf = null;
 
 ENABLE TRIGGER [OnDeleteAdmin] ON [Admin];   
 GO
