@@ -29,20 +29,15 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         public String Description { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
-        [Required]
         [DataType(DataType.Date)]
-        public DateTime? EndDate { get; set; }
-        [Required]
-        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? Deadline { get; set; }
         [HiddenInput]
         public int? SubtaskOf { get; set; }
         [HiddenInput]
-        public String StatusName { get; set; }
-        [HiddenInput]
         [DataType(DataType.Date)]
-        public DateTime StatusDate { get; set; }
         public List<SelectListItem> StatusList { get; set; }
         [Required]
         [HiddenInput]

@@ -18,33 +18,38 @@ namespace ReseauEntreprise.Session.Attributes
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             bool accessAllowed = false;
-            string Id = httpContext.Request.Params.Get("projectId");
-
+            string projectId = httpContext.Request.Params.Get("projectId");
+            string teamId = httpContext.Request.Params.Get("teamId");
+            int UserId = SessionUser.GetUser().Id;
             try
             {
-                IEnumerable<Project> projects = SessionUser.GetUser().AuthorizedProjects;
-                int UserId = SessionUser.GetUser().Id;
-                /*var results = from project
-                              in projects
-                              where project.ProjectManagerId == UserId && project.Id == int.Parse(Id)
-                              select project;*/
-                //var accessAllowed = projects.Any(project => project.ProjectManagerId == UserId && project.Id == int.Parse(Id));
-                foreach (Project project in projects)
+                if (!(teamId is null))
                 {
-                    if (project.Id == int.Parse(Id) && UserId == project.ProjectManagerId)
+                    Team team = TeamService.GetTeamById(int.Parse(teamId));
+                    Project project = ProjectService.GetProjectById(team.Project_Id);
+                    if (project.ProjectManagerId == UserId)
                     {
                         accessAllowed = true;
-                        break;
+                    }
+                }else
+                if (!(projectId is null))
+                {
+                    IEnumerable<Project> projects = SessionUser.GetUser().AuthorizedProjects;
+
+                    foreach (Project project in projects)
+                    {
+                        if (project.Id == int.Parse(teamId) && UserId == project.ProjectManagerId)
+                        {
+                            accessAllowed = true;
+                            break;
+                        }
                     }
                 }
-
-
             }
             catch
             {
                 return false;
             }
-
             return accessAllowed;
         }
 

@@ -35,14 +35,14 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
         
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int projectId)
         {
             int Employee_Id = SessionUser.GetUser().Id;
-            C.Project Project = ProjectService.GetProjectById(id);
-            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
+            C.Project Project = ProjectService.GetProjectById(projectId);
+            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(projectId));
             C.Employee Creator = EmployeeService.Get(Project.CreatorId);
-            IEnumerable<C.Team> Teams = ProjectService.GetAllTeamsForProject(id);
-            IEnumerable<C.Task> Tasks = TaskService.GetForProject(id, Employee_Id);
+            IEnumerable<C.Team> Teams = ProjectService.GetAllTeamsForProject(projectId);
+            IEnumerable<C.Task> Tasks = TaskService.GetForProject(projectId, Employee_Id);
             DetailsForm Form = new DetailsForm
             {
                 Id = (int)Project.Id,
