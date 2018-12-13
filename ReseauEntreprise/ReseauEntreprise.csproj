@@ -206,6 +206,7 @@
     <Compile Include="Areas\Admin\Models\ViewModels\Team\EditForm.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\Team\ListForm.cs" />
     <Compile Include="Areas\Employee\Controllers\DepartmentController.cs" />
+    <Compile Include="Areas\Employee\Controllers\DocumentController.cs" />
     <Compile Include="Areas\Employee\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Employee\Controllers\EventController.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\ListForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Document\UploadForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Event\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Event\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\DiscussionScriptForm.cs" />
@@ -378,6 +380,7 @@
     <Content Include="Areas\Employee\Views\Event\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Event\Details.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_SendFormTemplateRoot.cshtml" />
+    <Content Include="Areas\Employee\Views\Document\Upload.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

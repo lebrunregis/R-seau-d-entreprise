@@ -80,6 +80,7 @@
     <Folder Include="dbo\Tables\Event" />
     <Folder Include="dbo\SP\Message" />
     <Folder Include="dbo\SP\Tasks" />
+    <Folder Include="dbo\SP\Document" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Message\Message.sql" />
@@ -234,6 +235,7 @@
     <Build Include="dbo\SP\Tasks\GetTaskStatusHistory.sql" />
     <Build Include="dbo\SP\Message\GetTaskForMessage.sql" />
     <Build Include="dbo\FN\FN_GetParentTitle.sql" />
+    <Build Include="dbo\SP\Document\UploadFile.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
