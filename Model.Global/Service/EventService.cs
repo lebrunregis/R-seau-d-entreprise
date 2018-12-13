@@ -78,7 +78,7 @@ namespace Model.Global.Service
 
         public static IEnumerable<Event> GetAllActiveForUser(int UserId)
         {
-            Command cmd = new Command("GetAllActiveEventsForUser", true);
+            Command cmd = new Command("GetAllEventsForUser", true);
             cmd.AddParameter("EmpId ", UserId);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToEvent());
         }

@@ -29,6 +29,8 @@ AND (@parent IS NULL
 			  )
 	)
    BEGIN TRAN T1
+       IF @parent IS NOT NULL
+	       SET @title = [dbo].[FN_GetParentTitle](@parent)
        INSERT INTO [Message] (Message_Title, Message_Message, Message_Author, Message_Parent) VALUES (@title, @message, @author, @parent);
 	   SET @message_id = convert(int, IDENT_CURRENT('Message'));
 

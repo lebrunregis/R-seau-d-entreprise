@@ -11,13 +11,13 @@
 		 "Details", "Project", null, null, $"anchor_{message.Message.Id}",
 		 new { id = message.project.Id }, null)
 			}
-			/*else if (message.task != null)
+			else if (message.task != null)
 			{
 				<span>Task </span>
 				@Html.ActionLink(message.task.Name,
-					"Details", "Task", null, null, $"anchor_{message.message.Id}",
+					"Details", "Task", null, null, $"anchor_{message.Message.Id}",
 					new { id = message.task.Id }, null)
-			}*/
+			}
 			else if (message.team != null)
 			{
 				<span>Team </span>
@@ -35,7 +35,7 @@
 		</td>
 
 		<td>
-			@{Html.RenderPartial("_Message", message.Message);}
+			@{Html.RenderPartial("_MessageSimple", message.Message);}
 			<div style="display: none">
 				@{Html.RenderPartial("_SendFormTemplate", message.form);}
 			</div>

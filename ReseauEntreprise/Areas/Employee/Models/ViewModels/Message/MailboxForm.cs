@@ -26,7 +26,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
             Message = new ViewForm(m);
             project = MessageService.GetProjectForMessage((int)m.Id).FirstOrDefault();
             team = MessageService.GetTeamForMessage((int)m.Id).FirstOrDefault();
-            //task = MessageService.GetTaskForMessage((int)m.Id);
+            task = MessageService.GetTaskForMessage((int)m.Id).FirstOrDefault();
             employee = Message.Author;
             form = new SendForm {
                 ToEmployee = (task == null && project== null && team==null) ? employee.Employee_Id : null,

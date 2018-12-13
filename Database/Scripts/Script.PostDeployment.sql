@@ -34,6 +34,8 @@ GO
 --DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 --GO
 
+
+
 DELETE FROM [MessageEmployee];
 GO
 DELETE FROM [MessageProject];

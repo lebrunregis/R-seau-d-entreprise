@@ -136,22 +136,21 @@ namespace Model.Global.Mapper
 
         internal static Task ToTask(this IDataRecord dr)
         {
-            Task Task = new Task();
-
-            Task.Id = (int)dr["Task_Id"];
-            Task.CreatorId = (int)dr["CreatorId"];
-            Task.TeamId = (int?)((dr["Team_Id"] == DBNull.Value) ? null : dr["Team_Id"]);
-            Task.Name = (string)dr["Name"];
-            Task.Description = (string)dr["Description"];
-            Task.StartDate = (DateTime)dr["StartDate"];
-            Task.EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"]);
-            Task.Deadline = (DateTime?)((dr["Deadline"] == DBNull.Value) ? null : dr["Deadline"]);
-            Task.SubtaskOf = (int?)((dr["SubtaskOf"] == DBNull.Value) ? null : dr["SubtaskOf"]);
-            Task.StatusId = (int)((dr["Status_Id"] == DBNull.Value) ? null : dr["Status_Id"]);
-            Task.StatusName = (string)dr["Status_Name"];
-            Task.StatusDate = (DateTime)((dr["Status_Date"] == DBNull.Value) ? null : dr["Status_Date"]);
-
-            return Task;
+            return new Task()
+            {
+                Id = (int)dr["Task_Id"],
+                CreatorId = (int)dr["CreatorId"],
+                TeamId = (int?)((dr["Team_Id"] == DBNull.Value) ? null : dr["Team_Id"]),
+                Name = (string)dr["Name"],
+                Description = (string)dr["Description"],
+                StartDate = (DateTime)dr["StartDate"],
+                EndDate = (DateTime?)((dr["EndDate"] == DBNull.Value) ? null : dr["EndDate"]),
+                Deadline = (DateTime?)((dr["Deadline"] == DBNull.Value) ? null : dr["Deadline"]),
+                SubtaskOf = (int?)((dr["SubtaskOf"] == DBNull.Value) ? null : dr["SubtaskOf"]),
+                StatusId = (int)dr["Status_Id"],
+                StatusName = (string)dr["Status_Name"],
+                StatusDate = (DateTime)dr["Status_Date"]
+            };
         }
 
         internal static TaskStatus ToTaskStatus(this IDataRecord dr)

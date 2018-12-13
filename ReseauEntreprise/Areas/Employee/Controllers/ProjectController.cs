@@ -54,7 +54,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 EndDate = Project.End,
                 Teams = Teams,
                 Tasks = Tasks,
-                IsProjectManager = (Employee_Id == Manager.Employee_Id)
+                
+                IsProjectManager = (Employee_Id == Manager.Employee_Id),
+                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToProject = Project.Id }
             };
 
             return View(Form);

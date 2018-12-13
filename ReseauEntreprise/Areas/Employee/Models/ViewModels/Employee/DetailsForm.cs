@@ -37,5 +37,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee
         public IEnumerable<D.Department> HeadOfDepartmentDepartments { get; set; }
         public bool CanIAddToDepartment { get; set; }
         public bool CanIRemoveFromDepartment { get; set; }
+
+        public Message.DiscussionScriptForm DiscScriptForm { get; set; }
     }
 }

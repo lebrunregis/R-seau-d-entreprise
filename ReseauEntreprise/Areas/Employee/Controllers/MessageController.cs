@@ -9,6 +9,9 @@ using Model.Client.Service;
 using Réseau_d_entreprise.Session.Attributes;
 using Réseau_d_entreprise.Session;
 
+using Microsoft.AspNet.SignalR;
+using ReseauEntreprise.Hubs;
+
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
     [RouteArea("Employee")]
@@ -21,9 +24,35 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                int? newMessageId = MessageService.Create(new C.Message(form.Title, form.Message, SessionUser.GetUser().Id, form.ReplyTo), form.ToEmployee, form.ToProject, form.ToTask, form.ToTeam);
+                int MyId = SessionUser.GetUser().Id;
+                int? newMessageId = MessageService.Create(new C.Message(form.Title, form.Message, MyId, form.ReplyTo), form.ToEmployee, form.ToProject, form.ToTask, form.ToTeam);
                 if (newMessageId != null)
                 {
+                    if (form.ToEmployee != null)
+                    {
+                        EmployeeHub.Send((int)form.ToEmployee);
+                        MailboxHub.Send((int)form.ToEmployee);
+                    }
+                    else
+                    {
+                        if (form.ReplyTo != null)
+                        {
+                            int ParentAuthor = MessageService.Get((int)form.ReplyTo).Author;
+                            MailboxHub.Send(ParentAuthor);
+                        }
+                        if (form.ToProject != null)
+                        {
+                            ProjectHub.Send((int)form.ToProject);
+                        }
+                        else if (form.ToTask != null)
+                        {
+                            TaskHub.Send((int)form.ToTask);
+                        }
+                        else if (form.ToTeam != null)
+                        {
+                            TeamHub.Send((int)form.ToTeam);
+                        }
+                    }
                     return new ContentResult { Content = "success" };
                 }
             }
@@ -122,8 +151,12 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public ActionResult Mailbox()
         {
             int EmployeeId = SessionUser.GetUser().Id;
-            IEnumerable<MailboxForm> form = MessageService.GetResponsesToEmployee(EmployeeId).Select(message => new MailboxForm(message, EmployeeId));
-            return View(form);
+            IEnumerable<MailboxForm> messages = MessageService.GetResponsesToEmployee(EmployeeId).Select(message => new MailboxForm(message, EmployeeId));
+            return View(new MailboxGeneralForm
+            {
+                Messages = messages,
+                MyId = EmployeeId
+            });
         }
 
         [HttpPost]

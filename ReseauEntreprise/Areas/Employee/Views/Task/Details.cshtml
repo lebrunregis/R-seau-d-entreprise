@@ -1,109 +1,114 @@
 ﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Task.DetailsForm
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>DetailsForm</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectId)
-        </dt>
+	<h4>DetailsForm</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.ProjectId)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProjectId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.ProjectId)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatorId)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.CreatorId)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatorId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.CreatorId)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Description)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.StartDate)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.StartDate)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.EndDate)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.EndDate)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Deadline)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Deadline)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Deadline)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Deadline)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SubtaskOf)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.SubtaskOf)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SubtaskOf)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.SubtaskOf)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StatusName)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.StatusName)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StatusName)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.StatusName)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StatusDate)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.StatusDate)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StatusDate)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.StatusDate)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StatusId)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.StatusId)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StatusId)
-        </dd>
-        @{Html.RenderPartial("_ProjectTasks", Model.Subtasks);
+		<dd>
+			@Html.DisplayFor(model => model.StatusId)
+		</dd>
+		@{Html.RenderPartial("_ProjectTasks", Model.Subtasks);
 
-                @Html.ActionLink("Add Subtask", "Create", "AddSubtask", new { Task_Id = Model.Id }, null)
-            }
-    </dl>
+			@Html.ActionLink("Add Subtask", "Create", "AddSubtask", new { Task_Id = Model.Id }, null)
+		}
+	</dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { taskId = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+@Html.Action("_Discussion", "Message", new { TaskId = Model.Id })
+@section scripts
+{
+	@{Html.RenderPartial("_DiscussionScript", Model.DiscScriptForm);}
+}

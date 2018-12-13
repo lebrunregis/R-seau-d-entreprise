@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace ReseauEntreprise.Session
 {
-    public class SessionUserProvider : IUserIdProvider
+    /*public class SessionUserProvider : IUserIdProvider
     {
         public string GetUserId(IRequest request)
         {
           return SessionUser.GetUser().Id.ToString();
         }
-    }
+    }*/
 }
