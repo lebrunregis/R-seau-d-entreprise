@@ -217,6 +217,7 @@
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\ListForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\EmployeeTeam\EmployeeTeamSelector.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\MaxIdForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Profile\EditEmailForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Profile\EditPassForm.cs" />

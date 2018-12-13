@@ -52,7 +52,6 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 }
                 else
                 {
-
                     D.Employee TeamLeader = EmployeeService.Get(Employee_Id);
                     D.Project Project = ProjectService.GetProjectById(Team.Project_Id);
                     int? ProjectManagerId = ProjectService.GetProjectManagerId((int)Project.Id);
@@ -351,7 +350,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             }
             EmployeesInTeamForm form = new EmployeesInTeamForm
             {
-                team = Team,
+                Team = Team,
                 Employees = EmployeesInTeamFormList
             };
 
@@ -359,20 +358,24 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
 
         [HttpPost]
-        public ActionResult EmployeesInTeam(EmployeesInTeamForm form)
+        public ActionResult EmployeesInTeam(IEnumerable<EmployeeTeamSelector> forms)
         {
-            foreach (EmployeeTeamForm employee in form.Employees)
+            bool IsInTeam;
+            IEnumerable<D.Employee> EmployeesInTeam = TeamService.GetAllEmployeesForTeam(forms.First().TeamId);
+
+            foreach (EmployeeTeamSelector selector in forms)
             {
-                if (employee.IsInTeam)
+                IsInTeam = EmployeesInTeam.Any( x => x.Employee_Id == selector.EmployeeId);
+                if (selector.IsInTeam && !IsInTeam)
                 {
-                    TeamService.AddEmployee((int)form.team.Id, (int) employee.Employee.Employee_Id, SessionUser.GetUser().Id);
+                    TeamService.AddEmployee((int)selector.TeamId, (int)selector.EmployeeId, SessionUser.GetUser().Id);
                 }
-                else
+                else if (!selector.IsInTeam && IsInTeam)
                 {
-                    TeamService.RemoveEmployee((int)form.team.Id, (int) employee.Employee.Employee_Id, SessionUser.GetUser().Id);
+                    TeamService.RemoveEmployee((int)selector.TeamId, (int)selector.EmployeeId, SessionUser.GetUser().Id);
                 }
             }
-            return View(form);
+            return RedirectToAction("Index");
         }
     }
 }
