@@ -1,68 +1,51 @@
 ﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam.EmployeesInTeamForm
 
-<h3>@Model.team.Name</h3>
+@{
+    ViewBag.Title = "Employees in " + Model.Team.Name;
+}
 
-<table class="table">
-	<tr>
-		<th>
-			@Html.DisplayNameFor(model => model.Employees.FirstOrDefault().Employee)
-		</th>
-		<th>
-			@Html.DisplayNameFor(model => model.Employees.FirstOrDefault().Departments)
-		</th>
-		<th>
-			@Html.DisplayNameFor(model => model.Employees.FirstOrDefault().IsInTeam)
-		</th>
-	</tr>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Employees.FirstOrDefault().Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employees.FirstOrDefault().Departments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employees.FirstOrDefault().IsInTeam)
+            </th>
+        </tr>
 
-	@for (int i = 0; i < Model.Employees.Count(); i++)
-	{
-		var item = Model.Employees.ElementAt(i);
-		<tr>
-			<td>
-				@{ Html.RenderPartial("_Employee", item.Employee); }
-			</td>
-			<td>
-				@{ Html.RenderPartial("_DepartmentList", item.Departments); }
-			</td>
-			<td>
-				<div class="checkbox">
-					@Html.CheckBoxFor(m => m.Employees.ElementAt(i).IsInTeam, new { id = item.Employee.Employee_Id })
-				</div>
-			</td>
-		</tr>
-	}
+        @for (int i = 0; i < Model.Employees.Count(); i++)
+        {
+            var item = Model.Employees.ElementAt(i);
+            <tr>
+                @Html.HiddenFor(m => m.Employees.ElementAt(i).Employee.Employee_Id, new { name = "Model[" + i + "].EmployeeId" })
+                @Html.HiddenFor(m => m.Team.Id, new { name = "Model[" + i + "].TeamId" })
+                <td>
+                    @{ Html.RenderPartial("_Employee", item.Employee); }
+                </td>
+                <td>
+                    @{ Html.RenderPartial("_DepartmentList", item.Departments); }
+                </td>
+                <td>
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(m => m.Employees.ElementAt(i).IsInTeam, new { name = "Model[" + i + "].IsInTeam" })
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="form-group">
+        <div class="col-md-offset-2">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+}
 
-</table>
-
-
-@Html.ActionLink("Back to team", "Details", new { id = Model.team.Id}) <br />
+@Html.ActionLink("Back to team", "Details", new { teamId = Model.Team.Id }) <br />
 @Html.ActionLink("Back to list", "Index")
-
-<script>
-	var checkboxes = document.querySelectorAll('input[name="IsInTeam"][type="checkbox"]');
-
-	for (var i = 0; i < checkboxes.length; i++) {
-		checkboxes[i].addEventListener("change", (event) => {
-
-			function onsuccess(responseData) {
-				if (responseData == true) {
-					checkbox.checked = true
-				}
-				else {
-					checkbox.checked = false
-				}
-			}
-
-			var checkbox = event.target;
-			var requestData = { EmployeeId: checkbox.id, IsChecked: checkbox.checked };
-			if (checkbox.checked == true) {
-				checkbox.checked = false
-			}
-			else {
-				checkbox.checked = true
-			}
-			$.post(window.location.href, requestData, onsuccess);
-		})
-	}
-</script>

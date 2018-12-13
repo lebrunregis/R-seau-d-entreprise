@@ -171,11 +171,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Name = task.Name,
                 Description = task.Description,
                 StartDate = task.StartDate,
-                EndDate = task.EndDate,
                 Deadline = task.Deadline,
                 SubtaskOf = task.SubtaskOf,
-                StatusName = task.StatusName,
-                StatusDate = (DateTime)task.StatusDate,
                 SelectedStatusId = (int)task.StatusId,
                 StatusList = StatusList
             };
@@ -194,7 +191,6 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     Task.Name = form.Name;
                     Task.Description = form.Description;
                     Task.StartDate = form.StartDate;
-                    Task.EndDate = form.EndDate;
                     Task.Deadline = form.Deadline;
                     Task.TeamId = form.TeamId;
                     
