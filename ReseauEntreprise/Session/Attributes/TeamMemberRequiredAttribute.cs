@@ -21,6 +21,8 @@ namespace Réseau_d_entreprise.Session.Attributes
             string taskId = httpContext.Request.Params.Get("taskId");
             Task Task;
             IEnumerable<Employee> Team = null;
+            int UserId = SessionUser.GetUser().Id;
+
             try
             {
                 if (!(taskId is null))
@@ -40,18 +42,20 @@ namespace Réseau_d_entreprise.Session.Attributes
                 if (!(teamId is null))
                 {
                     Team = TeamService.GetAllEmployeesForTeam(int.Parse(teamId));
+                    if (UserId == TeamService.GetTeamLeaderId(int.Parse(teamId)))
+                    {
+                        accessAllowed = true;
+                    }
                 }
 
-                var Result = from Employee in Team
-                             where Employee.Employee_Id == SessionUser.GetUser().Id
-                             select Employee;
-
-                if (Result.Count() == 1)
+                foreach (Employee employee in Team)
                 {
-                    accessAllowed = true;
+                    if (employee.Employee_Id == UserId)
+                    {
+                        accessAllowed = true;
+                    }
                 }
             }
-
             catch (Exception ex)
             {
                 throw ex;

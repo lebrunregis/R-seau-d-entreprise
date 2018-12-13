@@ -74,8 +74,8 @@
             @Html.DisplayFor(modelItem => item.StatusId)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", "Task", new { id=item.Id },null) |
-            @Html.ActionLink("Details", "Details", "Task", new { id=item.Id },null)
+            @Html.ActionLink("Edit", "Edit", "Task", new { taskId = item.Id },null) |
+            @Html.ActionLink("Details", "Details", "Task", new { taskId = item.Id },null)
         </td>
     </tr>
 }

@@ -1,5 +1,6 @@
 ﻿using Model.Client.Data;
 using Model.Client.Service;
+using System;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,20 +16,22 @@ namespace Réseau_d_entreprise.Session.Attributes
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             bool accessAllowed = false;
-            string req = httpContext.Request.Url.Segments.Last();
+            string teamId = httpContext.Request.Params.Get("teamId");
+            int UserId = SessionUser.GetUser().Id;
+
             try
             {
-                int.TryParse(req.ToString(), out int teamId);
-                int teamLeader = (int)TeamService.GetTeamLeaderId(teamId);
-
-                if (SessionUser.GetUser().Id == teamLeader)
+                if (!(teamId is null))
                 {
-                    accessAllowed = true;
+                    if (UserId == TeamService.GetTeamLeaderId(int.Parse(teamId)))
+                    {
+                        accessAllowed = true;
+                    }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
 
             return accessAllowed;
