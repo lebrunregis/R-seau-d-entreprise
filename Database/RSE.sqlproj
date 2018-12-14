@@ -236,6 +236,8 @@
     <Build Include="dbo\SP\Message\GetTaskForMessage.sql" />
     <Build Include="dbo\FN\FN_GetParentTitle.sql" />
     <Build Include="dbo\SP\Document\UploadFile.sql" />
+    <Build Include="dbo\SP\Document\ContinueUploadingFile.sql" />
+    <Build Include="dbo\SP\Document\DownloadFile.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

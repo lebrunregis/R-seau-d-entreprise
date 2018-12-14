@@ -35,7 +35,7 @@ namespace Model.Client.Mapper
         internal static C.Document ToClient(this G.Document entity)
         {
 
-            return new C.Document(entity.Id, entity.Name, entity.Created, entity.Link, entity.Size,
+            return new C.Document(entity.Id, entity.Name, entity.Created, entity.Body, entity.Size,
                 entity.SHA2, entity.Active, entity.AuthorEmployee, entity.NextVersion);
         }
 
@@ -46,7 +46,7 @@ namespace Model.Client.Mapper
                 Id = entity.Id,
                 Name = entity.Name,
                 Created = entity.Created,
-                Link = entity.Link,
+                Body = entity.Body,
                 Size = entity.Size,
                 SHA2 = entity.SHA2,
                 Active = entity.Active,

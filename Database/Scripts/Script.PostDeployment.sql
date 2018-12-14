@@ -31,8 +31,6 @@ DISABLE TRIGGER [OnDeleteTask] ON Task;
 GO
 DISABLE TRIGGER [OnDeleteTeam] ON Team;  
 GO
---DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
---GO
 
 
 
@@ -75,6 +73,8 @@ DELETE FROM [Admin];
 GO
 DELETE FROM [EmployeeStatusHistory];
 GO
+DELETE FROM [Document];
+GO
 DELETE FROM [Employee];
 GO
 DELETE FROM [TaskStatus];
@@ -94,6 +94,14 @@ GO
 DBCC CHECKIDENT ('[Task]', RESEED, 0);
 GO
 DBCC CHECKIDENT ('[TaskStatus]', RESEED, 0);
+GO
+DBCC CHECKIDENT ('[Message]', RESEED, 0);
+GO
+DBCC CHECKIDENT ('[Document]', RESEED, 0);
+GO
+DBCC CHECKIDENT ('[Team]', RESEED, 0);
+GO
+DBCC CHECKIDENT ('[Department]', RESEED, 0);
 GO
 
 SET IDENTITY_INSERT [TaskStatus] ON 
