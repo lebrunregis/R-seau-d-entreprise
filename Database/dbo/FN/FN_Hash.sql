@@ -1,4 +1,9 @@
-﻿CREATE PROCEDURE [dbo].[FN_Hash]
+﻿CREATE FUNCTION  [dbo].[FN_Hash]
+(
 	@Password varchar
+)
+RETURNS VARBINARY
 AS
-	RETURN @Password
+BEGIN
+	RETURN CONVERT(VARBINARY,@Password)
+END
