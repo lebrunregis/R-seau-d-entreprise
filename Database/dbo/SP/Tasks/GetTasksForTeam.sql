@@ -12,6 +12,7 @@ AS
 	Deadline,
 	SubtaskOf,
 	CreatorId,
+	Project_Id,
 	CASE	
 		WHEN TaskStatus.Name is NULL 
 		THEN 'Not started' 
@@ -23,7 +24,6 @@ AS
 	LAST_VALUE(ISNULL(TaskStatusHistory.date,StartDate)) OVER (ORDER BY TaskStatusHistory.date) AS Status_Date
 	FROM Task 
 	LEFT JOIN TaskStatusHistory ON Task.Task_Id = TaskStatusHistory.Task_Id 
-	LEFT JOIN EmployeeTask ON EmployeeTask.Task_Id = Task.Task_Id
 	LEFT JOIN TaskStatus ON TaskStatus.TaskStatus_Id = TaskStatusHistory.TaskStatus_Id
 	
 	GROUP BY Task.Task_Id,
@@ -37,7 +37,8 @@ AS
 	CreatorId,
 	TaskStatus.Name,
 	TaskStatus.TaskStatus_Id,
-	TaskStatusHistory.date
+	TaskStatusHistory.date,
+	Project_Id
 	
 	HAVING Task.Team_Id = @TeamId
 	ORDER BY Status_Date

@@ -99,7 +99,7 @@
         </dd>
         @{Html.RenderPartial("_ProjectTasks", Model.Subtasks);
 
-                @Html.ActionLink("Add Subtask", "Create", "AddSubtask", new { Task_Id = Model.Id }, null)
+                @Html.ActionLink("Add Subtask", "AddSubtask", "Task", new { taskId = Model.Id }, null)
             }
     </dl>
 </div>
