@@ -23,6 +23,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultFileStreamFilegroup>FileGroup1</DefaultFileStreamFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -107,7 +108,6 @@
     <Build Include="dbo\Trigger\OnDeleteEmployee.sql" />
     <Build Include="dbo\Trigger\OnDeleteProject.sql" />
     <Build Include="dbo\Trigger\OnDeleteTeam.sql" />
-    <Build Include="dbo\Trigger\OnDeleteDocument.sql" />
     <Build Include="dbo\Trigger\OnDeleteEvent.sql" />
     <Build Include="dbo\Trigger\OnDeleteTask.sql" />
     <Build Include="dbo\Trigger\OnInsertEmployee.sql" />
@@ -238,6 +238,8 @@
     <Build Include="dbo\SP\Document\UploadFile.sql" />
     <Build Include="dbo\SP\Document\ContinueUploadingFile.sql" />
     <Build Include="dbo\SP\Document\DownloadFile.sql" />
+    <Build Include="FileGroup1.sql" />
+    <Build Include="dbo\SP\Document\GetFileName.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

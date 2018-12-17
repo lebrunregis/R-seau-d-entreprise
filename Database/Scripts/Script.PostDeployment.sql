@@ -13,8 +13,6 @@ DISABLE TRIGGER [OnDeleteAdmin] ON [Admin];
 GO
 DISABLE TRIGGER [OnDeleteDepartment] ON Department;  
 GO
-DISABLE TRIGGER [OnDeleteDocument] ON Document;
-GO
 DISABLE TRIGGER [OnDeleteEmployee] ON Employee;  
 GO
 DISABLE TRIGGER [OnDeleteEmployeeDepartment] ON EmployeeDepartment;
@@ -153,8 +151,6 @@ EXEC [dbo].CreateTask @Name = 'Test task',@Description = 'Test task description'
 ENABLE TRIGGER [OnDeleteAdmin] ON [Admin];   
 GO
 ENABLE TRIGGER [OnDeleteDepartment] ON Department;  
-GO
-ENABLE TRIGGER [OnDeleteDocument] ON Document;
 GO
 ENABLE TRIGGER [OnDeleteEmployee] ON Employee;  
 GO

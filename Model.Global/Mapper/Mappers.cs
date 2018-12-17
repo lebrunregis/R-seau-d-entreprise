@@ -184,5 +184,20 @@ namespace Model.Global.Mapper
                 Parent = (int?)((dr["Message_Parent"] == DBNull.Value) ? null : dr["Message_Parent"])
             };
         }
+        internal static Document ToDocument(this IDataRecord dr)
+        {
+            return new Document()
+            {
+                Id = (int)dr["Document_Id"],
+                Name = (string)dr["Name"],
+                Created = (DateTime)dr["Created"],
+                Body = (byte[])dr["Body"],
+                Size = (int)dr["Size"],
+                SHA2 = (string)dr["SHA2"],
+                Active = (bool)dr["Actif"],
+                AuthorEmployee = (int)dr["Employee_Id"],
+                NextVersion = (int)dr["Employee_Id"]
+            };
+        }
     }
 }
