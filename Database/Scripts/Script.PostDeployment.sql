@@ -93,6 +93,8 @@ DBCC CHECKIDENT ('[Task]', RESEED, 0);
 GO
 DBCC CHECKIDENT ('[TaskStatus]', RESEED, 0);
 GO
+DBCC CHECKIDENT ('[Team]', RESEED, 0);
+GO
 
 SET IDENTITY_INSERT [TaskStatus] ON 
 INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (0,'Not started');

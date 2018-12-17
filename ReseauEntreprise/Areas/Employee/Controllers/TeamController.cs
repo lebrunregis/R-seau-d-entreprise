@@ -337,42 +337,38 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
 
             IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
             IEnumerable<D.Employee> EmployeesInTeam = TeamService.GetAllEmployeesForTeam(teamId);
-            List<EmployeeTeamForm> EmployeesInTeamFormList = new List<EmployeeTeamForm>();
+            List<EmployeeTeamSelector> EmployeesInTeamFormList = new List<EmployeeTeamSelector>();
             foreach (D.Employee employee in Employees)
             {
                 IEnumerable<D.Department> departments = DepartmentService.GetEmployeeActiveDepartments((int)employee.Employee_Id);
-                EmployeesInTeamFormList.Add(new EmployeeTeamForm
+                EmployeesInTeamFormList.Add(new EmployeeTeamSelector
                 {
+                    Team = Team,
                     Employee = employee,
                     Departments = departments,
-                    IsInTeam = EmployeesInTeam.Contains(employee)
-                });
+                    IsInTeam = EmployeesInTeam.Any(x => x.Employee_Id == employee.Employee_Id)
+            });
             }
-            EmployeesInTeamForm form = new EmployeesInTeamForm
-            {
-                Team = Team,
-                Employees = EmployeesInTeamFormList
-            };
 
-            return View(form);
+            return View(EmployeesInTeamFormList);
         }
 
         [HttpPost]
         public ActionResult EmployeesInTeam(IEnumerable<EmployeeTeamSelector> forms)
         {
             bool IsInTeam;
-            IEnumerable<D.Employee> EmployeesInTeam = TeamService.GetAllEmployeesForTeam(forms.First().TeamId);
+            IEnumerable<D.Employee> EmployeesInTeam = TeamService.GetAllEmployeesForTeam((int)forms.First().Team.Id);
 
             foreach (EmployeeTeamSelector selector in forms)
             {
-                IsInTeam = EmployeesInTeam.Any( x => x.Employee_Id == selector.EmployeeId);
+                IsInTeam = EmployeesInTeam.Any( x => x.Employee_Id == selector.Employee.Employee_Id);
                 if (selector.IsInTeam && !IsInTeam)
                 {
-                    TeamService.AddEmployee((int)selector.TeamId, (int)selector.EmployeeId, SessionUser.GetUser().Id);
+                    TeamService.AddEmployee((int)selector.Team.Id, (int)selector.Employee.Employee_Id, SessionUser.GetUser().Id);
                 }
                 else if (!selector.IsInTeam && IsInTeam)
                 {
-                    TeamService.RemoveEmployee((int)selector.TeamId, (int)selector.EmployeeId, SessionUser.GetUser().Id);
+                    TeamService.RemoveEmployee((int)selector.Team.Id, (int)selector.Employee.Employee_Id, SessionUser.GetUser().Id);
                 }
             }
             return RedirectToAction("Index");
