@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [Document] (
-  [GUID] [uniqueidentifier] ROWGUIDCOL NOT NULL UNIQUE ,
+  [GUID] [uniqueidentifier] ROWGUIDCOL NOT NULL UNIQUE DEFAULT NEWID() ,
   [Document_Id] int PRIMARY KEY IDENTITY,
   [Name] nvarchar(max) NOT NULL,
   [Created] DATETIME2(0) NOT NULL DEFAULT SYSDATETIME(),

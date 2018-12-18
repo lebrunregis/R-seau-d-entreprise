@@ -149,7 +149,8 @@ namespace Model.Global.Mapper
                 SubtaskOf = (int?)((dr["SubtaskOf"] == DBNull.Value) ? null : dr["SubtaskOf"]),
                 StatusId = (int)dr["Status_Id"],
                 StatusName = (string)dr["Status_Name"],
-                StatusDate = (DateTime)dr["Status_Date"]
+                StatusDate = (DateTime)dr["Status_Date"],
+                ProjectId = (int)dr["Project_Id"]
             };
         }
 

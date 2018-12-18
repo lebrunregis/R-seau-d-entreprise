@@ -71,7 +71,8 @@ namespace Model.Global.Service
         {
             Command cmd = new Command("SetTaskStatus", true);
             cmd.AddParameter("TaskId", t.Id);
-            cmd.AddParameter("StatusId", UserId);
+            cmd.AddParameter("StatusId", Status);
+            cmd.AddParameter("UserId", UserId);
             return (Connection.ExecuteNonQuery(cmd) > 0);
         }
 

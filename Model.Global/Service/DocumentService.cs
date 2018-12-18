@@ -20,7 +20,7 @@ namespace Model.Global.Service
 
         public static int? Create(Document doc)
         {
-            int? Document_Id = null;
+            /*int? Document_Id = null;
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["connString"].ConnectionString))
             {
                 connection.Open();
@@ -48,15 +48,18 @@ namespace Model.Global.Service
                         // Create the SqlFileStream  
                         using (SqlFileStream fileStream = new SqlFileStream(path, transactionContext, FileAccess.Write))
                         {
-                            // Write a single byte to the file. This will  
-                            // replace any data in the file.  
                             fileStream.Write(doc.Body, 0, doc.Body.Length);
                         }
                     }
                 }
                 tran.Commit();
             }
-            return Document_Id;
+            return Document_Id;*/
+            Command cmd = new Command("UploadFile", true);
+            cmd.AddParameter("Employee_Id", doc.AuthorEmployee);
+            cmd.AddParameter("Name", doc.Name);
+            cmd.AddParameter("Body", doc.Body);
+            return (int?)Connection.ExecuteScalar(cmd);
         }
 
         public static Document Get(int Id)

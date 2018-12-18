@@ -246,6 +246,7 @@
     <Build Include="dbo\FN\FN_Hash.sql" />
     <None Include="RSE.publish.xml" />
     <None Include="RSETEST.publish.xml" />
+    <None Include="RSE_2.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Scripts\Script.PreDeployment1.sql" />
