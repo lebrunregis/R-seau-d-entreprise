@@ -176,7 +176,6 @@
     <Build Include="dbo\Tables\Event\EmployeeEvent.sql" />
     <Build Include="dbo\Tables\Department\EmployeeHeadOfDepartment.sql" />
     <Build Include="dbo\Tables\Department\EmployeeDepartment.sql" />
-    <Build Include="dbo\Tables\Task\EmployeeTask.sql" />
     <Build Include="dbo\Tables\Team\EmployeeTeamLeader.sql" />
     <Build Include="dbo\SP\Event\CreateEvent.sql" />
     <Build Include="dbo\SP\Event\DeleteEvent.sql" />

@@ -1,0 +1,9 @@
+﻿CREATE FUNCTION  [dbo].[FN_Hash]
+(
+	@Password varchar
+)
+RETURNS VARBINARY
+AS
+BEGIN
+	RETURN CONVERT(VARBINARY,@Password)
+END
