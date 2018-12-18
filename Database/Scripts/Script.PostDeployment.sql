@@ -58,8 +58,9 @@ DELETE FROM [Event];
 GO
 DELETE FROM [ProjectManager];
 GO
-
-DELETE FROM [EmployeeTask];
+DELETE FROM [TaskStatusHistory];
+GO
+DELETE FROM [TaskStatus];
 GO
 DELETE FROM [Task];
 GO
@@ -75,9 +76,6 @@ DELETE FROM [Document];
 GO
 DELETE FROM [Employee];
 GO
-DELETE FROM [TaskStatus];
-GO
-
 DELETE FROM [EmployeeStatus];
 GO
 
@@ -168,5 +166,5 @@ ENABLE TRIGGER [OnDeleteTask] ON Task;
 GO
 ENABLE TRIGGER [OnDeleteTeam] ON Team;  
 GO
---DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
---GO
+/*DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
+GO*/

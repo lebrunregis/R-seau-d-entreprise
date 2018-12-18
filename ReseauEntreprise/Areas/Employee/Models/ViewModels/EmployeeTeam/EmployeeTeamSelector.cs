@@ -1,12 +1,16 @@
-﻿using D = Model.Client.Data;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Web;
+using D = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam
 {
-    public class EmployeeTeamForm
+    public class EmployeeTeamSelector
     {
+        [DisplayName("Team")]
+        public D.Team Team { get; set; }
         [DisplayName("Employé")]
         public D.Employee Employee { get; set; }
         [DisplayName("Departements")]

@@ -1,13 +1,10 @@
 ﻿@model IEnumerable<ReseauEntreprise.Areas.Admin.Models.ViewModels.Event.EmployeeSelectorForm>
 
 @{
-                /**/
-
-                ViewBag.Title = "SubscribeEmployees";
+    ViewBag.Title = "SubscribeEmployees";
 }
 
-<h2>SubscribeEmployees</h2>
-
+<h2>Subscribe Employees to Event</h2>
 
 @using (Html.BeginForm())
 {
@@ -46,8 +43,8 @@
                     </td>
                 </tr>
             }
-
         </table>
+
         <div class="form-group">
             <div class="col-md-offset-2">
                 <input type="submit" value="Save" class="btn btn-default" />

@@ -233,13 +233,18 @@ namespace Model.Client.Mapper
             return new G.Task
             {
                 Id = entity.Id,
+                CreatorId = entity.CreatorId,
                 ProjectId = entity.ProjectId,
+                TeamId = entity.TeamId,
                 Name = entity.Name,
                 Description = entity.Description,
                 StartDate = entity.StartDate,
                 EndDate = entity.EndDate,
                 Deadline = entity.Deadline,
-                SubtaskOf = entity.SubtaskOf
+                SubtaskOf = entity.SubtaskOf,
+                StatusId = entity.StatusId,
+                StatusName = entity.StatusName,
+                StatusDate = entity.StatusDate
             };
         }
 
