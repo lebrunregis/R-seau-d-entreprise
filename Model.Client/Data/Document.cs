@@ -11,7 +11,7 @@ namespace Model.Client.Data
         private int? id;
         private String name;
         private DateTime created;
-        private String link;
+        private byte[] body;
         private float size;
         private String sHA2;
         private Boolean active;
@@ -23,12 +23,12 @@ namespace Model.Client.Data
 
         }
 
-        public Document(int? id, string name, DateTime created, string link, float size, string sHA2, bool active, int authorEmployee, int nextVersion)
+        public Document(int? id, string name, DateTime created, byte[] body, float size, string sHA2, bool active, int authorEmployee, int nextVersion)
         {
             Id = id;
             Name = name;
             Created = created;
-            Link = link;
+            Body = body;
             Size = size;
             SHA2 = sHA2;
             Active = active;
@@ -39,7 +39,7 @@ namespace Model.Client.Data
         public int? Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public DateTime Created { get => created; set => created = value; }
-        public string Link { get => link; set => link = value; }
+        public byte[] Body { get => body; set => body = value; }
         public float Size { get => size; set => size = value; }
         public string SHA2 { get => sHA2; set => sHA2 = value; }
         public bool Active { get => active; set => active = value; }
