@@ -5,3 +5,4 @@ la génération et le déploiement.
 */
 ALTER DATABASE [$(DatabaseName)]
 	ADD FILEGROUP [FileGroup1] CONTAINS FILESTREAM
+ GO

@@ -9,5 +9,5 @@ BEGIN
 	SET @ID = NEWID()
 	INSERT INTO Document([GUID], [Name], Employee_Id)
 	VALUES (@ID, @Name,  @Employee_Id)
-	SELECT SystemFile.PathName() AS filepath, GET_FILESTREAM_TRANSACTION_CONTEXT() AS context, Document_Id from Document where [GUID] = @ID
+	SELECT Body.PathName() AS filepath, GET_FILESTREAM_TRANSACTION_CONTEXT() AS context, Document_Id from Document where [GUID] = @ID
 END
