@@ -16,11 +16,11 @@ AS
 		WHEN TaskStatus.Name is NULL 
 		THEN 'Not started' 
 	ELSE 
-		LAST_VALUE(TaskStatus.Name) OVER (ORDER BY TaskStatusHistory.date) 
+		LAST_VALUE(TaskStatus.Name) OVER (ORDER BY COALESCE(TaskStatusHistory.date,Task.StartDate)) 
 	END 
 	AS Status_Name,
-	LAST_VALUE(ISNULL(TaskStatus.TaskStatus_Id,1)) OVER (ORDER BY TaskStatusHistory.date) AS Status_Id,  
-	LAST_VALUE(ISNULL(TaskStatusHistory.date,Task.StartDate)) OVER (ORDER BY TaskStatusHistory.date) AS Status_Date
+	LAST_VALUE(COALESCE(TaskStatusHistory.date,Task.StartDate)) OVER (ORDER BY COALESCE(TaskStatusHistory.date,Task.StartDate)) AS Status_Date,
+	LAST_VALUE(COALESCE(TaskStatus.TaskStatus_Id,1)) OVER (ORDER BY COALESCE(TaskStatusHistory.date,Task.StartDate)) AS Status_Id  
 	FROM Task 
 	LEFT JOIN TaskStatusHistory ON Task.Task_Id = TaskStatusHistory.Task_Id 
 	JOIN EmployeeTeam ON EmployeeTeam.Team_Id = Task.Task_Id
@@ -31,4 +31,4 @@ AS
 	TaskStatus.TaskStatus_Id,TaskStatus.Name,Project_Id,Employee_Id
 
 	HAVING EmployeeTeam.Employee_Id = @UserId 
-	ORDER BY TaskStatusHistory.date
+	ORDER BY Status_Date DESC
