@@ -11,22 +11,22 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Profile
     {
         [Required]
         [MaxLength(50)]
-        [DisplayName("Nom")]
+        [DisplayName("Last Name")]
         public string LastName { get; set; }
 
         [Required]
         [MaxLength(50)]
-        [DisplayName("Prénom")]
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
 
         [Required]
         [MinLength(7)]
-        [DisplayName("Adresse")]
+        [DisplayName("Adress")]
         public string Address { get; set; }
 
         [MaxLength(50)]
         [DataType(DataType.PhoneNumber)]
-        [DisplayName("Numéro de téléphone")]
+        [DisplayName("Phone")]
         public string Phone { get; set; }
     }
 }

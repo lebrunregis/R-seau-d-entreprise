@@ -15,6 +15,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         //[Required]
         //[Display(Name = "Team Leader")]
         public IEnumerable<SelectListItem> TeamLeaderCandidateList { get; set; }
+        [Display(Name = "Team leader")]
         public int SelectedTeamLeaderId { get; set; }
         [Required]
         [Display(Name = "Project")]

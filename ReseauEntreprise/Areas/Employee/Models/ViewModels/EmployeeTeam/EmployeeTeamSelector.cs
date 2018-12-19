@@ -11,11 +11,11 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam
     {
         [DisplayName("Team")]
         public D.Team Team { get; set; }
-        [DisplayName("Employé")]
+        [DisplayName("Employee")]
         public D.Employee Employee { get; set; }
-        [DisplayName("Departements")]
+        [DisplayName("Departments")]
         public IEnumerable<D.Department> Departments { get; set; }
-        [DisplayName("Dans cette équipe")]
+        [DisplayName("In team")]
         public bool IsInTeam { get; set; }
     }
 }

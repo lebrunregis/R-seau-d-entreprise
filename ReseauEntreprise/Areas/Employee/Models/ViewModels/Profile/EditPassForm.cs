@@ -12,19 +12,19 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Profile
         [Required]
         [DataType(DataType.Password)]
         [MaxLength(50)]
-        [DisplayName("Ancien mot de passe")]
+        [DisplayName("Old Password")]
         public String OldPass { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [MaxLength(50)]
-        [DisplayName("Nouveau mot de passe")]
+        [DisplayName("New Password")]
         public String NewPass { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Compare(nameof(NewPass))]
-        [DisplayName("Retapez nouveau mot de passe")]
+        [DisplayName("Confirm Password")]
         public String Confirm { get; set; }
     }
 }

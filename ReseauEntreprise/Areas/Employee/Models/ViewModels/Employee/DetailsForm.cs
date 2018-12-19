@@ -24,14 +24,17 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee
         public string Address { get; set; }
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
+        [Display(Name = "Is Admin")]
         public bool IsAdmin { get; set; }
+        [Display(Name = "Is Active")]
         public bool IsActif { get; set; }
+        [Display(Name = "Me")]
         public bool IsMe { get; set; }
         public IEnumerable<D.Team> Teams { get; set; }
         public IEnumerable<D.Department> Departments { get; set; }
-        [DisplayName("Team leader of teams:")]
+        [DisplayName("Team leader of:")]
         public IEnumerable<D.Team> TeamLeaderTeams { get; set; }
-        [DisplayName("Project manager of projects:")]
+        [DisplayName("Project manager of:")]
         public IEnumerable<D.Project> ProjectManagerProjects { get; set; }
         [DisplayName("Head of departments:")]
         public IEnumerable<D.Department> HeadOfDepartmentDepartments { get; set; }

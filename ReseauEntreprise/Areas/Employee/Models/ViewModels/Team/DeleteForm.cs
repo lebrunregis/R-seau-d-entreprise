@@ -13,6 +13,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         [Key]
         [HiddenInput]
         [Editable(false)]
+        [Display(Name = "Team")]
         public int Team_Id { get; set; }
         [Required]
         [MaxLength(50)]
@@ -24,9 +25,11 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         public DateTime Created { get; set; }
         [Required]
         [Editable(false)]
+        [Display(Name = "Created by")]
         public int Creator_Id { get; set; }
         [Required]
         [Editable(false)]
+        [Display(Name = "Project")]
         public int Project_Id { get; set; }
     }
 }

@@ -15,9 +15,11 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         public int Id { get; set; }
         [HiddenInput]
         [Required]
+        [Display(Name = "Creator")]
         public int CreatorId { get; set; }
         [Required]
         [HiddenInput]
+        [Display(Name = "Project")]
         public int ProjectId { get; set; }
         [Required]
         [MaxLength(50)]

@@ -21,6 +21,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Department
         [Required]
         public String Description { get; set; }
         public C.Employee Creator { get; set; }
+        [Display(Name = "Head of Department")]
         public C.Employee HeadOfDepartment { get; set; }
         public IEnumerable<C.Employee> Employees { get; set; }
         [Required]

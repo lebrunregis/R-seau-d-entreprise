@@ -12,6 +12,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
     {
         [Required]
         [Key]
+        [Display(Name = "Project Id")]
         public int ProjectId { get; set; }
         [Required]
         [MaxLength(50)]
@@ -22,8 +23,10 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
         [Required]
         public D.Employee Manager { get; set; }
         [DataType(DataType.Date)]
+        [Display(Name = "Start date")]
         public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
+        [Display(Name = "End date")]
         public DateTime? EndDate { get; set; }
         public bool IsProjectManager { get; set; }
 
