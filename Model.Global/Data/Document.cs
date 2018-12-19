@@ -12,10 +12,10 @@ namespace Model.Global.Data
         public String Name { get; set; }
         public DateTime Created { get; set; }
         public byte[] Body { get; set; }
-        public float Size { get; set; }
-        public String SHA2 { get; set; }
+        public int Size { get; set; }
+        public int Checksum { get; set; }
         public Boolean Active { get; set; }
         public int AuthorEmployee { get; set; }
-        public int NextVersion { get; set; }
+        public DateTime? Deleted { get; set; }
     }
 }

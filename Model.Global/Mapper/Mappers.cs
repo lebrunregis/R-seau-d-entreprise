@@ -194,10 +194,9 @@ namespace Model.Global.Mapper
                 Created = (DateTime)dr["Created"],
                 Body = (byte[])dr["Body"],
                 Size = (int)dr["Size"],
-                SHA2 = (string)dr["SHA2"],
+                Checksum = (int)dr["Checksum"],
                 Active = (bool)dr["Actif"],
-                AuthorEmployee = (int)dr["Employee_Id"],
-                NextVersion = (int)dr["Employee_Id"]
+                AuthorEmployee = (int)dr["Employee_Id"]
             };
         }
     }

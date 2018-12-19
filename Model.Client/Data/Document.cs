@@ -12,38 +12,38 @@ namespace Model.Client.Data
         private String name;
         private DateTime created;
         private byte[] body;
-        private float size;
-        private String sHA2;
+        private int size;
+        private int checksum;
         private Boolean active;
         private int authorEmployee;
-        private int nextVersion;
+        private DateTime? deleted;
 
         public Document()
         {
 
         }
 
-        public Document(int? id, string name, DateTime created, byte[] body, float size, string sHA2, bool active, int authorEmployee, int nextVersion)
+        public Document(int? id, string name, DateTime created, byte[] body, int size, int checksum, bool active, int authorEmployee, DateTime? deleted)
         {
             Id = id;
             Name = name;
             Created = created;
             Body = body;
             Size = size;
-            SHA2 = sHA2;
+            Checksum = checksum;
             Active = active;
             AuthorEmployee = authorEmployee;
-            NextVersion = nextVersion;
+            Deleted = deleted;
         }
 
         public int? Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public DateTime Created { get => created; set => created = value; }
         public byte[] Body { get => body; set => body = value; }
-        public float Size { get => size; set => size = value; }
-        public string SHA2 { get => sHA2; set => sHA2 = value; }
+        public int Size { get => size; set => size = value; }
+        public int Checksum { get => checksum; set => checksum = value; }
         public bool Active { get => active; set => active = value; }
         public int AuthorEmployee { get => authorEmployee; set => authorEmployee = value; }
-        public int NextVersion { get => nextVersion; set => nextVersion = value; }
+        public DateTime? Deleted { get => deleted; set => deleted = value; }
     }
 }

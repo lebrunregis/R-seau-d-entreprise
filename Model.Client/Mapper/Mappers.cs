@@ -36,7 +36,7 @@ namespace Model.Client.Mapper
         {
 
             return new C.Document(entity.Id, entity.Name, entity.Created, entity.Body, entity.Size,
-                entity.SHA2, entity.Active, entity.AuthorEmployee, entity.NextVersion);
+                entity.Checksum, entity.Active, entity.AuthorEmployee, entity.Deleted);
         }
 
         internal static G.Document ToGlobal(this C.Document entity)
@@ -48,10 +48,9 @@ namespace Model.Client.Mapper
                 Created = entity.Created,
                 Body = entity.Body,
                 Size = entity.Size,
-                SHA2 = entity.SHA2,
+                Checksum = entity.Checksum,
                 Active = entity.Active,
-                AuthorEmployee = entity.AuthorEmployee,
-                NextVersion = entity.NextVersion
+                AuthorEmployee = entity.AuthorEmployee
             };
         }
 

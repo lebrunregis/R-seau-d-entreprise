@@ -235,10 +235,14 @@
     <Build Include="dbo\SP\Message\GetTaskForMessage.sql" />
     <Build Include="dbo\FN\FN_GetParentTitle.sql" />
     <Build Include="dbo\SP\Document\UploadFile.sql" />
-    <Build Include="dbo\SP\Document\ContinueUploadingFile.sql" />
     <Build Include="dbo\SP\Document\DownloadFile.sql" />
     <Build Include="FileGroup1.sql" />
-    <Build Include="dbo\SP\Document\GetFileName.sql" />
+    <Build Include="dbo\SP\Document\AddDocToMessage.sql" />
+    <Build Include="dbo\SP\Document\AddDocToDepartment.sql" />
+    <Build Include="dbo\SP\Document\AddDocToEvent.sql" />
+    <Build Include="dbo\SP\Document\AddDocToProject.sql" />
+    <Build Include="dbo\SP\Document\AddDocToTask.sql" />
+    <Build Include="dbo\SP\Document\AddDocToTeam.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

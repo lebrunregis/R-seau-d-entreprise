@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [DocMessage] (
-  [Document_Id] int FOREIGN KEY REFERENCES [Document](Document_Id),
+  [Document_Id] int,
   [Message_Id] int  FOREIGN KEY REFERENCES [Message](Message_Id)
   PRIMARY KEY ([Document_Id], [Message_Id])
 );
