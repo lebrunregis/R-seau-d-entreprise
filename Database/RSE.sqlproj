@@ -231,6 +231,7 @@
     <Build Include="dbo\SP\Employee\SetEmployeeStatus.sql" />
     <Build Include="dbo\SP\Tasks\GetTasksForTeam.sql" />
     <Build Include="dbo\SP\Tasks\GetTaskStatusHistory.sql" />
+    <Build Include="dbo\Tables\Task\EmployeeTask.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

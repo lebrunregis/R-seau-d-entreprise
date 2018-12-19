@@ -4,4 +4,3 @@
   PRIMARY KEY ([TaskStatus_Id])
 );
 GO
-CREATE INDEX [FK] ON  [TaskStatus] ([Name]);
