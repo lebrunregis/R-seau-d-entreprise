@@ -15,7 +15,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
     [EmployeeRequired]
     public class HomeController : Controller
     {
-        [EmployeeRequired]
+        
         public ActionResult Index()
         {
             int Employee_Id = SessionUser.GetUser().Id;
@@ -61,6 +61,13 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Calendar()
+        {
+            ViewBag.Message = "Your calendar page.";
 
             return View();
         }
