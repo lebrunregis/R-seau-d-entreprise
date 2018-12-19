@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using ToolBox.DBTools;
 
 namespace Model.Global.Service
@@ -123,12 +122,12 @@ namespace Model.Global.Service
             cmd.AddParameter("MessageId", MessageId);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToTeam());
         }
-        /*public static IEnumerable<Task> GetTaskForMessage(int MessageId)
+        public static IEnumerable<Task> GetTaskForMessage(int MessageId)
         {
             Command cmd = new Command("GetTaskForMessage", true);
             cmd.AddParameter("MessageId", MessageId);
-            return Connection.ExecuteReader(cmd, (dr) => dr.Totask());
-        }*/
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToTask());
+        }
         public static bool IsMessageRepliedByEmployee(int MessageId, int EmployeeId)
         {
             Command cmd = new Command("IsMessageRepliedByEmployee", true);

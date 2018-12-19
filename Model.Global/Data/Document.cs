@@ -11,7 +11,7 @@ namespace Model.Global.Data
         public int? Id { get; set; }
         public String Name { get; set; }
         public DateTime Created { get; set; }
-        public String Link { get; set; }
+        public byte[] Body { get; set; }
         public float Size { get; set; }
         public String SHA2 { get; set; }
         public Boolean Active { get; set; }

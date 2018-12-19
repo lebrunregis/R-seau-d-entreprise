@@ -33,5 +33,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         public bool IsTeamLeader { get; set; }
         public bool IsProjectManagerOrAdmin {get ; set; }
         public IEnumerable<C.Task> Tasks { get ; set; }
+        public Message.DiscussionScriptForm DiscScriptForm { get; set; }
     }
 }

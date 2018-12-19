@@ -25,20 +25,21 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Edit profile", "Edit", "Profile")</li>
-                    <li>@Html.ActionLink("My teams", "Index", "Team")</li>
-                    <li>@Html.ActionLink("Employees", "Index", "Employee")</li>
-                    <li>@Html.ActionLink("Projects", "Index", "Project")</li>
-                    <li>@Html.ActionLink("Tasks", "Index", "Task")</li>
-                    <li>@Html.ActionLink("Departments", "Index", "Department")</li>
-                    <li>@Html.ActionLink("Message box", "Mailbox", "Message")</li>
-                    <li>@Html.ActionLink("Logout", "Logout", "Registration", new { area = "" }, new { })</li>
-                    @{Html.RenderAction("_ToAdminLink", "Profile");}
-                </ul>
+				<ul class="nav navbar-nav">
+					<li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+					<li>@Html.ActionLink("À propos de", "About", "Home")</li>
+					<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+					<li>@Html.ActionLink("Edit profile", "Edit", "Profile")</li>
+					<li>@Html.ActionLink("My teams", "Index", "Team")</li>
+					<li>@Html.ActionLink("Employees", "Index", "Employee")</li>
+					<li>@Html.ActionLink("Projects", "Index", "Project")</li>
+					<li>@Html.ActionLink("Tasks", "Index", "Task")</li>
+					<li>@Html.ActionLink("Events", "Index", "Event")</li>
+					<li>@Html.ActionLink("Departments", "Index", "Department")</li>
+					<li>@Html.ActionLink("Message box", "Mailbox", "Message")</li>
+					<li>@Html.ActionLink("Logout", "Logout", "Registration", new { area = "" }, new { })</li>
+					@{Html.RenderAction("_ToAdminLink", "Profile");}
+				</ul>
             </div>
         </div>
     </div>

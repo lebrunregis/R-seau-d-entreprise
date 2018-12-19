@@ -13,8 +13,6 @@ DISABLE TRIGGER [OnDeleteAdmin] ON [Admin];
 GO
 DISABLE TRIGGER [OnDeleteDepartment] ON Department;  
 GO
-DISABLE TRIGGER [OnDeleteDocument] ON Document;
-GO
 DISABLE TRIGGER [OnDeleteEmployee] ON Employee;  
 GO
 DISABLE TRIGGER [OnDeleteEmployeeDepartment] ON EmployeeDepartment;
@@ -31,8 +29,8 @@ DISABLE TRIGGER [OnDeleteTask] ON Task;
 GO
 DISABLE TRIGGER [OnDeleteTeam] ON Team;  
 GO
---DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
---GO
+
+
 
 DELETE FROM [MessageEmployee];
 GO
@@ -74,6 +72,8 @@ DELETE FROM [Admin];
 GO
 DELETE FROM [EmployeeStatusHistory];
 GO
+DELETE FROM [Document];
+GO
 DELETE FROM [Employee];
 GO
 DELETE FROM [EmployeeStatus];
@@ -91,7 +91,13 @@ DBCC CHECKIDENT ('[Task]', RESEED, 0);
 GO
 DBCC CHECKIDENT ('[TaskStatus]', RESEED, 0);
 GO
+DBCC CHECKIDENT ('[Message]', RESEED, 0);
+GO
+DBCC CHECKIDENT ('[Document]', RESEED, 0);
+GO
 DBCC CHECKIDENT ('[Team]', RESEED, 0);
+GO
+DBCC CHECKIDENT ('[Department]', RESEED, 0);
 GO
 
 SET IDENTITY_INSERT [TaskStatus] ON 
@@ -143,8 +149,6 @@ EXEC [dbo].CreateTask @Name = 'Test task',@Description = 'Test task description'
 ENABLE TRIGGER [OnDeleteAdmin] ON [Admin];   
 GO
 ENABLE TRIGGER [OnDeleteDepartment] ON Department;  
-GO
-ENABLE TRIGGER [OnDeleteDocument] ON Document;
 GO
 ENABLE TRIGGER [OnDeleteEmployee] ON Employee;  
 GO

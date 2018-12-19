@@ -136,11 +136,10 @@ namespace Model.Global.Mapper
 
         internal static Task ToTask(this IDataRecord dr)
         {
-            Task Task = new Task
+            return new Task()
             {
                 Id = (int)dr["Task_Id"],
                 CreatorId = (int)dr["CreatorId"],
-                ProjectId = (int)dr["Project_Id"],
                 TeamId = (int?)((dr["Team_Id"] == DBNull.Value) ? null : dr["Team_Id"]),
                 Name = (string)dr["Name"],
                 Description = (string)dr["Description"],
@@ -150,10 +149,8 @@ namespace Model.Global.Mapper
                 SubtaskOf = (int?)((dr["SubtaskOf"] == DBNull.Value) ? null : dr["SubtaskOf"]),
                 StatusId = (int)dr["Status_Id"],
                 StatusName = (string)dr["Status_Name"],
-                StatusDate = (DateTime)((dr["Status_Date"] == DBNull.Value) ? null : dr["Status_Date"])
+                StatusDate = (DateTime)dr["Status_Date"]
             };
-
-            return Task;
         }
 
         internal static TaskStatus ToTaskStatus(this IDataRecord dr)
@@ -185,6 +182,21 @@ namespace Model.Global.Mapper
                 Body = (string)dr["Message_Message"],
                 Author = (int)dr["Message_Author"],
                 Parent = (int?)((dr["Message_Parent"] == DBNull.Value) ? null : dr["Message_Parent"])
+            };
+        }
+        internal static Document ToDocument(this IDataRecord dr)
+        {
+            return new Document()
+            {
+                Id = (int)dr["Document_Id"],
+                Name = (string)dr["Name"],
+                Created = (DateTime)dr["Created"],
+                Body = (byte[])dr["Body"],
+                Size = (int)dr["Size"],
+                SHA2 = (string)dr["SHA2"],
+                Active = (bool)dr["Actif"],
+                AuthorEmployee = (int)dr["Employee_Id"],
+                NextVersion = (int)dr["Employee_Id"]
             };
         }
     }
