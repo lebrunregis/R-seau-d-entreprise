@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ReseauEntreprise.Areas.Employee.Models.ViewModels.Calendar.CalendarForm>
 @{
     ViewBag.Title = "Calendar";
 }
@@ -9,6 +9,20 @@
 
         $('#calendar').fullCalendar({
             // put your options and callbacks here
+            events: [
+         @for (int i = 0;i<Model.Count();i++) {
+             <text>{
+                    title: '</text>
+            @Model.ElementAt(i).Title
+            <text>', start: '</text>
+                @Model.ElementAt(i).StartDate.ToLongDateString()
+                 <text>}</text>
+             if (i == (Model.Count() - 1))
+             {
+                  <text>,</text>
+             };
+        }
+            ]
         })
 
     });

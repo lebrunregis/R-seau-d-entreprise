@@ -8,6 +8,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using D = Model.Client.Data;
+using Model.Client.Data;
+using ReseauEntreprise.Areas.Employee.Models.ViewModels.Calendar;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -68,8 +70,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public ActionResult Calendar()
         {
             ViewBag.Message = "Your calendar page.";
-
-            return View();
+            IEnumerable<Event> Events=EventService.GetAllActiveForUser(SessionUser.GetUser().Id);
+            IEnumerable<Project> Projects = ProjectService.GetAllActive();
+            IEnumerable<Task> Tasks = TaskService.GetForUser(SessionUser.GetUser().Id);
+            List < CalendarForm > CalendarEvents = new List<CalendarForm>();
+            return View(CalendarEvents);
         }
     }
 }
