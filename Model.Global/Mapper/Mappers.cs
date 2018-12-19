@@ -149,7 +149,8 @@ namespace Model.Global.Mapper
                 SubtaskOf = (int?)((dr["SubtaskOf"] == DBNull.Value) ? null : dr["SubtaskOf"]),
                 StatusId = (int)dr["Status_Id"],
                 StatusName = (string)dr["Status_Name"],
-                StatusDate = (DateTime)dr["Status_Date"]
+                StatusDate = (DateTime)dr["Status_Date"],
+                ProjectId = (int)dr["Project_Id"]
             };
         }
 
@@ -193,10 +194,9 @@ namespace Model.Global.Mapper
                 Created = (DateTime)dr["Created"],
                 Body = (byte[])dr["Body"],
                 Size = (int)dr["Size"],
-                SHA2 = (string)dr["SHA2"],
+                Checksum = (int)dr["Checksum"],
                 Active = (bool)dr["Actif"],
-                AuthorEmployee = (int)dr["Employee_Id"],
-                NextVersion = (int)dr["Employee_Id"]
+                AuthorEmployee = (int)dr["Employee_Id"]
             };
         }
     }

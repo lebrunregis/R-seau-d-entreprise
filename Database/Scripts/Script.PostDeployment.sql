@@ -93,8 +93,6 @@ DBCC CHECKIDENT ('[TaskStatus]', RESEED, 0);
 GO
 DBCC CHECKIDENT ('[Message]', RESEED, 0);
 GO
-DBCC CHECKIDENT ('[Document]', RESEED, 0);
-GO
 DBCC CHECKIDENT ('[Team]', RESEED, 0);
 GO
 DBCC CHECKIDENT ('[Department]', RESEED, 0);

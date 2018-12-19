@@ -20,8 +20,8 @@ AS
 		LAST_VALUE(TaskStatus.Name) OVER (ORDER BY TaskStatusHistory.date) 
 	END 
 	AS Status_Name,
-	LAST_VALUE(ISNULL(TaskStatus.TaskStatus_Id,0)) OVER (ORDER BY TaskStatusHistory.date) AS Status_Id,  
-	LAST_VALUE(ISNULL(TaskStatusHistory.date,StartDate)) OVER (ORDER BY TaskStatusHistory.date) AS Status_Date
+	LAST_VALUE(ISNULL(TaskStatus.TaskStatus_Id,0)) OVER (ORDER BY TaskStatusHistory.date DESC) AS Status_Id,  
+	LAST_VALUE(ISNULL(TaskStatusHistory.date,StartDate)) OVER (ORDER BY TaskStatusHistory.date DESC) AS Status_Date
 	FROM Task 
 	LEFT JOIN TaskStatusHistory ON Task.Task_Id = TaskStatusHistory.Task_Id 
 	LEFT JOIN TaskStatus ON TaskStatus.TaskStatus_Id = TaskStatusHistory.TaskStatus_Id
