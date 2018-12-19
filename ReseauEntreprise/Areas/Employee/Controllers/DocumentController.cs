@@ -13,14 +13,14 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
 {
     public class DocumentController : Controller
     {
-        // GET: Employee/Document/Upload
-        public ActionResult Upload()
+        [ChildActionOnly]
+        public ActionResult _Upload(int? ProjectId, int? TaskId, int? TeamId, int? EmployeeId)
         {
-            return View();
+            return PartialView();
         }
 
         [HttpPost]
-        public ActionResult Upload(UploadForm form)
+        public ActionResult _Upload(UploadForm form, int? DepartmentId, int? EventId, int? MessageId, int? ProjectId, int? TaskId, int? TeamId)
         {
             if (ModelState.IsValid)
             {

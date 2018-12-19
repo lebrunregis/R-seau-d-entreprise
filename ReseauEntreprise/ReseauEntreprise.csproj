@@ -379,7 +379,7 @@
     <Content Include="Areas\Employee\Views\Event\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Event\Details.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_SendFormTemplateRoot.cshtml" />
-    <Content Include="Areas\Employee\Views\Document\Upload.cshtml" />
+    <Content Include="Areas\Employee\Views\Document\_Upload.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

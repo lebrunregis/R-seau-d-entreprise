@@ -59,7 +59,7 @@
 
 	function refresh() {
 		var messages = document.getElementsByClassName("myMessage");
-		var max_id = 0;
+		var max_id = -1; // parfois il existent des messages avec id 0 
 		var id;
 		for (var i = 0; i < messages.length; i++) {
 			id = messages[i].id.replace('message_', '')

@@ -59,7 +59,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return new ContentResult {Content = "fail" };
         }
 
-        public ActionResult _Discussion(int? ProjectId = null, int? TaskId = null, int? TeamId = null, int? EmployeeId = null)
+        public ActionResult _Discussion(int? ProjectId, int? TaskId, int? TeamId, int? EmployeeId)
         {
             IEnumerable<C.Message> messages = new List<C.Message>();
             if (!(ProjectId is null))

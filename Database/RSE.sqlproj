@@ -243,6 +243,12 @@
     <Build Include="dbo\SP\Document\AddDocToProject.sql" />
     <Build Include="dbo\SP\Document\AddDocToTask.sql" />
     <Build Include="dbo\SP\Document\AddDocToTeam.sql" />
+    <Build Include="dbo\SP\Document\GetDocsForTeam.sql" />
+    <Build Include="dbo\SP\Document\GetDocsForDepartment.sql" />
+    <Build Include="dbo\SP\Document\GetDocsForEvent.sql" />
+    <Build Include="dbo\SP\Document\GetDocsForMessage.sql" />
+    <Build Include="dbo\SP\Document\GetDocsForProject.sql" />
+    <Build Include="dbo\SP\Document\GetDocsForTask.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
