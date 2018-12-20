@@ -12,6 +12,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
     {
         [Required]
         [Key]
+        [Display(Name = "Project Id")]
         public int ProjectId { get; set; }
         [Required]
         [MaxLength(50)]
@@ -22,8 +23,10 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
         [Required]
         public D.Employee Manager { get; set; }
         [DataType(DataType.Date)]
+        [Display(Name = "Start date")]
         public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
+        [Display(Name = "End date")]
         public DateTime? EndDate { get; set; }
         public bool IsProjectManager { get; set; }
 
@@ -36,7 +39,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
         public ListForm(D.Project Project,D.Employee Manager, int MyId)
         {
             ProjectId = (int)Project.Id;
-            Name = Project.Name;
+            Name = Project.Title;
             Description = Project.Description;
             this.Manager = Manager;
             this.StartDate = Project.Start;

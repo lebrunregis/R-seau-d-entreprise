@@ -28,7 +28,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     Id = Task.Id,
                     ProjectId = Task.ProjectId,
                     CreatorId = Task.CreatorId,
-                    Name = Task.Name,
+                    Name = Task.Title,
                     Description = Task.Description,
                     StartDate = Task.StartDate,
                     EndDate = Task.EndDate,
@@ -55,7 +55,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     Id = Task.Id,
                     ProjectId = Task.ProjectId,
                     CreatorId = Task.CreatorId,
-                    Name = Task.Name,
+                    Name = Task.Title,
                     Description = Task.Description,
                     StartDate = Task.StartDate,
                     EndDate = Task.EndDate,
@@ -82,7 +82,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     Id = Task.Id,
                     ProjectId = Task.ProjectId,
                     CreatorId = Task.CreatorId,
-                    Name = Task.Name,
+                    Name = Task.Title,
                     Description = Task.Description,
                     StartDate = Task.StartDate,
                     EndDate = Task.EndDate,
@@ -128,7 +128,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Task t = new Task()
                 {
                     ProjectId = form.ProjectId,
-                    Name = form.Name,
+                    Title = form.Name,
                     Description = form.Description,
                     StartDate = form.StartDate,
                     Deadline = form.Deadline,
@@ -168,7 +168,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 ProjectId = (int)task.ProjectId,
                 CreatorId = (int)task.CreatorId,
                 TeamId = (int)task.TeamId,
-                Name = task.Name,
+                Name = task.Title,
                 Description = task.Description,
                 StartDate = task.StartDate,
                 Deadline = task.Deadline,
@@ -187,7 +187,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             {
 
                 Task Task = TaskService.Get(form.Id, SessionUser.GetUser().Id);
-                Task.Name = form.Name;
+                Task.Title = form.Name;
                 Task.Description = form.Description;
                 Task.StartDate = form.StartDate;
                 Task.Deadline = form.Deadline;
@@ -225,7 +225,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Task t = new Task()
                 {
                     ProjectId = form.ProjectId,
-                    Name = form.Name,
+                    Title = form.Name,
                     Description = form.Description,
                     StartDate = form.StartDate,
                     Deadline = form.Deadline,
@@ -261,7 +261,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Subtasks = Subtasks,
                 Parent = Parent,
                 Id = (int)Task.Id,
-                Name = Task.Name,
+                Name = Task.Title,
                 ProjectId = Task.ProjectId,
                 CreatorId = Task.CreatorId,
                 Description = Task.Description,

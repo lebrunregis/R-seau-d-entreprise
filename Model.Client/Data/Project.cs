@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model.Client.Data
 {
     public class Project
     {
         private int? id;
-        private String name;
+        private String title;
         private String description;
         private DateTime start;
         private DateTime? end;
@@ -21,10 +17,10 @@ namespace Model.Client.Data
 
         }
 
-        public Project(int? id, string name, string description, DateTime start, DateTime? end, int creatorId, int projectManagerId)
+        public Project(int? id, string title, string description, DateTime start, DateTime? end, int creatorId, int projectManagerId)
         {
             Id = id;
-            Name = name;
+            Title = title;
             Description = description;
             Start = start;
             End = end;
@@ -32,9 +28,9 @@ namespace Model.Client.Data
             ProjectManagerId = projectManagerId;
         }
 
-        public Project( string name, string description, DateTime start, DateTime? end, int creatorId, int projectManagerId)
+        public Project( string title, string description, DateTime start, DateTime? end, int creatorId, int projectManagerId)
         {
-            Name = name;
+            Title = title;
             Description = description;
             Start = start;
             End = end;
@@ -43,7 +39,7 @@ namespace Model.Client.Data
         }
 
         public int? Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
+        public string Title { get => title; set => title = value; }
         public string Description { get => description; set => description = value.Normalize(); }
         public DateTime Start { get => start; set => start = value; }
         public DateTime? End

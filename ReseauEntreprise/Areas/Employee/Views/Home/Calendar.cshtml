@@ -1,5 +1,4 @@
-﻿@model IEnumerable<ReseauEntreprise.Areas.Employee.Models.ViewModels.Calendar.CalendarForm>
-@{
+﻿@{
     ViewBag.Title = "Calendar";
 }
 <script>
@@ -9,23 +8,21 @@
 
         $('#calendar').fullCalendar({
             // put your options and callbacks here
-            events: [
-         @for (int i = 0;i<Model.Count();i++) {
-             <text>{
-                    title: '</text>
-            @Model.ElementAt(i).Title
-            <text>', start: '</text>
-                @Model.ElementAt(i).StartDate.ToLongDateString()
-                 <text>}</text>
-             if (i == (Model.Count() - 1))
-             {
-                  <text>,</text>
-             };
-        }
-            ]
-        })
+            eventSources: [
 
-    });
+                // your event source
+                {
+                    url: '/myfeed.php', // use the `url` property
+                    color: 'yellow',    // an option!
+                    textColor: 'black'  // an option!
+                }
+
+                // any other sources...
+
+            ]
+
+        });
+        }
 </script>
 
 

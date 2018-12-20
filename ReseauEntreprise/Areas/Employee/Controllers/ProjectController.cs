@@ -46,7 +46,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             DetailsForm Form = new DetailsForm
             {
                 Id = (int)Project.Id,
-                Name = Project.Name,
+                Name = Project.Title,
                 Description = Project.Description,
                 Manager = Manager,
                 Creator = Creator,

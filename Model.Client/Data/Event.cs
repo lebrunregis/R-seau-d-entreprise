@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Model.Client.Data
 {
+    [DataContract]
     public class Event
     {
+        
         private int? id;
         private int creatorId;
         private int? departmentId;
         private string name;
         private string description;
         private string address;
-        private DateTime startDate;
-        private DateTime endDate;
-        private DateTime creationDate;
+        private DateTime start;
+        private DateTime end;
+        private DateTime created;
         private DateTime? subscribed;
         private bool open;
         private bool cancelled;
@@ -26,32 +29,31 @@ namespace Model.Client.Data
 
         }
 
-        public Event(int? id, int creatorId, int? departmentId, string name, string description, string address, DateTime startDate, DateTime endDate, DateTime creationDate, DateTime? subscribed, bool open, bool cancelled)
+        public Event(int? id, int creatorId, int? departmentId, string title, string description, string address, DateTime start, DateTime end, DateTime created, DateTime? subscribed, bool open, bool cancelled)
         {
             Id = id;
             CreatorId = creatorId;
             DepartmentId = departmentId;
-            Name = name;
+            Title = title;
             Description = description;
             Address = address;
-            StartDate = startDate;
-            EndDate = endDate;
-            CreationDate = creationDate;
+            Start = start;
+            End = end;
+            Created = created;
             Subscribed = subscribed;
             Open = open;
             Cancelled = cancelled;
         }
 
-        public Event( int creatorId, int? departmentId, string name, string description, string address, DateTime startDate, DateTime endDate, bool open)
+        public Event( int creatorId, int? departmentId, string title, string description, string address, DateTime start, DateTime end, bool open)
         {
             CreatorId = creatorId;
             DepartmentId = departmentId;
-            Name = name;
+            Title = title;
             Description = description;
             Address = address;
-            StartDate = startDate;
-            EndDate = endDate;
-            CreationDate = DateTime.Now;
+            Start = start;
+            End = end;
             Open = open;
             Cancelled = false;
         }
@@ -59,22 +61,26 @@ namespace Model.Client.Data
         public int? Id { get => id; set => id = value; }
         public int CreatorId { get => creatorId; set => creatorId = value; }
         public int? DepartmentId { get => departmentId; set => departmentId = value; }
-        public string Name { get => name; set => name = value; }
+        [DataMember]
+        public string Title { get => name; set => name = value; }
+        [DataMember]
         public string Description { get => description; set => description = value; }
         public string Address { get => address; set => address = value; }
-        public DateTime StartDate { get => startDate; set => startDate = value; }
-        public DateTime EndDate
+        [DataMember]
+        public DateTime Start { get => start; set => start = value; }
+        [DataMember]
+        public DateTime End
         {
             get
             {
-                return endDate;
+                return end;
             }
 
             set
             {
-                if (DateTime.Compare((DateTime)value, StartDate) >= 0)
+                if (DateTime.Compare((DateTime)value, Start) >= 0)
                 {
-                    endDate = value;
+                    end = value;
                 }
                 else
                 {
@@ -83,7 +89,7 @@ namespace Model.Client.Data
 
             }
         }
-        public DateTime CreationDate { get => creationDate; set => creationDate = value; }
+        public DateTime Created { get => created; set => created = value; }
         public DateTime? Subscribed { get => subscribed; set => subscribed = value; }
         public bool Open { get => open; set => open = value; }
         public bool Cancelled { get => cancelled; set => cancelled = value; }

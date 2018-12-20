@@ -17,13 +17,13 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
     [EmployeeRequired]
     public class HomeController : Controller
     {
-        
+
         public ActionResult Index()
         {
             int Employee_Id = SessionUser.GetUser().Id;
             IEnumerable<D.Team> Teams = TeamService.GetAllActiveTeamsForEmployee(Employee_Id);
             List<ProjectTeamsForm> ProjectTeamList = new List<ProjectTeamsForm>();
-            foreach(D.Team team in Teams)
+            foreach (D.Team team in Teams)
             {
                 ProjectTeamsForm element = ProjectTeamList.Where(pt => pt.Project.Id == team.Project_Id).FirstOrDefault();
                 if (element is null)
@@ -70,11 +70,25 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public ActionResult Calendar()
         {
             ViewBag.Message = "Your calendar page.";
-            IEnumerable<Event> Events=EventService.GetAllActiveForUser(SessionUser.GetUser().Id);
+            return View();
+        }
+
+        public JsonResult CalendarEventFeed()
+        {
+            IEnumerable<Event> Events = EventService.GetAllActiveForUser(SessionUser.GetUser().Id);
+            return Json();
+        }
+
+        public JsonResult CalendarProjectFeed()
+        {
             IEnumerable<Project> Projects = ProjectService.GetAllActive();
+            return Json();
+        }
+
+        public JsonResult CalendarTaskFeed()
+        {
             IEnumerable<Task> Tasks = TaskService.GetForUser(SessionUser.GetUser().Id);
-            List < CalendarForm > CalendarEvents = new List<CalendarForm>();
-            return View(CalendarEvents);
+            return Json();
         }
     }
 }

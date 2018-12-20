@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model.Client.Data
 {
@@ -12,7 +8,7 @@ namespace Model.Client.Data
         private int projectId;
         private int creatorId;
         private int? teamId;
-        private String name;
+        private String title;
         private String description;
         private DateTime startDate;
         private DateTime? endDate;
@@ -27,12 +23,12 @@ namespace Model.Client.Data
 
         }
 
-        public Task( int projectId, int creatorId, int? teamId, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf)
+        public Task( int projectId, int creatorId, int? teamId, string title, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf)
         {
             ProjectId = projectId;
             CreatorId = creatorId;
             TeamId = teamId;
-            Name = name;
+            Title = title;
             Description = description;
             StartDate = startDate;
             EndDate = endDate;
@@ -40,13 +36,13 @@ namespace Model.Client.Data
             SubtaskOf = subtaskOf;
         }
 
-        public Task(int id, int projectId, int creatorId, int? teamId, string name, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf,string statusName,DateTime? statusDate,int statusId)
+        public Task(int id, int projectId, int creatorId, int? teamId, string title, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf,string statusName,DateTime? statusDate,int statusId)
         {
             Id = id;
             ProjectId = projectId;
             CreatorId = creatorId;
             TeamId = teamId;
-            Name = name;
+            Title = title;
             Description = description;
             StartDate = startDate;
             EndDate = endDate;
@@ -58,7 +54,7 @@ namespace Model.Client.Data
         }
 
         public int? Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
+        public string Title { get => title; set => title = value; }
         public string Description { get => description; set => description = value; }
         public DateTime StartDate { get => startDate; set => startDate = value; }
         public DateTime? EndDate { get => endDate; set => endDate = value; }

@@ -135,7 +135,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 {
                     ProjectCandidates.Add(new SelectListItem()
                     {
-                        Text = p.Name,
+                        Text = p.Title,
                         Value = p.Id.ToString()
                     });
                 }
@@ -188,7 +188,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             {
                 ProjectCandidates.Add(new SelectListItem()
                 {
-                    Text = p.Name,
+                    Text = p.Title,
                     Value = p.Id.ToString()
                 });
             }

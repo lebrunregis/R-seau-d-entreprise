@@ -45,7 +45,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
 
                 Document doc = new Document
                 {
-                    Name = form.File.FileName,
+                    Filename = form.File.FileName,
                     Body = file,
                     AuthorEmployee = SessionUser.GetUser().Id
                 };
@@ -75,7 +75,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public FileResult Download(int id)
         {
             Document doc = DocumentService.Get(id);
-            return File(doc.Body, System.Net.Mime.MediaTypeNames.Application.Octet, doc.Name);
+            return File(doc.Body, System.Net.Mime.MediaTypeNames.Application.Octet, doc.Filename);
         }
     }
 }
