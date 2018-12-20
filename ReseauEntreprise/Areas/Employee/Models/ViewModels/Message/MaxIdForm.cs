@@ -7,6 +7,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
 {
     public class MaxIdForm
     {
-        public int max_id { get; set; }
+        public int Max_id { get; set; }
     }
 }

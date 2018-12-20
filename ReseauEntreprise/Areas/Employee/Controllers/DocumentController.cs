@@ -2,11 +2,7 @@
 using Model.Client.Service;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers

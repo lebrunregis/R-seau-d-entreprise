@@ -111,11 +111,11 @@ GO
 SET IDENTITY_INSERT [TaskStatus] OFF
 
 SET IDENTITY_INSERT [EmployeeStatus] ON
-INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (1,'Joined');
-INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (2,'Left');
-INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (3,'Sick');
-INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (4,'Dead');
-INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (5,'Admin');
+INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (0,'Joined');
+INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (1,'Left');
+INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (2,'Sick');
+INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (3,'Dead');
+INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (4,'Admin');
 GO
 SET IDENTITY_INSERT [EmployeeStatus] OFF
 

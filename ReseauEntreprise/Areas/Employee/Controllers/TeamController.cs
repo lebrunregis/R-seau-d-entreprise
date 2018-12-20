@@ -2,10 +2,8 @@
 using Model.Client.Service;
 using Réseau_d_entreprise.Session.Attributes;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Team;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam;

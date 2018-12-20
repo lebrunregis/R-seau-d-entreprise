@@ -2,10 +2,8 @@
 using Réseau_d_entreprise.Session;
 using Réseau_d_entreprise.Session.Attributes;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.IndexPage;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using D = Model.Client.Data;
 using Model.Client.Data;
@@ -76,19 +74,22 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public JsonResult CalendarEventFeed()
         {
             IEnumerable<Event> Events = EventService.GetAllActiveForUser(SessionUser.GetUser().Id);
-            return Json();
+            List<CalendarForm> Forms = new List<CalendarForm>();
+            return Json(Forms);
         }
 
         public JsonResult CalendarProjectFeed()
         {
             IEnumerable<Project> Projects = ProjectService.GetAllActive();
-            return Json();
+            List<CalendarForm> Forms = new List<CalendarForm>();
+            return Json(Forms);
         }
 
         public JsonResult CalendarTaskFeed()
         {
             IEnumerable<Task> Tasks = TaskService.GetForUser(SessionUser.GetUser().Id);
-            return Json();
+            List<CalendarForm> Forms = new List<CalendarForm>();
+            return Json(Forms);
         }
     }
 }

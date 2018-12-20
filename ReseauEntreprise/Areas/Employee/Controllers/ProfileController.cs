@@ -1,13 +1,9 @@
 ﻿using D = Model.Global.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Model.Global.Service;
 using Réseau_d_entreprise.Session;
 using Réseau_d_entreprise.Session.Attributes;
-using ReseauEntreprise.Areas.Employee.Models;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Profile;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers

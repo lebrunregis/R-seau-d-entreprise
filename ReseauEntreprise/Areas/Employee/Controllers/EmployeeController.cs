@@ -1,9 +1,7 @@
 ﻿using C = Model.Client.Data;
 using Model.Client.Service;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee;
 using Réseau_d_entreprise.Session.Attributes;
