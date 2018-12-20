@@ -4,23 +4,31 @@
 {
 				@Html.AntiForgeryToken()
 
-				<div class="form-horizontal">
-        <h4>UploadForm</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.File, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="File"/>
-                @Html.ValidationMessageFor(model => model.File, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="form-horizontal">
+	<h4>UploadForm</h4>
+	<hr />
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+	<div class="form-group">
+		@Html.LabelFor(model => model.File, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			<input type="file" name="File" />
+			@Html.ValidationMessageFor(model => model.File, "", new { @class = "text-danger" })
+		</div>
+	</div>
+	@Html.HiddenFor(model => model.DepartmentId)
+	@Html.HiddenFor(model => model.EventId)
+	@Html.HiddenFor(model => model.MessageId)
+	@Html.HiddenFor(model => model.ProjectId)
+	@Html.HiddenFor(model => model.TaskId)
+	@Html.HiddenFor(model => model.TeamId)
+
+	@Html.HiddenFor(model => model.PreviousVersionId)
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" value="Create" class="btn btn-default" />
+		</div>
+	</div>
+</div>
 }

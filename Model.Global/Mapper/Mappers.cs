@@ -199,5 +199,13 @@ namespace Model.Global.Mapper
                 AuthorEmployee = (int)dr["Employee_Id"]
             };
         }
+        internal static Document ToDocumentSimplified(this IDataRecord dr)
+        {
+            return new Document()
+            {
+                Id = (int)dr["Document_Id"],
+                Name = (string)dr["Name"]
+            };
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using C = Model.Client.Data;
+using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Department
 {
@@ -25,5 +26,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Department
         public IEnumerable<C.Employee> Employees { get; set; }
         [Required]
         public bool Active { get; set; }
+        public IEnumerable<Doc.ListForm> Documents { get; set; } 
     }
 }

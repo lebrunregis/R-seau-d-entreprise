@@ -218,6 +218,8 @@
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\ListForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Document\DetailsForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Document\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Document\UploadForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Event\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Event\ListForm.cs" />
@@ -417,6 +419,7 @@
     <Content Include="Views\Shared\_Department.cshtml" />
     <Content Include="Views\Shared\_Event.cshtml" />
     <Content Include="Areas\Employee\Views\Profile\_ToAdminLink.cshtml" />
+    <Content Include="Views\Shared\_DocumentList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

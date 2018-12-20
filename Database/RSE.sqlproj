@@ -249,6 +249,7 @@
     <Build Include="dbo\SP\Document\GetDocsForMessage.sql" />
     <Build Include="dbo\SP\Document\GetDocsForProject.sql" />
     <Build Include="dbo\SP\Document\GetDocsForTask.sql" />
+    <Build Include="dbo\SP\Document\GetMetaData.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

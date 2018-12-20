@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Event
 {
@@ -41,5 +42,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Event
         [Required]
         [Display(Name = "Open Subscriptions")]
         public bool OpenSubscription { get; set; }
+        public IEnumerable<Doc.ListForm> Documents { get; set; }
     }
 }

@@ -80,5 +80,41 @@ namespace Model.Global.Service
             cmd.AddParameter("Team_Id", TeamId);
             return Connection.ExecuteNonQuery(cmd) > 0;
         }
+        public static IEnumerable<Document> GetForDepartment(int Id)
+        {
+            Command cmd = new Command("GetDocsForDepartment", true);
+            cmd.AddParameter("Department_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentSimplified());
+        }
+        public static IEnumerable<Document> GetForEvent(int Id)
+        {
+            Command cmd = new Command("GetDocsForEvent", true);
+            cmd.AddParameter("Event_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentSimplified());
+        }
+        public static IEnumerable<Document> GetForMessage(int Id)
+        {
+            Command cmd = new Command("GetDocsForMessage", true);
+            cmd.AddParameter("Message_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentSimplified());
+        }
+        public static IEnumerable<Document> GetForProject(int Id)
+        {
+            Command cmd = new Command("GetDocsForProject", true);
+            cmd.AddParameter("Project_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentSimplified());
+        }
+        public static IEnumerable<Document> GetForTask(int Id)
+        {
+            Command cmd = new Command("GetDocsForTask", true);
+            cmd.AddParameter("Task_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentSimplified());
+        }
+        public static IEnumerable<Document> GetForTeam(int Id)
+        {
+            Command cmd = new Command("GetDocsForTeam", true);
+            cmd.AddParameter("Team_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentSimplified());
+        }
     }
 }

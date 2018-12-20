@@ -9,6 +9,7 @@ using ReseauEntreprise.Areas.Employee.Models.ViewModels.Task;
 using Model.Client.Data;
 using Model.Client.Service;
 using ReseauEntreprise.Session.Attributes;
+using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -271,7 +272,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 StatusName = Task.StatusName,
                 StatusDate = (DateTime)Task.StatusDate,
                 StatusId = (int)Task.StatusId,
-                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToTask = Task.Id }
+                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToTask = Task.Id },
+                Documents = DocumentService.GetForTask((int)Task.Id).Select(d => new Doc.ListForm { Name = d.Name, Id = (int)d.Id })
             };
             return View(form);
         }

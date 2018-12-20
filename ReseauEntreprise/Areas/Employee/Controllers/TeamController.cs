@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam;
 using ReseauEntreprise.Session.Attributes;
+using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
@@ -325,7 +326,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToTeam = Team.Id },
                 Tasks = Tasks,
                 IsTeamLeader = (Employee_Id == TeamLeader.Employee_Id),
-                IsProjectManagerOrAdmin = ((AuthService.IsAdmin(Employee_Id)) || (Employee_Id == ProjectService.GetProjectManagerId(Team.Project_Id)))
+                IsProjectManagerOrAdmin = ((AuthService.IsAdmin(Employee_Id)) || (Employee_Id == ProjectService.GetProjectManagerId(Team.Project_Id))),
+                Documents = DocumentService.GetForTeam((int)Team.Id).Select(d => new Doc.ListForm { Name = d.Name, Id = (int)d.Id })
             };
             return View(Form);
         }

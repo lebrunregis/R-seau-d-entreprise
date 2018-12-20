@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using C = Model.Client.Data;
+using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
 {
@@ -19,6 +20,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
         [DataType(DataType.DateTime)]
         public DateTime CreationTime { get; set; }
         public IEnumerable<ViewForm> Children { get; set; }
+        public IEnumerable<Doc.ListForm> Documents { get; set; }
 
         public ViewForm() { }
 
@@ -34,6 +36,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
             Parent = message.Parent;
             Author = EmployeeService.Get(message.Author);
             CreationTime = message.Created;
+            Documents = DocumentService.GetForMessage((int)message.Id).Select(d => new Doc.ListForm { Name = d.Name, Id = (int)d.Id});
             this.Children = Children;
         }
     }

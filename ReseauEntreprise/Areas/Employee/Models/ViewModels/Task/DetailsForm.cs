@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using C = Model.Client.Data;
+using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
 {
@@ -30,6 +31,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         public DateTime StatusDate { get; set; }
         [Required]
         public int StatusId { get; set; }
+        public IEnumerable<Doc.ListForm> Documents { get; set; }
 
 
         public Message.DiscussionScriptForm DiscScriptForm { get; set; }
