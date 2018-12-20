@@ -29,16 +29,6 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     }
                 }
 
-                /*byte[] firstPart;
-                if (file.Length <= 8000)
-                {
-                    firstPart = file;
-                }
-                else
-                {
-                    firstPart = new ArraySegment<byte>(file, 0, 8000).ToArray();
-                }*/
-
                 Document doc = new Document
                 {
                     Filename = form.File.FileName,
@@ -46,25 +36,6 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     AuthorEmployee = SessionUser.GetUser().Id
                 };
                 DocumentService.Create(doc);
-                /*Connection Connection = new Connection("System.Data.SqlClient", ConfigurationManager.ConnectionStrings["connString"].ConnectionString);
-                Command cmd = new Command("UploadFile", true);
-                cmd.AddParameter("Employee_Id", SessionUser.GetUser().Id);
-                cmd.AddParameter("Name", form.File.FileName);
-                cmd.AddParameter("Body", file);
-                int id = (int)Connection.ExecuteScalar(cmd);
-
-                int count = 8000;
-                for (int i = 8000; i < file.Length; i += 8000)
-                {
-                    if (file.Length - i < 8000)
-                    {
-                        count = file.Length - i;
-                    }
-                    cmd = new Command("ContinueUploadingFile", true);
-                    cmd.AddParameter("Id", id);
-                    cmd.AddParameter("Body", new ArraySegment<byte>(file, i, count).ToArray());
-                    Connection.ExecuteNonQuery(cmd);
-                }*/
             }
             return View();
         }

@@ -10,8 +10,8 @@ namespace Model.Client.Data
         private int? teamId;
         private String title;
         private String description;
-        private DateTime startDate;
-        private DateTime? endDate;
+        private DateTime start;
+        private DateTime? end;
         private DateTime? deadline;
         private int? subtaskOf;
         private readonly int? statusId;
@@ -23,20 +23,20 @@ namespace Model.Client.Data
 
         }
 
-        public Task( int projectId, int creatorId, int? teamId, string title, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf)
+        public Task( int projectId, int creatorId, int? teamId, string title, string description, DateTime start, DateTime? end, DateTime? deadline, int? subtaskOf)
         {
             ProjectId = projectId;
             CreatorId = creatorId;
             TeamId = teamId;
             Title = title;
             Description = description;
-            StartDate = startDate;
-            EndDate = endDate;
+            Start = start;
+            End = end;
             Deadline = deadline;
             SubtaskOf = subtaskOf;
         }
 
-        public Task(int id, int projectId, int creatorId, int? teamId, string title, string description, DateTime startDate, DateTime? endDate, DateTime? deadline, int? subtaskOf,string statusName,DateTime? statusDate,int statusId)
+        public Task(int id, int projectId, int creatorId, int? teamId, string title, string description, DateTime start, DateTime? end, DateTime? deadline, int? subtaskOf,string statusName,DateTime? statusDate,int statusId)
         {
             Id = id;
             ProjectId = projectId;
@@ -44,8 +44,8 @@ namespace Model.Client.Data
             TeamId = teamId;
             Title = title;
             Description = description;
-            StartDate = startDate;
-            EndDate = endDate;
+            Start = start;
+            End = end;
             Deadline = deadline;
             SubtaskOf = subtaskOf;
             this.statusName = statusName;
@@ -56,8 +56,8 @@ namespace Model.Client.Data
         public int? Id { get => id; set => id = value; }
         public string Title { get => title; set => title = value; }
         public string Description { get => description; set => description = value; }
-        public DateTime StartDate { get => startDate; set => startDate = value; }
-        public DateTime? EndDate { get => endDate; set => endDate = value; }
+        public DateTime Start { get => start; set => start = value; }
+        public DateTime? End { get => end; set => end = value; }
         public DateTime? Deadline { get => deadline; set => deadline = value; }
         public int? SubtaskOf { get => subtaskOf; set => subtaskOf = value; }
         public int? StatusId { get => statusId;  }

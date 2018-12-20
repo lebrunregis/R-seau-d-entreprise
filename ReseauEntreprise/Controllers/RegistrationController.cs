@@ -1,14 +1,8 @@
-﻿using Microsoft.AspNet.SignalR;
-using Model.Client.Data;
+﻿using Model.Client.Data;
 using Model.Client.Service;
 using Réseau_d_entreprise.Models.ViewModels;
 using Réseau_d_entreprise.Session;
 using Réseau_d_entreprise.Session.Attributes;
-using ReseauEntreprise.Hubs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Réseau_d_entreprise.Controllers

@@ -9,21 +9,21 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Calendar
     {
         [DataMember]
         [Required]
-        string Title { get; set; }
+        public string Title { get; set; }
         [DataMember]
         [Required]
-        DateTime Start { get; set; }
+        public string Start { get; set; }
         [DataMember]
-        DateTime End { get; set; }
+        public string End { get; set; }
         [DataMember]
-        bool? AllDay { get; set; }
+        public bool? AllDay { get; set; }
         [DataMember]
-        string Url { get; set; }
+        public string Url { get; set; }
         [DataMember]
-        string BackgroundColor { get; set; }
+        public string BackgroundColor { get; set; }
         [DataMember]
-        string BorderColor { get; set; }
+        public string BorderColor { get; set; }
         [DataMember]
-        string TextColor { get; set; }
+        public string TextColor { get; set; }
     }
 }

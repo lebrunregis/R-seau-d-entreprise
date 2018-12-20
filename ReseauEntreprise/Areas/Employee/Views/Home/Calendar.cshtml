@@ -1,31 +1,33 @@
 ﻿@{
     ViewBag.Title = "Calendar";
 }
-<script>
+
+<!--Adds the script at the end of the page so everything is loaded before it-->
+@section scripts{
+    <script>
     $(function () {
-
-        // page is now ready, initialize the calendar...
-
         $('#calendar').fullCalendar({
-            // put your options and callbacks here
             eventSources: [
-
-                // your event source
                 {
-                    url: '/myfeed.php', // use the `url` property
-                    color: 'yellow',    // an option!
-                    textColor: 'black'  // an option!
+                    url: '@Url.Action("CalendarTaskFeed", "Home")',
+                    color: 'red',
+                    textColor: 'black'
+                },
+                {
+                    url: '@Url.Action("CalendarProjectFeed", "Home")',
+                    color: 'blue',
+                    textColor: 'black'
+                },
+                {
+                    url: '@Url.Action("CalendarEventFeed", "Home")',
+                    color: 'green',
+                    textColor: 'black'
                 }
-
-                // any other sources...
-
             ]
-
         });
-        }
-</script>
-
-
+        })
+    </script>
+}
 
 <h2>Calendar</h2>
 

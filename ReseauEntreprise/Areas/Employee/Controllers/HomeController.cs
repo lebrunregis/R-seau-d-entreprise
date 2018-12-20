@@ -8,6 +8,10 @@ using System.Web.Mvc;
 using D = Model.Client.Data;
 using Model.Client.Data;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Calendar;
+using System;
+using System.Web.Script.Services;
+using System.Web.Services;
+using Newtonsoft.Json;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -71,25 +75,65 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View();
         }
 
-        public JsonResult CalendarEventFeed()
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        [WebMethod(Description = "Return Calendar Events")]
+        public JsonResult CalendarEventFeed(string start, string end)
         {
             IEnumerable<Event> Events = EventService.GetAllActiveForUser(SessionUser.GetUser().Id);
             List<CalendarForm> Forms = new List<CalendarForm>();
-            return Json(Forms);
+            foreach (Event Event in Events)
+            {
+                Forms.Add(new CalendarForm
+                {
+                    Title = Event.Title,
+                    Start = JsonConvert.SerializeObject(Event.Start),
+                    End = JsonConvert.SerializeObject(Event.End),
+                    Url = ""
+                });
+            }
+            return Json(Forms, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult CalendarProjectFeed()
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        [WebMethod(Description = "Return Calendar Projects")]
+        public JsonResult CalendarProjectFeed(string start, string end)
         {
             IEnumerable<Project> Projects = ProjectService.GetAllActive();
             List<CalendarForm> Forms = new List<CalendarForm>();
-            return Json(Forms);
+            foreach (Project Project in Projects)
+            {
+                Forms.Add(new CalendarForm
+                {
+                    Title = Project.Title,
+                    Start = JsonConvert.SerializeObject(Project.Start),
+                    End = Project.End is null ?
+                    JsonConvert.SerializeObject(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month))) :
+                    JsonConvert.SerializeObject((DateTime)Project.End),
+                    Url = ""
+                });
+            }
+            return Json(Forms, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult CalendarTaskFeed()
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        [WebMethod(Description = "Return Calendar Tasks")]
+        public JsonResult CalendarTaskFeed(string start, string end)
         {
             IEnumerable<Task> Tasks = TaskService.GetForUser(SessionUser.GetUser().Id);
             List<CalendarForm> Forms = new List<CalendarForm>();
-            return Json(Forms);
+            foreach (Task Task in Tasks)
+            {
+                Forms.Add(new CalendarForm
+                {
+                    Title = Task.Title,
+                    Start = JsonConvert.SerializeObject(Task.Start),
+                    End = Task.End is null ?
+                    JsonConvert.SerializeObject(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month))) :
+                    JsonConvert.SerializeObject((DateTime)Task.End),
+                    Url = ""
+                });
+            }
+            return Json(Forms, JsonRequestBehavior.AllowGet);
         }
     }
 }

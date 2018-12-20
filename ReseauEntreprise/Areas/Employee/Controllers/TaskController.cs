@@ -28,8 +28,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     CreatorId = Task.CreatorId,
                     Name = Task.Title,
                     Description = Task.Description,
-                    StartDate = Task.StartDate,
-                    EndDate = Task.EndDate,
+                    StartDate = Task.Start,
+                    EndDate = Task.End,
                     Deadline = Task.Deadline,
                     SubtaskOf = Task.SubtaskOf,
                     StatusName = Task.StatusName,
@@ -55,8 +55,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     CreatorId = Task.CreatorId,
                     Name = Task.Title,
                     Description = Task.Description,
-                    StartDate = Task.StartDate,
-                    EndDate = Task.EndDate,
+                    StartDate = Task.Start,
+                    EndDate = Task.End,
                     Deadline = Task.Deadline,
                     SubtaskOf = Task.SubtaskOf,
                     StatusName = Task.StatusName,
@@ -82,8 +82,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     CreatorId = Task.CreatorId,
                     Name = Task.Title,
                     Description = Task.Description,
-                    StartDate = Task.StartDate,
-                    EndDate = Task.EndDate,
+                    StartDate = Task.Start,
+                    EndDate = Task.End,
                     Deadline = Task.Deadline,
                     SubtaskOf = Task.SubtaskOf,
                     StatusName = Task.StatusName,
@@ -128,7 +128,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     ProjectId = form.ProjectId,
                     Title = form.Name,
                     Description = form.Description,
-                    StartDate = form.StartDate,
+                    Start = form.StartDate,
                     Deadline = form.Deadline,
                     SubtaskOf = null
                 };
@@ -168,7 +168,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 TeamId = (int)task.TeamId,
                 Name = task.Title,
                 Description = task.Description,
-                StartDate = task.StartDate,
+                StartDate = task.Start,
                 Deadline = task.Deadline,
                 SubtaskOf = task.SubtaskOf,
                 SelectedStatusId = (int)task.StatusId,
@@ -187,7 +187,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Task Task = TaskService.Get(form.Id, SessionUser.GetUser().Id);
                 Task.Title = form.Name;
                 Task.Description = form.Description;
-                Task.StartDate = form.StartDate;
+                Task.Start = form.StartDate;
                 Task.Deadline = form.Deadline;
                 Task.TeamId = form.TeamId;
 
@@ -225,7 +225,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     ProjectId = form.ProjectId,
                     Title = form.Name,
                     Description = form.Description,
-                    StartDate = form.StartDate,
+                    Start = form.StartDate,
                     Deadline = form.Deadline,
                     SubtaskOf = form.SubtaskOf
                 };
@@ -263,8 +263,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 ProjectId = Task.ProjectId,
                 CreatorId = Task.CreatorId,
                 Description = Task.Description,
-                StartDate = Task.StartDate,
-                EndDate = Task.EndDate,
+                StartDate = Task.Start,
+                EndDate = Task.End,
                 Deadline = Task.Deadline,
                 StatusName = Task.StatusName,
                 StatusDate = (DateTime)Task.StatusDate,
