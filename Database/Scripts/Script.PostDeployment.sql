@@ -79,6 +79,9 @@ GO
 DELETE FROM [EmployeeStatus];
 GO
 
+
+DBCC CHECKIDENT ('[EmployeeDepartment]', RESEED, 0);
+GO
 DBCC CHECKIDENT ('[EmployeeStatus]', RESEED, 0);
 GO
 DBCC CHECKIDENT ('[Employee]', RESEED, 0);
@@ -98,6 +101,8 @@ GO
 DBCC CHECKIDENT ('[Team]', RESEED, 0);
 GO
 DBCC CHECKIDENT ('[Department]', RESEED, 0);
+GO
+DBCC CHECKIDENT ('[Event]', RESEED, 0);
 GO
 
 SET IDENTITY_INSERT [TaskStatus] ON 
@@ -131,21 +136,27 @@ EXEC [dbo].Register_Demo @LastName = 'Holly',@FirstName ='Tanner';
 EXEC [dbo].Register_Demo @LastName = 'Kelly',@FirstName ='England';
 GO
 
-DECLARE @last_id int = ident_current('[dbo].Employee');
-Update [dbo].Employee SET Email='admin@test.be' where Employee_Id = @last_id;
-INSERT INTO[dbo].Admin (Employee_Id) VALUES (@last_id);
+DECLARE @employee_id int = ident_current('[dbo].Employee');
+Update [dbo].Employee SET Email='admin@test.be' where Employee_Id = @employee_id;
+INSERT INTO[dbo].Admin (Employee_Id) VALUES (@employee_id);
+GO
 DECLARE @now DATETIME2(0) = SYSDATETIME();
-
-
-
-EXEC [dbo].CreateProject @name = 'Test Project',@description = 'Test project description',@creator = 10,@project_manager = 1,@startDate = @now,@endDate = null;
-DECLARE @ProjectId int = ident_current('[dbo].Project');
-
-EXEC [dbo].CreateTeam @name = 'Test team',@team_leader = 1,@Project_Id = @ProjectId,@Creator_Id = 10;
+DECLARE @Admin int = ident_current('[dbo].Employee');
+EXEC [dbo].CreateProject @name = 'Test Project',@description = 'Test project description',@creator = @Admin,@project_manager = 5,@startDate = @now,@endDate = null;
+GO
+DECLARE @Project_Id int = ident_current('[dbo].Project');
+EXEC [dbo].CreateTeam @name = 'Test team',@team_leader = 3,@Project_Id = @Project_Id,@Creator_Id = 5;
+GO
+DECLARE @TeamId int = ident_current('[dbo].Team');
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 7 ,@Team_Id = @TeamId ,@User = 5;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 6 ,@Team_Id = @TeamId ,@User = 5;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 2 ,@Team_Id = @TeamId ,@User = 5;
+GO
+DECLARE @Project_Id int = ident_current('[dbo].Project');
+DECLARE @now DATETIME2(0) = SYSDATETIME();
 DECLARE @Team_Id int = ident_current('[dbo].Team');
-EXEC [dbo].AddEmployeeToTeam @Employee_Id = 1 ,@Team_Id = 1 ,@User = 1;
-EXEC [dbo].CreateTask @Name = 'Test task',@Description = 'Test task description',@ProjectId = @ProjectId,@UserId = 1,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @Team_Id;
-
+EXEC [dbo].CreateTask @Name = 'Test task',@Description = 'Test task description',@ProjectId = @Project_Id,@UserId = 3,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @Team_Id;
+GO
 ENABLE TRIGGER [OnDeleteAdmin] ON [Admin];   
 GO
 ENABLE TRIGGER [OnDeleteDepartment] ON Department;  
