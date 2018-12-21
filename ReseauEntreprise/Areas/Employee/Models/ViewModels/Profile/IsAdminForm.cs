@@ -1,6 +1,4 @@
-﻿using Model.Client.Service;
-
-namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Profile
+﻿namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Profile
 {
     public class IsAdminForm
     {

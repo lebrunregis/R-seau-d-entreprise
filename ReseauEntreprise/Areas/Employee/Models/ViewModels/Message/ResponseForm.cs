@@ -7,7 +7,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
 {
     public class ResponseForm
     {
-        public int max_id { get; set; }
+        public int Max_id { get; set; }
         public int? ToEmployee { get; set; }
         public int? ToTask { get; set; }
         public int? ToTeam { get; set; }

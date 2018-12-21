@@ -31,7 +31,7 @@ namespace Model.Global.Service
         {
             Command cmd = new Command("GetMessage", true);
             cmd.AddParameter("id", id);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToMessage()).FirstOrDefault();
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToMessage()).SingleOrDefault();
         }
 
         public static IEnumerable<Message> GetProjectMessages(int ProjectId)

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model.Client.Data
 {
-   public class TaskStatusHistory
+    public class TaskStatusHistory
     {
         private int _taskId;
         private int _taskStatusId;

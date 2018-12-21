@@ -23,7 +23,7 @@ namespace Model.Global.Service
         {
             Command cmd = new Command("GetEmployee", true);
             cmd.AddParameter("Id", Id);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee()).FirstOrDefault();
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee()).SingleOrDefault();
         }
         public static bool Update(Employee e)
         {
@@ -66,7 +66,7 @@ namespace Model.Global.Service
         {
             Command cmd = new Command("GetEmployeeForAdmin", true);
             cmd.AddParameter("Id", Id);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee()).FirstOrDefault();
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEmployee()).SingleOrDefault();
         }
         public static IEnumerable<Employee> GetAllActiveForAdmin()
         {

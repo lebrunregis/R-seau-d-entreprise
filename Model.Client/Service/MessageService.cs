@@ -1,12 +1,8 @@
 ﻿using Model.Client.Data;
 using Model.Client.Mapper;
 using GS = Model.Global.Service;
-using GD = Model.Global.Data;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Text;
 
 namespace Model.Client.Service
 {

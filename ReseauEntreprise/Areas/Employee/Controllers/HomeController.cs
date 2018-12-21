@@ -2,14 +2,16 @@
 using Réseau_d_entreprise.Session;
 using Réseau_d_entreprise.Session.Attributes;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.IndexPage;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using D = Model.Client.Data;
 using Model.Client.Data;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Calendar;
+using System;
+using System.Web.Script.Services;
+using System.Web.Services;
+using Newtonsoft.Json;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -17,13 +19,13 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
     [EmployeeRequired]
     public class HomeController : Controller
     {
-        
+
         public ActionResult Index()
         {
             int Employee_Id = SessionUser.GetUser().Id;
             IEnumerable<D.Team> Teams = TeamService.GetAllActiveTeamsForEmployee(Employee_Id);
             List<ProjectTeamsForm> ProjectTeamList = new List<ProjectTeamsForm>();
-            foreach(D.Team team in Teams)
+            foreach (D.Team team in Teams)
             {
                 ProjectTeamsForm element = ProjectTeamList.Where(pt => pt.Project.Id == team.Project_Id).FirstOrDefault();
                 if (element is null)
@@ -70,11 +72,75 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public ActionResult Calendar()
         {
             ViewBag.Message = "Your calendar page.";
-            IEnumerable<Event> Events=EventService.GetAllActiveForUser(SessionUser.GetUser().Id);
+            return View();
+        }
+
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        [WebMethod(Description = "Return Calendar Events")]
+        public ContentResult CalendarEventFeed(string start, string end)
+        {
+            JsonSerializerSettings config = new JsonSerializerSettings { DateFormatString = "yyyy-MM-dd" };
+            IEnumerable<Event> Events = EventService.GetAllActiveForUser(SessionUser.GetUser().Id);
+            List<CalendarForm> Forms = new List<CalendarForm>();
+            foreach (Event Event in Events)
+            {
+                Forms.Add(new CalendarForm
+                {
+                    Id =(int) Event.Id,
+                    Title = Event.Title,
+                    Start = Event.Start,
+                    End = Event.End,
+                    Url = ""
+                });
+            }
+            return Content(JsonConvert.SerializeObject(Forms, Formatting.Indented, config), "application/json");
+        }
+
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        [WebMethod(Description = "Return Calendar Projects")]
+        public ContentResult CalendarProjectFeed(string start, string end)
+        {
+            JsonSerializerSettings config = new JsonSerializerSettings { DateFormatString = "yyyy-MM-dd" };
+
             IEnumerable<Project> Projects = ProjectService.GetAllActive();
+            List<CalendarForm> Forms = new List<CalendarForm>();
+            foreach (Project Project in Projects)
+            {
+                Forms.Add(new CalendarForm
+                {
+                    Id = (int)Project.Id,
+                    Title = Project.Title,
+                    Start = Project.Start,
+                    End = Project.End is null ?
+                    new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)) :
+                    (DateTime)Project.End,
+                    Url = ""
+                });
+            }
+            return Content(JsonConvert.SerializeObject(Forms, Formatting.Indented, config), "application/json");
+        }
+
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        [WebMethod(Description = "Return Calendar Tasks")]
+        public ContentResult CalendarTaskFeed(string start, string end)
+        {
+            JsonSerializerSettings config = new JsonSerializerSettings { DateFormatString = "yyyy-MM-dd" };
             IEnumerable<Task> Tasks = TaskService.GetForUser(SessionUser.GetUser().Id);
-            List < CalendarForm > CalendarEvents = new List<CalendarForm>();
-            return View(CalendarEvents);
+            List<CalendarForm> Forms = new List<CalendarForm>();
+            foreach (Task Task in Tasks)
+            {
+                Forms.Add(new CalendarForm
+                {
+                    Id = (int)Task.Id,
+                    Title = Task.Title,
+                    Start = Task.Start,
+                    End = Task.End is null ?
+                    new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)) :
+                    (DateTime)Task.End,
+                    Url = ""
+                });
+            }
+            return Content(JsonConvert.SerializeObject(Forms, Formatting.Indented, config), "application/json");
         }
     }
 }

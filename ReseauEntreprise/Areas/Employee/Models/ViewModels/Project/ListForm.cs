@@ -1,10 +1,6 @@
 ﻿using D = Model.Client.Data;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
 {
@@ -39,7 +35,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
         public ListForm(D.Project Project,D.Employee Manager, int MyId)
         {
             ProjectId = (int)Project.Id;
-            Name = Project.Name;
+            Name = Project.Title;
             Description = Project.Description;
             this.Manager = Manager;
             this.StartDate = Project.Start;

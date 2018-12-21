@@ -1,22 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Newtonsoft.Json;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Calendar
 {
+    [DataContract]
     public class CalendarForm
     {
+
+        private bool _allDay = true;
+
+        [DataMember]
+        [Required]
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [DataMember]
+        [Required]
+        [JsonProperty("title")]
         public string Title { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
-        public string OnClickUrl { get; set; }
-        public CalendarForm(string Title,DateTime StartDate, DateTime? EndDate, string OnClickUrl)
-        {
-            this.Title = Title;
-            this.StartDate = StartDate;
-            this.EndDate = EndDate;
-            this.OnClickUrl = OnClickUrl;
-        }
+        [DataMember]
+        [Required]
+        [JsonProperty("start")]
+        public DateTime Start { get; set; }
+        [DataMember]
+        [JsonProperty("end")]
+        public DateTime End { get; set; }
+        [DataMember]
+        [JsonProperty("url")]
+        public string Url { get; set; }
+        [DataMember]
+        [JsonProperty("allday")]
+        bool AllDay 
+        { get => _allDay; set => _allDay = value; }
     }
 }

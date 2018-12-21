@@ -4,46 +4,46 @@
 {
     <tr>
 		<td>
-			@if (message.project != null)
+			@if (message.Project != null)
 			{
 				<span>Project </span>
-				@Html.ActionLink(message.project.Name,
+				@Html.ActionLink(message.Project.Title,
 		 "Details", "Project", null, null, $"anchor_{message.Message.Id}",
-		 new { id = message.project.Id }, null)
+		 new { id = message.Project.Id }, null)
 			}
-			else if (message.task != null)
+			else if (message.Task != null)
 			{
 				<span>Task </span>
-				@Html.ActionLink(message.task.Name,
+				@Html.ActionLink(message.Task.Title,
 					"Details", "Task", null, null, $"anchor_{message.Message.Id}",
-					new { id = message.task.Id }, null)
+					new { id = message.Task.Id }, null)
 			}
-			else if (message.team != null)
+			else if (message.Team != null)
 			{
 				<span>Team </span>
-				@Html.ActionLink(message.team.Name,
+				@Html.ActionLink(message.Team.Name,
 	 "Details", "Team", null, null, $"anchor_{message.Message.Id}",
-	 new { id = message.team.Id }, null)
+	 new { id = message..team.Id }, null)
 			}
 			else
 			{
 				<span>Employee </span>
-				@Html.ActionLink($"{message.employee.FirstName} {message.employee.LastName}({message.employee.Email})",
+				@Html.ActionLink($"{message.Employee.FirstName} {message.Employee.LastName}({message.Employee.Email})",
 		 "Details", "Employee", null, null, $"anchor_{message.Message.Id}",
-		 new { id = message.employee.Employee_Id }, null)
+		 new { id = message.Employee.Employee_Id }, null)
 			}
 		</td>
 
 		<td>
 			@{Html.RenderPartial("_MessageSimple", message.Message);}
 			<div style="display: none">
-				@{Html.RenderPartial("_SendFormTemplate", message.form);}
+				@{Html.RenderPartial("_SendFormTemplate", message.Form);}
 			</div>
 		</td>
 
 		<td>
 			<span id="@($"isReplied_{message.Message.Id}")">
-				@Html.DisplayFor(modelItem => message.isReplied)
+				@Html.DisplayFor(modelItem => message.IsReplied)
 			</span>
 		</td>
     </tr>

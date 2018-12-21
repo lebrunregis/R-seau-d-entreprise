@@ -67,6 +67,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -468,8 +469,6 @@
     <Content Include="Areas\Employee\Views\Task\Edit.cshtml" />
     <Content Include="Areas\Employee\Views\Task\AddSubtask.cshtml" />
     <Content Include="Areas\Employee\Views\Task\Details.cshtml" />
-    <Content Include="Areas\Employee\Views\Task\_TeamTasks.cshtml" />
-    <Content Include="Areas\Employee\Views\Task\_ProjectTasks.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_Discussion.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_Messages.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_SendFormTemplate.cshtml" />
@@ -503,7 +502,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Error.cshtml" />
+    <Content Include="Views\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -520,6 +519,8 @@
     <Content Include="Views\Shared\_Event.cshtml" />
     <Content Include="Areas\Employee\Views\Profile\_ToAdminLink.cshtml" />
     <Content Include="Areas\Employee\Views\Home\Calendar.cshtml" />
+    <Content Include="Views\Shared\_ProjectTasks.cshtml" />
+    <Content Include="Views\Shared\_TeamTasks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

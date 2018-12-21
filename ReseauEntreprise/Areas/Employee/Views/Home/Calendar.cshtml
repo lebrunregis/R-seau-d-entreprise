@@ -1,34 +1,37 @@
-﻿@model IEnumerable<ReseauEntreprise.Areas.Employee.Models.ViewModels.Calendar.CalendarForm>
-@{
-    ViewBag.Title = "Calendar";
+﻿@{
+                /**/
+
+                /**/
+
+                ViewBag.Title = "Calendar";
 }
-<script>
+
+<!--Adds the script at the end of the page so everything is loaded before it-->
+@section scripts{
+    <script>
     $(function () {
-
-        // page is now ready, initialize the calendar...
-
         $('#calendar').fullCalendar({
-            // put your options and callbacks here
-            events: [
-         @for (int i = 0;i<Model.Count();i++) {
-             <text>{
-                    title: '</text>
-            @Model.ElementAt(i).Title
-            <text>', start: '</text>
-                @Model.ElementAt(i).StartDate.ToLongDateString()
-                 <text>}</text>
-             if (i == (Model.Count() - 1))
-             {
-                  <text>,</text>
-             };
-        }
+            eventSources: [
+                {
+                    url: '@Url.Action("CalendarTaskFeed", "Home")',
+                    color: 'red',
+                    textColor: 'black'
+                },
+                {
+                    url: '@Url.Action("CalendarProjectFeed", "Home")',
+                    color: 'blue',
+                    textColor: 'black'
+                },
+                {
+                    url: '@Url.Action("CalendarEventFeed", "Home")',
+                    color: 'green',
+                    textColor: 'black'
+                }
             ]
+        });
         })
-
-    });
-</script>
-
-
+    </script>
+}
 
 <h2>Calendar</h2>
 

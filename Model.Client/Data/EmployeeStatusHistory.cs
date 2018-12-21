@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model.Client.Data
 {
@@ -48,14 +44,14 @@ namespace Model.Client.Data
         {
             get
             {
-                return endDate;
+                return EndDate;
             }
 
             set
             {
                 if (value is null || DateTime.Compare((DateTime)value, StartDate) >= 0)
                 {
-                    endDate = value;
+                    EndDate = value;
                 }
                 else
                 {
@@ -64,5 +60,6 @@ namespace Model.Client.Data
 
             }
         }
+
     }
 }

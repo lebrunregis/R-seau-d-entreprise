@@ -46,7 +46,7 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
         public ListForm(C.Project Project,C.Employee Manager, C.Employee Creator)
         {
             ProjectId = (int) Project.Id;
-            Name = Project.Name;
+            Name = Project.Title;
             Description = Project.Description;
             this.Manager = Manager;
             this.Creator = Creator;

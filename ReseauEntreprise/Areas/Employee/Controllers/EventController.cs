@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using C = Model.Client.Data;
 using Model.Client.Service;
@@ -22,11 +20,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 {
                     Id = (int) e.Id,
                     DepartmentId = e.DepartmentId,
-                    Name = e.Name,
+                    Name = e.Title,
                     Description = e.Description,
                     Address = e.Address,
-                    StartDate = e.StartDate,
-                    EndDate = e.EndDate,
+                    StartDate = e.Start,
+                    EndDate = e.End,
                     OpenSubscription = e.Open,
                     Subscribed = e.Subscribed
                 });
@@ -41,12 +39,12 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             {
                 Id = (int)Event.Id,
                 CreatorId = Event.CreatorId,
-                Name = Event.Name,
+                Name = Event.Title,
                 Description = Event.Description,
                 Address = Event.Address,
-                StartDate = Event.StartDate,
-                EndDate = Event.EndDate,
-                CreationDate = Event.CreationDate
+                StartDate = Event.Start,
+                EndDate = Event.End,
+                CreationDate = Event.Created
             };
             return View(form);
         }
@@ -60,13 +58,13 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Id = (int)Event.Id,
                 CreatorId = Event.CreatorId,
                 DepartmentId = Event.DepartmentId,
-                Name = Event.Name,
+                Name = Event.Title,
                 Description = Event.Description,
                 Address = Event.Address,
-                StartDate = Event.StartDate,
-                EndDate = Event.EndDate,
+                StartDate = Event.Start,
+                EndDate = Event.End,
                 OpenSubscription = Event.Open,
-                CreationDate = Event.CreationDate
+                CreationDate = Event.Created
             };
 
             return View(Form);
