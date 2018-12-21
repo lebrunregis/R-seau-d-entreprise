@@ -77,63 +77,70 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
 
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
         [WebMethod(Description = "Return Calendar Events")]
-        public JsonResult CalendarEventFeed(string start, string end)
+        public ContentResult CalendarEventFeed(string start, string end)
         {
+            JsonSerializerSettings config = new JsonSerializerSettings { DateFormatString = "yyyy-MM-dd" };
             IEnumerable<Event> Events = EventService.GetAllActiveForUser(SessionUser.GetUser().Id);
             List<CalendarForm> Forms = new List<CalendarForm>();
             foreach (Event Event in Events)
             {
                 Forms.Add(new CalendarForm
                 {
+                    Id =(int) Event.Id,
                     Title = Event.Title,
-                    Start = JsonConvert.SerializeObject(Event.Start),
-                    End = JsonConvert.SerializeObject(Event.End),
+                    Start = Event.Start,
+                    End = Event.End,
                     Url = ""
                 });
             }
-            return Json(Forms, JsonRequestBehavior.AllowGet);
+            return Content(JsonConvert.SerializeObject(Forms, Formatting.Indented, config), "application/json");
         }
 
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
         [WebMethod(Description = "Return Calendar Projects")]
-        public JsonResult CalendarProjectFeed(string start, string end)
+        public ContentResult CalendarProjectFeed(string start, string end)
         {
+            JsonSerializerSettings config = new JsonSerializerSettings { DateFormatString = "yyyy-MM-dd" };
+
             IEnumerable<Project> Projects = ProjectService.GetAllActive();
             List<CalendarForm> Forms = new List<CalendarForm>();
             foreach (Project Project in Projects)
             {
                 Forms.Add(new CalendarForm
                 {
+                    Id = (int)Project.Id,
                     Title = Project.Title,
-                    Start = JsonConvert.SerializeObject(Project.Start),
+                    Start = Project.Start,
                     End = Project.End is null ?
-                    JsonConvert.SerializeObject(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month))) :
-                    JsonConvert.SerializeObject((DateTime)Project.End),
+                    new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)) :
+                    (DateTime)Project.End,
                     Url = ""
                 });
             }
-            return Json(Forms, JsonRequestBehavior.AllowGet);
+            return Content(JsonConvert.SerializeObject(Forms, Formatting.Indented, config), "application/json");
         }
 
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
         [WebMethod(Description = "Return Calendar Tasks")]
-        public JsonResult CalendarTaskFeed(string start, string end)
+        public ContentResult CalendarTaskFeed(string start, string end)
         {
+            JsonSerializerSettings config = new JsonSerializerSettings { DateFormatString = "yyyy-MM-dd" };
             IEnumerable<Task> Tasks = TaskService.GetForUser(SessionUser.GetUser().Id);
             List<CalendarForm> Forms = new List<CalendarForm>();
             foreach (Task Task in Tasks)
             {
                 Forms.Add(new CalendarForm
                 {
+                    Id = (int)Task.Id,
                     Title = Task.Title,
-                    Start = JsonConvert.SerializeObject(Task.Start),
+                    Start = Task.Start,
                     End = Task.End is null ?
-                    JsonConvert.SerializeObject(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month))) :
-                    JsonConvert.SerializeObject((DateTime)Task.End),
+                    new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)) :
+                    (DateTime)Task.End,
                     Url = ""
                 });
             }
-            return Json(Forms, JsonRequestBehavior.AllowGet);
+            return Content(JsonConvert.SerializeObject(Forms, Formatting.Indented, config), "application/json");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
@@ -7,23 +8,30 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Calendar
     [DataContract]
     public class CalendarForm
     {
+
+        private bool _allDay = true;
+
         [DataMember]
         [Required]
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [DataMember]
+        [Required]
+        [JsonProperty("title")]
         public string Title { get; set; }
         [DataMember]
         [Required]
-        public string Start { get; set; }
+        [JsonProperty("start")]
+        public DateTime Start { get; set; }
         [DataMember]
-        public string End { get; set; }
+        [JsonProperty("end")]
+        public DateTime End { get; set; }
         [DataMember]
-        public bool? AllDay { get; set; }
-        [DataMember]
+        [JsonProperty("url")]
         public string Url { get; set; }
         [DataMember]
-        public string BackgroundColor { get; set; }
-        [DataMember]
-        public string BorderColor { get; set; }
-        [DataMember]
-        public string TextColor { get; set; }
+        [JsonProperty("allday")]
+        bool AllDay 
+        { get => _allDay; set => _allDay = value; }
     }
 }

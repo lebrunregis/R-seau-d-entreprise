@@ -61,7 +61,7 @@ namespace Model.Global.Service
         {
             Command cmd = new Command("GetEvent", true);
             cmd.AddParameter("EventId ", id);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToEvent()).FirstOrDefault();
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToEvent()).SingleOrDefault();
         }
 
         public static IEnumerable<Event> GetAll()
