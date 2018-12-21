@@ -29,9 +29,21 @@ DISABLE TRIGGER [OnDeleteTask] ON Task;
 GO
 DISABLE TRIGGER [OnDeleteTeam] ON Team;  
 GO
+DISABLE TRIGGER [OnDeleteDocument] ON Document;  
+GO
 
-
-
+DELETE FROM [DocDepartment];
+GO
+DELETE FROM [DocEvent];
+GO
+DELETE FROM [DocMessage];
+GO
+DELETE FROM [DocProject];
+GO
+DELETE FROM [DocTask];
+GO
+DELETE FROM [DocTeam];
+GO
 DELETE FROM [MessageEmployee];
 GO
 DELETE FROM [MessageProject];
@@ -163,6 +175,8 @@ GO
 ENABLE TRIGGER [OnDeleteTask] ON Task;  
 GO
 ENABLE TRIGGER [OnDeleteTeam] ON Team;  
+GO
+ENABLE TRIGGER [OnDeleteDocument] ON Document;  
 GO
 /*DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
 GO*/

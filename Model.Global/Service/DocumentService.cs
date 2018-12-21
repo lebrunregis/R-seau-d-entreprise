@@ -84,37 +84,50 @@ namespace Model.Global.Service
         {
             Command cmd = new Command("GetDocsForDepartment", true);
             cmd.AddParameter("Department_Id", Id);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentSimplified());
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody());
         }
         public static IEnumerable<Document> GetForEvent(int Id)
         {
             Command cmd = new Command("GetDocsForEvent", true);
             cmd.AddParameter("Event_Id", Id);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentSimplified());
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody());
         }
         public static IEnumerable<Document> GetForMessage(int Id)
         {
             Command cmd = new Command("GetDocsForMessage", true);
             cmd.AddParameter("Message_Id", Id);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentSimplified());
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody());
         }
         public static IEnumerable<Document> GetForProject(int Id)
         {
             Command cmd = new Command("GetDocsForProject", true);
             cmd.AddParameter("Project_Id", Id);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentSimplified());
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody());
         }
         public static IEnumerable<Document> GetForTask(int Id)
         {
             Command cmd = new Command("GetDocsForTask", true);
             cmd.AddParameter("Task_Id", Id);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentSimplified());
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody());
         }
         public static IEnumerable<Document> GetForTeam(int Id)
         {
             Command cmd = new Command("GetDocsForTeam", true);
             cmd.AddParameter("Team_Id", Id);
-            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentSimplified());
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody());
+        }
+        public static Document GetForDescription(int Id)
+        {
+            Command cmd = new Command("GetDocForDescription", true);
+            cmd.AddParameter("Document_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody()).FirstOrDefault();
+        }
+        public static bool Delete(int DocumentId, int User)
+        {
+            Command cmd = new Command("DeleteDocument", true);
+            cmd.AddParameter("DocumentId", DocumentId);
+            cmd.AddParameter("User", User);
+            return (Connection.ExecuteNonQuery(cmd) > 0);
         }
     }
 }

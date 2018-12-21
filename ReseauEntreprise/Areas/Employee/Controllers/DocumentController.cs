@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
@@ -56,39 +57,82 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     if (form.DepartmentId != null)
                     {
                         DocumentService.AddToDepartment((int)DocumentId, (int)form.DepartmentId);
+                        return RedirectToAction("Details", "Department", new { id = form.DepartmentId });
                     }
-                    if (form.EventId != null)
+                    else if (form.EventId != null)
                     {
                         DocumentService.AddToEvent((int)DocumentId, (int)form.EventId);
+                        return RedirectToAction("Details", "Event", new { id = form.EventId });
                     }
-                    if (form.MessageId != null)
+                    else if (form.MessageId != null)
                     {
                         DocumentService.AddToMessage((int)DocumentId, (int)form.MessageId);
                     }
-                    if (form.ProjectId != null)
+                    else if (form.ProjectId != null)
                     {
                         DocumentService.AddToProject((int)DocumentId, (int)form.ProjectId);
+                        return RedirectToAction("Details", "Project", new { projectId = form.ProjectId });
                     }
-                    if (form.TaskId != null)
+                    else if (form.TaskId != null)
                     {
                         DocumentService.AddToTask((int)DocumentId, (int)form.TaskId);
+                        return RedirectToAction("Details", "Task", new { taskId = form.TaskId });
                     }
-                    if (form.TeamId != null)
+                    else if (form.TeamId != null)
                     {
                         DocumentService.AddToTeam((int)DocumentId, (int)form.TeamId);
+                        return RedirectToAction("Details", "Team", new { teamId = form.TeamId });
+                    }
+                    else if (form.PreviousVersionId != null)
+                    {
+                        return RedirectToAction("Details", "Document", new { id = form.PreviousVersionId });
                     }
                 }
             }
-            return PartialView();
+            return RedirectToAction("Index", "Employee");
         }
         public FileResult Download(int id)
         {
             Document doc = DocumentService.Get(id);
             return File(doc.Body, System.Net.Mime.MediaTypeNames.Application.Octet, doc.Name);
         }
-        public ActionResult Details(int DocumentId)
+        public ActionResult Details(int id)
         {
-            return View();
+            Document doc = new Document();
+            doc = DocumentService.GetForDescription(id);
+            DetailsForm form = new DetailsForm
+            {
+                Id = doc.Id,
+                Name = doc.Name,
+                AuthorEmployee = EmployeeService.Get(doc.AuthorEmployee),
+                Deleted = doc.Deleted,
+                Created = doc.Created,
+                Size = doc.Size
+            };
+            return View(form);
+
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Document doc = new Document();
+            doc = DocumentService.GetForDescription(id);
+            DetailsForm form = new DetailsForm
+            {
+                Id = doc.Id,
+                Name = doc.Name,
+                AuthorEmployee = EmployeeService.Get(doc.AuthorEmployee),
+                Deleted = doc.Deleted,
+                Created = doc.Created,
+                Size = doc.Size
+            };
+            return View(form);
+        }
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection form) // FormCollection just pour differencier
+        {
+            DocumentService.Delete(id, SessionUser.GetUser().Id);
+            return RedirectToAction("Index", "Employee");
         }
     }
 }

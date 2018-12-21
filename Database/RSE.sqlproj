@@ -23,7 +23,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <DefaultFileStreamFilegroup>FileGroup1</DefaultFileStreamFilegroup>
+    <DefaultFileStreamFilegroup>
+    </DefaultFileStreamFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -236,7 +237,6 @@
     <Build Include="dbo\FN\FN_GetParentTitle.sql" />
     <Build Include="dbo\SP\Document\UploadFile.sql" />
     <Build Include="dbo\SP\Document\DownloadFile.sql" />
-    <Build Include="FileGroup1.sql" />
     <Build Include="dbo\SP\Document\AddDocToMessage.sql" />
     <Build Include="dbo\SP\Document\AddDocToDepartment.sql" />
     <Build Include="dbo\SP\Document\AddDocToEvent.sql" />
@@ -249,7 +249,9 @@
     <Build Include="dbo\SP\Document\GetDocsForMessage.sql" />
     <Build Include="dbo\SP\Document\GetDocsForProject.sql" />
     <Build Include="dbo\SP\Document\GetDocsForTask.sql" />
-    <Build Include="dbo\SP\Document\GetMetaData.sql" />
+    <Build Include="dbo\SP\Document\GetDocForDescription.sql" />
+    <Build Include="dbo\Trigger\OnDeleteDocument.sql" />
+    <Build Include="dbo\SP\Document\DeleteDocument.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />

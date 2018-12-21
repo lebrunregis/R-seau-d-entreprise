@@ -5,7 +5,6 @@
   [Body] VARBINARY(MAX) NOT NULL,
   [Size] BIGINT NOT NULL,
   [Checksum] int NOT NULL,
-  [Actif] bit NOT NULL DEFAULT 1,
   [Employee_Id] int NOT NULL,
   [Deleted] DATETIME2(0) NULL,
   CONSTRAINT PK_Document PRIMARY KEY (Document_Id, Created),

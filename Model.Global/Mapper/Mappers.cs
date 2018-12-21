@@ -193,18 +193,22 @@ namespace Model.Global.Mapper
                 Name = (string)dr["Name"],
                 Created = (DateTime)dr["Created"],
                 Body = (byte[])dr["Body"],
-                Size = (int)dr["Size"],
+                Size = (long)dr["Size"],
                 Checksum = (int)dr["Checksum"],
-                Active = (bool)dr["Actif"],
+                Deleted = (DateTime?)((dr["Deleted"] == DBNull.Value) ? null : dr["Deleted"]),
                 AuthorEmployee = (int)dr["Employee_Id"]
             };
         }
-        internal static Document ToDocumentSimplified(this IDataRecord dr)
-        {
-            return new Document()
+        internal static Document ToDocumentWithoutBody(this IDataRecord dr)
+        {return new Document()
             {
                 Id = (int)dr["Document_Id"],
-                Name = (string)dr["Name"]
+                Name = (string)dr["Name"],
+                Created = (DateTime)dr["Created"],
+                Size = (long)dr["Size"],
+                Checksum = (int)dr["Checksum"],
+                Deleted = (DateTime?)((dr["Deleted"] == DBNull.Value) ? null : dr["Deleted"]),
+                AuthorEmployee = (int)dr["Employee_Id"]
             };
         }
     }

@@ -12,9 +12,8 @@ namespace Model.Client.Data
         private String name;
         private DateTime created;
         private byte[] body;
-        private int size;
+        private long size;
         private int checksum;
-        private Boolean active;
         private int authorEmployee;
         private DateTime? deleted;
 
@@ -23,7 +22,7 @@ namespace Model.Client.Data
 
         }
 
-        public Document(int? id, string name, DateTime created, byte[] body, int size, int checksum, bool active, int authorEmployee, DateTime? deleted)
+        public Document(int? id, string name, DateTime created, byte[] body, long size, int checksum, int authorEmployee, DateTime? deleted)
         {
             Id = id;
             Name = name;
@@ -31,7 +30,6 @@ namespace Model.Client.Data
             Body = body;
             Size = size;
             Checksum = checksum;
-            Active = active;
             AuthorEmployee = authorEmployee;
             Deleted = deleted;
         }
@@ -40,9 +38,8 @@ namespace Model.Client.Data
         public string Name { get => name; set => name = value; }
         public DateTime Created { get => created; set => created = value; }
         public byte[] Body { get => body; set => body = value; }
-        public int Size { get => size; set => size = value; }
+        public long Size { get => size; set => size = value; }
         public int Checksum { get => checksum; set => checksum = value; }
-        public bool Active { get => active; set => active = value; }
         public int AuthorEmployee { get => authorEmployee; set => authorEmployee = value; }
         public DateTime? Deleted { get => deleted; set => deleted = value; }
     }

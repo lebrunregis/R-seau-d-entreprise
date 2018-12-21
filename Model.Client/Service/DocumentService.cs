@@ -68,5 +68,14 @@ namespace Model.Client.Service
         {
             return GS.DocumentService.GetForTeam(TeamId).Select(doc => doc.ToClient());
         }
+        public static Document GetForDescription(int DocumentId)
+        {
+            return GS.DocumentService.GetForDescription(DocumentId).ToClient();
+        }
+
+        public static bool Delete(int DocumentId, int User)
+        {
+            return GS.DocumentService.Delete(DocumentId, User);
+        }
     }
 }

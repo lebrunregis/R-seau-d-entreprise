@@ -50,13 +50,13 @@
 
 		@if (Model.HeadOfDepartment != null)
 		{
-		    <dt>
-			    @Html.DisplayNameFor(model => model.HeadOfDepartment)
-		    </dt>
+			<dt>
+				@Html.DisplayNameFor(model => model.HeadOfDepartment)
+			</dt>
 
-		    <dd>
-			    @{Html.RenderPartial("_Employee", Model.HeadOfDepartment);}
-		    </dd>
+			<dd>
+				@{Html.RenderPartial("_Employee", Model.HeadOfDepartment);}
+			</dd>
 		}
 		<dt>
 			@Html.DisplayNameFor(model => model.Employees)
@@ -64,6 +64,16 @@
 
 		<dd>
 			@{Html.RenderPartial("_EmployeeList", Model.Employees);}
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Documents)
+		</dt>
+
+		<dd>
+			@{Html.RenderPartial("_DocumentList", Model.Documents);}
+			<p>Create new document</p>
+			@{Html.RenderAction("_Upload", "Document", new { DepartmentId = Model.Id});}
 		</dd>
 
 	</dl>

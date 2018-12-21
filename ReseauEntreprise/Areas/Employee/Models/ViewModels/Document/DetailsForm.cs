@@ -19,8 +19,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Document
         public DateTime Created { get; set; }
         [DisplayName("Modified by")]
         public C.Employee AuthorEmployee { get; set; }
-        public int Size { get; set; }
-        public Boolean Active { get; set; }
+        public long Size { get; set; }
         [DisplayName("Date of deletion")]
         [DataType(DataType.DateTime)]
         public DateTime? Deleted { get; set; }

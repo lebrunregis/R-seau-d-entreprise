@@ -1,10 +1,18 @@
 ﻿@model IEnumerable<ReseauEntreprise.Areas.Employee.Models.ViewModels.Document.ListForm>
 
-
+<table class="table">
 @foreach (var item in Model)
 {
-	@Html.ActionLink(item.Name, "Download", "Document", new { id = item.Id }, null) 
-<span>|</span>
-	@Html.ActionLink("Upload new version", "Details", "Document", new { id = item.Id }, null)
-<br />
+	<tr>
+		<td>
+			@Html.ActionLink(item.Name, "Download", "Document", new { id = item.Id }, null)
+		</td>
+		<td>
+			@Html.ActionLink("Upload new version", "Details", "Document", new { id = item.Id }, null)
+		</td>
+		<td>
+			@Html.ActionLink("Delete", "Delete", "Document", new { id = item.Id }, null)
+		</td>
+	</tr>
 }
+</table>

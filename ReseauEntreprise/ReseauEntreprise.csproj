@@ -382,6 +382,8 @@
     <Content Include="Areas\Employee\Views\Event\Details.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_SendFormTemplateRoot.cshtml" />
     <Content Include="Areas\Employee\Views\Document\_Upload.cshtml" />
+    <Content Include="Areas\Employee\Views\Document\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\Document\Delete.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

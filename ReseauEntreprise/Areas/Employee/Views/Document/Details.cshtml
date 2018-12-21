@@ -1,0 +1,52 @@
+﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Document.DetailsForm
+
+<div>
+    <h4>DetailsForm</h4>
+    <hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Created)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Created)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.AuthorEmployee)
+		</dt>
+
+		<dd>
+			@{Html.RenderPartial("_Employee", Model.AuthorEmployee);}
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Size)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Size)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Deleted)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Deleted)
+		</dd>
+
+	</dl>
+</div>
+
+<h3>Upload new version:</h3>
+@{Html.RenderAction("_Upload", new { DocumentId = (int?)Model.Id});}
+
