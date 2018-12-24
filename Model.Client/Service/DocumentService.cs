@@ -25,23 +25,23 @@ namespace Model.Client.Service
         }
         public static bool AddToEvent(int DocumentId, int EventId)
         {
-            return GS.DocumentService.AddToDepartment(DocumentId, EventId);
+            return GS.DocumentService.AddToEvent(DocumentId, EventId);
         }
         public static bool AddToMessage(int DocumentId, int MessageId)
         {
-            return GS.DocumentService.AddToDepartment(DocumentId, MessageId);
+            return GS.DocumentService.AddToMessage(DocumentId, MessageId);
         }
         public static bool AddToProject(int DocumentId, int ProjectId)
         {
-            return GS.DocumentService.AddToDepartment(DocumentId, ProjectId);
+            return GS.DocumentService.AddToProject(DocumentId, ProjectId);
         }
         public static bool AddToTask(int DocumentId, int TaskId)
         {
-            return GS.DocumentService.AddToDepartment(DocumentId, TaskId);
+            return GS.DocumentService.AddToTask(DocumentId, TaskId);
         }
         public static bool AddToTeam(int DocumentId, int TeamId)
         {
-            return GS.DocumentService.AddToDepartment(DocumentId, TeamId);
+            return GS.DocumentService.AddToTeam(DocumentId, TeamId);
         }
 
         public static IEnumerable<Document> GetForDepartment(int DepartmentId)
