@@ -51,7 +51,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Creator = EmployeeService.Get(Department.Admin_Id),
                 Active = Department.Active,
                 Employees = DepartmentService.GetEmployeesForDepartment((int)Department.Id),
-                Documents = DocumentService.GetForDepartment((int)Department.Id).Select(d => new Doc.ListForm { Name = d.Name, Id = (int)d.Id })
+                Documents = DocumentService.GetForDepartment((int)Department.Id).Select(d => new Doc.ListForm { Name = d.Filename, Id = (int)d.Id })
             };
             int? HeadOfDepartmentId = DepartmentService.GetHeadOfDepartmentId((int)Department.Id);
             if (HeadOfDepartmentId != null)

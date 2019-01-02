@@ -40,7 +40,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 
                 Document doc = new Document
                 {
-                    Name = Path.GetFileName(form.File.FileName),
+                    Filename = Path.GetFileName(form.File.FileName),
                     Body = file,
                     AuthorEmployee = SessionUser.GetUser().Id
                 };
@@ -100,7 +100,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             DetailsForm form = new DetailsForm
             {
                 Id = doc.Id,
-                Name = doc.Name,
+                Name = doc.Filename,
                 AuthorEmployee = EmployeeService.Get(doc.AuthorEmployee),
                 Deleted = doc.Deleted,
                 Created = doc.Created,
@@ -117,7 +117,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             DetailsForm form = new DetailsForm
             {
                 Id = doc.Id,
-                Name = doc.Name,
+                Name = doc.Filename,
                 AuthorEmployee = EmployeeService.Get(doc.AuthorEmployee),
                 Deleted = doc.Deleted,
                 Created = doc.Created,

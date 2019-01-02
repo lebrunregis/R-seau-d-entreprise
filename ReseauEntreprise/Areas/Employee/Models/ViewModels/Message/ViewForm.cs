@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using C = Model.Client.Data;
 using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 
@@ -34,7 +35,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
             Parent = message.Parent;
             Author = EmployeeService.Get(message.Author);
             CreationTime = message.Created;
-            Documents = DocumentService.GetForMessage((int)message.Id).Select(d => new Doc.ListForm { Name = d.Name, Id = (int)d.Id});
+            Documents = DocumentService.GetForMessage((int)message.Id).Select(d => new Doc.ListForm { Name = d.Filename, Id = (int)d.Id});
             this.Children = Children;
         }
     }

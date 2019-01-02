@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 

@@ -91,7 +91,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             IEnumerable<C.Message> Data = new List<C.Message>();
             if (!(form.ToProject is null))
             {
-                if (form.Max_id == 0)
+                if (form.Max_id == -1)
                 {
                     Data = MessageService.GetProjectMessages((int)form.ToProject);
                 }
@@ -102,7 +102,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             }
             else if (!(form.ToTask is null))
             {
-                if (form.Max_id == 0)
+                if (form.Max_id == -1)
                 {
                     Data = MessageService.GetTaskMessages((int)form.ToTask);
                 }
@@ -113,7 +113,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             }
             else if (!(form.ToTeam is null))
             {
-                if (form.Max_id == 0)
+                if (form.Max_id == -1)
                 {
                     Data = MessageService.GetTeamMessages((int)form.ToTeam);
                 }
@@ -124,7 +124,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             }
             else if (!(form.ToEmployee is null))
             {
-                if (form.Max_id == 0)
+                if (form.Max_id == -1)
                 {
                     Data = MessageService.GetMyDiscussionWithEmployee(SessionUser.GetUser().Id, (int)form.ToEmployee);
                 }

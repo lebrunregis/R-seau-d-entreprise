@@ -9,7 +9,7 @@
 				<span>Project </span>
 				@Html.ActionLink(message.Project.Title,
 		 "Details", "Project", null, null, $"anchor_{message.Message.Id}",
-		 new { projectId = message.project.Id }, null)
+		 new { projectId = message.Project.Id }, null)
 			}
 			else if (message.Task != null)
 			{
@@ -23,7 +23,7 @@
 				<span>Team </span>
 				@Html.ActionLink(message.Team.Name,
 	 "Details", "Team", null, null, $"anchor_{message.Message.Id}",
-	 new { teamId = message.team.Id }, null)
+	 new { teamId = message.Team.Id }, null)
 			}
 			else
 			{

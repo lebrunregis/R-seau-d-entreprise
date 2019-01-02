@@ -325,7 +325,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Tasks = Tasks,
                 IsTeamLeader = (Employee_Id == TeamLeader.Employee_Id),
                 IsProjectManagerOrAdmin = ((AuthService.IsAdmin(Employee_Id)) || (Employee_Id == ProjectService.GetProjectManagerId(Team.Project_Id))),
-                Documents = DocumentService.GetForTeam((int)Team.Id).Select(d => new Doc.ListForm { Name = d.Name, Id = (int)d.Id })
+                Documents = DocumentService.GetForTeam((int)Team.Id).Select(d => new Doc.ListForm { Name = d.Filename, Id = (int)d.Id })
             };
             return View(Form);
         }

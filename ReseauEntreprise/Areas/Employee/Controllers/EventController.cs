@@ -43,10 +43,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Name = Event.Title,
                 Description = Event.Description,
                 Address = Event.Address,
-                StartDate = Event.StartDate,
-                EndDate = Event.EndDate,
-                CreationDate = Event.CreationDate,
-                Documents = DocumentService.GetForEvent((int)Event.Id).Select(d => new Doc.ListForm { Name = d.Name, Id = (int)d.Id })
+                StartDate = Event.Start,
+                EndDate = Event.End,
+                CreationDate = Event.Created,
+                Documents = DocumentService.GetForEvent((int)Event.Id).Select(d => new Doc.ListForm { Name = d.Filename, Id = (int)d.Id })
             };
             return View(form);
         }

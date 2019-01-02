@@ -32,7 +32,7 @@
 	<tr id="mailboxTableHead">
 		<th>Discussion</th>
 		<th>@Html.DisplayNameFor(model => model.Messages.FirstOrDefault().Message)</th>
-		<th>@Html.DisplayNameFor(model => model.Messages.FirstOrDefault().isReplied)</th>
+		<th>@Html.DisplayNameFor(model => model.Messages.FirstOrDefault().IsReplied)</th>
 	</tr>
 
 	@{Html.RenderPartial("_Mailbox", Model.Messages);}

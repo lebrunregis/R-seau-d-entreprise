@@ -18,7 +18,7 @@ namespace Model.Client.Data
 
         }
 
-        public Document(int? id, string name, DateTime created, byte[] body, long size, int checksum, int authorEmployee, DateTime? deleted)
+        public Document(int? id, string filename, DateTime created, byte[] body, long size, int checksum, int authorEmployee, DateTime? deleted)
         {
             Id = id;
             Filename = filename;
