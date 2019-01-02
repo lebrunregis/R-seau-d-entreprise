@@ -1,3 +1,4 @@
 ﻿body {
-    background-color: cornflowerblue
+    background-color: cornflowerblue ;
+    background-image: url('/Content/background.jpg');
 }

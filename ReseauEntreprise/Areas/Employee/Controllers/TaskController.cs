@@ -134,9 +134,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 };
                 try
                 {
-                    if (TaskService.Create(t, SessionUser.GetUser().Id) != null)
+                    int? taskId = TaskService.Create(t, SessionUser.GetUser().Id);
+                    if (taskId != null)
                     {
-                        return RedirectToAction("Details", "Project", new { projectId = form.ProjectId });
+                        return RedirectToAction("Details", "Task", new { projectId = form.ProjectId,taskId = (int)taskId });
                     }
                 }
                 catch (System.Data.SqlClient.SqlException exception)

@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Enterprise Social Network</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -47,11 +45,14 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
     <link href="/Content/fullcalendar.css" rel="stylesheet" />
     <script src="~/Scripts/moment.js"></script>
     <script src="~/Scripts/fullcalendar.js"></script>
     <script src="~/Scripts/jquery.signalR-2.4.0.min.js"></script>
     <script src="~/signalr/hubs"></script>
+
 
     @RenderSection("scripts", required: false)
 </body>

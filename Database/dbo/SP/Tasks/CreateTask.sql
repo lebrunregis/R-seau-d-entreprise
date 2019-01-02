@@ -12,4 +12,4 @@ AS
 	INSERT INTO Task 
 	(Name,Description,StartDate,EndDate,Deadline,SubtaskOf,CreatorId,Project_Id,Team_Id) 
 	VALUES (@Name, @Description,@StartDate,@EndDate,@DeadLine,@SubtaskOf,@UserId,@ProjectId,@TeamId)
-RETURN 0
+RETURN CONVERT(int,SCOPE_IDENTITY() );
