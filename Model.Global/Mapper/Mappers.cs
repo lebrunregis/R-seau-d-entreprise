@@ -149,7 +149,8 @@ namespace Model.Global.Mapper
                 SubtaskOf = (int?)((dr["SubtaskOf"] == DBNull.Value) ? null : dr["SubtaskOf"]),
                 StatusId = (int)dr["Status_Id"],
                 StatusName = (string)dr["Status_Name"],
-                StatusDate = (DateTime)dr["Status_Date"]
+                StatusDate = (DateTime)dr["Status_Date"],
+                ProjectId = (int)dr["Project_Id"]
             };
         }
 
@@ -192,11 +193,22 @@ namespace Model.Global.Mapper
                 Name = (string)dr["Name"],
                 Created = (DateTime)dr["Created"],
                 Body = (byte[])dr["Body"],
-                Size = (int)dr["Size"],
-                SHA2 = (string)dr["SHA2"],
-                Active = (bool)dr["Actif"],
-                AuthorEmployee = (int)dr["Employee_Id"],
-                NextVersion = (int)dr["Employee_Id"]
+                Size = (long)dr["Size"],
+                Checksum = (int)dr["Checksum"],
+                Deleted = (DateTime?)((dr["Deleted"] == DBNull.Value) ? null : dr["Deleted"]),
+                AuthorEmployee = (int)dr["Employee_Id"]
+            };
+        }
+        internal static Document ToDocumentWithoutBody(this IDataRecord dr)
+        {return new Document()
+            {
+                Id = (int)dr["Document_Id"],
+                Name = (string)dr["Name"],
+                Created = (DateTime)dr["Created"],
+                Size = (long)dr["Size"],
+                Checksum = (int)dr["Checksum"],
+                Deleted = (DateTime?)((dr["Deleted"] == DBNull.Value) ? null : dr["Deleted"]),
+                AuthorEmployee = (int)dr["Employee_Id"]
             };
         }
     }

@@ -20,43 +20,15 @@ namespace Model.Global.Service
 
         public static int? Create(Document doc)
         {
-            int? Document_Id = null;
-            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["connString"].ConnectionString))
-            {
-                connection.Open();
 
-                SqlCommand command = new SqlCommand("GetFileName", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@Name", doc.Name);
-                command.Parameters.AddWithValue("@Employee_Id", doc.AuthorEmployee);
+            Command cmd = new Command("UploadFile", true);
+            cmd.AddParameter("Employee_Id", doc.AuthorEmployee);
+            cmd.AddParameter("Name", doc.Name);
+            cmd.AddParameter("Body", doc.Body);
+            cmd.AddParameter("Document_Id", doc.Id);
 
-
-                SqlTransaction tran = connection.BeginTransaction(IsolationLevel.ReadCommitted);
-                command.Transaction = tran;
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    string path;
-                    byte[] transactionContext;
-                    while (reader.Read())
-                    {
-                        // Get the pointer for file   
-                        path = (string)reader["filepath"];
-                        Document_Id = (int)reader["Document_Id"];
-                        transactionContext = (byte[])reader["context"];
-
-                        // Create the SqlFileStream  
-                        using (SqlFileStream fileStream = new SqlFileStream(path, transactionContext, FileAccess.Write))
-                        {
-                            // Write a single byte to the file. This will  
-                            // replace any data in the file.  
-                            fileStream.Write(doc.Body, 0, doc.Body.Length);
-                        }
-                    }
-                }
-                tran.Commit();
-            }
-            return Document_Id;
+            return (int?)Connection.ExecuteScalar(cmd);
+            
         }
 
         public static Document Get(int Id)
@@ -64,6 +36,98 @@ namespace Model.Global.Service
             Command cmd = new Command("DownloadFile", true);
             cmd.AddParameter("DocumentId", Id);
             return Connection.ExecuteReader(cmd, (dr) => dr.ToDocument()).FirstOrDefault();
+        }
+
+        public static bool AddToDepartment(int DocumentId, int DepartmentId)
+        {
+            Command cmd = new Command("AddDocToDepartment", true);
+            cmd.AddParameter("Document_Id", DocumentId);
+            cmd.AddParameter("Department_Id", DepartmentId);
+            return Connection.ExecuteNonQuery(cmd) > 0;
+        }
+        public static bool AddToEvent(int DocumentId, int EventId)
+        {
+            Command cmd = new Command("AddDocToEvent", true);
+            cmd.AddParameter("Document_Id", DocumentId);
+            cmd.AddParameter("Event_Id", EventId);
+            return Connection.ExecuteNonQuery(cmd) > 0;
+        }
+        public static bool AddToMessage(int DocumentId, int MessageId)
+        {
+            Command cmd = new Command("AddDocToMessage", true);
+            cmd.AddParameter("Document_Id", DocumentId);
+            cmd.AddParameter("Message_Id", MessageId);
+            return Connection.ExecuteNonQuery(cmd) > 0;
+        }
+        public static bool AddToProject(int DocumentId, int ProjectId)
+        {
+            Command cmd = new Command("AddDocToProject", true);
+            cmd.AddParameter("Document_Id", DocumentId);
+            cmd.AddParameter("Project_Id", ProjectId);
+            return Connection.ExecuteNonQuery(cmd) > 0;
+        }
+        public static bool AddToTask(int DocumentId, int TaskId)
+        {
+            Command cmd = new Command("AddDocToTask", true);
+            cmd.AddParameter("Document_Id", DocumentId);
+            cmd.AddParameter("Task_Id", TaskId);
+            return Connection.ExecuteNonQuery(cmd) > 0;
+        }
+        public static bool AddToTeam(int DocumentId, int TeamId)
+        {
+            Command cmd = new Command("AddDocToTeam", true);
+            cmd.AddParameter("Document_Id", DocumentId);
+            cmd.AddParameter("Team_Id", TeamId);
+            return Connection.ExecuteNonQuery(cmd) > 0;
+        }
+        public static IEnumerable<Document> GetForDepartment(int Id)
+        {
+            Command cmd = new Command("GetDocsForDepartment", true);
+            cmd.AddParameter("Department_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody());
+        }
+        public static IEnumerable<Document> GetForEvent(int Id)
+        {
+            Command cmd = new Command("GetDocsForEvent", true);
+            cmd.AddParameter("Event_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody());
+        }
+        public static IEnumerable<Document> GetForMessage(int Id)
+        {
+            Command cmd = new Command("GetDocsForMessage", true);
+            cmd.AddParameter("Message_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody());
+        }
+        public static IEnumerable<Document> GetForProject(int Id)
+        {
+            Command cmd = new Command("GetDocsForProject", true);
+            cmd.AddParameter("Project_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody());
+        }
+        public static IEnumerable<Document> GetForTask(int Id)
+        {
+            Command cmd = new Command("GetDocsForTask", true);
+            cmd.AddParameter("Task_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody());
+        }
+        public static IEnumerable<Document> GetForTeam(int Id)
+        {
+            Command cmd = new Command("GetDocsForTeam", true);
+            cmd.AddParameter("Team_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody());
+        }
+        public static Document GetForDescription(int Id)
+        {
+            Command cmd = new Command("GetDocForDescription", true);
+            cmd.AddParameter("Document_Id", Id);
+            return Connection.ExecuteReader(cmd, (dr) => dr.ToDocumentWithoutBody()).FirstOrDefault();
+        }
+        public static bool Delete(int DocumentId, int User)
+        {
+            Command cmd = new Command("DeleteDocument", true);
+            cmd.AddParameter("DocumentId", DocumentId);
+            cmd.AddParameter("User", User);
+            return (Connection.ExecuteNonQuery(cmd) > 0);
         }
     }
 }

@@ -1,9 +1,14 @@
 ﻿CREATE PROCEDURE [dbo].[UploadFile]
 	@Name nvarchar(MAX),
 	@Body varbinary(MAX),
-	@Employee_Id int
+	@Employee_Id int,
+	@Document_Id int
 AS
 BEGIN
-	INSERT INTO Document([Name], Body, Size, SHA2, Employee_Id) OUTPUT Inserted.Document_Id
-	VALUES (@Name, @Body, DATALENGTH(@Body), HASHBYTES('SHA2_256',@Body), @Employee_Id)
+    IF @Document_Id IS NULL
+	    SELECT @Document_Id = ISNULL((MAX(Document_Id) + 1), 1) FROM Document
+	INSERT INTO Document(Document_Id, [Name], Body, Size, [Checksum], Employee_Id)
+	VALUES (@Document_Id, @Name, @Body, DATALENGTH(@Body), Checksum(@Body), @Employee_Id)
+
+	SELECT @Document_Id;
 END

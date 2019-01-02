@@ -220,6 +220,8 @@
     <Compile Include="Areas\Employee\Models\ViewModels\Calendar\CalendarForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Department\ListForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Document\DetailsForm.cs" />
+    <Compile Include="Areas\Employee\Models\ViewModels\Document\ListForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Document\UploadForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Event\DetailsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Event\ListForm.cs" />
@@ -480,7 +482,9 @@
     <Content Include="Areas\Employee\Views\Event\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Event\Details.cshtml" />
     <Content Include="Areas\Employee\Views\Message\_SendFormTemplateRoot.cshtml" />
-    <Content Include="Areas\Employee\Views\Document\Upload.cshtml" />
+    <Content Include="Areas\Employee\Views\Document\_Upload.cshtml" />
+    <Content Include="Areas\Employee\Views\Document\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\Document\Delete.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -518,6 +522,7 @@
     <Content Include="Views\Shared\_Department.cshtml" />
     <Content Include="Views\Shared\_Event.cshtml" />
     <Content Include="Areas\Employee\Views\Profile\_ToAdminLink.cshtml" />
+    <Content Include="Views\Shared\_DocumentList.cshtml" />
     <Content Include="Areas\Employee\Views\Home\Calendar.cshtml" />
     <Content Include="Views\Shared\_ProjectTasks.cshtml" />
     <Content Include="Views\Shared\_TeamTasks.cshtml" />

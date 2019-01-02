@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Project;
+using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -53,7 +54,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Tasks = Tasks,
                 
                 IsProjectManager = (Employee_Id == Manager.Employee_Id),
-                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToProject = Project.Id }
+                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToProject = Project.Id },
+                Documents = DocumentService.GetForProject((int)Project.Id).Select(d => new Doc.ListForm { Name = d.Name, Id = (int)d.Id })
             };
 
             return View(Form);
