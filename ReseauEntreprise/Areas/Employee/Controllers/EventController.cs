@@ -6,6 +6,7 @@ using Model.Client.Service;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Event;
 using Réseau_d_entreprise.Session.Attributes;
+using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -44,7 +45,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Address = Event.Address,
                 StartDate = Event.Start,
                 EndDate = Event.End,
-                CreationDate = Event.Created
+                CreationDate = Event.Created,
+                Documents = DocumentService.GetForEvent((int)Event.Id).Select(d => new Doc.ListForm { Name = d.Filename, Id = (int)d.Id })
             };
             return View(form);
         }

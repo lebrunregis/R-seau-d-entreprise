@@ -8,18 +8,17 @@ namespace Model.Client.Data
         private String filename;
         private DateTime created;
         private byte[] body;
-        private float size;
-        private String checksum;
-        private Boolean active;
+        private long size;
+        private int checksum;
         private int authorEmployee;
-        private int nextVersion;
+        private DateTime? deleted;
 
         public Document()
         {
 
         }
 
-        public Document(int? id, string filename, DateTime created, byte[] body, float size, string checksum, bool active, int authorEmployee, int nextVersion)
+        public Document(int? id, string filename, DateTime created, byte[] body, long size, int checksum, int authorEmployee, DateTime? deleted)
         {
             Id = id;
             Filename = filename;
@@ -27,19 +26,17 @@ namespace Model.Client.Data
             Body = body;
             Size = size;
             Checksum = checksum;
-            Active = active;
             AuthorEmployee = authorEmployee;
-            NextVersion = nextVersion;
+            Deleted = deleted;
         }
 
         public int? Id { get => id; set => id = value; }
         public string Filename { get => filename; set => filename = value; }
         public DateTime Created { get => created; set => created = value; }
         public byte[] Body { get => body; set => body = value; }
-        public float Size { get => size; set => size = value; }
-        public string Checksum { get => checksum; set => checksum = value; }
-        public bool Active { get => active; set => active = value; }
+        public long Size { get => size; set => size = value; }
+        public int Checksum { get => checksum; set => checksum = value; }
         public int AuthorEmployee { get => authorEmployee; set => authorEmployee = value; }
-        public int NextVersion { get => nextVersion; set => nextVersion = value; }
+        public DateTime? Deleted { get => deleted; set => deleted = value; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using C = Model.Client.Data;
+using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
 {
@@ -35,6 +36,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         [Display(Name = "Project manager or admin")]
         public bool IsProjectManagerOrAdmin {get ; set; }
         public IEnumerable<C.Task> Tasks { get ; set; }
+        public IEnumerable<Doc.ListForm> Documents { get; set; }
         public Message.DiscussionScriptForm DiscScriptForm { get; set; }
     }
 }

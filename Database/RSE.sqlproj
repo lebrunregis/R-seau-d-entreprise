@@ -23,7 +23,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <DefaultFileStreamFilegroup>FileGroup1</DefaultFileStreamFilegroup>
+    <DefaultFileStreamFilegroup>
+    </DefaultFileStreamFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -235,10 +236,22 @@
     <Build Include="dbo\SP\Message\GetTaskForMessage.sql" />
     <Build Include="dbo\FN\FN_GetParentTitle.sql" />
     <Build Include="dbo\SP\Document\UploadFile.sql" />
-    <Build Include="dbo\SP\Document\ContinueUploadingFile.sql" />
     <Build Include="dbo\SP\Document\DownloadFile.sql" />
-    <Build Include="FileGroup1.sql" />
-    <Build Include="dbo\SP\Document\GetFileName.sql" />
+    <Build Include="dbo\SP\Document\AddDocToMessage.sql" />
+    <Build Include="dbo\SP\Document\AddDocToDepartment.sql" />
+    <Build Include="dbo\SP\Document\AddDocToEvent.sql" />
+    <Build Include="dbo\SP\Document\AddDocToProject.sql" />
+    <Build Include="dbo\SP\Document\AddDocToTask.sql" />
+    <Build Include="dbo\SP\Document\AddDocToTeam.sql" />
+    <Build Include="dbo\SP\Document\GetDocsForTeam.sql" />
+    <Build Include="dbo\SP\Document\GetDocsForDepartment.sql" />
+    <Build Include="dbo\SP\Document\GetDocsForEvent.sql" />
+    <Build Include="dbo\SP\Document\GetDocsForMessage.sql" />
+    <Build Include="dbo\SP\Document\GetDocsForProject.sql" />
+    <Build Include="dbo\SP\Document\GetDocsForTask.sql" />
+    <Build Include="dbo\SP\Document\GetDocForDescription.sql" />
+    <Build Include="dbo\Trigger\OnDeleteDocument.sql" />
+    <Build Include="dbo\SP\Document\DeleteDocument.sql" />
     <Build Include="dbo\Tables\Task\EmployeeTask.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +260,7 @@
     <Build Include="dbo\FN\FN_Hash.sql" />
     <None Include="RSE.publish.xml" />
     <None Include="RSETEST.publish.xml" />
+    <None Include="RSE_2.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Scripts\Script.PreDeployment1.sql" />

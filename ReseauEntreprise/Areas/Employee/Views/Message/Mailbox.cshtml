@@ -32,7 +32,7 @@
 	<tr id="mailboxTableHead">
 		<th>Discussion</th>
 		<th>@Html.DisplayNameFor(model => model.Messages.FirstOrDefault().Message)</th>
-		<th>@Html.DisplayNameFor(model => model.Messages.FirstOrDefault().isReplied)</th>
+		<th>@Html.DisplayNameFor(model => model.Messages.FirstOrDefault().IsReplied)</th>
 	</tr>
 
 	@{Html.RenderPartial("_Mailbox", Model.Messages);}
@@ -82,7 +82,7 @@
 
 	function refresh() {
 		var messages = document.getElementsByClassName("myMessage");
-		var max_id = 0;
+		var max_id = -1; // parfois il existe des messages avec id 0 
 		var id;
 		for (var i = 0; i < messages.length; i++) {
 			id = messages[i].id.replace('message_', '');

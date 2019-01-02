@@ -7,6 +7,7 @@ using ED = ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeDepartment;
 using C = Model.Client.Data;
 using Model.Client.Service;
 using Réseau_d_entreprise.Session;
+using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -49,7 +50,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Description = Department.Description,
                 Creator = EmployeeService.Get(Department.Admin_Id),
                 Active = Department.Active,
-                Employees = DepartmentService.GetEmployeesForDepartment((int)Department.Id)
+                Employees = DepartmentService.GetEmployeesForDepartment((int)Department.Id),
+                Documents = DocumentService.GetForDepartment((int)Department.Id).Select(d => new Doc.ListForm { Name = d.Filename, Id = (int)d.Id })
             };
             int? HeadOfDepartmentId = DepartmentService.GetHeadOfDepartmentId((int)Department.Id);
             if (HeadOfDepartmentId != null)

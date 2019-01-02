@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using C = Model.Client.Data;
+using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
 {
@@ -31,6 +32,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
         public DateTime? EndDate { get; set; }
         public IEnumerable<C.Team> Teams { get; set; }
         public IEnumerable<C.Task> Tasks { get; set; }
+        public IEnumerable<Doc.ListForm> Documents { get; set; }
 
 
         public Message.DiscussionScriptForm DiscScriptForm { get; set; }
