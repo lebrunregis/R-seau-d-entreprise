@@ -44,14 +44,14 @@ namespace Model.Client.Data
         {
             get
             {
-                return EndDate;
+                return endDate;
             }
 
             set
             {
                 if (value is null || DateTime.Compare((DateTime)value, StartDate) >= 0)
                 {
-                    EndDate = value;
+                    endDate = value;
                 }
                 else
                 {
