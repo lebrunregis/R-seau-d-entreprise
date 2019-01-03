@@ -86,8 +86,27 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 EventService.Create(
                     new C.Event(SessionUser.GetUser().Id, Form.SelectedDepartmentId, Form.Name, Form.Description, Form.Address, Form.StartDate, Form.EndDate.AddHours(23.99999), Form.OpenEvent),
                     SessionUser.GetUser().Id);
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            List<SelectListItem> DepartmentList = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text = "Toute l'entreprise",
+                    Value = "-1"
+                }
+            };
+
+            foreach (C.Department dep in DepartmentService.GetAllActive())
+            {
+                DepartmentList.Add(new SelectListItem
+                {
+                    Text = dep.Title,
+                    Value = dep.Id.ToString()
+                });
+            }
+            Form.DepartmentList = DepartmentList;
+            return View(Form);
         }
 
         public ActionResult Edit(int id)
