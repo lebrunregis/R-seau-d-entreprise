@@ -23,12 +23,16 @@ namespace Réseau_d_entreprise.Session.Attributes
             IEnumerable<Employee> Team = null;
             int UserId = SessionUser.GetUser().Id;
 
-            try
+            if (!(taskId is null))
             {
-                if (!(taskId is null))
+                Task = TaskService.Get(int.Parse(taskId), UserId);
+                if (Task.TeamId is null)
                 {
-                    Task = TaskService.Get(int.Parse(taskId), SessionUser.GetUser().Id);
-                    if (Task.TeamId is null)
+                    accessAllowed = true;
+                }
+                else
+                {
+                    if (UserId == ProjectService.GetProjectManagerId((int)Task.ProjectId) || (UserId == TeamService.GetTeamLeaderId((int)Task.TeamId)))
                     {
                         accessAllowed = true;
                     }
@@ -36,18 +40,19 @@ namespace Réseau_d_entreprise.Session.Attributes
                     {
                         Team = TeamService.GetAllEmployeesForTeam((int)Task.TeamId);
                     }
-
                 }
-                else
-                if (!(teamId is null))
+            }
+            else
+            if (!(teamId is null))
+            {
+                Team = TeamService.GetAllEmployeesForTeam(int.Parse(teamId));
+                if (UserId == TeamService.GetTeamLeaderId(int.Parse(teamId)))
                 {
-                    Team = TeamService.GetAllEmployeesForTeam(int.Parse(teamId));
-                    if (UserId == TeamService.GetTeamLeaderId(int.Parse(teamId)))
-                    {
-                        accessAllowed = true;
-                    }
+                    accessAllowed = true;
                 }
-
+            }
+            if (!accessAllowed)
+            {
                 foreach (Employee employee in Team)
                 {
                     if (employee.Employee_Id == UserId)
@@ -56,11 +61,6 @@ namespace Réseau_d_entreprise.Session.Attributes
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
             return accessAllowed;
         }
 

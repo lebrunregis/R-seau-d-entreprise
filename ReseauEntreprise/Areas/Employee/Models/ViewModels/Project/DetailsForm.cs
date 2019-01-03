@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using C = Model.Client.Data;
 using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
+using TaskForm = ReseauEntreprise.Areas.Employee.Models.ViewModels.Task.ListForm;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
 {
@@ -31,10 +32,8 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
         [Display(Name = "End date")]
         public DateTime? EndDate { get; set; }
         public IEnumerable<C.Team> Teams { get; set; }
-        public IEnumerable<C.Task> Tasks { get; set; }
+        public IEnumerable<TaskForm> Tasks { get; set; }
         public IEnumerable<Doc.ListForm> Documents { get; set; }
-
-
         public Message.DiscussionScriptForm DiscScriptForm { get; set; }
         [Display(Name = "Project Manager")]
         public bool IsProjectManager { get; set; }

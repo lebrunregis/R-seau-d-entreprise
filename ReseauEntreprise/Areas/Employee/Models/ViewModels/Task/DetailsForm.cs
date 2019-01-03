@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using C = Model.Client.Data;
 using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
+using TaskForm = ReseauEntreprise.Areas.Employee.Models.ViewModels.Task.ListForm;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
 {
@@ -17,14 +18,23 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         [Display(Name = "Created by")]
         public int CreatorId { get; set; }
         [Required]
+        [Display(Name = "Team")]
+        public int? TeamId { get; set; }
+        [Required]
         public String Name { get; set; }
         [Required]
         public String Description { get; set; }
         [Required]
         [Display(Name = "Start date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime StartDate { get; set; }
         [Display(Name = "End date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? EndDate { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? Deadline { get; set; }
         [Display(Name = "Subtask of")]
         public int? SubtaskOf { get; set; }
@@ -36,10 +46,8 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         [Required]
         public int StatusId { get; set; }
         public IEnumerable<Doc.ListForm> Documents { get; set; }
-
-
         public Message.DiscussionScriptForm DiscScriptForm { get; set; }
         public C.Task Parent { get; set; }
-        public IEnumerable<C.Task> Subtasks { get; set; }
+        public IEnumerable<TaskForm> Subtasks { get; set; }
     }
 }
