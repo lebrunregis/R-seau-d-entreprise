@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using ReseauEntreprise.CustomDataAttributes;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
 {
@@ -24,6 +25,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "End Date")]
+        [EndDate(nameof(StartDate))]
         public DateTime EndDate { get; set; }
         [Required]
         [Display(Name = "Department")]
