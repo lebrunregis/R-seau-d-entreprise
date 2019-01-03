@@ -102,7 +102,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
 
         [ProjectManagerRequired]
-        public ActionResult Create(int? Project_Id)
+        public ActionResult Create(int? projectId)
         {
             int Employee_Id = SessionUser.GetUser().Id;
             IEnumerable<D.Project> MyProjects = new List<D.Project>();
@@ -139,9 +139,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     });
                 }
                 form.ProjectCandidateList = ProjectCandidates;
-                if (!(Project_Id is null) && MyProjects.Any(project => project.Id == Project_Id))
+                if (!(projectId is null) && MyProjects.Any(project => project.Id == projectId))
                 {
-                    form.SelectedProjectId = (int)Project_Id;
+                    form.SelectedProjectId = (int)projectId;
                 }
 
                 return View(form);
