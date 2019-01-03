@@ -8,4 +8,4 @@
 	@AdminId int
 AS
 	DELETE FROM Event 
-	WHERE Event_Id = @Id AND Name = @Name AND Description = @Description AND @Address = Address AND @CreatorId = CreatorId AND DepartmentId = @DepartmentId ;
+	WHERE Event_Id = @Id --AND Name = @Name AND Description = @Description AND @Address = Address AND @CreatorId = CreatorId AND DepartmentId = @DepartmentId ;

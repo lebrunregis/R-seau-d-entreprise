@@ -13,7 +13,7 @@ namespace ReseauEntreprise.CustomDataAttributes
         public EndDateAttribute(string startDateName)
         {
             StartDateName = startDateName;
-            ErrorMessage = "The event cannot end before it has started";
+            ErrorMessage = "The end date cannot be before the start date";
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -21,8 +21,8 @@ namespace ReseauEntreprise.CustomDataAttributes
             if (value != null)
             {
                 object Model = validationContext.ObjectInstance;
-                DateTime StartDate = (DateTime)Model.GetType().GetProperty(StartDateName).GetValue(Model, null);
-                if (DateTime.Compare((DateTime)value, StartDate) < 0)
+                object StartDate = Model.GetType().GetProperty(StartDateName).GetValue(Model, null);
+                if (StartDate != null && DateTime.Compare((DateTime)value, (DateTime)StartDate) < 0)
                 {
                     return new ValidationResult(ErrorMessage);
                 }
