@@ -21,8 +21,17 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         [Required]
         public string Description { get; set; }
         [Required]
+        [Display(Name = "Start date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
+        [Display(Name = "End date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? EndDate { get; set; }
+        [Display(Name = "Deadline")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? Deadline { get; set; }
         [Required]
         public int? SubtaskOf { get; set; }
@@ -34,6 +43,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         [Required]
         [HiddenInput]
         public int? StatusId { get; set; }
-
+        [Required]
+        public int? TeamId { get; set; }
     }
 }

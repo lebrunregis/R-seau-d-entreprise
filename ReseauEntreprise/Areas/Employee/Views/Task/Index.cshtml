@@ -15,6 +15,9 @@
             @Html.DisplayNameFor(model => model.CreatorId)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.TeamId)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
@@ -53,6 +56,9 @@
             @Html.DisplayFor(modelItem => item.CreatorId)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.TeamId)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
@@ -80,8 +86,8 @@
             @Html.DisplayFor(modelItem => item.StatusId)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { taskId=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { taskId=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { taskId = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { taskId = item.Id })
         </td>
     </tr>
 }

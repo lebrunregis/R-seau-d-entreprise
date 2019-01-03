@@ -21,7 +21,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         public int CreatorId { get; set; }
         [HiddenInput]
         [Display(Name = "Team")]
-        public int TeamId { get; set; }
+        public int? TeamId { get; set; }
         [Required]
         public String Name { get; set; }
         [Required]

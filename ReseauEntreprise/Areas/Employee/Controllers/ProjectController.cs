@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Project;
+using TaskForm = ReseauEntreprise.Areas.Employee.Models.ViewModels.Task.ListForm;
 using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 using System.Linq;
 
@@ -42,6 +43,26 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             C.Employee Creator = EmployeeService.Get(Project.CreatorId);
             IEnumerable<C.Team> Teams = ProjectService.GetAllTeamsForProject(projectId);
             IEnumerable<C.Task> Tasks = TaskService.GetForProject(projectId, Employee_Id);
+            List<TaskForm> TasksForm = new List<TaskForm>();
+            foreach (C.Task Task in Tasks)
+            {
+                TasksForm.Add(new TaskForm
+                {
+                    Id = Task.Id,
+                    ProjectId = Task.ProjectId,
+                    CreatorId = Task.CreatorId,
+                    Name = Task.Title,
+                    Description = Task.Description,
+                    StartDate = Task.Start,
+                    EndDate = Task.End,
+                    Deadline = Task.Deadline,
+                    SubtaskOf = Task.SubtaskOf,
+                    StatusName = Task.StatusName,
+                    StatusDate = Task.StatusDate,
+                    StatusId = Task.StatusId,
+                    TeamId = Task.TeamId
+                });
+            }
             DetailsForm Form = new DetailsForm
             {
                 Id = (int)Project.Id,
@@ -52,7 +73,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 StartDate = Project.Start,
                 EndDate = Project.End,
                 Teams = Teams,
-                Tasks = Tasks,
+                Tasks = TasksForm,
                 
                 IsProjectManager = (Employee_Id == Manager.Employee_Id),
                 DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToProject = Project.Id },
