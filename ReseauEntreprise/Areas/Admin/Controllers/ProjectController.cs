@@ -147,6 +147,8 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 }
                 return RedirectToAction("Edit");
             }
+
+            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(form.Id));
             IEnumerable<C.Employee> Employees = EmployeeService.GetAllActive();
             List<SelectListItem> ManagerCandidates = new List<SelectListItem>();
             foreach (C.Employee emp in Employees)
