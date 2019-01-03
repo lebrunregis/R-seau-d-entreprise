@@ -147,6 +147,25 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 }
                 return RedirectToAction("Edit");
             }
+            IEnumerable<C.Employee> Employees = EmployeeService.GetAllActive();
+            List<SelectListItem> ManagerCandidates = new List<SelectListItem>();
+            foreach (C.Employee emp in Employees)
+            {
+                ManagerCandidates.Add(new SelectListItem()
+                {
+                    Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
+                    Value = emp.Employee_Id.ToString()
+                });
+            }
+            if (!Employees.Any(emp => emp.Employee_Id == Manager.Employee_Id))
+            {
+                ManagerCandidates.Add(new SelectListItem()
+                {
+                    Text = "!!!VIRÉ!!! " + Manager.FirstName + " " + Manager.LastName + " (" + Manager.Email + ")",
+                    Value = Manager.Employee_Id.ToString()
+                });
+            }
+            form.ProjectManagerCandidateList = ManagerCandidates;
             return View(form);
         }
 
