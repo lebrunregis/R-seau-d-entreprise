@@ -14,11 +14,11 @@ namespace ReseauEntreprise.Areas.Admin.Models.PartialView
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]
-        [DisplayName("Nom")]
+        [DisplayName("Last Name")]
         public string LastName { get; set; }
         [Required]
         [MaxLength(50)]
-        [DisplayName("Prénom")]
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
         [Required]
         [MinLength(5)]
@@ -27,15 +27,15 @@ namespace ReseauEntreprise.Areas.Admin.Models.PartialView
         public string Email { get; set; }
         [Required]
         [MaxLength(50)]
-        [DisplayName("Numéro de registre national")]
+        [DisplayName("National Number")]
         public string RegNat { get; set; }
         [Required]
         [MinLength(7)]
-        [DisplayName("Adresse")]
+        [DisplayName("Adress")]
         public string Address { get; set; }
         [MaxLength(50)]
         [DataType(DataType.PhoneNumber)]
-        [DisplayName("Numéro de téléphone")]
+        [DisplayName("Phone Number")]
         public string Phone { get; set; }
         [Required]
         public bool IsAdmin { get; set; }
