@@ -158,21 +158,71 @@ INSERT INTO [dbo].Department(Name, Creator_Id, Description) VALUES
     ('Research and Development', @Admin, 'The functions of a research and development department are to engage in new product research and development, existing product updates, quality checks and innovation.'),
     ('Sales', @Admin, 'The function of a sales department is to engage in a variety of activities with the objective to promote the customer purchase of a product or the client engagement of a service.');
 
-EXEC [dbo].CreateProject @name = 'Test Project',@description = 'Test project description',@creator = @Admin,@project_manager = 5,@startDate = @now,@endDate = null;
+EXEC [dbo].CreateProject @name = 'ESN',@description = 'Enterprise Social Network application',@creator = @Admin,@project_manager = 5,@startDate = @now,@endDate = null;
 GO
+
+DECLARE @Dep3_Id int = ident_current('[dbo].Department');
+DECLARE @Dep2_Id int = @Dep3_Id - 1;
+DECLARE @Dep1_Id int = @Dep3_Id - 2;
+DECLARE @Admin int = ident_current('[dbo].Employee');
+EXEC [dbo].ChangeHeadOfDepartment @DepId = @Dep1_Id, @EmpId = 5, @User = @Admin;
+EXEC [dbo].ChangeHeadOfDepartment @DepId = @Dep2_Id, @EmpId = 6, @User = @Admin;
+EXEC [dbo].ChangeHeadOfDepartment @DepId = @Dep3_Id, @EmpId = 7, @User = @Admin;
+EXEC [dbo].AddEmployeeDepartment @EmployeeId = 1, @DepartmentId = @Dep1_Id, @User = @Admin;
+EXEC [dbo].AddEmployeeDepartment @EmployeeId = 2, @DepartmentId = @Dep1_Id, @User = @Admin;
+EXEC [dbo].AddEmployeeDepartment @EmployeeId = 3, @DepartmentId = @Dep1_Id, @User = @Admin;
+EXEC [dbo].AddEmployeeDepartment @EmployeeId = 4, @DepartmentId = @Dep2_Id, @User = @Admin;
+EXEC [dbo].AddEmployeeDepartment @EmployeeId = 5, @DepartmentId = @Dep2_Id, @User = @Admin;
+EXEC [dbo].AddEmployeeDepartment @EmployeeId = 6, @DepartmentId = @Dep2_Id, @User = @Admin;
+EXEC [dbo].AddEmployeeDepartment @EmployeeId = 7, @DepartmentId = @Dep3_Id, @User = @Admin;
+EXEC [dbo].AddEmployeeDepartment @EmployeeId = 8, @DepartmentId = @Dep3_Id, @User = @Admin;
+EXEC [dbo].AddEmployeeDepartment @EmployeeId = 9, @DepartmentId = @Dep3_Id, @User = @Admin;
+
+GO
+
 DECLARE @Project_Id int = ident_current('[dbo].Project');
-EXEC [dbo].CreateTeam @name = 'Test team',@team_leader = 3,@Project_Id = @Project_Id,@Creator_Id = 5;
+EXEC [dbo].CreateTeam @name = 'Developers',@team_leader = 4,@Project_Id = @Project_Id,@Creator_Id = 5;
+EXEC [dbo].CreateTeam @name = 'Testing',@team_leader = 6,@Project_Id = @Project_Id,@Creator_Id = 5;
+EXEC [dbo].CreateTeam @name = 'Marketing',@team_leader = 2,@Project_Id = @Project_Id,@Creator_Id = 5;
 GO
-DECLARE @TeamId int = ident_current('[dbo].Team');
-EXEC [dbo].AddEmployeeToTeam @Employee_Id = 7 ,@Team_Id = @TeamId ,@User = 5;
-EXEC [dbo].AddEmployeeToTeam @Employee_Id = 6 ,@Team_Id = @TeamId ,@User = 5;
-EXEC [dbo].AddEmployeeToTeam @Employee_Id = 2 ,@Team_Id = @TeamId ,@User = 5;
+DECLARE @TeamId_3 int = ident_current('[dbo].Team');
+DECLARE @TeamId_2 int = @TeamId_3 - 1;
+DECLARE @TeamId_1 int = @TeamId_3 - 2;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 4 ,@Team_Id = @TeamId_1 ,@User = 5;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 6 ,@Team_Id = @TeamId_1 ,@User = 5;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 2 ,@Team_Id = @TeamId_1 ,@User = 5;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 4 ,@Team_Id = @TeamId_2 ,@User = 5;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 5 ,@Team_Id = @TeamId_2 ,@User = 5;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 1 ,@Team_Id = @TeamId_3 ,@User = 5;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 7 ,@Team_Id = @TeamId_3 ,@User = 5;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 8 ,@Team_Id = @TeamId_3 ,@User = 5;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 9 ,@Team_Id = @TeamId_3 ,@User = 5;
 GO
 DECLARE @Project_Id int = ident_current('[dbo].Project');
 DECLARE @now DATETIME2(0) = SYSDATETIME();
 DECLARE @Team_Id int = ident_current('[dbo].Team');
 EXEC [dbo].CreateTask @Name = 'Test task',@Description = 'Test task description',@ProjectId = @Project_Id,@UserId = 3,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @Team_Id;
 GO
+
+
+DECLARE @now DATETIME2(0) = SYSDATETIME();
+DECLARE @Admin int = ident_current('[dbo].Employee');
+EXEC [dbo].CreateProject @name = 'Mobile Messenger',@description = 'Our own messaging app and platform.',@creator = @Admin,@project_manager = 2,@startDate = @now,@endDate = null;
+DECLARE @Project_Id int = ident_current('[dbo].Project');
+EXEC [dbo].CreateTeam @name = 'Apple Development Team',@team_leader = 5,@Project_Id = @Project_Id,@Creator_Id = 2;
+EXEC [dbo].CreateTeam @name = 'Android Development Team',@team_leader = 6,@Project_Id = @Project_Id,@Creator_Id = 2;
+GO
+DECLARE @TeamId_2 int = ident_current('[dbo].Team');
+DECLARE @TeamId_1 int = @TeamId_2 - 1;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 3 ,@Team_Id = @TeamId_1 ,@User = 2;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 4 ,@Team_Id = @TeamId_1 ,@User = 2;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 5 ,@Team_Id = @TeamId_1 ,@User = 2;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 1 ,@Team_Id = @TeamId_1 ,@User = 2;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 6 ,@Team_Id = @TeamId_2 ,@User = 2;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 7 ,@Team_Id = @TeamId_2 ,@User = 2;
+EXEC [dbo].AddEmployeeToTeam @Employee_Id = 8 ,@Team_Id = @TeamId_2 ,@User = 2;
+GO
+
 ENABLE TRIGGER [OnDeleteAdmin] ON [Admin];   
 GO
 ENABLE TRIGGER [OnDeleteDepartment] ON Department;  
