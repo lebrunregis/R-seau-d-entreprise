@@ -200,8 +200,16 @@ EXEC [dbo].AddEmployeeToTeam @Employee_Id = 9 ,@Team_Id = @TeamId_3 ,@User = 5;
 GO
 DECLARE @Project_Id int = ident_current('[dbo].Project');
 DECLARE @now DATETIME2(0) = SYSDATETIME();
-DECLARE @Team_Id int = ident_current('[dbo].Team');
-EXEC [dbo].CreateTask @Name = 'Test task',@Description = 'Test task description',@ProjectId = @Project_Id,@UserId = 3,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @Team_Id;
+DECLARE @TeamId_3 int = ident_current('[dbo].Team');
+DECLARE @TeamId_2 int = @TeamId_3 - 1;
+DECLARE @TeamId_1 int = @TeamId_3 - 2;
+DECLARE @Leader_1 int = [dbo].FN_GetTeamLeaderId(@TeamId_1);
+DECLARE @Leader_2 int = [dbo].FN_GetTeamLeaderId(@TeamId_2);
+DECLARE @Leader_3 int = [dbo].FN_GetTeamLeaderId(@TeamId_3);
+EXEC [dbo].CreateTask @Name = 'Avatars',@Description = 'Add possibility to users to create their own avatar picture',
+                      @ProjectId = @Project_Id,@UserId = @Leader_1,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @TeamId_1;
+EXEC [dbo].CreateTask @Name = 'Notifications',@Description = 'Add notifications for all events',
+                      @ProjectId = @Project_Id,@UserId = @Leader_1,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @TeamId_1;
 GO
 
 
