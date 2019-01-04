@@ -90,10 +90,10 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         }
 
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int projectId)
         {
-            C.Project project = ProjectService.GetProjectById(id);
-            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
+            C.Project project = ProjectService.GetProjectById(projectId);
+            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(projectId));
             EditForm form = new EditForm()
             {
                 Id = (int) project.Id,
@@ -171,10 +171,10 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             return View(form);
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int projectId)
         {
-            C.Project Project = ProjectService.GetProjectById(id);
-            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
+            C.Project Project = ProjectService.GetProjectById(projectId);
+            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(projectId));
             C.Employee Creator = EmployeeService.Get(Project.CreatorId);
             DeleteForm Form = new DeleteForm(Project, Manager, Creator);
             return View(Form);
@@ -201,13 +201,13 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             return View(form);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int projectId)
         {
 
-            C.Project Project = ProjectService.GetProjectById(id);
-            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(id));
+            C.Project Project = ProjectService.GetProjectById(projectId);
+            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(projectId));
             C.Employee Creator = EmployeeService.Get(Project.CreatorId);
-            IEnumerable<C.Team> Teams = ProjectService.GetAllTeamsForProject(id);
+            IEnumerable<C.Team> Teams = ProjectService.GetAllTeamsForProject(projectId);
             DetailsForm Form = new DetailsForm
             {
                 Id = (int) Project.Id,

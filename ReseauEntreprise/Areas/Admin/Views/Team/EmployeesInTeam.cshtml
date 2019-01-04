@@ -1,61 +1,68 @@
 ﻿@model IEnumerable<ReseauEntreprise.Areas.Admin.Models.ViewModels.EmployeeTeam.EmployeesInTeamForm>
 
-<table class="table">
-	<tr>
-		<th>
-			@Html.DisplayNameFor(model => model.Employee)
-		</th>
-		<th>
-			@Html.DisplayNameFor(model => model.Departments)
-		</th>
-		<th>
-			@Html.DisplayNameFor(model => model.IsInTeam)
-		</th>
-	</tr>
+@{
+    ViewBag.Title = "Edit Team Members";
+}
 
-	@foreach (var item in Model)
-	{
-		<tr>
-			<td>
-				@{ Html.RenderPartial("_Employee", item.Employee); }
-			</td>
-			<td>
-				@{ Html.RenderPartial("_DepartmentList", item.Departments); }
-			</td>
-			<td>
-				<div class="checkbox">
-					@Html.CheckBoxFor(modelItem => item.IsInTeam, new { id = item.Employee.Employee_Id })
-				</div>
-			</td>
-		</tr>
-	}
+<h2>"Edit Team Members</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Departments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsInTeam)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{ Html.RenderPartial("_Employee", item.Employee); }
+            </td>
+            <td>
+                @{ Html.RenderPartial("_DepartmentList", item.Departments); }
+            </td>
+            <td>
+                <div class="checkbox">
+                    @Html.CheckBoxFor(modelItem => item.IsInTeam, new { id = item.Employee.Employee_Id })
+                </div>
+            </td>
+        </tr>
+    }
 
 </table>
 
 <script>
-	var checkboxes = document.querySelectorAll('input[name="item.IsInTeam"][type="checkbox"]');
+    var checkboxes = document.querySelectorAll('input[name="item.IsInTeam"][type="checkbox"]');
 
-	for (var i = 0; i < checkboxes.length; i++) {
-		checkboxes[i].addEventListener("change", (event) => {
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].addEventListener("change", (event) => {
 
-			function onsuccess(responseData) {
-				if (responseData == true) {
-					checkbox.checked = true
-				}
-				else {
-					checkbox.checked = false
-				}
-			}
+            function onsuccess(responseData) {
+                if (responseData == true) {
+                    checkbox.checked = true
+                }
+                else {
+                    checkbox.checked = false
+                }
+            }
 
-			var checkbox = event.target;
-			var requestData = { EmployeeId: checkbox.id, IsChecked: checkbox.checked };
-			if (checkbox.checked == true) {
-				checkbox.checked = false
-			}
-			else {
-				checkbox.checked = true
-			}
-			$.post(window.location.href, requestData, onsuccess);
-		})
-	}
+            var checkbox = event.target;
+            var requestData = { EmployeeId: checkbox.id, IsChecked: checkbox.checked };
+            if (checkbox.checked == true) {
+                checkbox.checked = false
+            }
+            else {
+                checkbox.checked = true
+            }
+            $.post(window.location.href, requestData, onsuccess);
+        })
+    }
 </script>
