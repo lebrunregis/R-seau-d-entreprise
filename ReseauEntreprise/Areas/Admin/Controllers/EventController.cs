@@ -84,7 +84,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                     Form.SelectedDepartmentId = null;
                 }
                 EventService.Create(
-                    new C.Event(SessionUser.GetUser().Id, Form.SelectedDepartmentId, Form.Name, Form.Description, Form.Address, Form.StartDate, Form.EndDate.AddHours(23.99999), Form.OpenEvent),
+                    new C.Event(SessionUser.GetUser().Id, Form.SelectedDepartmentId, Form.Name, Form.Description, Form.Address, Form.StartDate, Form.EndDate.AddHours(23.99), Form.OpenEvent),
                     SessionUser.GetUser().Id);
                 return RedirectToAction("Index");
             }
@@ -136,7 +136,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 Description = Event.Description,
                 Address = Event.Address,
                 StartDate = Event.Start,
-                EndDate = Event.End.AddHours(24),
+                EndDate = Event.End,
                 OpenEvent = Event.Open,
                 DepartmentList = DepartmentList,
                 SelectedDepartmentId = Event.DepartmentId,
@@ -155,9 +155,28 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 {
                     Form.SelectedDepartmentId = null;
                 }
-                EventService.Edit(new C.Event(Form.Id, Form.CreatorId, Form.SelectedDepartmentId, Form.Name, Form.Description, Form.Address, Form.StartDate, Form.EndDate, Form.Created, null, Form.OpenEvent, false), SessionUser.GetUser().Id);
+                EventService.Edit(new C.Event(Form.Id, Form.CreatorId, Form.SelectedDepartmentId, Form.Name, Form.Description, Form.Address, Form.StartDate, Form.EndDate.AddHours(23.99), Form.Created, null, Form.OpenEvent, false), SessionUser.GetUser().Id);
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            List<SelectListItem> DepartmentList = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text = "Toute l'entreprise",
+                    Value = "-1"
+                }
+            };
+
+            foreach (C.Department dep in DepartmentService.GetAllActive())
+            {
+                DepartmentList.Add(new SelectListItem
+                {
+                    Text = dep.Title,
+                    Value = dep.Id.ToString()
+                });
+            }
+            Form.DepartmentList = DepartmentList;
+            return View(Form);
         }
 
         public ActionResult Delete(int id)
@@ -179,9 +198,11 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(DeleteForm form)
+        public ActionResult Delete(int id, DeleteForm form)
         {
-            C.Event e = new C.Event(form.Id, form.CreatorId, null, form.Name, form.Description, form.Address, form.StartDate, form.EndDate, form.CreationDate, null, form.OpenSubscription, false);
+            //C.Event e = new C.Event(form.Id, form.CreatorId, null, form.Name, form.Description, form.Address, form.StartDate, form.EndDate, form.CreationDate, null, form.OpenSubscription, false);
+            C.Event e = new C.Event();
+            e.Id = id;
             try
             {
                 EventService.Delete(e, SessionUser.GetUser().Id);

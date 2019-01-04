@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReseauEntreprise.CustomDataAttributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace ReseauEntreprise.Admin.Models.ViewModels.Project
         public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "End Date")]
+        [EndDate(nameof(StartDate))]
         public DateTime? EndDate { get; set; }
     }
 }

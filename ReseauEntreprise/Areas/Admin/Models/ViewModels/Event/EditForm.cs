@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using ReseauEntreprise.CustomDataAttributes;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
 {
@@ -34,6 +35,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         [Display(Name = "End Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required]
+        [EndDate(nameof(StartDate))]
         public DateTime EndDate { get; set; }
         [Required]
         [Display(Name = "Open Subscription")]
