@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [Project] (
-  [Project_Id] int identity(1,1),
+  [Project_Id] int identity,
   [Project_Name] nvarchar(50) NOT NULL,
   [Project_Description] nvarchar(max) NOT NULL,
   [StartDate] DATETIME2(0) NOT NULL DEFAULT SYSDATETIME(),

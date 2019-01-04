@@ -113,16 +113,16 @@ INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (5,'Admin');
 GO
 SET IDENTITY_INSERT [EmployeeStatus] OFF
 
-EXEC [dbo].Register_Demo @LastName = 'Aliyah',@FirstName ='Ellis';
-EXEC [dbo].Register_Demo @LastName = 'Izabelle',@FirstName ='Hanna';
-EXEC [dbo].Register_Demo @LastName = 'Tanisha',@FirstName ='Salas';
-EXEC [dbo].Register_Demo @LastName = 'Kerrie',@FirstName ='Dodson';
-EXEC [dbo].Register_Demo @LastName = 'Arabella',@FirstName ='Reyna';
-EXEC [dbo].Register_Demo @LastName = 'Kennedy',@FirstName ='Hutton';
-EXEC [dbo].Register_Demo @LastName = 'Kayley',@FirstName ='Humphries';
-EXEC [dbo].Register_Demo @LastName = 'Katrina',@FirstName ='Boyer';
-EXEC [dbo].Register_Demo @LastName = 'Holly',@FirstName ='Tanner';
-EXEC [dbo].Register_Demo @LastName = 'Kelly',@FirstName ='England';
+EXEC Register_Demo @LastName = 'Aliyah',@FirstName ='Ellis';
+EXEC Register_Demo @LastName = 'Izabelle',@FirstName ='Hanna';
+EXEC Register_Demo @LastName = 'Tanisha',@FirstName ='Salas';
+EXEC Register_Demo @LastName = 'Kerrie',@FirstName ='Dodson';
+EXEC Register_Demo @LastName = 'Arabella',@FirstName ='Reyna';
+EXEC Register_Demo @LastName = 'Kennedy',@FirstName ='Hutton';
+EXEC Register_Demo @LastName = 'Kayley',@FirstName ='Humphries';
+EXEC Register_Demo @LastName = 'Katrina',@FirstName ='Boyer';
+EXEC Register_Demo @LastName = 'Holly',@FirstName ='Tanner';
+EXEC Register_Demo @LastName = 'Kelly',@FirstName ='England';
 GO
 
 DECLARE @last_id int = ident_current('[dbo].Employee');
