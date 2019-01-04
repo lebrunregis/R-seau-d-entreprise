@@ -150,8 +150,14 @@ DECLARE @employee_id int = ident_current('[dbo].Employee');
 Update [dbo].Employee SET Email='admin@test.be' where Employee_Id = @employee_id;
 INSERT INTO[dbo].Admin (Employee_Id) VALUES (@employee_id);
 GO
+
 DECLARE @now DATETIME2(0) = SYSDATETIME();
 DECLARE @Admin int = ident_current('[dbo].Employee');
+INSERT INTO [dbo].Department(Name, Creator_Id, Description) VALUES
+    ('Accounting', @Admin, 'Part of a company''s administration that is responsible for preparing the financial statements, maintaining the general ledger, paying bills, billing customers, payroll, cost accounting, financial analysis, and more. The head of the accounting department often has the title of controller.'),
+    ('Research and Development', @Admin, 'The functions of a research and development department are to engage in new product research and development, existing product updates, quality checks and innovation.'),
+    ('Sales', @Admin, 'The function of a sales department is to engage in a variety of activities with the objective to promote the customer purchase of a product or the client engagement of a service.');
+
 EXEC [dbo].CreateProject @name = 'Test Project',@description = 'Test project description',@creator = @Admin,@project_manager = 5,@startDate = @now,@endDate = null;
 GO
 DECLARE @Project_Id int = ident_current('[dbo].Project');
