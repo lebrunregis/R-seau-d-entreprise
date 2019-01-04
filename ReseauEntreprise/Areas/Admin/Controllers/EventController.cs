@@ -22,11 +22,11 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 {
                     Id = (int)e.Id,
                     DepartmentId = e.DepartmentId,
-                    Name = e.Name,
+                    Name = e.Title,
                     Description = e.Description,
                     Address = e.Address,
-                    StartDate = e.StartDate,
-                    EndDate = e.EndDate,
+                    StartDate = e.Start,
+                    EndDate = e.End,
                     OpenSubscription = e.Open
                 }).ToList();
             C.EmployeeEvent status;
@@ -113,16 +113,16 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             EditForm form = new EditForm
             {
                 Id = (int)Event.Id,
-                Name = Event.Name,
+                Name = Event.Title,
                 Description = Event.Description,
                 Address = Event.Address,
-                StartDate = Event.StartDate,
-                EndDate = Event.EndDate.AddHours(24),
+                StartDate = Event.Start,
+                EndDate = Event.End.AddHours(24),
                 OpenEvent = Event.Open,
                 DepartmentList = DepartmentList,
                 SelectedDepartmentId = Event.DepartmentId,
                 CreatorId = Event.CreatorId,
-                Created = Event.CreationDate
+                Created = Event.Created
             };
             return View(form);
         }
@@ -148,13 +148,13 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             {
                 Id = (int)Event.Id,
                 CreatorId = Event.CreatorId,
-                Name = Event.Name,
+                Name = Event.Title,
                 Description = Event.Description,
                 DepartmentId = Event.DepartmentId,
                 Address = Event.Address,
-                StartDate = Event.StartDate,
-                EndDate = Event.EndDate,
-                CreationDate = Event.CreationDate
+                StartDate = Event.Start,
+                EndDate = Event.End,
+                CreationDate = Event.Created
             };
             return View(form);
         }
@@ -182,12 +182,12 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             {
                 Id = (int)Event.Id,
                 CreatorId = Event.CreatorId,
-                Name = Event.Name,
+                Name = Event.Title,
                 Description = Event.Description,
                 Address = Event.Address,
-                StartDate = Event.StartDate,
-                EndDate = Event.EndDate,
-                CreationDate = Event.CreationDate
+                StartDate = Event.Start,
+                EndDate = Event.End,
+                CreationDate = Event.Created
             };
             return View(form);
         }
@@ -233,13 +233,13 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 Id = (int)Event.Id,
                 CreatorId = Event.CreatorId,
                 DepartmentId = Event.DepartmentId,
-                Name = Event.Name,
+                Name = Event.Title,
                 Description = Event.Description,
                 Address = Event.Address,
-                StartDate = Event.StartDate,
-                EndDate = Event.EndDate,
+                StartDate = Event.Start,
+                EndDate = Event.End,
                 OpenSubscription = Event.Open,
-                CreationDate = Event.CreationDate
+                CreationDate = Event.Created
             };
 
             return View(Form);

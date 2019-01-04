@@ -51,7 +51,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Project
         public DeleteForm(D.Project Project,D.Employee ProjectManager, D.Employee Creator)
         {
             ProjectId = (int) Project.Id;
-            Name = Project.Name;
+            Name = Project.Title;
             Description = Project.Description;
             StartDate = Project.Start;
             EndDate = Project.End;

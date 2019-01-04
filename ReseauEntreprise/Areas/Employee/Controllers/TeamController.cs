@@ -2,10 +2,8 @@
 using Model.Client.Service;
 using Réseau_d_entreprise.Session.Attributes;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Team;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam;
@@ -135,7 +133,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 {
                     ProjectCandidates.Add(new SelectListItem()
                     {
-                        Text = p.Name,
+                        Text = p.Title,
                         Value = p.Id.ToString()
                     });
                 }
@@ -188,7 +186,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             {
                 ProjectCandidates.Add(new SelectListItem()
                 {
-                    Text = p.Name,
+                    Text = p.Title,
                     Value = p.Id.ToString()
                 });
             }
@@ -322,6 +320,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 DateCreated = Team.Created,
                 EndDate = Team.Disbanded,
                 Members = Members,
+                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToTeam = Team.Id },
                 Tasks = Tasks,
                 IsTeamLeader = (Employee_Id == TeamLeader.Employee_Id),
                 IsProjectManagerOrAdmin = ((AuthService.IsAdmin(Employee_Id)) || (Employee_Id == ProjectService.GetProjectManagerId(Team.Project_Id)))
@@ -337,42 +336,38 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
 
             IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
             IEnumerable<D.Employee> EmployeesInTeam = TeamService.GetAllEmployeesForTeam(teamId);
-            List<EmployeeTeamForm> EmployeesInTeamFormList = new List<EmployeeTeamForm>();
+            List<EmployeeTeamSelector> EmployeesInTeamFormList = new List<EmployeeTeamSelector>();
             foreach (D.Employee employee in Employees)
             {
                 IEnumerable<D.Department> departments = DepartmentService.GetEmployeeActiveDepartments((int)employee.Employee_Id);
-                EmployeesInTeamFormList.Add(new EmployeeTeamForm
+                EmployeesInTeamFormList.Add(new EmployeeTeamSelector
                 {
+                    Team = Team,
                     Employee = employee,
                     Departments = departments,
-                    IsInTeam = EmployeesInTeam.Contains(employee)
-                });
+                    IsInTeam = EmployeesInTeam.Any(x => x.Employee_Id == employee.Employee_Id)
+            });
             }
-            EmployeesInTeamForm form = new EmployeesInTeamForm
-            {
-                Team = Team,
-                Employees = EmployeesInTeamFormList
-            };
 
-            return View(form);
+            return View(EmployeesInTeamFormList);
         }
 
         [HttpPost]
         public ActionResult EmployeesInTeam(IEnumerable<EmployeeTeamSelector> forms)
         {
             bool IsInTeam;
-            IEnumerable<D.Employee> EmployeesInTeam = TeamService.GetAllEmployeesForTeam(forms.First().TeamId);
+            IEnumerable<D.Employee> EmployeesInTeam = TeamService.GetAllEmployeesForTeam((int)forms.First().Team.Id);
 
             foreach (EmployeeTeamSelector selector in forms)
             {
-                IsInTeam = EmployeesInTeam.Any( x => x.Employee_Id == selector.EmployeeId);
+                IsInTeam = EmployeesInTeam.Any( x => x.Employee_Id == selector.Employee.Employee_Id);
                 if (selector.IsInTeam && !IsInTeam)
                 {
-                    TeamService.AddEmployee((int)selector.TeamId, (int)selector.EmployeeId, SessionUser.GetUser().Id);
+                    TeamService.AddEmployee((int)selector.Team.Id, (int)selector.Employee.Employee_Id, SessionUser.GetUser().Id);
                 }
                 else if (!selector.IsInTeam && IsInTeam)
                 {
-                    TeamService.RemoveEmployee((int)selector.TeamId, (int)selector.EmployeeId, SessionUser.GetUser().Id);
+                    TeamService.RemoveEmployee((int)selector.Team.Id, (int)selector.Employee.Employee_Id, SessionUser.GetUser().Id);
                 }
             }
             return RedirectToAction("Index");

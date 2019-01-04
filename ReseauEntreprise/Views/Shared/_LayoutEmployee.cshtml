@@ -1,12 +1,14 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mon application ASP.NET</title>
+    <title>@ViewBag.Title - Enterprise Social Network</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,16 +22,18 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Calendar", "Calendar", "Home")</li>
                     <li>@Html.ActionLink("Edit profile", "Edit", "Profile")</li>
                     <li>@Html.ActionLink("My teams", "Index", "Team")</li>
                     <li>@Html.ActionLink("Employees", "Index", "Employee")</li>
                     <li>@Html.ActionLink("Projects", "Index", "Project")</li>
                     <li>@Html.ActionLink("Tasks", "Index", "Task")</li>
+                    <li>@Html.ActionLink("Events", "Index", "Event")</li>
                     <li>@Html.ActionLink("Departments", "Index", "Department")</li>
                     <li>@Html.ActionLink("Message box", "Mailbox", "Message")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Logout", "Logout", "Registration", new { area = "" }, new { })</li>
                     @{Html.RenderAction("_ToAdminLink", "Profile");}
                 </ul>
@@ -43,9 +47,12 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
+    <link href="/Content/fullcalendar.css" rel="stylesheet" />
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/fullcalendar.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

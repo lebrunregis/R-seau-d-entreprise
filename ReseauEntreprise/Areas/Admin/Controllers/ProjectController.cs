@@ -97,7 +97,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             EditForm form = new EditForm()
             {
                 Id = (int) project.Id,
-                Name = project.Name,
+                Name = project.Title,
                 Description = project.Description,
                 ProjectManagerId = (int) Manager.Employee_Id,
                 SelectedProjectManagerId = (int) Manager.Employee_Id,
@@ -190,7 +190,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             DetailsForm Form = new DetailsForm
             {
                 Id = (int) Project.Id,
-                Name = Project.Name,
+                Name = Project.Title,
                 Description = Project.Description,
                 Manager = Manager,
                 Creator = Creator,

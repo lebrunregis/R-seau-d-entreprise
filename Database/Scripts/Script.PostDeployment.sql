@@ -13,8 +13,6 @@ DISABLE TRIGGER [OnDeleteAdmin] ON [Admin];
 GO
 DISABLE TRIGGER [OnDeleteDepartment] ON Department;  
 GO
-DISABLE TRIGGER [OnDeleteDocument] ON Document;
-GO
 DISABLE TRIGGER [OnDeleteEmployee] ON Employee;  
 GO
 DISABLE TRIGGER [OnDeleteEmployeeDepartment] ON EmployeeDepartment;
@@ -31,8 +29,8 @@ DISABLE TRIGGER [OnDeleteTask] ON Task;
 GO
 DISABLE TRIGGER [OnDeleteTeam] ON Team;  
 GO
---DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
---GO
+
+
 
 DELETE FROM [MessageEmployee];
 GO
@@ -60,8 +58,9 @@ DELETE FROM [Event];
 GO
 DELETE FROM [ProjectManager];
 GO
-
-DELETE FROM [EmployeeTask];
+DELETE FROM [TaskStatusHistory];
+GO
+DELETE FROM [TaskStatus];
 GO
 DELETE FROM [Task];
 GO
@@ -73,11 +72,10 @@ DELETE FROM [Admin];
 GO
 DELETE FROM [EmployeeStatusHistory];
 GO
+DELETE FROM [Document];
+GO
 DELETE FROM [Employee];
 GO
-DELETE FROM [TaskStatus];
-GO
-
 DELETE FROM [EmployeeStatus];
 GO
 
@@ -93,6 +91,14 @@ DBCC CHECKIDENT ('[Task]', RESEED, 0);
 GO
 DBCC CHECKIDENT ('[TaskStatus]', RESEED, 0);
 GO
+DBCC CHECKIDENT ('[Message]', RESEED, 0);
+GO
+DBCC CHECKIDENT ('[Document]', RESEED, 0);
+GO
+DBCC CHECKIDENT ('[Team]', RESEED, 0);
+GO
+DBCC CHECKIDENT ('[Department]', RESEED, 0);
+GO
 
 SET IDENTITY_INSERT [TaskStatus] ON 
 INSERT INTO [TaskStatus] (TaskStatus_Id,Name) VALUES (0,'Not started');
@@ -105,11 +111,11 @@ GO
 SET IDENTITY_INSERT [TaskStatus] OFF
 
 SET IDENTITY_INSERT [EmployeeStatus] ON
-INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (1,'Joined');
-INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (2,'Left');
-INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (3,'Sick');
-INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (4,'Dead');
-INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (5,'Admin');
+INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (0,'Joined');
+INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (1,'Left');
+INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (2,'Sick');
+INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (3,'Dead');
+INSERT INTO [EmployeeStatus] (EmployeeStatus_Id,Name) VALUES (4,'Admin');
 GO
 SET IDENTITY_INSERT [EmployeeStatus] OFF
 
@@ -144,8 +150,6 @@ ENABLE TRIGGER [OnDeleteAdmin] ON [Admin];
 GO
 ENABLE TRIGGER [OnDeleteDepartment] ON Department;  
 GO
-ENABLE TRIGGER [OnDeleteDocument] ON Document;
-GO
 ENABLE TRIGGER [OnDeleteEmployee] ON Employee;  
 GO
 ENABLE TRIGGER [OnDeleteEmployeeDepartment] ON EmployeeDepartment;
@@ -162,5 +166,5 @@ ENABLE TRIGGER [OnDeleteTask] ON Task;
 GO
 ENABLE TRIGGER [OnDeleteTeam] ON Team;  
 GO
---DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
---GO
+/*DISABLE TRIGGER [OnDeleteMessage] ON Message; --Doesn't exist yet 
+GO*/

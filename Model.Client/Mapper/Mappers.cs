@@ -1,9 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using C = Model.Client.Data;
 using G = Model.Global.Data;
 
@@ -35,7 +30,7 @@ namespace Model.Client.Mapper
         internal static C.Document ToClient(this G.Document entity)
         {
 
-            return new C.Document(entity.Id, entity.Name, entity.Created, entity.Link, entity.Size,
+            return new C.Document(entity.Id, entity.Name, entity.Created, entity.Body, entity.Size,
                 entity.SHA2, entity.Active, entity.AuthorEmployee, entity.NextVersion);
         }
 
@@ -44,11 +39,11 @@ namespace Model.Client.Mapper
             return new G.Document
             {
                 Id = entity.Id,
-                Name = entity.Name,
+                Name = entity.Filename,
                 Created = entity.Created,
-                Link = entity.Link,
+                Body = entity.Body,
                 Size = entity.Size,
-                SHA2 = entity.SHA2,
+                SHA2 = entity.Checksum,
                 Active = entity.Active,
                 AuthorEmployee = entity.AuthorEmployee,
                 NextVersion = entity.NextVersion
@@ -168,12 +163,12 @@ namespace Model.Client.Mapper
                 Id = entity.Id,
                 CreatorId = entity.CreatorId,
                 DepartmentId = entity.DepartmentId,
-                Name = entity.Name,
+                Name = entity.Title,
                 Description = entity.Description,
                 Address = entity.Address,
-                StartDate = entity.StartDate,
-                EndDate = entity.EndDate,
-                CreationDate = entity.CreationDate,
+                StartDate = entity.Start,
+                EndDate = entity.End,
+                CreationDate = entity.Created,
                 Subscribed = entity.Subscribed,
                 Open = entity.Open,
                 Cancelled = entity.Cancelled
@@ -212,7 +207,7 @@ namespace Model.Client.Mapper
             return new G.Project
             {
                 Id = entity.Id,
-                Name = entity.Name,
+                Name = entity.Title,
                 Description = entity.Description,
                 Start = entity.Start,
                 End = entity.End,
@@ -233,13 +228,18 @@ namespace Model.Client.Mapper
             return new G.Task
             {
                 Id = entity.Id,
+                CreatorId = entity.CreatorId,
                 ProjectId = entity.ProjectId,
-                Name = entity.Name,
+                TeamId = entity.TeamId,
+                Name = entity.Title,
                 Description = entity.Description,
-                StartDate = entity.StartDate,
-                EndDate = entity.EndDate,
+                StartDate = entity.Start,
+                EndDate = entity.End,
                 Deadline = entity.Deadline,
-                SubtaskOf = entity.SubtaskOf
+                SubtaskOf = entity.SubtaskOf,
+                StatusId = entity.StatusId,
+                StatusName = entity.StatusName,
+                StatusDate = entity.StatusDate
             };
         }
 

@@ -1,8 +1,6 @@
 ﻿using Réseau_d_entreprise.Session.Attributes;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Department;
 using ED = ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeDepartment;

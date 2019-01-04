@@ -1,0 +1,156 @@
+﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.DiscussionScriptForm
+
+
+<script>
+	var SendFormTemplate = document.getElementById("SendFormTemplate");
+	var SendNew = document.getElementById("SendNew");
+
+	SendFormTemplate.getElementsByClassName("ToEmployee")[0].value = @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null");
+	SendFormTemplate.getElementsByClassName("ToProject")[0].value = @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null");
+	SendFormTemplate.getElementsByClassName("ToTask")[0].value = @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null");
+	SendFormTemplate.getElementsByClassName("ToTeam")[0].value = @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null");
+	const SendFormHtml = document.getElementById("SendFormTemplate").innerHTML;
+
+	SendNew.getElementsByClassName("ToEmployee")[0].value = @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null");
+	SendNew.getElementsByClassName("ToProject")[0].value = @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null");
+	SendNew.getElementsByClassName("ToTask")[0].value = @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null");
+	SendNew.getElementsByClassName("ToTeam")[0].value = @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null");
+
+	function AddReplyForm(id)
+	{
+		var Message = document.getElementById('message_' + id);
+		Message.innerHTML += SendFormHtml;
+		Message.getElementsByClassName("ReplyTo")[0].value = id;
+		var ReplyForm = Message.getElementsByTagName("form")[0];
+		ReplyForm.id = ('reply_' + id);
+		var CancelButton = ReplyForm.getElementsByTagName("button")[0];
+		CancelButton.style.display = "inline";
+		CancelButton.onclick = function () { removeform(id) };
+		document.getElementById('button_' + id).style.display = "none";
+		ReplyForm.getElementsByTagName("textarea")[0].focus();
+	}
+
+	function sendmessage(event) {
+		var thisForm = event.target;
+		$.ajax({
+			type: 'POST',
+			url: thisForm.action,
+			data: $(thisForm).serialize(),
+			success: function (results) {
+				if (results == "fail") {
+					alert("Message must contain some text and title must not be longer then 50 characters")
+				}
+				else if (results == "success") {
+					thisForm.reset();
+					var id = thisForm.id.replace('reply_', '');
+					if (id != "") {
+						removeform(id);
+					}
+				}
+			}
+		});
+	}
+
+	function removeform(id) {
+		document.getElementById('reply_' + id).remove();
+		document.getElementById('button_' + id).style.display = 'inline';
+	}
+
+	function refresh() {
+		var messages = document.getElementsByClassName("myMessage");
+		var max_id = 0;
+		var id;
+		for (var i = 0; i < messages.length; i++) {
+			id = messages[i].id.replace('message_', '')
+			max_id = Math.max(max_id, id)
+		}
+		$.ajax({
+			type: 'POST',
+			url: "@Url.Action("_Messages", "Message")",
+			data:
+				{
+					"max_id": max_id,
+					"ToEmployee": @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null"),
+					"ToProject": @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null"),
+					"ToTask": @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null"),
+					"ToTeam": @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null")
+			}
+		}).done(function (results) { addNew(results) });
+	}
+
+	function addNew(data) {
+		var temporal = document.getElementById('temporal');
+		var discussion = document.getElementById('discussion');
+		temporal.innerHTML += data;
+		if (temporal.getElementsByTagName("title").length > 0) // this is not our parial view
+		{
+			location.reload(true);
+		}
+		else
+		{
+			var messages = temporal.getElementsByClassName("myMessageBox");
+			for (var i = messages.length - 1; i >= 0; i--) {
+				var message = messages[i];
+				message.classList.add("gradientopacity");
+				var parent = message.getAttribute("data-parentId");
+				var newMessage = message.cloneNode(true);
+				if (parent == "") {
+					var parentEl = discussion;
+				}
+				else {
+					var parentEl = document.getElementById('message_' + parent).parentElement;
+				}
+				parentEl.insertAdjacentElement('beforeend', newMessage)
+				message.remove();
+			}
+		}
+
+		var showButtons = document.querySelectorAll('.hideBranch > .showButton');
+		for (var i = 0; i < showButtons.length; i++) {
+			var showButton = showButtons[i];
+			var id = showButton.id.replace('show_', '');
+			var newCount = countMessagesInside(id);
+			var counterSpan = showButton.getElementsByClassName("counter")[0]
+			var oldCount = counterSpan.innerText;
+			if (oldCount != newCount) {
+				counterSpan.innerText = newCount;
+
+				//animate!
+				var newone = counterSpan.cloneNode(true);
+				counterSpan.parentNode.replaceChild(newone, counterSpan);
+			}
+		}
+	}
+
+	function hideBranch(id) {
+		var parentMessageBox = document.getElementById('message_' + id).parentElement;
+		parentMessageBox.classList.add("hideBranch")
+		var showButton = document.getElementById('show_' + id);
+		showButton.getElementsByClassName("counter")[0].innerText = countMessagesInside(id);
+	}
+
+	function countMessagesInside(id) {
+		var parentMessageBox = document.getElementById('message_' + id).parentElement;
+		return parentMessageBox.getElementsByClassName("myMessage").length - 1;
+	}
+
+	function showBranch(id) {
+		var parentMessageBox = document.getElementById('message_' + id).parentElement;
+		parentMessageBox.classList.remove("hideBranch")
+	}
+
+	$(function () {
+		const ThisDiscussionId = @(Model.ToEmployee ?? Model.ToProject ?? Model.ToTask ?? Model.ToTeam);
+		var notifier = $.connection.@(Model.ToEmployee.HasValue ? "employeeHub" :
+			                          Model.ToProject.HasValue ? "projectHub" :
+									  Model.ToTeam.HasValue ? "teamHub" :
+									                           "taskHub");
+		notifier.client.RefreshMessagesId = function (id) {
+			if (id == ThisDiscussionId @(Model.ToEmployee.HasValue ? $"|| id == {Model.MyId}" : "")) {
+				refresh();
+			}
+		};
+		$.connection.hub.start();
+	});
+
+</script>

@@ -1,13 +1,8 @@
 ﻿using Model.Client.Data;
 using Model.Client.Mapper;
 using GS = Model.Global.Service;
-using GD = Model.Global.Data;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model.Client.Service
 {
@@ -83,10 +78,10 @@ namespace Model.Client.Service
             return GS.MessageService.GetTeamForMessage(MessageId).Select(team => Mappers.ToClient(team));
         }
 
-        /*public static IEnumerable<Task> GetTaskForMessage(int MessageId)
+        public static IEnumerable<Task> GetTaskForMessage(int MessageId)
         {
-            GS.MessageService.GetTaskForMessage(MessageId).Select(task => Mappers.ToClient(task));
-        }*/
+            return GS.MessageService.GetTaskForMessage(MessageId).Select(task => Mappers.ToClient(task));
+        }
 
         public static bool IsMessageRepliedByEmployee(int MessageId, int EmployeeId)
         {

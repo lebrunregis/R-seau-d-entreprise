@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using C =Model.Client.Data;
+using C = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
 {
@@ -33,5 +31,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         public bool IsTeamLeader { get; set; }
         public bool IsProjectManagerOrAdmin {get ; set; }
         public IEnumerable<C.Task> Tasks { get ; set; }
+        public Message.DiscussionScriptForm DiscScriptForm { get; set; }
     }
 }

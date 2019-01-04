@@ -1,9 +1,7 @@
 ﻿using C = Model.Client.Data;
 using Model.Client.Service;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Employee;
 using Réseau_d_entreprise.Session.Attributes;
@@ -36,7 +34,12 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Departments = DepartmentService.GetEmployeeActiveDepartments(id),
                 TeamLeaderTeams = TeamService.GetActiveTeamsForTeamLeader(id),
                 ProjectManagerProjects = ProjectService.GetActiveProjectsForManager(id),
-                HeadOfDepartmentDepartments = DepartmentService.GetHeadOfDepartmentActiveDepartments(id)
+                HeadOfDepartmentDepartments = DepartmentService.GetHeadOfDepartmentActiveDepartments(id),
+                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm
+                {
+                    ToEmployee = id,
+                    MyId = My_Id
+                }
             };
 
             IEnumerable<C.Department> MyDepartments = new List<C.Department>();

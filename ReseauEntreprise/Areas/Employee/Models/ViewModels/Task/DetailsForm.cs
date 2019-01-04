@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using C = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
@@ -30,6 +28,9 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         public DateTime StatusDate { get; set; }
         [Required]
         public int StatusId { get; set; }
+
+
+        public Message.DiscussionScriptForm DiscScriptForm { get; set; }
         public C.Task Parent { get; set; }
         public IEnumerable<C.Task> Subtasks { get; set; }
     }

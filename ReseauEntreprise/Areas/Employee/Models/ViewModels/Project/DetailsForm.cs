@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using C = Model.Client.Data;
 
@@ -31,6 +29,9 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Project
         public DateTime? EndDate { get; set; }
         public IEnumerable<C.Team> Teams { get; set; }
         public IEnumerable<C.Task> Tasks { get; set; }
+
+
+        public Message.DiscussionScriptForm DiscScriptForm { get; set; }
         public bool IsProjectManager { get; set; }
     }
 }

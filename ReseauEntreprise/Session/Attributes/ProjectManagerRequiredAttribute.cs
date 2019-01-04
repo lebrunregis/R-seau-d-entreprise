@@ -38,7 +38,7 @@ namespace ReseauEntreprise.Session.Attributes
 
                     foreach (Project project in projects)
                     {
-                        if (project.Id == int.Parse(teamId) && UserId == project.ProjectManagerId)
+                        if (project.Id == int.Parse(projectId) && UserId == project.ProjectManagerId)
                         {
                             accessAllowed = true;
                             break;

@@ -23,6 +23,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultFileStreamFilegroup>FileGroup1</DefaultFileStreamFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -80,6 +81,7 @@
     <Folder Include="dbo\Tables\Event" />
     <Folder Include="dbo\SP\Message" />
     <Folder Include="dbo\SP\Tasks" />
+    <Folder Include="dbo\SP\Document" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Message\Message.sql" />
@@ -106,7 +108,6 @@
     <Build Include="dbo\Trigger\OnDeleteEmployee.sql" />
     <Build Include="dbo\Trigger\OnDeleteProject.sql" />
     <Build Include="dbo\Trigger\OnDeleteTeam.sql" />
-    <Build Include="dbo\Trigger\OnDeleteDocument.sql" />
     <Build Include="dbo\Trigger\OnDeleteEvent.sql" />
     <Build Include="dbo\Trigger\OnDeleteTask.sql" />
     <Build Include="dbo\Trigger\OnInsertEmployee.sql" />
@@ -176,7 +177,6 @@
     <Build Include="dbo\Tables\Event\EmployeeEvent.sql" />
     <Build Include="dbo\Tables\Department\EmployeeHeadOfDepartment.sql" />
     <Build Include="dbo\Tables\Department\EmployeeDepartment.sql" />
-    <Build Include="dbo\Tables\Task\EmployeeTask.sql" />
     <Build Include="dbo\Tables\Team\EmployeeTeamLeader.sql" />
     <Build Include="dbo\SP\Event\CreateEvent.sql" />
     <Build Include="dbo\SP\Event\DeleteEvent.sql" />
@@ -232,6 +232,14 @@
     <Build Include="dbo\SP\Employee\SetEmployeeStatus.sql" />
     <Build Include="dbo\SP\Tasks\GetTasksForTeam.sql" />
     <Build Include="dbo\SP\Tasks\GetTaskStatusHistory.sql" />
+    <Build Include="dbo\SP\Message\GetTaskForMessage.sql" />
+    <Build Include="dbo\FN\FN_GetParentTitle.sql" />
+    <Build Include="dbo\SP\Document\UploadFile.sql" />
+    <Build Include="dbo\SP\Document\ContinueUploadingFile.sql" />
+    <Build Include="dbo\SP\Document\DownloadFile.sql" />
+    <Build Include="FileGroup1.sql" />
+    <Build Include="dbo\SP\Document\GetFileName.sql" />
+    <Build Include="dbo\Tables\Task\EmployeeTask.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\User\U_Admin.sql" />
@@ -242,8 +250,5 @@
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Scripts\Script.PreDeployment1.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="RSE.refactorlog" />
   </ItemGroup>
 </Project>

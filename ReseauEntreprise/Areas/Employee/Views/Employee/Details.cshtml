@@ -48,11 +48,11 @@
 			@Html.DisplayNameFor(model => model.Address)
 		</dt>
 
-        <dd>
-            <a href=@($"https://www.google.com/maps/search/{Model.Address.Replace(" ","+")}/")>
-                @Html.DisplayFor(model => model.Address)
-            </a>
-        </dd>
+		<dd>
+			<a href=@($"https://www.google.com/maps/search/{Model.Address.Replace(" ","+")}/")>
+				@Html.DisplayFor(model => model.Address)
+			</a>
+		</dd>
 
 		<dt>
 			@Html.DisplayNameFor(model => model.Phone)
@@ -136,3 +136,7 @@
 	</p>
 }
 @Html.Action("_Discussion", "Message", new { EmployeeId = Model.Id })
+@section scripts
+{
+	@{Html.RenderPartial("_DiscussionScript", Model.DiscScriptForm);}
+}

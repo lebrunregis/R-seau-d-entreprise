@@ -70,8 +70,8 @@ namespace Model.Global.Service
         public static bool SetStatus(Task t, int Status,int UserId)
         {
             Command cmd = new Command("SetTaskStatus", true);
-            cmd.AddParameter("IdTask", t.Id);
-            cmd.AddParameter("IdStatus", UserId);
+            cmd.AddParameter("TaskId", t.Id);
+            cmd.AddParameter("StatusId", Status);
             return (Connection.ExecuteNonQuery(cmd) > 0);
         }
 

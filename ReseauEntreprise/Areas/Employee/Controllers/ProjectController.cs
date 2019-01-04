@@ -1,10 +1,7 @@
 ﻿using C = Model.Client.Data;
 using Model.Client.Service;
 using Réseau_d_entreprise.Session.Attributes;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Project;
@@ -46,7 +43,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             DetailsForm Form = new DetailsForm
             {
                 Id = (int)Project.Id,
-                Name = Project.Name,
+                Name = Project.Title,
                 Description = Project.Description,
                 Manager = Manager,
                 Creator = Creator,
@@ -54,7 +51,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 EndDate = Project.End,
                 Teams = Teams,
                 Tasks = Tasks,
-                IsProjectManager = (Employee_Id == Manager.Employee_Id)
+                
+                IsProjectManager = (Employee_Id == Manager.Employee_Id),
+                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToProject = Project.Id }
             };
 
             return View(Form);

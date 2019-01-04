@@ -1,0 +1,38 @@
+﻿@{
+                /**/
+
+                /**/
+
+                ViewBag.Title = "Calendar";
+}
+
+<!--Adds the script at the end of the page so everything is loaded before it-->
+@section scripts{
+    <script>
+    $(function () {
+        $('#calendar').fullCalendar({
+            eventSources: [
+                {
+                    url: '@Url.Action("CalendarTaskFeed", "Home")',
+                    color: 'red',
+                    textColor: 'black'
+                },
+                {
+                    url: '@Url.Action("CalendarProjectFeed", "Home")',
+                    color: 'blue',
+                    textColor: 'black'
+                },
+                {
+                    url: '@Url.Action("CalendarEventFeed", "Home")',
+                    color: 'green',
+                    textColor: 'black'
+                }
+            ]
+        });
+        })
+    </script>
+}
+
+<h2>Calendar</h2>
+
+<div id='calendar'></div>

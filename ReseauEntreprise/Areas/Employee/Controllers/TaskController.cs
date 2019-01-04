@@ -1,8 +1,6 @@
 ﻿using Réseau_d_entreprise.Session.Attributes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.Task;
@@ -28,10 +26,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     Id = Task.Id,
                     ProjectId = Task.ProjectId,
                     CreatorId = Task.CreatorId,
-                    Name = Task.Name,
+                    Name = Task.Title,
                     Description = Task.Description,
-                    StartDate = Task.StartDate,
-                    EndDate = Task.EndDate,
+                    StartDate = Task.Start,
+                    EndDate = Task.End,
                     Deadline = Task.Deadline,
                     SubtaskOf = Task.SubtaskOf,
                     StatusName = Task.StatusName,
@@ -55,10 +53,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     Id = Task.Id,
                     ProjectId = Task.ProjectId,
                     CreatorId = Task.CreatorId,
-                    Name = Task.Name,
+                    Name = Task.Title,
                     Description = Task.Description,
-                    StartDate = Task.StartDate,
-                    EndDate = Task.EndDate,
+                    StartDate = Task.Start,
+                    EndDate = Task.End,
                     Deadline = Task.Deadline,
                     SubtaskOf = Task.SubtaskOf,
                     StatusName = Task.StatusName,
@@ -82,10 +80,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     Id = Task.Id,
                     ProjectId = Task.ProjectId,
                     CreatorId = Task.CreatorId,
-                    Name = Task.Name,
+                    Name = Task.Title,
                     Description = Task.Description,
-                    StartDate = Task.StartDate,
-                    EndDate = Task.EndDate,
+                    StartDate = Task.Start,
+                    EndDate = Task.End,
                     Deadline = Task.Deadline,
                     SubtaskOf = Task.SubtaskOf,
                     StatusName = Task.StatusName,
@@ -128,9 +126,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Task t = new Task()
                 {
                     ProjectId = form.ProjectId,
-                    Name = form.Name,
+                    Title = form.Name,
                     Description = form.Description,
-                    StartDate = form.StartDate,
+                    Start = form.StartDate,
                     Deadline = form.Deadline,
                     SubtaskOf = null
                 };
@@ -138,7 +136,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 {
                     if (TaskService.Create(t, SessionUser.GetUser().Id) != null)
                     {
-                        return RedirectToAction("Details", "Project", new { id = form.ProjectId });
+                        return RedirectToAction("Details", "Project", new { projectId = form.ProjectId });
                     }
                 }
                 catch (System.Data.SqlClient.SqlException exception)
@@ -146,7 +144,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     throw (exception);
                 }
             }
-            return RedirectToAction("Details", "Project", new { id = form.ProjectId });
+            return RedirectToAction("Details", "Project", new { projectId = form.ProjectId });
         }
 
         public ActionResult Edit(int taskId)
@@ -168,9 +166,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 ProjectId = (int)task.ProjectId,
                 CreatorId = (int)task.CreatorId,
                 TeamId = (int)task.TeamId,
-                Name = task.Name,
+                Name = task.Title,
                 Description = task.Description,
-                StartDate = task.StartDate,
+                StartDate = task.Start,
                 Deadline = task.Deadline,
                 SubtaskOf = task.SubtaskOf,
                 SelectedStatusId = (int)task.StatusId,
@@ -185,30 +183,22 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
+
+                Task Task = TaskService.Get(form.Id, SessionUser.GetUser().Id);
+                Task.Title = form.Name;
+                Task.Description = form.Description;
+                Task.Start = form.StartDate;
+                Task.Deadline = form.Deadline;
+                Task.TeamId = form.TeamId;
+
+                TaskService.Edit(Task, SessionUser.GetUser().Id);
+
+                if (Task.StatusId != form.SelectedStatusId)
                 {
-                    Task Task = TaskService.Get(form.Id, SessionUser.GetUser().Id);
-                    Task.Name = form.Name;
-                    Task.Description = form.Description;
-                    Task.StartDate = form.StartDate;
-                    Task.Deadline = form.Deadline;
-                    Task.TeamId = form.TeamId;
-                    
-                    if (TaskService.Edit(Task, SessionUser.GetUser().Id))
-                    {
-                        if (Task.StatusId != form.SelectedStatusId)
-                        {
-                            TaskService.SetStatus(Task, form.SelectedStatusId, SessionUser.GetUser().Id);
-                        }
-                        return RedirectToAction("Details", "Project", new { id = Task.ProjectId });
-                    }
-                }
-                catch (System.Data.SqlClient.SqlException exception)
-                {
-                    throw (exception);
+                    TaskService.SetStatus(Task, form.SelectedStatusId, SessionUser.GetUser().Id);
                 }
             }
-            return RedirectToAction("Details", "Project", new { id = form.ProjectId });
+            return RedirectToAction("Details", "Project", new { projectId = form.ProjectId });
         }
 
         [TeamMemberRequired]
@@ -233,9 +223,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Task t = new Task()
                 {
                     ProjectId = form.ProjectId,
-                    Name = form.Name,
+                    Title = form.Name,
                     Description = form.Description,
-                    StartDate = form.StartDate,
+                    Start = form.StartDate,
                     Deadline = form.Deadline,
                     SubtaskOf = form.SubtaskOf
                 };
@@ -251,7 +241,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     throw (exception);
                 }
             }
-            return RedirectToAction("Details", "Project", new { id = form.ProjectId });
+            return RedirectToAction("Details", "Project", new { projectId = form.ProjectId });
         }
         [TeamMemberRequired]
         public ActionResult Details(int taskId)
@@ -269,16 +259,17 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Subtasks = Subtasks,
                 Parent = Parent,
                 Id = (int)Task.Id,
-                Name = Task.Name,
+                Name = Task.Title,
                 ProjectId = Task.ProjectId,
                 CreatorId = Task.CreatorId,
                 Description = Task.Description,
-                StartDate = Task.StartDate,
-                EndDate = Task.EndDate,
+                StartDate = Task.Start,
+                EndDate = Task.End,
                 Deadline = Task.Deadline,
                 StatusName = Task.StatusName,
                 StatusDate = (DateTime)Task.StatusDate,
-                StatusId = (int)Task.StatusId
+                StatusId = (int)Task.StatusId,
+                DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToTask = Task.Id }
             };
             return View(form);
         }
