@@ -33,9 +33,9 @@
 			@{ Html.RenderPartial("_Employee", item.Manager); }
 		</td>
 		<td>
-			@Html.ActionLink("Edit", "Edit", new { id = item.ProjectId }) |
-			@Html.ActionLink("Details", "Details", new { id = item.ProjectId }) |
-			@Html.ActionLink("Delete", "Delete", new { id = item.ProjectId })
+			@Html.ActionLink("Edit", "Edit", new { projectId = item.ProjectId }) |
+			@Html.ActionLink("Details", "Details", new { projectId = item.ProjectId }) |
+			@Html.ActionLink("Delete", "Delete", new { projectId = item.ProjectId })
 		</td>
 	</tr>
 }

@@ -1,17 +1,16 @@
 ﻿@model ReseauEntreprise.Areas.Admin.Models.ViewModels.Team.EditForm
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Team";
 }
 
-<h2>Edit</h2>
+<h2>Edit Team</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>EditForm</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
