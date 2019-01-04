@@ -206,12 +206,27 @@ DECLARE @TeamId_1 int = @TeamId_3 - 2;
 DECLARE @Leader_1 int = [dbo].FN_GetTeamLeaderId(@TeamId_1);
 DECLARE @Leader_2 int = [dbo].FN_GetTeamLeaderId(@TeamId_2);
 DECLARE @Leader_3 int = [dbo].FN_GetTeamLeaderId(@TeamId_3);
-EXEC [dbo].CreateTask @Name = 'Avatars',@Description = 'Add possibility to users to create their own avatar picture',
-                      @ProjectId = @Project_Id,@UserId = @Leader_1,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @TeamId_1;
+
+EXEC [dbo].CreateTask @Name = 'Test Messaging',@Description = 'Test all cases for messaging',
+                      @ProjectId = @Project_Id,@UserId = @Leader_2,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @TeamId_2;
+EXEC [dbo].CreateTask @Name = 'Features',@Description = 'Determine key features for ESN application',
+                      @ProjectId = @Project_Id,@UserId = @Leader_3,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @TeamId_3;
 EXEC [dbo].CreateTask @Name = 'Notifications',@Description = 'Add notifications for all events',
+                      @ProjectId = @Project_Id,@UserId = @Leader_1,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @TeamId_1;
+EXEC [dbo].CreateTask @Name = 'Avatars',@Description = 'Add possibility to users to create their own avatar picture',
                       @ProjectId = @Project_Id,@UserId = @Leader_1,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @TeamId_1;
 GO
 
+DECLARE @Project_Id int = ident_current('[dbo].Project');
+DECLARE @now DATETIME2(0) = SYSDATETIME();
+DECLARE @TeamId_1 int = ident_current('[dbo].Team') - 2;
+DECLARE @Leader_1 int = [dbo].FN_GetTeamLeaderId(@TeamId_1);
+Declare @Master_Task int = ident_current('[dbo].Task')
+EXEC [dbo].CreateTask @Name = 'Database',@Description = 'Create a structure for storing images',
+                      @ProjectId = @Project_Id,@UserId = @Leader_1,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = @Master_Task,@TeamId = @TeamId_1;
+EXEC [dbo].CreateTask @Name = 'Front-End',@Description = 'Create or choose a vidget for avatar image',
+                      @ProjectId = @Project_Id,@UserId = @Leader_1,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = @Master_Task,@TeamId = @TeamId_1;
+GO
 
 DECLARE @now DATETIME2(0) = SYSDATETIME();
 DECLARE @Admin int = ident_current('[dbo].Employee');
