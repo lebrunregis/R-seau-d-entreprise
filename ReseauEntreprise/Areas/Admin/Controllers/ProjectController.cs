@@ -21,7 +21,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
             List<ListForm> list = new List<ListForm>();
             foreach (C.Project Project in ProjectService.GetAllActive())
             {
-                int? ManagerId = ProjectService.GetProjectManagerId((int)Project.Id);
+                int? ManagerId = Project.ProjectManagerId;
                 C.Employee Manager = EmployeeService.Get((int)ManagerId);
                 C.Employee Creator = EmployeeService.Get(Project.CreatorId);
                 ListForm form = new ListForm(Project, Manager, Creator);

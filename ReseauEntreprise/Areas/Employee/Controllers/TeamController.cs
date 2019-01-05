@@ -279,11 +279,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         }
         [ProjectManagerRequired]
         [HttpPost]
-        public ActionResult Delete(int id, DeleteForm form)
+        public ActionResult Delete(int teamId, DeleteForm form)
         {
             if (ModelState.IsValid)
             {
-                if (id == form.Team_Id)
+                if (teamId == form.Team_Id)
                 {
                     D.Team Team = new D.Team(form.Team_Id, form.Name, form.Created, null, form.Creator_Id, form.Project_Id, null);
                     try

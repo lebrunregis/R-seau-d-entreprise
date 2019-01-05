@@ -8,3 +8,4 @@ AS
 	JOIN ProjectManager 
 	ON ProjectManager.Project_Id = Project.Project_Id
 	WHERE Project.Project_Id = @Id
+	ORDER BY ProjectManager.Date DESC
