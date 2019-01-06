@@ -207,6 +207,15 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Task.Start = form.StartDate;
                 Task.Deadline = form.Deadline;
                 Task.TeamId = form.TeamId;
+                if (form.SelectedStatusId >= 3)
+                { 
+                    //3 is the id number of done status
+                    Task.End = DateTime.Now;
+                }
+                else
+                {
+                    Task.End = null;
+                }
 
                 TaskService.Edit(Task, SessionUser.GetUser().Id);
 
