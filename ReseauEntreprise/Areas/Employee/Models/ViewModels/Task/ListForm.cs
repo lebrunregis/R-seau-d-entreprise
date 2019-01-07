@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using C = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
 {
@@ -14,8 +15,10 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         [Required]
         [HiddenInput]
         public int ProjectId { get; set; }
+        public C.Project Project { get; set; }
         [Required]
         public int CreatorId { get; set; }
+        public C.Employee Creator { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -35,6 +38,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         public DateTime? Deadline { get; set; }
         [Required]
         public int? SubtaskOf { get; set; }
+        public C.Task TaskSubtaskOf { get; set; }
         [Required]
         public string StatusName { get; set; }
         [Required]
@@ -45,5 +49,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         public int? StatusId { get; set; }
         [Required]
         public int? TeamId { get; set; }
+        public C.Team Team { get; set; }
     }
 }
