@@ -13,25 +13,26 @@
             @Html.DisplayNameFor(model => model.ProjectId)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProjectId)
-        </dd>
+		<dd>
+			@{Html.RenderPartial("_Project", Model.Project); }
+		</dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.TeamId)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TeamId)
-        </dd>
+		<dd>
+			@if (Model.Team != null)
+			{ Html.RenderPartial("_Team", Model.Team); }
+		</dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.CreatorId)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatorId)
-        </dd>
+		<dd>
+			@{Html.RenderPartial("_Employee", Model.Creator); }
+		</dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -77,9 +78,10 @@
             @Html.DisplayNameFor(model => model.SubtaskOf)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SubtaskOf)
-        </dd>
+		<dd>
+			@if (Model.Parent != null)
+			{ Html.RenderPartial("_Task", Model.Parent); }
+		</dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.StatusName)
@@ -95,14 +97,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.StatusDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StatusId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StatusId)
         </dd>
 
         <dt>

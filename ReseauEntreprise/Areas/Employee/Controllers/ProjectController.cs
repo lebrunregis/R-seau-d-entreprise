@@ -60,7 +60,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     StatusName = Task.StatusName,
                     StatusDate = Task.StatusDate,
                     StatusId = Task.StatusId,
-                    TeamId = Task.TeamId
+                    TeamId = Task.TeamId,
+                    Creator = EmployeeService.Get(Task.CreatorId),
+                    TaskSubtaskOf = (Task.SubtaskOf != null) ? TaskService.Get        ((int)Task.SubtaskOf, SessionUser.GetUser().Id) : null,
+                    Team          = (Task.TeamId    != null) ? TeamService.GetTeamById((int)Task.TeamId                             ) : null
                 });
             }
             DetailsForm Form = new DetailsForm

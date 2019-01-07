@@ -14,12 +14,15 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         [Required]
         [Display(Name = "Project")]
         public int ProjectId { get; set; }
+        public C.Project Project { get; set; }
         [Required]
         [Display(Name = "Created by")]
         public int CreatorId { get; set; }
+        public C.Employee Creator { get; set; }
         [Required]
         [Display(Name = "Team")]
         public int? TeamId { get; set; }
+        public C.Team Team { get; set; }
         [Required]
         public String Name { get; set; }
         [Required]

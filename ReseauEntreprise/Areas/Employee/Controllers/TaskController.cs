@@ -293,19 +293,22 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             {
                 TasksForm.Add(new TaskForm
                 {
-                    Id = Task.Id,
-                    ProjectId = Task.ProjectId,
-                    CreatorId = Task.CreatorId,
-                    Name = Task.Title,
-                    Description = Task.Description,
-                    StartDate = Task.Start,
-                    EndDate = Task.End,
-                    Deadline = Task.Deadline,
-                    SubtaskOf = Task.SubtaskOf,
-                    StatusName = Task.StatusName,
-                    StatusDate = Task.StatusDate,
-                    StatusId = Task.StatusId,
-                    TeamId = Task.TeamId
+                    Id = task.Id,
+                    ProjectId = task.ProjectId,
+                    CreatorId = task.CreatorId,
+                    Name = task.Title,
+                    Description = task.Description,
+                    StartDate = task.Start,
+                    EndDate = task.End,
+                    Deadline = task.Deadline,
+                    SubtaskOf = task.SubtaskOf,
+                    StatusName = task.StatusName,
+                    StatusDate = task.StatusDate,
+                    StatusId = task.StatusId,
+                    TeamId = task.TeamId,
+                    Creator = EmployeeService.Get(task.CreatorId),
+                    Team          = (task.TeamId    != null) ? TeamService.GetTeamById((int)task.TeamId                             ) : null,
+                    TaskSubtaskOf = (task.SubtaskOf != null) ? TaskService.Get        ((int)task.SubtaskOf, SessionUser.GetUser().Id) : null
                 });
             }
             DetailsForm form = new DetailsForm()
@@ -325,7 +328,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 StatusDate = (DateTime)Task.StatusDate,
                 StatusId = (int)Task.StatusId,
                 DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToTask = Task.Id },
-                Documents = DocumentService.GetForTask((int)Task.Id).Select(d => new Doc.ListForm { Name = d.Filename, Id = (int)d.Id })
+                Documents = DocumentService.GetForTask((int)Task.Id).Select(d => new Doc.ListForm { Name = d.Filename, Id = (int)d.Id }),
+                Project = ProjectService.GetProjectById(Task.ProjectId),
+                Creator = EmployeeService.Get(Task.CreatorId),
+                Team = (Task.TeamId != null) ? TeamService.GetTeamById((int)Task.TeamId) : null
             };
 
             return View(form);
