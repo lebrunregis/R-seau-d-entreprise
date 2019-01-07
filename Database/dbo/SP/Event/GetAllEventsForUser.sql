@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[GetAllEventsForUser]
 	@EmpId int
 AS
-	SELECT Event.Event_Id,CreatorId,[Event].[Name],[Event].[Description],[Event].[Address],[Event].StartDate,
+	SELECT DISTINCT Event.Event_Id,CreatorId,[Event].[Name],[Event].[Description],[Event].[Address],[Event].StartDate,
 	[Event].EndDate,CreationDate,[Event].Cancelled,[Open] ,Subscribed , Event.DepartmentId AS DepartmentId
 	FROM Event 
 	LEFT JOIN EmployeeEvent ON Event.Event_Id = EmployeeEvent.Event_Id 
