@@ -5,6 +5,4 @@
 \beamer@subsectionintoc {2}{2}{Carte du site}{5}{0}{2}
 \beamer@subsectionintoc {2}{3}{Base de donn\IeC {\'e}es}{7}{0}{2}
 \beamer@sectionintoc {3}{Ce que l'on a appris}{16}{0}{3}
-\beamer@subsectionintoc {3}{1}{S\IeC {\'e}curit\IeC {\'e}}{16}{0}{3}
-\beamer@sectionintoc {4}{R\IeC {\'e}sum\IeC {\'e}}{35}{0}{4}
-\beamer@sectionintoc {6}{Questions}{36}{0}{5}
+\beamer@sectionintoc {5}{Questions}{29}{0}{4}
