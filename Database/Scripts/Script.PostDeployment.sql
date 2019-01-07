@@ -56,6 +56,8 @@ DELETE FROM [Message];
 GO
 DELETE FROM [EmployeeEvent]
 GO
+DELETE FROM [Event];
+GO
 DELETE FROM [EmployeeHeadOfDepartment]
 GO
 DELETE FROM [EmployeeDepartment]
@@ -65,8 +67,6 @@ GO
 DELETE FROM [EmployeeTeamLeader];
 GO
 DELETE FROM [EmployeeTeam];
-GO
-DELETE FROM [Event];
 GO
 DELETE FROM [ProjectManager];
 GO
@@ -244,6 +244,27 @@ EXEC [dbo].AddEmployeeToTeam @Employee_Id = 1 ,@Team_Id = @TeamId_1 ,@User = 2;
 EXEC [dbo].AddEmployeeToTeam @Employee_Id = 6 ,@Team_Id = @TeamId_2 ,@User = 2;
 EXEC [dbo].AddEmployeeToTeam @Employee_Id = 7 ,@Team_Id = @TeamId_2 ,@User = 2;
 EXEC [dbo].AddEmployeeToTeam @Employee_Id = 8 ,@Team_Id = @TeamId_2 ,@User = 2;
+GO
+
+DECLARE @Admin int = ident_current('[dbo].Employee');
+DECLARE @Department int = ident_current('[dbo].Department');
+EXEC [dbo].CreateEvent @Name = 'Lunch for all', @Description = 'Opportunity for see all our employees', @Address = 'Avenue Jean Mermoz 18, 6041 Charleroi',
+                       @StartDate = '2019-02-01T00:00:00', @EndDate = '2019-02-01T23:59:00', @DepartmentId = NULL, @AdminId = @Admin, @Open = 1;
+
+EXEC [dbo].CreateEvent @Name = 'Presentation for Marketing', @Description = 'How to do presentations the right way', @Address = 'Avenue Jean Mermoz 18, 6041 Charleroi',
+                       @StartDate = '2019-01-20T00:00:00', @EndDate = '2019-01-20T23:59:00', @DepartmentId = @Department, @AdminId = @Admin, @Open = 0;
+GO
+
+DECLARE @Admin int = ident_current('[dbo].Employee');
+DECLARE @Event_2 int = ident_current('[dbo].Event');
+DECLARE @Event_1 int = @Event_2 - 1;
+EXEC [dbo].RegisterEmployeeToEvent @EventId = @Event_1, @EmployeeId = 5;
+
+EXEC [dbo].RegisterEmployeeToEvent @EventId = @Event_2, @EmployeeId = 7;
+EXEC [dbo].RegisterEmployeeToEvent @EventId = @Event_2, @EmployeeId = 8;
+EXEC [dbo].RegisterEmployeeToEvent @EventId = @Event_2, @EmployeeId = 9;
+
+
 GO
 
 ENABLE TRIGGER [OnDeleteAdmin] ON [Admin];   
