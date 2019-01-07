@@ -21,8 +21,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             List<ListForm> list = new List<ListForm>();
             foreach (C.Project Project in ProjectService.GetAllActive())
             {
-                int? ManagerId = ProjectService.GetProjectManagerId((int)Project.Id);
-                C.Employee Manager = EmployeeService.Get((int)ManagerId);
+                int ManagerId = Project.ProjectManagerId;
+                C.Employee Manager = EmployeeService.Get(ManagerId);
                 ListForm form = new ListForm(Project, Manager, Employee_Id);
                 list.Add(form);
             }
@@ -39,7 +39,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         {
             int Employee_Id = SessionUser.GetUser().Id;
             C.Project Project = ProjectService.GetProjectById(projectId);
-            C.Employee Manager = EmployeeService.Get((int)ProjectService.GetProjectManagerId(projectId));
+            C.Employee Manager = EmployeeService.Get(Project.ProjectManagerId);
             C.Employee Creator = EmployeeService.Get(Project.CreatorId);
             IEnumerable<C.Team> Teams = ProjectService.GetAllTeamsForProject(projectId);
             IEnumerable<C.Task> Tasks = TaskService.GetForProject(projectId, Employee_Id);
