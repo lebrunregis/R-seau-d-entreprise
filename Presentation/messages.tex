@@ -1,14 +1,13 @@
 \begin{frame}{La messagerie instantanée}
 
-  You can create overlays\dots
+  SignalR permet de créer des messages instantanés
   \begin{itemize}
-  \item using the \texttt{pause} command:
+  \item Quand l'utilisateur crée un message, il notifie le hub
+  \item Le hub notifie tout qui doit recevoir ce message
     \begin{itemize}
-    \item
-      First item.
-      \pause
-    \item    
-      Second item.
+    \item Mais notre système d'authentification (par HttpContext) n'est pas accessible dans le hub
+    \item Alors le hub notifie tous les utilisateurs qui sont sur la page avec le script, et les utilisateurs retrievent que les messages appropriés à partir de la base de données
     \end{itemize}
+  \item JQuery permet d'ajouter nouveaux messages sans recharger toute la page
   \end{itemize}
 \end{frame}
