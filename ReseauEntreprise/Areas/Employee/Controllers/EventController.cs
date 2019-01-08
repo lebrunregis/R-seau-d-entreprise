@@ -36,6 +36,15 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public ActionResult Details(int id)
         {
             C.Event Event = EventService.Get(id);
+            IEnumerable<C.EmployeeEvent> SubscribedEmployees = EventService.GetSubscriptionStatus(id);
+            bool subscribed = false;
+            foreach (C.EmployeeEvent Subscription in SubscribedEmployees)
+            {
+                if (Subscription.EmployeeId == SessionUser.GetUser().Id && !(bool)Subscription.Cancelled)
+                {
+                    subscribed = true;
+                }
+            }
             DetailsForm form = new DetailsForm
             {
                 Id = (int)Event.Id,
@@ -46,6 +55,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 StartDate = Event.Start,
                 EndDate = Event.End,
                 CreationDate = Event.Created,
+                OpenSubscription = Event.Open,
+                Subscribed = subscribed,
                 Documents = DocumentService.GetForEvent((int)Event.Id).Select(d => new Doc.ListForm { Name = d.Filename, Id = (int)d.Id })
             };
             return View(form);
@@ -75,7 +86,6 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         [HttpPost]
         public ActionResult ConfirmSubscription(DetailsForm Form)
         {
-
             EventService.Participate(Form.Id, SessionUser.GetUser().Id);
             return RedirectToAction("Index");
         }

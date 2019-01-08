@@ -40,6 +40,9 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Event
         [Required]
         [Display(Name = "Open Subscriptions")]
         public bool OpenSubscription { get; set; }
+        [Required]
+        [Display(Name = "Subscribed")]
+        public bool Subscribed { get; set; }
         public IEnumerable<Doc.ListForm> Documents { get; set; }
     }
 }
