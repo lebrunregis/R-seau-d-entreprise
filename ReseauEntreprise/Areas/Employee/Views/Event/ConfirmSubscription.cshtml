@@ -1,11 +1,12 @@
 ﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Event.DetailsForm
 
 @{
-    ViewBag.Title = "Event Details";
+    ViewBag.Title = "ConfirmSubscription";
 }
 
-<h2>Event Details</h2>
+<h2>Confirm Event Subscription</h2>
 
+<h3>Are you sure you want to participate?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -34,19 +35,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DepartmentId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DepartmentId)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Address)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartmentId)
         </dd>
 
         <dt>
@@ -81,38 +82,14 @@
             @Html.DisplayFor(model => model.OpenSubscription)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Subscribed)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Subscribed)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Documents)
-        </dt>
-
-        <dd>
-            @{Html.RenderPartial("_DocumentList", Model.Documents);}
-            <p>Create new document</p>
-            @{Html.RenderAction("_Upload", "Document", new { EventId = Model.Id });}
-        </dd>
-
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Confirm" class="btn btn-default" /> |
+            @Html.ActionLink("Back to Event list", "Index")
+        </div>
+    }
 </div>
-<p>
-    @if (!Model.Subscribed && Model.OpenSubscription)
-    {
-        @Html.ActionLink("Subscribe to Event", "ConfirmSubscription", new { id = Model.Id })
-    }
-    else if (Model.Subscribed)
-    {
-        <div> Already subscribed.</div>
-    }
-    else
-    {
-        <div>You cannot subscribe to this event.</div>
-    }
-    @Html.ActionLink("Back to Event list", "Index")
-</p>
