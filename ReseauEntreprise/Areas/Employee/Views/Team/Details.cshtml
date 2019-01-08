@@ -83,7 +83,7 @@
 	</dl>
 </div>
 <p>
-    @if (Model.IsTeamLeader || Model.IsProjectManagerOrAdmin)
+    @if (Model.IsTeamLeader)
     {
         @Html.ActionLink("Change employees in team", "EmployeesInTeam", new { teamId = Model.Id });
         <text> | </text>

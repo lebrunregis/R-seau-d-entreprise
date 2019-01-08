@@ -69,7 +69,7 @@
 		<td>
 			@Html.ActionLink("Details", "Details", new { teamId = item.TeamId })
 			<br />
-			@if (item.AmITeamLeader || item.AmIProjectManager)
+			@if (item.AmITeamLeader)
 			{
 				@Html.ActionLink("Add or remove members", "EmployeesInTeam", new { teamId = item.TeamId })
 				<br />
