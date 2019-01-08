@@ -308,6 +308,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             D.Project Project = ProjectService.GetProjectById(Team.Project_Id);
             IEnumerable<TaskListForm> Tasks = TaskService.GetForTeam(teamId, Employee_Id).Select(task => new TaskListForm
             {
+                Id = task.Id,
                 Creator = EmployeeService.Get(task.CreatorId),
                 Name = task.Title,
                 Description = task.Description,

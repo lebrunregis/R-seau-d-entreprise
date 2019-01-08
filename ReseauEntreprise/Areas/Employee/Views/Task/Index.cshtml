@@ -9,13 +9,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProjectId)
+            @Html.DisplayNameFor(model => model.Project)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatorId)
+            @Html.DisplayNameFor(model => model.Creator)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TeamId)
+            @Html.DisplayNameFor(model => model.Team)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -41,23 +41,22 @@
         <th>
             @Html.DisplayNameFor(model => model.StatusDate)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StatusId)
-        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProjectId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatorId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamId)
-        </td>
+		<td>
+			@{Html.RenderPartial("_Project", item.Project); }
+		</td>
+		<td>
+			@{Html.RenderPartial("_Employee", item.Creator); }
+		</td>
+		<td>
+			@if(item.Team != null)
+			{Html.RenderPartial("_Team", item.Team); }
+		</td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -73,17 +72,15 @@
         <td>
             @Html.DisplayFor(modelItem => item.Deadline)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubtaskOf)
-        </td>
+		<td>
+			@if (item.TaskSubtaskOf != null)
+			{ Html.RenderPartial("_Task", item.TaskSubtaskOf); }
+		</td>
         <td>
             @Html.DisplayFor(modelItem => item.StatusName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StatusDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StatusId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { taskId = item.Id }) |

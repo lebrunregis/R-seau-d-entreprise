@@ -10,4 +10,4 @@
 AS
 	UPDATE Task 
 	SET Name = @Name,Description = @Description,StartDate = @StartDate,EndDate = @EndDate,Deadline = @DeadLine 
-	WHERE @Id = Task_Id AND SubtaskOf = @SubtaskOf
+	WHERE @Id = Task_Id

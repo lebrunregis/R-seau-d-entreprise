@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using C = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
 {
@@ -46,5 +47,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         [HiddenInput]
         [Display(Name = "Status")]
         public int SelectedStatusId { get; set; }
+        public C.Project Project { get; set; }
+        public C.Task TaskSubtaskOf { get; set; }
     }
 }
