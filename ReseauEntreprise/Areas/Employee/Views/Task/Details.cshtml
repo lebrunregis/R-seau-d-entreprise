@@ -118,7 +118,7 @@
     @Html.ActionLink("Edit", "Edit", new { taskId = Model.Id }) |
     @Html.ActionLink("Back to Task list", "Index")
 </p>
-@Html.Action("_Discussion", "Message", new { TaskId = Model.Id })
+@Html.Action("_DiscussionTask", "Message", new { TaskId = Model.Id })
 @section scripts
 {
 	@{Html.RenderPartial("_DiscussionScript", Model.DiscScriptForm);}

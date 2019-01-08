@@ -162,10 +162,22 @@
     <div class="whiteblock">
     <h4>Compose new message</h4>
     <div id="SendNew">
-        @{Html.RenderPartial("_SendFormTemplateRoot", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm());}
+        @{Html.RenderPartial("_SendFormTemplateRoot", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm
+			{
+			  ToEmployee = Model.ToEmployee,
+			  ToProject = Model.ToProject,
+			  ToTask = Model.ToTask,
+			  ToTeam = Model.ToTeam
+			});}
     </div>
     <div id="SendFormTemplate" class="hidden">
-        @{Html.RenderPartial("_SendFormTemplate", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm());}
+        @{Html.RenderPartial("_SendFormTemplate", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm
+			{
+				ToEmployee = Model.ToEmployee,
+				ToProject = Model.ToProject,
+				ToTask = Model.ToTask,
+				ToTeam = Model.ToTeam
+			});}
     </div>
 </div>
 	@{Html.RenderPartial("_Messages", Model.Messages);}

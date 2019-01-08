@@ -118,7 +118,8 @@ namespace Model.Global.Mapper
                 EndDate = (DateTime)dr["EndDate"],
                 CreationDate = (DateTime)dr["CreationDate"],
                 Open = (bool)dr["Open"],
-                Cancelled = (bool)dr["Cancelled"]
+                Cancelled = (bool)dr["Cancelled"],
+                Subscribed = (DateTime?)((dr["Subscribed"] == DBNull.Value) ? null : dr["Subscribed"])
             };
         }
 

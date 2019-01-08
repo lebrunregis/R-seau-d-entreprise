@@ -9,7 +9,6 @@ using Model.Client.Service;
 using ReseauEntreprise.Session.Attributes;
 using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
 using System.Linq;
-using TaskForm = ReseauEntreprise.Areas.Employee.Models.ViewModels.Task.ListForm;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -38,7 +37,11 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     StatusName = Task.StatusName,
                     StatusDate = Task.StatusDate,
                     StatusId = Task.StatusId,
-                    TeamId = Task.TeamId
+                    TeamId = Task.TeamId,
+                    Project = ProjectService.GetProjectById(Task.ProjectId),
+                    Creator = EmployeeService.Get(Task.CreatorId),
+                    Team = (Task.TeamId != null) ? TeamService.GetTeamById((int)Task.TeamId) : null,
+                    TaskSubtaskOf = (Task.SubtaskOf != null) ? TaskService.Get((int)Task.SubtaskOf, SessionUser.GetUser().Id) : null
                 };
                 list.Add(form);
             }
@@ -165,6 +168,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return RedirectToAction("Details", "Project", new { projectId = form.ProjectId });
         }
 
+        [TeamMemberRequired]
         public ActionResult Edit(int taskId)
         {
             Task task = TaskService.Get(taskId, SessionUser.GetUser().Id);
@@ -190,18 +194,23 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 Deadline = task.Deadline,
                 SubtaskOf = task.SubtaskOf,
                 SelectedStatusId = (int)task.StatusId,
-                StatusList = StatusList
+                StatusList = StatusList,
+                Project = ProjectService.GetProjectById(task.ProjectId),
+                Team          = (task.TeamId    != null) ? TeamService.GetTeamById((int)task.TeamId                             ) : null,
+                TaskSubtaskOf = (task.SubtaskOf != null) ? TaskService.Get        ((int)task.SubtaskOf, SessionUser.GetUser().Id) : null
+
             };
 
             return View(form);
         }
 
+        [TeamMemberRequired]
         [HttpPost]
-        public ActionResult Edit(EditForm form)
+        public ActionResult Edit(int taskId, EditForm form)
         {
             if (ModelState.IsValid)
             {
-                Task Task = TaskService.Get(form.Id, SessionUser.GetUser().Id);
+                Task Task = TaskService.Get(taskId, SessionUser.GetUser().Id);
                 Task.Title = form.Name;
                 Task.Description = form.Description;
                 Task.Start = form.StartDate;
@@ -288,10 +297,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             }
 
             IEnumerable<Task> Subtasks = TaskService.GetSubtasks(Task, SessionUser.GetUser().Id);
-            List<TaskForm> TasksForm = new List<TaskForm>();
+            List<ListForm> TasksForm = new List<ListForm>();
             foreach (Task task in Subtasks)
             {
-                TasksForm.Add(new TaskForm
+                TasksForm.Add(new ListForm
                 {
                     Id = task.Id,
                     ProjectId = task.ProjectId,

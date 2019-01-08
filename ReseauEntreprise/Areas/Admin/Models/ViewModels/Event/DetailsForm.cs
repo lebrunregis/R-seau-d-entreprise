@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using C = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
 {
@@ -41,5 +42,7 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         [Required]
         [Display(Name = "Open Subscriptions")]
         public bool OpenSubscription { get; set; }
+        public C.Employee Creator { get; set; }
+        public C.Department Department { get; set; }
     }
 }

@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DepartmentId)
+            @Html.DisplayNameFor(model => model.Department)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Address)
@@ -36,15 +36,16 @@
     </tr>
 
     @foreach (var item in Model)
-    {
+	{
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td style="white-space: pre-wrap;">@Html.DisplayFor(modelItem => item.Description)</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartmentId)
-            </td>
+			<td>
+				@if(item.Department != null)
+				{ Html.RenderPartial("_Department", item.Department);}
+			</td>
             <td>
                 <a href=@($"https://www.google.com/maps/search/{item.Address.Replace(" ","+")}/")>
                     @Html.DisplayFor(modelItem => item.Address)
@@ -68,7 +69,7 @@
                     }
                     else
                     {
-                        @Html.ActionLink("S'inscrire", "ConfirmSubscription", new { id = item.Id });
+                        @Html.ActionLink("Subscribe", "ConfirmSubscription", new { id = item.Id });
                         <span>|</span>
                     }
                 }

@@ -27,7 +27,8 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                     Address = e.Address,
                     StartDate = e.Start,
                     EndDate = e.End,
-                    OpenSubscription = e.Open
+                    OpenSubscription = e.Open,
+                    Department = (e.DepartmentId != null) ? DepartmentService.GetDepartmentById((int)e.DepartmentId) : null
                 }).ToList();
             C.EmployeeEvent status;
             for (int i = 0; i < Events.Count(); i++)
@@ -227,7 +228,9 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                 Address = Event.Address,
                 StartDate = Event.Start,
                 EndDate = Event.End,
-                CreationDate = Event.Created
+                CreationDate = Event.Created,
+                Creator = EmployeeService.Get(Event.CreatorId),
+                Department = (Event.DepartmentId != null) ? DepartmentService.GetDepartmentById((int)Event.DepartmentId) : null
             };
             return View(form);
         }

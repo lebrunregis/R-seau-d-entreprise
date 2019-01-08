@@ -32,6 +32,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Event
         [Display(Name = "Open Subscription")]
         public bool OpenSubscription { get; set; }
         [Display(Name = "Subscribed")]
-        public DateTime? Subscribed { get; set; }
+        public bool Subscribed { get; set; }
     }
 }

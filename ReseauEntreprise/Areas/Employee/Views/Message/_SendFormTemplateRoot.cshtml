@@ -1,6 +1,20 @@
 ﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm
 
-@using (Html.BeginForm("Send", "Message", FormMethod.Post, new { onsubmit = "sendmessage(event); return false;" }))
+@using (Html.BeginForm(Model.ToProject.HasValue ? "SendProject" :
+						(Model.ToEmployee.HasValue ? "SendEmployee" :
+						(Model.ToTask.HasValue ? "SendTask" :
+						(Model.ToTeam.HasValue ? "SendTeam" : ""))
+						),
+					   "Message",
+					   new
+					   {
+						   ProjectId = Model.ToProject,
+						   EmployeeId = Model.ToEmployee,
+						   TaskId = Model.ToTask,
+						   TeamId = Model.ToTeam
+					   },
+					   FormMethod.Post, new { onsubmit = "sendmessage(event); return false;" })
+		)
 {
 	@Html.AntiForgeryToken()
 
@@ -22,10 +36,6 @@
 		</div>
 	</div>
 	<div class="hidden">
-		@Html.EditorFor(model => model.ToEmployee, new { htmlAttributes = new { @class = "ToEmployee" } })
-		@Html.EditorFor(model => model.ToTask, new { htmlAttributes = new { @class = "ToTask" } })
-		@Html.EditorFor(model => model.ToTeam, new { htmlAttributes = new { @class = "ToTeam" } })
-		@Html.EditorFor(model => model.ToProject, new { htmlAttributes = new { @class = "ToProject" } })
 		@Html.EditorFor(model => model.ReplyTo, new { htmlAttributes = new { @class = "ReplyTo" } })
 	</div>
 	<div>

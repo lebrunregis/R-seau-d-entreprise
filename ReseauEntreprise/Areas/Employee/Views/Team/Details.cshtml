@@ -96,7 +96,7 @@
     @Html.ActionLink("Back to Team list", "Index")
 </p>
 
-@Html.Action("_Discussion", "Message", new { TeamId = Model.Id })
+@Html.Action("_DiscussionTeam", "Message", new { TeamId = Model.Id })
 @section scripts
 {
 	@{Html.RenderPartial("_DiscussionScript", Model.DiscScriptForm);}
