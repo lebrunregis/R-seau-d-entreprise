@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using C = Model.Client.Data; 
 
 namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
 {
@@ -36,5 +37,6 @@ namespace ReseauEntreprise.Areas.Admin.Models.ViewModels.Event
         public bool OpenSubscription { get; set; }
         [Display(Name = "Subscribed")]
         public DateTime? Subscribed { get; set; }
+        public C.Department Department { get; set; } 
     }
 }

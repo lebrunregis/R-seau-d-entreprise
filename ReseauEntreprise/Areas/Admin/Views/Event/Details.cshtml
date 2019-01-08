@@ -10,20 +10,21 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CreatorId)
+            @Html.DisplayNameFor(model => model.Creator)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatorId)
-        </dd>
+		<dd>
+			@{ Html.RenderPartial("_Employee", Model.Creator); }
+		</dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DepartmentId)
+            @Html.DisplayNameFor(model => model.Department)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DepartmentId)
-        </dd>
+		<dd>
+			@if(Model.Department != null)
+			{ Html.RenderPartial("_Department", Model.Department); }
+		</dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Name)
