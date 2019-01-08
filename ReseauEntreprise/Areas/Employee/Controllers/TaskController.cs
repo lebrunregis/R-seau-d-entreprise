@@ -196,7 +196,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 SelectedStatusId = (int)task.StatusId,
                 StatusList = StatusList,
                 Project = ProjectService.GetProjectById(task.ProjectId),
-                TaskSubtaskOf = (task.SubtaskOf != null) ? TaskService.Get((int)task.SubtaskOf, SessionUser.GetUser().Id) : null
+                Team          = (task.TeamId    != null) ? TeamService.GetTeamById((int)task.TeamId                             ) : null,
+                TaskSubtaskOf = (task.SubtaskOf != null) ? TaskService.Get        ((int)task.SubtaskOf, SessionUser.GetUser().Id) : null
 
             };
 

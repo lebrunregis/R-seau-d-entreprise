@@ -49,5 +49,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         public int SelectedStatusId { get; set; }
         public C.Project Project { get; set; }
         public C.Task TaskSubtaskOf { get; set; }
+        public C.Team Team { get; set; }
     }
 }
