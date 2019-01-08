@@ -10,29 +10,38 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <a class="navbar-brand" href="#">Enterprise Social Network</a>
-        <div class="container">
+        
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
+                <a class="navbar-brand" href="#">Enterprise Social Network</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Employees", "Index", "Employee")</li>
-                    <li>@Html.ActionLink("Departments", "Index", "Department")</li>
-                    <li>@Html.ActionLink("Projects", "Index", "Project")</li>
-                    <li>@Html.ActionLink("Teams", "Index", "Team")</li>
-                    <li>@Html.ActionLink("Events", "Index", "Event")</li>
-                    <li>@Html.ActionLink("Logout", "Logout", "Registration", new { area = "" }, new { })</li>
-                    <li>@Html.ActionLink("View site as employee", "Index", "Home", new { area = "Employee" }, new { })</li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.ActionLink("Employee", "Index", "Home", new { area = "Employee" }, new
+                   {
+                       @class = "glyphicon glyphicon-log-out btn btn-warning",
+                       @style = "color:black"
+                   })
+                    </li>
+                    <li>
+                        @Html.ActionLink(" Logout", "Logout", "Registration", new { area = "" }, new
+                   {
+                       @class = "glyphicon glyphicon-log-out btn btn-warning" ,
+                       @style = "color:black"
+                   })
+                    </li>
                 </ul>
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <li>@Html.ActionLink("Employees", "Index", "Employee")</li>
+                <li>@Html.ActionLink("Departments", "Index", "Department")</li>
+                <li>@Html.ActionLink("Projects", "Index", "Project")</li>
+                <li>@Html.ActionLink("Teams", "Index", "Team")</li>
+                <li>@Html.ActionLink("Events", "Index", "Event")</li>
+            </ul>
             </div>
         </div>
     </div>
