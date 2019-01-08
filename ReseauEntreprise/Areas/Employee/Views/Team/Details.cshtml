@@ -93,7 +93,7 @@
         @Html.ActionLink("Edit", "Edit", new { teamId = Model.Id });<text> | </text>
         @Html.ActionLink("Delete", "Delete", new { teamId = Model.Id });<text> | </text>
     }
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Team list", "Index")
 </p>
 
 @Html.Action("_Discussion", "Message", new { TeamId = Model.Id })
