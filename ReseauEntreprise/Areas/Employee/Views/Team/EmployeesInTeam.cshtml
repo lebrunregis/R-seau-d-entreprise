@@ -49,8 +49,7 @@
     </div>
 }
 
-@Html.ActionLink("Back to team", "Details", new { teamId = Model.FirstOrDefault().Team.Id }) <br />
-@Html.ActionLink("Back to list", "Index")
+@Html.ActionLink("Back to team details", "Details", new { teamId = Model.FirstOrDefault().Team.Id }) <br />
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

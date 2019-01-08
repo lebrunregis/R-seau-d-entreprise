@@ -114,12 +114,15 @@
 
 	</dl>
 </div>
-@if (Model.IsMe)
-{
-	<p>
-		@Html.ActionLink("Edit", "Edit", new { controller = "Profile" })
-	</p>
-}
+
+<p>
+    @if (Model.IsMe)
+    {
+        @Html.ActionLink("Edit", "Edit", new { controller = "Profile" })
+    }
+    @Html.ActionLink("Back to employee list", "Index")
+</p>
+
 @if (Model.CanIAddToDepartment)
 {
 	<p>
