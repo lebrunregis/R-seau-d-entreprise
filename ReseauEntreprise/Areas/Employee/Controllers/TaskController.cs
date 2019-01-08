@@ -273,7 +273,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     throw (exception);
                 }
             }
-            return RedirectToAction("Details", "Project", new { projectId = form.ProjectId });
+            return RedirectToAction("Details", "Task", new { projectId = form.ProjectId,taskId = form.SubtaskOf });
         }
 
         [TeamMemberRequired]
