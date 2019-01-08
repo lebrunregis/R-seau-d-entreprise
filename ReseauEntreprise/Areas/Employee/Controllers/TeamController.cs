@@ -9,7 +9,7 @@ using Réseau_d_entreprise.Session;
 using ReseauEntreprise.Areas.Employee.Models.ViewModels.EmployeeTeam;
 using ReseauEntreprise.Session.Attributes;
 using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
-
+using TaskListForm = ReseauEntreprise.Areas.Employee.Models.ViewModels.Task.ListForm;
 
 namespace ReseauEntreprise.Areas.Employee.Controllers
 {
@@ -309,7 +309,17 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(teamId));
             D.Employee Creator = EmployeeService.Get(Team.Creator_Id);
             D.Project Project = ProjectService.GetProjectById(Team.Project_Id);
-            IEnumerable<D.Task> Tasks = TaskService.GetForTeam(teamId, Employee_Id);
+            IEnumerable<TaskListForm> Tasks = TaskService.GetForTeam(teamId, Employee_Id).Select(task => new TaskListForm
+            {
+                Creator = EmployeeService.Get(task.CreatorId),
+                Name = task.Title,
+                Description = task.Description,
+                StartDate = task.Start,
+                EndDate = task.End,
+                Deadline = task.Deadline,
+                TaskSubtaskOf = (task.SubtaskOf != null) ? TaskService.Get((int)task.SubtaskOf, SessionUser.GetUser().Id) : null,
+                StatusName = task.StatusName
+            });
             IEnumerable<D.Employee> Members = TeamService.GetAllEmployeesForTeam(teamId);
             DetailsForm Form = new DetailsForm
             {
