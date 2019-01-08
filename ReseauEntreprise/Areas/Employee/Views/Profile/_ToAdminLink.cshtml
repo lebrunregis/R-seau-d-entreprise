@@ -3,5 +3,8 @@
 
 @if (Model.IsAdmin)
 {
-	<li>@Html.ActionLink("View site as admin", "Index", "Home", new { area = "Admin" }, new { })</li>
+    @Html.ActionLink( "Admin", "Index", "Home", new { area = "Admin" }, new
+{
+@class = "glyphicon glyphicon-exclamation-sign btn btn-danger"
+})
 }
