@@ -200,48 +200,45 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         {
             int Employee_Id = SessionUser.GetUser().Id;
             D.Team Team = TeamService.GetTeamById(teamId);
-            if (AuthService.IsAdmin(Employee_Id) || ProjectService.GetProjectManagerId(Team.Project_Id) == Employee_Id)
+            D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(teamId));
+            EditForm form = new EditForm()
             {
-                D.Employee TeamLeader = EmployeeService.Get((int)TeamService.GetTeamLeaderId(teamId));
-                EditForm form = new EditForm()
+                Id = (int)Team.Id,
+                Name = Team.Name,
+                SelectedTeamLeaderId = (int)TeamLeader.Employee_Id,
+                CreatorId = Team.Creator_Id
+            };
+            IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
+            List<SelectListItem> TeamLeaderCandidates = new List<SelectListItem>();
+            foreach (D.Employee emp in Employees)
+            {
+                TeamLeaderCandidates.Add(new SelectListItem()
                 {
-                    Id = (int)Team.Id,
-                    Name = Team.Name,
-                    SelectedTeamLeaderId = (int)TeamLeader.Employee_Id,
-                    CreatorId = Team.Creator_Id
-                };
-                IEnumerable<D.Employee> Employees = EmployeeService.GetAllActive();
-                List<SelectListItem> TeamLeaderCandidates = new List<SelectListItem>();
-                foreach (D.Employee emp in Employees)
-                {
-                    TeamLeaderCandidates.Add(new SelectListItem()
-                    {
-                        Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
-                        Value = emp.Employee_Id.ToString()
-                    });
-                }
-                // si le TeamLeader actuel est desactivé
-                if (!Employees.Any(emp => emp.Employee_Id == TeamLeader.Employee_Id))
-                {
-                    TeamLeaderCandidates.Add(new SelectListItem()
-                    {
-                        Text = "!!!VIRÉ!!! " + TeamLeader.FirstName + " " + TeamLeader.LastName + " (" + TeamLeader.Email + ")",
-                        Value = TeamLeader.Employee_Id.ToString()
-                    });
-                }
-                form.TeamLeaderCandidateList = TeamLeaderCandidates;
-
-                return View(form);
+                    Text = emp.FirstName + " " + emp.LastName + " (" + emp.Email + ")",
+                    Value = emp.Employee_Id.ToString()
+                });
             }
-            return RedirectToAction("Index");
+            // si le TeamLeader actuel est desactivé
+            if (!Employees.Any(emp => emp.Employee_Id == TeamLeader.Employee_Id))
+            {
+                TeamLeaderCandidates.Add(new SelectListItem()
+                {
+                    Text = "!!!VIRÉ!!! " + TeamLeader.FirstName + " " + TeamLeader.LastName + " (" + TeamLeader.Email + ")",
+                    Value = TeamLeader.Employee_Id.ToString()
+                });
+            }
+            form.TeamLeaderCandidateList = TeamLeaderCandidates;
+
+            return View(form);
         }
         [ProjectManagerRequired]
         [HttpPost]
-        public ActionResult Edit(int id, EditForm form)
+        public ActionResult Edit(int teamId, EditForm form)
         {
             if (ModelState.IsValid)
             {
                 D.Team Team = new D.Team(form.Name, form.CreatorId, form.ProjectId);
+                Team.Id = teamId;
                 try
                 {
                     if (TeamService.Edit(SessionUser.GetUser().Id, Team, form.SelectedTeamLeaderId))
@@ -253,7 +250,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 {
                     throw (exception);
                 }
-                return RedirectToAction("Edit");
+                return RedirectToAction("Edit", new { teamId = teamId});
             }
             return View(form);
         }
