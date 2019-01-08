@@ -1,31 +1,43 @@
 ﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.DiscussionForm
 
 <style>
-	.myMessageBox {
-		position: relative;
-		background-color: transparent;
-		margin-left: 15px;
-	}
+    .myMessageBox {
+        position: relative;
+        background-color: transparent;
+        margin-left: 15px;
+        padding-left: 10px;
+        padding-top: 10px;
+    }
 
-	.myMessage {
-		background-color: white;
-		border-style: solid;
-		border-color: lightgray;
-		border-width: 1px;
-		border-radius: 4px;
-	}
+    .myMessage {
+        background-color: white;
+        border-style: solid;
+        border-color: lightgray;
+        border-width: 1px;
+        border-radius: 4px;
+        padding-left: 10px;
+        padding-top: 10px;
+    }
 
 	.hidden {
 		display: none;
 	}
 
-	.multiligneText {
-		white-space: pre-wrap;
-	}
+    .multiligneText {
+        white-space: pre-wrap;
+        padding-left: 10px;
+        padding-top: 10px;
+    }
 
-	.whiteblock {
-		background-color: white;
-	}
+    .whiteblock {
+        background-color: white;
+        border-style: solid;
+        border-color: lightgray;
+        border-width: 1px;
+        border-radius: 4px;
+        padding-left: 10px;
+        padding-top: 10px;
+    }
 
 	.longtext {
 		width: 100%;
@@ -147,16 +159,17 @@
 	<div class="rel">
 		<button onclick="refresh()" class="btn btn-default right">Refresh</button>
 	</div>
+    <div class="whiteblock">
+    <h4>Compose new message</h4>
+    <div id="SendNew">
+        @{Html.RenderPartial("_SendFormTemplateRoot", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm());}
+    </div>
+    <div id="SendFormTemplate" class="hidden">
+        @{Html.RenderPartial("_SendFormTemplate", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm());}
+    </div>
+</div>
 	@{Html.RenderPartial("_Messages", Model.Messages);}
 </div>
-<div class="whiteblock">
-	<h4>Compose new message</h4>
-	<div id="SendNew">
-		@{Html.RenderPartial("_SendFormTemplateRoot", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm());}
-	</div>
-	<div id="SendFormTemplate" class="hidden">
-		@{Html.RenderPartial("_SendFormTemplate", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm());}
-	</div>
-</div>
+
 
 <div id="temporal" class="hidden"></div>

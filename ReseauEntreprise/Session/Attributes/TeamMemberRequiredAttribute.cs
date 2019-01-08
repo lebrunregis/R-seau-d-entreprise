@@ -20,7 +20,7 @@ namespace Réseau_d_entreprise.Session.Attributes
             string teamId = httpContext.Request.Params.Get("teamId");
             string taskId = httpContext.Request.Params.Get("taskId");
             Task Task;
-            IEnumerable<Employee> Team = null;
+            IEnumerable<Employee> TeamMembers = null;
             int UserId = SessionUser.GetUser().Id;
 
             if (!(taskId is null))
@@ -38,22 +38,23 @@ namespace Réseau_d_entreprise.Session.Attributes
                     }
                     else
                     {
-                        Team = TeamService.GetAllEmployeesForTeam((int)Task.TeamId);
+                        TeamMembers = TeamService.GetAllEmployeesForTeam((int)Task.TeamId);
                     }
                 }
             }
             else
             if (!(teamId is null))
             {
-                Team = TeamService.GetAllEmployeesForTeam(int.Parse(teamId));
-                if (UserId == TeamService.GetTeamLeaderId(int.Parse(teamId)))
+                TeamMembers = TeamService.GetAllEmployeesForTeam(int.Parse(teamId));
+               Team Team = TeamService.GetTeamById(int.Parse(teamId));
+                if (UserId == TeamService.GetTeamLeaderId(int.Parse(teamId))|| UserId == ProjectService.GetProjectManagerId((int)Team.Project_Id))
                 {
                     accessAllowed = true;
                 }
             }
             if (!accessAllowed)
             {
-                foreach (Employee employee in Team)
+                foreach (Employee employee in TeamMembers)
                 {
                     if (employee.Employee_Id == UserId)
                     {
