@@ -4,5 +4,5 @@ INSTEAD OF DELETE
 AS
 BEGIN
 	SET NOCOUNT ON
-	UPDATE Event Set EndDate = SYSDATETIME() WHERE Event_Id in (SELECT Event_Id FROM deleted);
+	UPDATE Event Set Cancelled = 1 WHERE Event_Id in (SELECT Event_Id FROM deleted);
 END
