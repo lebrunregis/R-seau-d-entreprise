@@ -2,19 +2,7 @@
 
 
 <script>
-	var SendFormTemplate = document.getElementById("SendFormTemplate");
-	var SendNew = document.getElementById("SendNew");
-
-	SendFormTemplate.getElementsByClassName("ToEmployee")[0].value = @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null");
-	SendFormTemplate.getElementsByClassName("ToProject")[0].value = @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null");
-	SendFormTemplate.getElementsByClassName("ToTask")[0].value = @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null");
-	SendFormTemplate.getElementsByClassName("ToTeam")[0].value = @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null");
 	const SendFormHtml = document.getElementById("SendFormTemplate").innerHTML;
-
-	SendNew.getElementsByClassName("ToEmployee")[0].value = @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null");
-	SendNew.getElementsByClassName("ToProject")[0].value = @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null");
-	SendNew.getElementsByClassName("ToTask")[0].value = @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null");
-	SendNew.getElementsByClassName("ToTeam")[0].value = @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null");
 
 	function AddReplyForm(id)
 	{
@@ -66,15 +54,23 @@
 		}
 		$.ajax({
 			type: 'POST',
-			url: "@Url.Action("_Messages", "Message")",
+			url: "@Url.Action(    Model.ToEmployee.HasValue ? "_MessagesEmployee" :
+								 (Model.ToProject .HasValue ? "_MessagesProject"  :
+								 (Model.ToTask    .HasValue ? "_MessagesTask"     :
+								 (Model.ToTeam    .HasValue ? "_MessagesTeam"     :
+								 ""))),
+							 "Message",
+							 new
+							 {
+								 EmployeeId = Model.ToEmployee,
+								 ProjectId  = Model.ToProject ,
+								 TaskId     = Model.ToTask    ,
+								 TeamId     = Model.ToTeam
+							 })",
 			data:
 				{
-					"max_id": max_id,
-					"ToEmployee": @(Model.ToEmployee.HasValue ? Model.ToEmployee.ToString() : "null"),
-					"ToProject": @(Model.ToProject.HasValue ? Model.ToProject.ToString() : "null"),
-					"ToTask": @(Model.ToTask.HasValue ? Model.ToTask.ToString() : "null"),
-					"ToTeam": @(Model.ToTeam.HasValue ? Model.ToTeam.ToString() : "null")
-			}
+					"max_id": max_id
+			     }
 		}).done(function (results) { addNew(results) });
 	}
 

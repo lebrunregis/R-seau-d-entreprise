@@ -93,7 +93,7 @@
 <p>
 	@Html.ActionLink("Back to Project list", "Index")
 </p>
-@Html.Action("_Discussion", "Message", new { ProjectId = Model.Id })
+@Html.Action("_DiscussionProject", "Message", new { ProjectId = Model.Id })
 @section scripts
 {
 	@{Html.RenderPartial("_DiscussionScript", Model.DiscScriptForm);}

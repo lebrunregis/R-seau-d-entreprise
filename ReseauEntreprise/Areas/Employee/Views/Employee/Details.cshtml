@@ -135,7 +135,7 @@
 		@Html.ActionLink(linkText: "Remove Department", actionName: "RemoveEmployeeFromDepartment", controllerName: "Department", routeValues: new { id = Model.Id }, htmlAttributes: null)
 	</p>
 }
-@Html.Action("_Discussion", "Message", new { EmployeeId = Model.Id })
+@Html.Action("_DiscussionEmployee", "Message", new { EmployeeId = Model.Id })
 @section scripts
 {
 	@{Html.RenderPartial("_DiscussionScript", Model.DiscScriptForm);}
