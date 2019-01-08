@@ -27,7 +27,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     StartDate = e.Start,
                     EndDate = e.End,
                     OpenSubscription = e.Open,
-                    Subscribed = e.Subscribed
+                    Subscribed = (e.Subscribed != null)
                 });
 
             return View(Events);
