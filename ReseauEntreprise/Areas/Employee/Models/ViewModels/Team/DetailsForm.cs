@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using C = Model.Client.Data;
 using Doc = ReseauEntreprise.Areas.Employee.Models.ViewModels.Document;
+using TaskListForm = ReseauEntreprise.Areas.Employee.Models.ViewModels.Task.ListForm;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
 {
@@ -35,7 +36,7 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         public bool IsTeamLeader { get; set; }
         [Display(Name = "Project manager or admin")]
         public bool IsProjectManagerOrAdmin {get ; set; }
-        public IEnumerable<C.Task> Tasks { get ; set; }
+        public IEnumerable<TaskListForm> Tasks { get ; set; }
         public IEnumerable<Doc.ListForm> Documents { get; set; }
         public Message.DiscussionScriptForm DiscScriptForm { get; set; }
     }
