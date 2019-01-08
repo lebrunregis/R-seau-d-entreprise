@@ -59,8 +59,9 @@ namespace ReseauEntreprise.Session.Attributes
             filterContext.Result = new RedirectToRouteResult(
                                        new RouteValueDictionary
                                        {
-                                       { "action", "Index" },
-                                       { "controller", "Home" }
+                                       { "action", "AccessDenied" },
+                                       { "controller", "Home" },
+                                       { "Area", "Employee" }
                                        });
         }
     }
