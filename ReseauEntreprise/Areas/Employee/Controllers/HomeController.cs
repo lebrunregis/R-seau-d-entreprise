@@ -69,6 +69,13 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return View();
         }
 
+        public ActionResult AccessDenied()
+        {
+            ViewBag.Message = "Access Denied.";
+
+            return View();
+        }
+
         public ActionResult Calendar()
         {
             ViewBag.Message = "Your calendar page.";
