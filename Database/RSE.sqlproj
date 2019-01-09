@@ -255,8 +255,7 @@
     <Build Include="dbo\Tables\Task\EmployeeTask.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="dbo\User\U_Admin.sql" />
-    <None Include="dbo\User\U_Employee.sql" />
+    <Build Include="dbo\User\U_Admin.sql" />
     <Build Include="dbo\FN\FN_Hash.sql" />
     <None Include="RSE.publish.xml" />
     <None Include="RSETEST.publish.xml" />
