@@ -15,16 +15,15 @@ namespace ReseauEntreprise.Controllers
         {
             if (SessionUser.GetUser() != null && AuthService.IsAdmin(SessionUser.GetUser().Id))
             {
-                RedirectToAction("Index", "Home", new { area = "Admin" });
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
             }
             else if (SessionUser.GetUser()!= null)
             {
-                RedirectToAction("Index", "Home", new { area = "Employee" });
+                return RedirectToAction("Index", "Home", new { area = "Employee" });
             } else
             {
-                RedirectToAction("Index", "Home", new { area = "Default" });
+                return View();
             }
-            return View();
         }
 
         public ActionResult About()
