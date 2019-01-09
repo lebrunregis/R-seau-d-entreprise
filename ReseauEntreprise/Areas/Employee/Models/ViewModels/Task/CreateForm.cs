@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using C = Model.Client.Data;
 
 namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
 {
@@ -35,5 +36,6 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         [HiddenInput]
         [Display(Name = "Team")]
         public int SelectedTeamId { get; set; }
+        public C.Project Project { get; set; }
     }
 }
