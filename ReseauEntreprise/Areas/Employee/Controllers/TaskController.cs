@@ -132,7 +132,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             {
                 ProjectId = projectId,
                 StartDate = DateTime.Today,
-                TeamList = Teams
+                TeamList = Teams,
+                Project = ProjectService.GetProjectById(projectId)
             };
 
             return View(form);
