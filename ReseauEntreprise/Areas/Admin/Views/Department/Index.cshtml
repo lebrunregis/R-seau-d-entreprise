@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Admin_Id)
+            @Html.DisplayNameFor(model => model.Creator)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Active)
@@ -29,7 +29,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -39,7 +40,7 @@
         </td>
         <td style="white-space: pre-wrap;">@Html.DisplayFor(modelItem => item.Description)</td>
         <td>
-            @Html.DisplayFor(modelItem => item.Admin_Id)
+            @{Html.RenderPartial("_Employee", item.Creator);}
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Active)

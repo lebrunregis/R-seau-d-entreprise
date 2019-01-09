@@ -240,7 +240,6 @@
     <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\IndexForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\IndexPage\ProjectTeamsForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\MailboxForm.cs" />
-    <Compile Include="Areas\Employee\Models\ViewModels\Message\ResponseForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\SendForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\DiscussionForm.cs" />
     <Compile Include="Areas\Employee\Models\ViewModels\Message\ViewForm.cs" />

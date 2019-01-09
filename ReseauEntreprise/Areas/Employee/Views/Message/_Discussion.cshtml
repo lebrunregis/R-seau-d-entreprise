@@ -5,7 +5,7 @@
         position: relative;
         background-color: transparent;
         margin-left: 15px;
-        padding-top: 10px;
+        padding-top: 3px;
     }
 
     .myMessage {
@@ -16,27 +16,31 @@
         border-radius: 4px;
         padding-left: 10px;
         padding-top: 10px;
+		padding-bottom: 5px;
     }
 
 	.hidden {
 		display: none;
 	}
 
-    .multiligneText {
-        white-space: pre-wrap;
-        padding-left: 10px;
-        padding-top: 10px;
-    }
+	.multiligneText {
+		white-space: pre-wrap;
+		padding-left: 10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
 
-    .whiteblock {
-        background-color: white;
-        border-style: solid;
-        border-color: lightgray;
-        border-width: 1px;
-        border-radius: 4px;
-        padding-left: 10px;
-        padding-top: 10px;
-    }
+	.whiteblock {
+		background-color: white;
+		border-style: solid;
+		border-color: lightgray;
+		border-width: 1px;
+		border-radius: 4px;
+		padding-left: 10px;
+		padding-top: 10px;
+		padding-bottom: 5px;
+		margin-bottom: 5px;
+	}
 
 	.longtext {
 		width: 100%;
@@ -60,9 +64,9 @@
 	.myMessageBox > .myMessageBox:not(:last-child) > .blackline {
 		position: absolute;
 		background-color: transparent;
-		width: 7px;
+		width: 8px;
 		height: 100%;
-		top: 10px;
+		top: 12px;
 		left: -8px;
 		border-bottom-style: solid;
 		border-left-style: solid;
@@ -75,9 +79,9 @@
 	.showButton + .myMessageBox > .blackline2 {
 		position: absolute;
 		background-color: transparent;
-		width: 7px;
+		width: 8px;
 		height: 20px;
-		top: 0px;
+		top: -3px;
 		left: -8px;
 		border-bottom-style: solid;
 		border-left-style: solid;
@@ -152,6 +156,10 @@
 		animation-name: opacitychange;
 		animation-duration: 0.5s;
 	}
+
+	#antiMargin {
+		margin-left: -15px;
+	}
 </style>
 <h3>Discussion</h3>
 <div id="discussion">
@@ -159,27 +167,30 @@
 		<button onclick="refresh()" class="btn btn-default right">Refresh</button>
 	</div>
     <div class="whiteblock">
-    <h4>Compose new message</h4>
-    <div id="SendNew">
-        @{Html.RenderPartial("_SendFormTemplateRoot", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm
-			{
-			  ToEmployee = Model.ToEmployee,
-			  ToProject = Model.ToProject,
-			  ToTask = Model.ToTask,
-			  ToTeam = Model.ToTeam
-			});}
-    </div>
+		<h4>Compose new message</h4>
+		<div id="SendNew">
+			@{Html.RenderPartial("_SendFormTemplateRoot", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm
+				{
+					ToEmployee = Model.ToEmployee,
+					ToProject  = Model.ToProject ,
+					ToTask     = Model.ToTask    ,
+					ToTeam     = Model.ToTeam
+				});}
+		</div>
+	</div>
     <div id="SendFormTemplate" class="hidden">
         @{Html.RenderPartial("_SendFormTemplate", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm
 			{
 				ToEmployee = Model.ToEmployee,
-				ToProject = Model.ToProject,
-				ToTask = Model.ToTask,
-				ToTeam = Model.ToTeam
+				ToProject  = Model.ToProject ,
+				ToTask     = Model.ToTask    ,
+				ToTeam     = Model.ToTeam
 			});}
     </div>
-</div>
-	@{Html.RenderPartial("_Messages", Model.Messages);}
+	<div id="antiMargin">
+		<div></div>
+		@{Html.RenderPartial("_Messages", Model.Messages);}
+	</div>
 </div>
 
 

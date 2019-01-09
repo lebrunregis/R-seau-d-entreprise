@@ -10,13 +10,9 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Message
         [Required]
         [DataType(DataType.MultilineText)]
         public string Message { get; set; }
-        [HiddenInput]
         public int? ToEmployee { get; set; }
-        [HiddenInput]
         public int? ToTask { get; set; }
-        [HiddenInput]
         public int? ToTeam { get; set; }
-        [HiddenInput]
         public int? ToProject { get; set; }
         [HiddenInput]
         public int? ReplyTo { get; set; }
