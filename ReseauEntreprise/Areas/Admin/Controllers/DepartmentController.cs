@@ -29,7 +29,7 @@ namespace ReseauEntreprise.Areas.Admin.Controllers
                     Created = Department.Created,
                     Description = Department.Description,
                     Admin_Id = Department.Admin_Id,
-                    Admin = null,
+                    Creator = EmployeeService.Get(Department.Admin_Id),
                     Active = Department.Active,
                 };
                 list.Add(form);

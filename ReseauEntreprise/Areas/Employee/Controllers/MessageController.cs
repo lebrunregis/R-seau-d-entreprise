@@ -16,22 +16,29 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
     {
         public ActionResult _DiscussionProject(int ProjectId)
         {
-            return _Discussion(ProjectId, null, null, null);
+            DiscussionForm form = new DiscussionForm { ToProject = ProjectId };
+            return _Discussion(MessageService.GetProjectMessages(ProjectId), form);
         }
         [TeamMemberRequired]
         public ActionResult _DiscussionTask(int TaskId)
         {
-            return _Discussion(null, TaskId, null, null);
+            DiscussionForm form = new DiscussionForm { ToTask = TaskId };
+            return _Discussion(MessageService.GetTaskMessages(TaskId), form);
         }
         [TeamMemberRequired]
         public ActionResult _DiscussionTeam(int TeamId)
         {
-            return _Discussion(null, null, TeamId, null);
+            DiscussionForm form = new DiscussionForm { ToTeam = TeamId };
+            return _Discussion(MessageService.GetTeamMessages(TeamId), form);
         }
         public ActionResult _DiscussionEmployee(int EmployeeId)
         {
-            return _Discussion(null, null, null, EmployeeId);
+            DiscussionForm form = new DiscussionForm { ToEmployee = EmployeeId };
+            return _Discussion(MessageService.GetMyDiscussionWithEmployee(SessionUser.GetUser().Id, EmployeeId), form);
         }
+
+
+
 
         [HttpPost]
         public ContentResult SendProject(SendForm form, int ProjectId)
@@ -56,27 +63,59 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return Send(form, null, null, null, EmployeeId);
         }
 
+
+
+
+
         [HttpPost]
-        public PartialViewResult _MessagesProject(ResponseForm form, int? ProjectId)
+        public PartialViewResult _MessagesProject(MaxIdForm form, int ProjectId)
         {
-            return _Messages(form, ProjectId, null, null, null);
+            if (form.Max_id == -1)
+            {
+                return _Messages(MessageService.GetProjectMessages(ProjectId));
+            }
+            else
+            {
+                return _Messages(MessageService.GetProjectMessagesWithoutSome(ProjectId, form.Max_id));
+            }
         }
         [TeamMemberRequired]
         [HttpPost]
-        public PartialViewResult _MessagesTask(ResponseForm form, int? TaskId)
+        public PartialViewResult _MessagesTask(MaxIdForm form, int TaskId)
         {
-            return _Messages(form, null, TaskId, null, null);
+            if (form.Max_id == -1)
+            {
+                return _Messages(MessageService.GetTaskMessages(TaskId));
+            }
+            else
+            {
+                return _Messages(MessageService.GetTaskMessagesWithoutSome(TaskId, form.Max_id));
+            }
         }
         [TeamMemberRequired]
         [HttpPost]
-        public PartialViewResult _MessagesTeam(ResponseForm form, int? TeamId)
+        public PartialViewResult _MessagesTeam(MaxIdForm form, int TeamId)
         {
-            return _Messages(form, null, null, TeamId, null);
+            if (form.Max_id == -1)
+            {
+                return _Messages(MessageService.GetTeamMessages(TeamId));
+            }
+            else
+            {
+                return _Messages(MessageService.GetTeamMessagesWithoutSome(TeamId, form.Max_id));
+            }
         }
         [HttpPost]
-        public PartialViewResult _MessagesEmployee(ResponseForm form, int? EmployeeId)
+        public PartialViewResult _MessagesEmployee(MaxIdForm form, int EmployeeId)
         {
-            return _Messages(form, null, null, null, EmployeeId);
+            if (form.Max_id == -1)
+            {
+                return _Messages(MessageService.GetMyDiscussionWithEmployee(SessionUser.GetUser().Id, EmployeeId));
+            }
+            else
+            {
+                return _Messages(MessageService.GetMyDiscussionWithEmployeeWithoutSome(SessionUser.GetUser().Id, EmployeeId, form.Max_id));
+            }
         }
 
 
@@ -121,94 +160,28 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             return new ContentResult {Content = "fail" };
         }
 
-        private ActionResult _Discussion(int? ProjectId, int? TaskId, int? TeamId, int? EmployeeId)
+
+        private ActionResult _Discussion(IEnumerable<C.Message> messages, DiscussionForm form)
         {
-            IEnumerable<C.Message> messages = new List<C.Message>();
-            if (!(ProjectId is null))
-            {
-                messages = MessageService.GetProjectMessages((int)ProjectId);
-            }
-            else if (!(TaskId is null))
-            {
-                messages = MessageService.GetTaskMessages((int)TaskId);
-            }
-            else if (!(TeamId is null))
-            {
-                messages = MessageService.GetTeamMessages((int)TeamId);
-            }
-            else if (!(EmployeeId is null))
-            {
-                messages = MessageService.GetMyDiscussionWithEmployee(SessionUser.GetUser().Id, (int)EmployeeId);
-            }
-            DiscussionForm form = new DiscussionForm
-            {
-                ToEmployee = EmployeeId,
-                ToProject = ProjectId,
-                ToTeam = TeamId,
-                ToTask = TaskId,
-                Messages = FillAndAddChildren(messages, null)
-            };
+            form.Messages = FillAndAddChildren(messages, null);
             return PartialView("_Discussion", form);
         }
 
-        [HttpPost]
-        private PartialViewResult _Messages(ResponseForm form, int? ProjectId, int? TaskId, int? TeamId, int? EmployeeId)
-        {
-            IEnumerable<C.Message> Data = new List<C.Message>();
-            if (!(ProjectId is null))
-            {
-                if (form.Max_id == -1)
-                {
-                    Data = MessageService.GetProjectMessages((int)ProjectId);
-                }
-                else
-                {
-                    Data = MessageService.GetProjectMessagesWithoutSome((int)ProjectId, form.Max_id);
-                }
-            }
-            else if (!(TaskId is null))
-            {
-                if (form.Max_id == -1)
-                {
-                    Data = MessageService.GetTaskMessages((int)TaskId);
-                }
-                else
-                {
-                    Data = MessageService.GetTaskMessagesWithoutSome((int)TaskId, form.Max_id);
-                }
-            }
-            else if (!(TeamId is null))
-            {
-                if (form.Max_id == -1)
-                {
-                    Data = MessageService.GetTeamMessages((int)TeamId);
-                }
-                else
-                {
-                    Data = MessageService.GetTeamMessagesWithoutSome((int)TeamId, form.Max_id);
-                }
-            }
-            else if (!(EmployeeId is null))
-            {
-                if (form.Max_id == -1)
-                {
-                    Data = MessageService.GetMyDiscussionWithEmployee(SessionUser.GetUser().Id, (int)EmployeeId);
-                }
-                else
-                {
-                    Data = MessageService.GetMyDiscussionWithEmployeeWithoutSome(SessionUser.GetUser().Id, (int)EmployeeId, form.Max_id);
-                }
-            }
-            var result = PartialView("_Messages", Data.OrderByDescending(message => message.Id).Select(message => new ViewForm(message)));
 
+        [HttpPost]
+        private PartialViewResult _Messages(IEnumerable<C.Message> Data)
+        {
+            PartialViewResult result = PartialView("_Messages", Data.OrderByDescending(message => message.Id).Select(message => new ViewForm(message)));
             return result;
         }
+
 
         private IEnumerable<ViewForm> FillAndAddChildren(IEnumerable<C.Message> messages, int? ParentId)
         {
             return messages.Where(message => message.Parent == ParentId).OrderBy(message => message.Id).Select(message =>
                 new ViewForm(message, FillAndAddChildren(messages, message.Id)));
         }
+
 
         public ActionResult Mailbox()
         {
@@ -220,6 +193,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 MyId = EmployeeId
             });
         }
+
 
         [HttpPost]
         public PartialViewResult _Mailbox(MaxIdForm MaxId)
