@@ -16,9 +16,9 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         public D.Employee TeamLeader { get; set; }
         [Display(Name = "Project Manager")]
         public D.Employee ProjectManager { get; set; }
-        [Display(Name = "Projet")]
+        [Display(Name = "Project")]
         public D.Project Project { get; set; }
-        [Display(Name = "Deadline du projet")]
+        [Display(Name = "Projet deadline")]
         public DateTime? ProjectDeadLine { get; set; }
         [Display(Name = "Part of team")]
         public bool AmIPartOfTeam { get; set; }

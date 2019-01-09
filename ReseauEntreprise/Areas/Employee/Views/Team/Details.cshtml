@@ -83,12 +83,12 @@
 	</dl>
 </div>
 <p>
-    @if (Model.IsTeamLeader)
+    @if (Model.IsTeamLeader || Model.IsProjectManager)
     {
         @Html.ActionLink("Change employees in team", "EmployeesInTeam", new { teamId = Model.Id });
         <text> | </text>
     }
-    @if (Model.IsProjectManagerOrAdmin)
+    @if (Model.IsProjectManager)
     {
         @Html.ActionLink("Edit", "Edit", new { teamId = Model.Id });<text> | </text>
         @Html.ActionLink("Delete", "Delete", new { teamId = Model.Id });<text> | </text>

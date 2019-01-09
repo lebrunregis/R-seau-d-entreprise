@@ -332,7 +332,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 DiscScriptForm = new Models.ViewModels.Message.DiscussionScriptForm { ToTeam = Team.Id },
                 Tasks = Tasks,
                 IsTeamLeader = (Employee_Id == TeamLeader.Employee_Id),
-                IsProjectManagerOrAdmin = ((AuthService.IsAdmin(Employee_Id)) || (Employee_Id == ProjectService.GetProjectManagerId(Team.Project_Id))),
+                IsProjectManager = (Employee_Id == ProjectService.GetProjectManagerId(Team.Project_Id)),
                 Documents = DocumentService.GetForTeam((int)Team.Id).Select(d => new Doc.ListForm { Name = d.Filename, Id = (int)d.Id })
             };
             return View(Form);
