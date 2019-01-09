@@ -141,8 +141,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     Id = (int)Task.Id,
                     Title = Task.Title,
                     Start = Task.Start,
-                    End = Task.End is null ?
+                    End = Task.End is null ? Task.Deadline is null ?
                     new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)) :
+                    (DateTime)Task.Deadline :
                     (DateTime)Task.End,
                     Url = ""
                 });

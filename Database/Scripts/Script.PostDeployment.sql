@@ -152,13 +152,14 @@ INSERT INTO[dbo].Admin (Employee_Id) VALUES (@employee_id);
 GO
 
 DECLARE @now DATETIME2(0) = SYSDATETIME();
+DECLARE @3daysago  DATETIME2(0) = dateadd(day,-3,@now);
 DECLARE @Admin int = ident_current('[dbo].Employee');
 INSERT INTO [dbo].Department(Name, Creator_Id, Description) VALUES
     ('Accounting', @Admin, 'Part of a company''s administration that is responsible for preparing the financial statements, maintaining the general ledger, paying bills, billing customers, payroll, cost accounting, financial analysis, and more. The head of the accounting department often has the title of controller.'),
     ('Research and Development', @Admin, 'The functions of a research and development department are to engage in new product research and development, existing product updates, quality checks and innovation.'),
     ('Sales', @Admin, 'The function of a sales department is to engage in a variety of activities with the objective to promote the customer purchase of a product or the client engagement of a service.');
 
-EXEC [dbo].CreateProject @name = 'ESN',@description = 'Enterprise Social Network application',@creator = @Admin,@project_manager = 5,@startDate = @now,@endDate = null;
+EXEC [dbo].CreateProject @name = 'ESN',@description = 'Enterprise Social Network application',@creator = @Admin,@project_manager = 5,@startDate = @3daysago,@endDate = null;
 GO
 
 DECLARE @Dep3_Id int = ident_current('[dbo].Department');
@@ -206,13 +207,21 @@ DECLARE @TeamId_1 int = @TeamId_3 - 2;
 DECLARE @Leader_1 int = [dbo].FN_GetTeamLeaderId(@TeamId_1);
 DECLARE @Leader_2 int = [dbo].FN_GetTeamLeaderId(@TeamId_2);
 DECLARE @Leader_3 int = [dbo].FN_GetTeamLeaderId(@TeamId_3);
+DECLARE @deadline DATETIME2(0);
 
+SET @deadline = DATEADD(DAY, 7, @now);
 EXEC [dbo].CreateTask @Name = 'Test Messaging',@Description = 'Test all cases for messaging',
-                      @ProjectId = @Project_Id,@UserId = @Leader_2,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @TeamId_2;
+                      @ProjectId = @Project_Id,@UserId = @Leader_2,@StartDate = @now,@EndDate = null,@DeadLine = @deadline,@SubtaskOf = null,@TeamId = @TeamId_2;
+SET @now = DATEADD(DAY, 7, @now);
+SET @deadline = DATEADD(DAY, 7, @now);
 EXEC [dbo].CreateTask @Name = 'Features',@Description = 'Determine key features for ESN application',
                       @ProjectId = @Project_Id,@UserId = @Leader_3,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @TeamId_3;
+SET @now = DATEADD(DAY, 7, @now);
+SET @deadline = DATEADD(DAY, 7, @now);
 EXEC [dbo].CreateTask @Name = 'Notifications',@Description = 'Add notifications for all events',
                       @ProjectId = @Project_Id,@UserId = @Leader_1,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @TeamId_1;
+SET @now = DATEADD(DAY, 7, @now);
+SET @deadline = DATEADD(DAY, 7, @now);
 EXEC [dbo].CreateTask @Name = 'Avatars',@Description = 'Add possibility to users to create their own avatar picture',
                       @ProjectId = @Project_Id,@UserId = @Leader_1,@StartDate = @now,@EndDate = null,@DeadLine = null,@SubtaskOf = null,@TeamId = @TeamId_1;
 GO
