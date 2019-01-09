@@ -57,14 +57,14 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Application description.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contact us.";
 
             return View();
         }
@@ -78,7 +78,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
 
         public ActionResult Calendar()
         {
-            ViewBag.Message = "Your calendar page.";
+            ViewBag.Message = "Calendar page.";
             return View();
         }
 
@@ -89,15 +89,17 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             JsonSerializerSettings config = new JsonSerializerSettings { DateFormatString = "yyyy-MM-dd" };
             IEnumerable<Event> Events = EventService.GetAllActiveForUser(SessionUser.GetUser().Id);
             List<CalendarForm> Forms = new List<CalendarForm>();
+            var urlHelper = new UrlHelper(HttpContext.Request.RequestContext);
+
             foreach (Event Event in Events)
             {
                 Forms.Add(new CalendarForm
                 {
-                    Id =(int) Event.Id,
+                    Id = (int)Event.Id,
                     Title = Event.Title,
                     Start = Event.Start,
                     End = Event.End,
-                    Url = ""
+                    Url = urlHelper.Action("Details", "Event",new { id = Event.Id})
                 });
             }
             return Content(JsonConvert.SerializeObject(Forms, Formatting.Indented, config), "application/json");
@@ -108,9 +110,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public ContentResult CalendarProjectFeed(string start, string end)
         {
             JsonSerializerSettings config = new JsonSerializerSettings { DateFormatString = "yyyy-MM-dd" };
-
             IEnumerable<Project> Projects = ProjectService.GetAllActive();
             List<CalendarForm> Forms = new List<CalendarForm>();
+            var urlHelper = new UrlHelper(HttpContext.Request.RequestContext);
+
             foreach (Project Project in Projects)
             {
                 Forms.Add(new CalendarForm
@@ -121,7 +124,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     End = Project.End is null ?
                     new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)) :
                     (DateTime)Project.End,
-                    Url = ""
+                    Url = urlHelper.Action("Details", "Project",new { projectId=Project.Id})
                 });
             }
             return Content(JsonConvert.SerializeObject(Forms, Formatting.Indented, config), "application/json");
@@ -134,6 +137,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             JsonSerializerSettings config = new JsonSerializerSettings { DateFormatString = "yyyy-MM-dd" };
             IEnumerable<Task> Tasks = TaskService.GetForUser(SessionUser.GetUser().Id);
             List<CalendarForm> Forms = new List<CalendarForm>();
+            var urlHelper = new UrlHelper(HttpContext.Request.RequestContext);
+
             foreach (Task Task in Tasks)
             {
                 Forms.Add(new CalendarForm
@@ -145,7 +150,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)) :
                     (DateTime)Task.Deadline :
                     (DateTime)Task.End,
-                    Url = ""
+                    Url = urlHelper.Action("Details", "Task",new {taskId = Task.Id })
                 });
             }
             return Content(JsonConvert.SerializeObject(Forms, Formatting.Indented, config), "application/json");
