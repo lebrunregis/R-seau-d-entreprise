@@ -32,10 +32,10 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Task
         [Display(Name = "Subtask of")]
         public int? SubtaskOf { get; set; }
         public IEnumerable<SelectListItem> TeamList { get; set; }
-        [Required]
         [HiddenInput]
         [Display(Name = "Team")]
-        public int SelectedTeamId { get; set; }
+        public int? SelectedTeamId { get; set; }
         public C.Project Project { get; set; }
+        public C.Task Parent { get; set; }
     }
 }

@@ -23,9 +23,18 @@ namespace Réseau_d_entreprise.Session.Attributes
             {
                 if (!(teamId is null))
                 {
-                    if (UserId == TeamService.GetTeamLeaderId(int.Parse(teamId)))
+                    int TeamId = int.Parse(teamId);
+                    if (UserId == TeamService.GetTeamLeaderId(TeamId))
                     {
                         accessAllowed = true;
+                    }
+                    else
+                    {
+                        Team Team = TeamService.GetTeamById(TeamId);
+                        if (UserId == ProjectService.GetProjectManagerId(Team.Project_Id))
+                        {
+                            accessAllowed = true;
+                        }
                     }
                 }
             }

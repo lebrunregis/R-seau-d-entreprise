@@ -245,7 +245,9 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
             {
                 ProjectId = Parent.ProjectId,
                 SubtaskOf = taskId,
-                StartDate = DateTime.Today
+                StartDate = DateTime.Today,
+                Parent = Parent,
+                Project = ProjectService.GetProjectById(Parent.ProjectId)
             };
 
             if(Parent.TeamId!= null)
