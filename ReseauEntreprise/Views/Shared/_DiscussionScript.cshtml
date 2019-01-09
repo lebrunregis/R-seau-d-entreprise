@@ -76,7 +76,7 @@
 
 	function addNew(data) {
 		var temporal = document.getElementById('temporal');
-		var discussion = document.getElementById('discussion');
+		var allMessages = document.getElementById('AllMessages');
 		temporal.innerHTML += data;
 		if (temporal.getElementsByTagName("title").length > 0) // this is not our parial view
 		{
@@ -91,7 +91,7 @@
 				var parent = message.getAttribute("data-parentId");
 				var newMessage = message.cloneNode(true);
 				if (parent == "") {
-					var parentEl = discussion;
+					var parentEl = allMessages;
 				}
 				else {
 					var parentEl = document.getElementById('message_' + parent).parentElement;
