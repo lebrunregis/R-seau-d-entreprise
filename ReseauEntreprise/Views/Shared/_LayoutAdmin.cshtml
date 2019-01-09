@@ -18,18 +18,16 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        @Html.ActionLink("Employee", "Index", "Home", new { area = "Employee" }, new
-                   {
-                       @class = "glyphicon glyphicon-log-out btn btn-warning",
-                       @style = "color:black"
-                   })
+                        <a href="@Url.Action("Index", "Home", new { area = "Employee" })" class="btn btn-warning" style="color:black">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            Employee View
+                        </a>
                     </li>
                     <li>
-                        @Html.ActionLink(" Logout", "Logout", "Registration", new { area = "" }, new
-                   {
-                       @class = "glyphicon glyphicon-log-out btn btn-warning" ,
-                       @style = "color:black"
-                   })
+                        <a href="@Url.Action("Logout", "Registration", new { area = "" })" class="btn btn-warning" style="color:black">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                            Logout
+                        </a>
                     </li>
                 </ul>
             <ul class="nav navbar-nav">

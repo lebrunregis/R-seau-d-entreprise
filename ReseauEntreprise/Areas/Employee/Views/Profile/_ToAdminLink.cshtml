@@ -3,8 +3,8 @@
 
 @if (Model.IsAdmin)
 {
-    @Html.ActionLink( "Admin", "Index", "Home", new { area = "Admin" }, new
-{
-@class = "glyphicon glyphicon-exclamation-sign btn btn-danger"
-})
+    <a href="@Url.Action("Index", "Home", new { area = "Admin" })" class="btn btn-danger">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        Admin View
+    </a>
 }

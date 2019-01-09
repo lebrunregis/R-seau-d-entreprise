@@ -8,94 +8,102 @@
 
 <div>
     <hr />
-	<dl class="dl-horizontal">
-		<dt>
-			@Html.DisplayNameFor(model => model.Name)
-		</dt>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Name)
-		</dd>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Description)
-		</dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
 
-		<dd style="white-space: pre-wrap;">@Html.DisplayFor(model => model.Description)</dd>
+        <dd style="white-space: pre-wrap;">@Html.DisplayFor(model => model.Description)</dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.StartDate)
-		</dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.StartDate)
-		</dd>
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.EndDate)
-		</dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.EndDate)
-		</dd>
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Manager)
-		</dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Manager)
+        </dt>
 
-		<dd>
-			@{Html.RenderPartial("_Employee", Model.Manager); }
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.Creator)
-		</dt>
+        <dd>
+            @{Html.RenderPartial("_Employee", Model.Manager); }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Creator)
+        </dt>
 
-		<dd>
-			@{Html.RenderPartial("_Employee", Model.Creator); }
-		</dd>
+        <dd>
+            @{Html.RenderPartial("_Employee", Model.Creator); }
+        </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Teams)
-		</dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Teams)
+        </dt>
 
-		<dd>
-			@{Html.RenderPartial("_TeamList", Model.Teams);
-				if (Model.IsProjectManager)
-				{
-					@Html.ActionLink("Create new team", "Create", "Team", new { projectId = Model.Id }, null)
-				}
-			}
-		</dd>
+        <dd>
+            @{Html.RenderPartial("_TeamList", Model.Teams);
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Tasks)
-		</dt>
+                if (Model.IsProjectManager)
+                {
+                    <a href="@Url.Action("Create", "Team", new { projectId = Model.Id })">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        Create new team
+                    </a>
+                }
+            }
+        </dd>
 
-		<dd>
-			@{Html.RenderPartial("_ProjectTasks", Model.Tasks);
-				if (Model.IsProjectManager)
-				{
-					@Html.ActionLink("Create new master task", "AddProjectTask", "Task", new { projectId = Model.Id }, null)}
-			}
-		</dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tasks)
+        </dt>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Documents)
-		</dt>
+        <dd>
+            @{Html.RenderPartial("_ProjectTasks", Model.Tasks);
+                if (Model.IsProjectManager)
+                {
+                    <a href="@Url.Action("AddProjectTask", "Task", new { projectId = Model.Id })">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        Create new master task
+                    </a>
+                }
+            }
+        </dd>
 
-		<dd>
-			@{Html.RenderPartial("_DocumentList", Model.Documents);}
-			<p>Create new document</p>
-			@{Html.RenderAction("_Upload", "Document", new { ProjectId = Model.Id });}
-		</dd>
-	</dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Documents)
+        </dt>
+
+        <dd>
+            @{Html.RenderPartial("_DocumentList", Model.Documents);}
+            <p>Create new document</p>
+            @{Html.RenderAction("_Upload", "Document", new { ProjectId = Model.Id });}
+        </dd>
+    </dl>
 </div>
 <p>
-	@Html.ActionLink("Back to Project list", "Index")
+    @Html.ActionLink("Back to Project list", "Index")
 </p>
 @Html.Action("_DiscussionProject", "Message", new { ProjectId = Model.Id })
 @section scripts
 {
-	@{Html.RenderPartial("_DiscussionScript", Model.DiscScriptForm);}
+    @{Html.RenderPartial("_DiscussionScript", Model.DiscScriptForm);}
 }
 

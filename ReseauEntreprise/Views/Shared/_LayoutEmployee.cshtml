@@ -20,26 +20,33 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse"  id="myNavbar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@{Html.RenderAction("_ToAdminLink", "Profile");}</li> 
-                        <li>@Html.ActionLink("Calendar", "Calendar", "Home", new {  }, new
-                                        {
-                                            @class = "glyphicon glyphicon-calendar btn"
-                                        })</li> 
-                        <li>@Html.ActionLink(" Profile", "Edit", "Profile", new {  }, new
-                                       {
-                                           @class = "glyphicon glyphicon-user btn"
-                                       })</li>
-                        <li>@Html.ActionLink(" Inbox", "Mailbox", "Message", new {  }, new
-                                       {
-                                           @class = "glyphicon glyphicon-envelope btn"
-                                       })</li>
-                        
-                        <li>@Html.ActionLink(" Logout", "Logout", "Registration", new { area = "" }, new
-                                            {
-                                            @class = "glyphicon glyphicon-log-out btn btn-warning"
-                                            })</li>
-                    </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@{Html.RenderAction("_ToAdminLink", "Profile");}</li>
+                    <li>
+                        <a href="@Url.Action( "Calendar", "Home")" class="btn" ">
+                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                            Calendar
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Edit", "Profile")" class="btn" ">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                           My Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Mailbox", "Message")" class="btn"">
+                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                            Mailbox
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Logout", "Registration", new { area = "" })" class="btn btn-warning" style="color:black">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
