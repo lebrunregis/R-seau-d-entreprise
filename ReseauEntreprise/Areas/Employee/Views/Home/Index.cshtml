@@ -1,106 +1,109 @@
 ﻿@model ReseauEntreprise.Areas.Employee.Models.ViewModels.IndexPage.IndexForm
 @{
-	ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home Page";
 }
+
+<h2>Summary</h2>
+
 <table class="table">
-	<tr>
-		<th>
-			@Html.DisplayNameFor(model => model.ProjectTeamList.FirstOrDefault().Project)
-		</th>
-		<th>
-			@Html.DisplayNameFor(model => model.ProjectTeamList.FirstOrDefault().Project.End)
-		</th>
-		<th>
-			@Html.DisplayNameFor(model => model.ProjectTeamList.FirstOrDefault().Teams)
-		</th>
-	</tr>
-	@foreach (var item in Model.ProjectTeamList)
-	{
-		<tr>
-			<td>
-				@{ Html.RenderPartial("_Project", item.Project); }
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Project.End)
-			</td>
-			<td>
-				@{ Html.RenderPartial("_TeamList", item.Teams); }
-			</td>
-		</tr>
-	}
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectTeamList.FirstOrDefault().Project)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectTeamList.FirstOrDefault().Project.End)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectTeamList.FirstOrDefault().Teams)
+        </th>
+    </tr>
+    @foreach (var item in Model.ProjectTeamList)
+    {
+        <tr>
+            <td>
+                @{ Html.RenderPartial("_Project", item.Project); }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.End)
+            </td>
+            <td>
+                @{ Html.RenderPartial("_TeamList", item.Teams); }
+            </td>
+        </tr>
+    }
 
 </table>
 <table class="table">
-	<tr>
-		<th>
-			@Html.DisplayNameFor(model => model.MyDepartments)
-		</th>
-	</tr>
-	@foreach (var item in Model.MyDepartments)
-	{
-		<tr>
-			<td>
-				@{ Html.RenderPartial("_Department", item); }
-			</td>
-		</tr>
-	}
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MyDepartments)
+        </th>
+    </tr>
+    @foreach (var item in Model.MyDepartments)
+    {
+        <tr>
+            <td>
+                @{ Html.RenderPartial("_Department", item); }
+            </td>
+        </tr>
+    }
 
 </table>
 
 @if (Model.TeamLeaderTeams.Any())
 {
-	<table class="table">
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.TeamLeaderTeams)
-			</th>
-		</tr>
-		@foreach (var item in Model.TeamLeaderTeams)
-		{
-			<tr>
-				<td>
-					@{ Html.RenderPartial("_Team", item); }
-				</td>
-			</tr>
-		}
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TeamLeaderTeams)
+            </th>
+        </tr>
+        @foreach (var item in Model.TeamLeaderTeams)
+        {
+            <tr>
+                <td>
+                    @{ Html.RenderPartial("_Team", item); }
+                </td>
+            </tr>
+        }
 
-	</table>
+    </table>
 }
 @if (Model.ProjectManagerProjects.Any())
 {
-	<table class="table">
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.ProjectManagerProjects)
-			</th>
-		</tr>
-		@foreach (var item in Model.ProjectManagerProjects)
-		{
-			<tr>
-				<td>
-					@{ Html.RenderPartial("_Project", item); }
-				</td>
-			</tr>
-		}
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectManagerProjects)
+            </th>
+        </tr>
+        @foreach (var item in Model.ProjectManagerProjects)
+        {
+            <tr>
+                <td>
+                    @{ Html.RenderPartial("_Project", item); }
+                </td>
+            </tr>
+        }
 
-	</table>
+    </table>
 }
 @if (Model.HeadOfDepartmentDepartments.Any())
 {
-	<table class="table">
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.HeadOfDepartmentDepartments)
-			</th>
-		</tr>
-		@foreach (var item in Model.HeadOfDepartmentDepartments)
-		{
-			<tr>
-				<td>
-					@{ Html.RenderPartial("_Department", item); }
-				</td>
-			</tr>
-		}
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HeadOfDepartmentDepartments)
+            </th>
+        </tr>
+        @foreach (var item in Model.HeadOfDepartmentDepartments)
+        {
+            <tr>
+                <td>
+                    @{ Html.RenderPartial("_Department", item); }
+                </td>
+            </tr>
+        }
 
-	</table>
+    </table>
 }

@@ -152,6 +152,7 @@ INSERT INTO[dbo].Admin (Employee_Id) VALUES (@employee_id);
 GO
 
 DECLARE @now DATETIME2(0) = SYSDATETIME();
+DECLARE @end DATETIME2(0) =  dateadd(day,7,@now);
 DECLARE @3daysago  DATETIME2(0) = dateadd(day,-3,@now);
 DECLARE @Admin int = ident_current('[dbo].Employee');
 INSERT INTO [dbo].Department(Name, Creator_Id, Description) VALUES
@@ -159,7 +160,7 @@ INSERT INTO [dbo].Department(Name, Creator_Id, Description) VALUES
     ('Research and Development', @Admin, 'The functions of a research and development department are to engage in new product research and development, existing product updates, quality checks and innovation.'),
     ('Sales', @Admin, 'The function of a sales department is to engage in a variety of activities with the objective to promote the customer purchase of a product or the client engagement of a service.');
 
-EXEC [dbo].CreateProject @name = 'ESN',@description = 'Enterprise Social Network application',@creator = @Admin,@project_manager = 5,@startDate = @3daysago,@endDate = null;
+EXEC [dbo].CreateProject @name = 'ESN',@description = 'Enterprise Social Network application',@creator = @Admin,@project_manager = 5,@startDate = @3daysago,@endDate = @end;
 GO
 
 DECLARE @Dep3_Id int = ident_current('[dbo].Department');
@@ -238,8 +239,9 @@ EXEC [dbo].CreateTask @Name = 'Front-End',@Description = 'Create or choose a vid
 GO
 
 DECLARE @now DATETIME2(0) = SYSDATETIME();
+DECLARE @end DATETIME2(0) = dateadd(DAY,30,@now);
 DECLARE @Admin int = ident_current('[dbo].Employee');
-EXEC [dbo].CreateProject @name = 'Mobile Messenger',@description = 'Our own messaging app and platform.',@creator = @Admin,@project_manager = 2,@startDate = @now,@endDate = null;
+EXEC [dbo].CreateProject @name = 'Mobile Messenger',@description = 'Our own messaging app and platform.',@creator = @Admin,@project_manager = 2,@startDate = @now,@endDate = @end;
 DECLARE @Project_Id int = ident_current('[dbo].Project');
 EXEC [dbo].CreateTeam @name = 'Apple Development Team',@team_leader = 5,@Project_Id = @Project_Id,@Creator_Id = 2;
 EXEC [dbo].CreateTeam @name = 'Android Development Team',@team_leader = 6,@Project_Id = @Project_Id,@Creator_Id = 2;
@@ -257,11 +259,14 @@ GO
 
 DECLARE @Admin int = ident_current('[dbo].Employee');
 DECLARE @Department int = ident_current('[dbo].Department');
+DECLARE @now DATETIME2(0) = SYSDATETIME();
+SET @now = dateadd(DAY,7,@now)
+DECLARE @end DATETIME2(0) = dateadd(HOUR,2,@now);
 EXEC [dbo].CreateEvent @Name = 'Lunch for all', @Description = 'Opportunity for see all our employees', @Address = 'Avenue Jean Mermoz 18, 6041 Charleroi',
-                       @StartDate = '2019-02-01T00:00:00', @EndDate = '2019-02-01T23:59:00', @DepartmentId = NULL, @AdminId = @Admin, @Open = 1;
-
+                       @StartDate = @now, @EndDate = @end, @DepartmentId = NULL, @AdminId = @Admin, @Open = 1;
+SET @now = dateadd(DAY,-3,@now)
 EXEC [dbo].CreateEvent @Name = 'Presentation for Marketing', @Description = 'How to do presentations the right way', @Address = 'Avenue Jean Mermoz 18, 6041 Charleroi',
-                       @StartDate = '2019-01-20T00:00:00', @EndDate = '2019-01-20T23:59:00', @DepartmentId = @Department, @AdminId = @Admin, @Open = 0;
+                       @StartDate =  @now, @EndDate =  @now, @DepartmentId = @Department, @AdminId = @Admin, @Open = 0;
 GO
 
 DECLARE @Admin int = ident_current('[dbo].Employee');

@@ -180,8 +180,9 @@ optgroup {
   font-weight: bold;
 }
 table {
-  border-spacing: 0;
-  border-collapse: collapse;
+    border-spacing: 0;
+    /*border-collapse: collapse;*/
+    border: 1px solid #000 !important;
 }
 td,
 th {
@@ -257,7 +258,7 @@ th {
   }
   .table-bordered th,
   .table-bordered td {
-    border: 1px solid #ddd !important;
+    border: 1px solid #000 !important;
   }
 }
 @font-face {
@@ -2249,7 +2250,7 @@ pre code {
   }
 }
 table {
-  background-color: transparent;
+  background-color: white;
 }
 caption {
   padding-top: 8px;
