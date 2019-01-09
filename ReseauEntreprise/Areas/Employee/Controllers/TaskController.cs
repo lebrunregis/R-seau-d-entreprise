@@ -151,7 +151,8 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                     Description = form.Description,
                     Start = form.StartDate,
                     Deadline = form.Deadline,
-                    SubtaskOf = null
+                    SubtaskOf = null,
+                    TeamId = (form.SelectedTeamId == -1) ? null : form.SelectedTeamId
                 };
                 try
                 {
@@ -275,9 +276,10 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
                 };
                 try
                 {
-                    if (TaskService.Create(t, SessionUser.GetUser().Id) != null)
+                    int? NewTaskId = TaskService.Create(t, SessionUser.GetUser().Id);
+                    if (NewTaskId != null)
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Details", "Task", new { projectId = form.ProjectId, taskId = NewTaskId });
                     }
                 }
                 catch (System.Data.SqlClient.SqlException exception)

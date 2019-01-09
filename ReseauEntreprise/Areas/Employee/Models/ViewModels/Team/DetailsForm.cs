@@ -34,8 +34,8 @@ namespace ReseauEntreprise.Areas.Employee.Models.ViewModels.Team
         public IEnumerable<C.Employee> Members { get; set; }
         [Display(Name = "Team leader")]
         public bool IsTeamLeader { get; set; }
-        [Display(Name = "Project manager or admin")]
-        public bool IsProjectManagerOrAdmin {get ; set; }
+        [Display(Name = "Project manager")]
+        public bool IsProjectManager {get ; set; }
         public IEnumerable<TaskListForm> Tasks { get ; set; }
         public IEnumerable<Doc.ListForm> Documents { get; set; }
         public Message.DiscussionScriptForm DiscScriptForm { get; set; }

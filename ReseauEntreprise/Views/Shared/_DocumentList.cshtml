@@ -5,7 +5,10 @@
 {
 	<tr>
 		<td>
-			@Html.ActionLink(item.Name, "Download", "Document", new { id = item.Id }, null)
+			<a href="@Url.Action("Download", "Document", new { id = item.Id })">
+				<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+				@(item.Name)
+			</a>
 		</td>
 		<td>
 			@Html.ActionLink("Upload new version", "Details", "Document", new { id = item.Id }, null)
