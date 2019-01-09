@@ -1,8 +1,7 @@
 \babel@toc {english}{}
 \beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{Structure}{4}{0}{2}
-\beamer@subsectionintoc {2}{1}{Structure du projet}{4}{0}{2}
-\beamer@subsectionintoc {2}{2}{Carte du site}{6}{0}{2}
-\beamer@sectionintoc {3}{Ce que l'on a appris}{8}{0}{3}
-\beamer@sectionintoc {5}{Pr\IeC {\'e}sentation vid\IeC {\'e}o}{16}{0}{4}
-\beamer@sectionintoc {6}{Questions}{17}{0}{5}
+\beamer@sectionintoc {2}{Objectifs}{4}{0}{2}
+\beamer@sectionintoc {3}{Structure du projet}{4}{0}{3}
+\beamer@sectionintoc {4}{Ce que l'on a appris}{6}{0}{4}
+\beamer@sectionintoc {6}{Pr\IeC {\'e}sentation vid\IeC {\'e}o}{14}{0}{5}
+\beamer@sectionintoc {7}{Questions}{15}{0}{6}

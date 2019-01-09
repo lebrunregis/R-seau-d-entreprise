@@ -14,7 +14,7 @@ IF EXISTS(SELECT * FROM [dbo].[Employee] WHERE Employee_Id = @team_leader AND Ac
 	AND EXISTS(SELECT * FROM Project WHERE Project_Id=@Project_Id AND (EndDate IS NULL OR EndDate > SYSDATETIME()))
        BEGIN
            INSERT INTO [dbo].Team (Team_Name, Creator_Id, Project_Id) VALUES (@name, @Creator_Id, @Project_Id);
-	       SET @team_id = convert(int,IDENT_CURRENT ('dbo.Team'));
+	       SET @team_id = convert(int,Scope_identity ());
 	       INSERT INTO [dbo].EmployeeTeamLeader(Team_Id, Employee_Id) VALUES (@team_id, @team_leader);
 	       SELECT @team_id
        END
