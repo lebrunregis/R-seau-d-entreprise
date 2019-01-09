@@ -32,7 +32,7 @@ AND (@parent IS NULL
        IF @parent IS NOT NULL
 	       SET @title = [dbo].[FN_GetParentTitle](@parent)
        INSERT INTO [Message] (Message_Title, Message_Message, Message_Author, Message_Parent) VALUES (@title, @message, @author, @parent);
-	   SET @message_id = convert(int, IDENT_CURRENT('Message'));
+	   SET @message_id = convert(int, SCOPE_IDENTITY());
 
 	   IF @receiver_employee IS NOT NULL
 	       INSERT INTO MessageEmployee(Message_Id, Employee_Id) VALUES(@message_id, @receiver_employee);
