@@ -163,34 +163,35 @@
 </style>
 <h3>Discussion</h3>
 <div id="discussion">
-	<div class="rel">
-		<button onclick="refresh()" class="btn btn-default right">Refresh</button>
-	</div>
-    <div class="whiteblock">
-		<h4>Compose new message</h4>
-		<div id="SendNew">
-			@{Html.RenderPartial("_SendFormTemplateRoot", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm
-				{
-					ToEmployee = Model.ToEmployee,
-					ToProject  = Model.ToProject ,
-					ToTask     = Model.ToTask    ,
-					ToTeam     = Model.ToTeam
-				});}
-		</div>
-	</div>
-    <div id="SendFormTemplate" class="hidden">
-        @{Html.RenderPartial("_SendFormTemplate", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm
-			{
-				ToEmployee = Model.ToEmployee,
-				ToProject  = Model.ToProject ,
-				ToTask     = Model.ToTask    ,
-				ToTeam     = Model.ToTeam
-			});}
+    <div class="rel">
+        <button onclick="refresh()" class="btn btn-default right">Refresh</button>
     </div>
-	<div id="AllMessages" class="AntiMargin">
-		<div></div>
-		@{Html.RenderPartial("_Messages", Model.Messages);}
-	</div>
+    <div class="whiteblock">
+        <div id="SendFormTemplate" class="hidden">
+            @{Html.RenderPartial("_SendFormTemplate", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm
+                {
+                    ToEmployee = Model.ToEmployee,
+                    ToProject = Model.ToProject,
+                    ToTask = Model.ToTask,
+                    ToTeam = Model.ToTeam
+                });}
+        </div>
+        <div id="AllMessages" class="AntiMargin">
+            <div></div>
+            @{Html.RenderPartial("_Messages", Model.Messages);}
+        </div>
+        <h4>Compose new message</h4>
+        <div id="SendNew">
+            @{Html.RenderPartial("_SendFormTemplateRoot", new ReseauEntreprise.Areas.Employee.Models.ViewModels.Message.SendForm
+                {
+                    ToEmployee = Model.ToEmployee,
+                    ToProject = Model.ToProject,
+                    ToTask = Model.ToTask,
+                    ToTeam = Model.ToTeam
+                });}
+        </div>
+    </div>
+
 </div>
 
 
