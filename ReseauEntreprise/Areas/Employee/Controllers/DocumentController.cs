@@ -129,7 +129,7 @@ namespace ReseauEntreprise.Areas.Employee.Controllers
         public ActionResult Delete(int id, FormCollection form) // FormCollection just pour differencier
         {
             DocumentService.Delete(id, SessionUser.GetUser().Id);
-            return RedirectToAction("Index", "Employee");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
