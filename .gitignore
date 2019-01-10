@@ -47,6 +47,12 @@ project.lock.json
 project.fragment.lock.json
 artifacts/
 
+*.out
+*.nav
+*.aux
+*.toc
+*.gz
+*.snm
 *_i.c
 *_p.c
 *_i.h
