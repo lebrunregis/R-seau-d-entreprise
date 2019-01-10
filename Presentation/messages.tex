@@ -3,14 +3,10 @@
   \includegraphics[width=0.10\textwidth]{images/-59-512}
 \end{figure}
 
-  SignalR permet de créer des messages instantanés
+  Messagerie ave SignalR:
   \begin{itemize}
-  \item Quand l'utilisateur crée un message, il notifie le hub
-  \item Le hub notifie tout qui doit recevoir ce message
-    \begin{itemize}
-    \item Mais notre système d'authentification (par HttpContext) n'est pas accessible dans le hub
-    \item Alors le hub notifie tous les utilisateurs qui sont sur la page avec le script, et les utilisateurs retrievent que les messages appropriés à partir de la base de données
-    \end{itemize}
-  \item JQuery permet d'ajouter nouveaux messages sans recharger toute la page
+  \item L'utilisateur envoie un message au HUB
+  \item Notification broadcast par le HUB d'un changement
+  \item Récupération par JQuery de l'user (si autorisé)
   \end{itemize}
 \end{frame}
